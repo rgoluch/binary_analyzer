@@ -7,7 +7,9 @@ Bundle-Activator: com.kcsl.x86.Activator
 Bundle-Vendor: KCSL
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.ensoftcorp.atlas.core;bundle-version="3.5.0"
+ com.ensoftcorp.atlas.core;bundle-version="3.5.0",
+ org.eclipse.core.resources,
+ com.ensoftcorp.atlas.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.kcsl.x86
 Bundle-ActivationPolicy: lazy

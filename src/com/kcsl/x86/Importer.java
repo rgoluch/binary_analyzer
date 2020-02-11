@@ -14,7 +14,7 @@ import com.ensoftcorp.atlas.core.xcsg.XCSG.*;
 
 public class Importer {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main() throws FileNotFoundException {
 		// HashMap of Node for further access
 		Map<String,Node> nodeMap = new HashMap<String,Node>();
 		Node fromN = Graph.U.createNode();
@@ -31,7 +31,7 @@ public class Importer {
 		e_temp.tag(XCSG.ControlFlow_Edge);
 		
 		//read in and parse .dot file
-		File dot = new File("/Users/RyanGoluch/Desktop/xsh_sleep.dot");
+		File dot = new File("/Users/RyanGoluch/Desktop/Research/kothari_490/xsh_date.dot");
 		Scanner s = new Scanner(dot);
 
 		while(s.hasNextLine()) {
@@ -39,24 +39,34 @@ public class Importer {
 			if(data.contains("[URL")) {
 				Node n = Graph.U.createNode(); 
 				String addr = data.subSequence(2, 12).toString();
+				String label = data.split("label=")[1];
+				label = label.replace("\"", "");
+				label = label.replace("]", "");
+				label = label.replace("\\l", "\n");
+				n.putAttr(XCSG.name, label);
 				nodeMap.put(addr, n);
 			}
 			if(data.contains("->")) {
+				data = data.replaceAll("\\s+", "");
 				//Extract the addresses of the from and to nodes in DOT file
-				String from = data.subSequence(2, 12).toString();
-				String to = data.subSequence(18, 28).toString();
+				String from = data.split("->")[0];
+				from = from.replaceAll("\"", "");
+				String temp = data.split("->")[1];
+				String to = temp.split("\\[")[0];
+				to = to.replaceAll("\"", "");
 				
 				//Create the Atlas nodes and add necessary tags
 				Node fromNode = nodeMap.get(from);
-				fromNode.putAttr(XCSG.name, "from");
 				fromNode.tag(XCSG.ControlFlow_Node);
+				fromNode.tag("my_node");
 				
 				Node toNode = nodeMap.get(to);
-				toNode.putAttr(XCSG.name, "to");
 				toNode.tag(XCSG.ControlFlow_Node);
+				toNode.tag("my_node");
 				
 				Edge e = Graph.U.createEdge(fromNode, toNode);
 				e.tag(XCSG.ControlFlow_Edge);
+				e.tag("my_edge");
 			}
 			
 		}
