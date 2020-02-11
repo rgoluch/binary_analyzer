@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000533c" [URL="sym.uartPutc/0x8000533c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.uartRead @ 0x800053f8\l  ; UNKNOWN XREF from obj.devtab @ +0x28\l64: sym.uartPutc (int32_t arg1, int32_t arg2, int32_t arg3, int32_t arg_4h);\l; var int32_t var_4h @ sp+0x14\l; arg int32_t arg_4h @ sp+0x1c\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x8000533c      addiu sp, sp, -0x18\l0x80005340      lui v0, 0x8000\l0x80005344      addiu a2, zero, 1                                      ; arg3\l0x80005348      sb a1, (arg_4h)\l0x8000534c      sw ra, (var_4h)\l0x80005350      addiu v0, v0, 0x54e8                                   ; 0x800054e8\l                                                                       ; sym.uartWrite ; sym.uartWrite\l0x80005354      jalr v0\l0x80005358      addiu a1, sp, 0x1c                                     ; arg2\l0x8000535c      addiu a0, zero, 1                                      ; arg1\l0x80005360      bne v0, a0, 0x8000536c\l0x80005364      addiu v1, zero, -1\l"]
+	"0x80005368" [URL="sym.uartPutc/0x80005368", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005368      lbu v1, (arg_4h)\l"]
+	"0x8000536c" [URL="sym.uartPutc/0x8000536c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartPutc @ 0x80005360\l0x8000536c      lw ra, (var_4h)\l0x80005370      move v0, v1\l0x80005374      jr ra\l0x80005378      addiu sp, sp, 0x18\l"]
+        "0x8000533c" -> "0x8000536c" [color="#13a10e"];
+        "0x8000533c" -> "0x80005368" [color="#c50f1f"];
+        "0x80005368" -> "0x8000536c" [color="#0037da"];
+}

@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011f78" [URL="sym.strlcpy/0x80011f78", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x800015d0  CALL 0x800015e4  CALL 0x800015fc  \l  ; XREFS: DATA 0x80001a0c  CALL 0x80001a10  DATA 0x80001dcc  \l  ; XREFS: CALL 0x80001dd0  \l128: char *sym.strlcpy (char *dest, const char *src, size_t  n);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_ch @ sp+0x14\l; var int32_t var_8h @ sp+0x18\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg_4h @ sp+0x24\l0x80011f78      addiu sp, sp, -0x20\l0x80011f7c      lui v0, 0x8001\l0x80011f80      addiu v0, v0, 0x1ff8                                   ; 0x80011ff8 ; \"%\\x10\" ; sym.strlen\l0x80011f84      sw s2, (var_8h)\l0x80011f88      sw s1, (var_ch)\l0x80011f8c      sw s0, (var_10h)\l0x80011f90      sw ra, (var_4h)\l0x80011f94      move s1, a0\l0x80011f98      move a0, a1\l0x80011f9c      sw a1, (arg_4h)\l0x80011fa0      jalr v0\l0x80011fa4      move s0, a2\l0x80011fa8      move s2, v0\l0x80011fac      beqz s0, 0x80011fdc\l0x80011fb0      lw a1, (arg_4h)\l"]
+	"0x80011fb4" [URL="sym.strlcpy/0x80011fb4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80011fb4      addiu s0, s0, -1\l0x80011fb8      sltu a2, v0, s0\l0x80011fbc      movn s0, v0, a2\l0x80011fc0      lui v0, 0x8001\l0x80011fc4      move a0, s1\l0x80011fc8      move a2, s0\l0x80011fcc      addiu v0, v0, 0x1c14                                   ; 0x80011c14 ; \"%\\x10\\x80\" ; sym.memcpy\l0x80011fd0      jalr v0\l0x80011fd4      addu s1, s1, s0\l0x80011fd8      sb zero, (s1)\l"]
+	"0x80011fdc" [URL="sym.strlcpy/0x80011fdc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strlcpy @ 0x80011fac\l0x80011fdc      lw ra, (var_4h)\l0x80011fe0      lw s1, (var_ch)\l0x80011fe4      lw s0, (var_10h)\l0x80011fe8      move v0, s2\l0x80011fec      lw s2, (var_8h)\l0x80011ff0      jr ra\l0x80011ff4      addiu sp, sp, 0x20\l"]
+        "0x80011f78" -> "0x80011fdc" [color="#13a10e"];
+        "0x80011f78" -> "0x80011fb4" [color="#c50f1f"];
+        "0x80011fb4" -> "0x80011fdc" [color="#0037da"];
+}

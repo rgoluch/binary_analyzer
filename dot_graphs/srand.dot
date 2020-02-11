@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011de0" [URL="sym.srand/0x80011de0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.test_libStdlib @ 0x8000f9d4, 0x8000f9d8\l12: void sym.srand (int seed);\l0x80011de0      lui v0, 0x8002\l0x80011de4      jr ra\l0x80011de8      sw a0, -0x35d0(v0)\l"]
+}

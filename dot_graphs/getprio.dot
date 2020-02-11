@@ -1,0 +1,16 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80002208" [URL="sym.getprio/0x80002208", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x80009320  CALL 0x80009324  DATA 0x8000a580  \l  ; XREFS: CALL 0x8000a584  DATA 0x8000b470  CALL 0x8000b474  \l  ; XREFS: CALL 0x8000b4bc  CALL 0x8000b508  \l128: sym.getprio (int32_t arg2, int32_t arg3);\l; var int32_t var_8h @ sp+0x10\l; var int32_t var_4h @ sp+0x14\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x80002208      addiu sp, sp, -0x18\l0x8000220c      lui v0, 0x8000\l0x80002210      addiu v0, v0, 0x1318                                   ; 0x80001318\l                                                                       ; loc.disable ; loc.disable\l0x80002214      sw s0, (var_8h)\l0x80002218      sw ra, (var_4h)\l0x8000221c      jalr v0\l0x80002220      move s0, a0\l0x80002224      move a0, v0\l0x80002228      lui v1, 0x8000\l0x8000222c      sltiu v0, s0, 0x64\l0x80002230      beqz v0, 0x8000225c\l0x80002234      addiu v1, v1, 0x1330                                   ; 0x80001330\l                                                                       ; loc.restore ; loc.restore\l"]
+	"0x80002238" [URL="sym.getprio/0x80002238", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80002238      addiu a1, zero, 0x54                                   ; arg2\l0x8000223c      mul a2, s0, a1\l0x80002240      lui v0, 0x8002\l0x80002244      addiu v0, v0, -0x3004                                  ; 0x8001cffc\l                                                                       ; v1 ; obj.thrtab\l0x80002248      addu s0, a2, v0                                        ; arg3\l0x8000224c      lbu a1, (s0)                                           ; [0x8001cffc:4]=0\l                                                                       ; v1\l0x80002250      addiu v0, zero, 2\l0x80002254      bne a1, v0, 0x8000226c\l0x80002258      nop\l"]
+	"0x8000225c" [URL="sym.getprio/0x8000225c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getprio @ 0x80002230\l0x8000225c      jalr v1\l0x80002260      nop\l0x80002264      j 0x80002278\l0x80002268      addiu v0, zero, -1\l"]
+	"0x8000226c" [URL="sym.getprio/0x8000226c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getprio @ 0x80002254\l0x8000226c      jalr v1\l0x80002270      lw s0, 4(s0)\l0x80002274      move v0, s0\l"]
+	"0x80002278" [URL="sym.getprio/0x80002278", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getprio @ 0x80002264\l0x80002278      lw ra, (var_4h)\l0x8000227c      lw s0, (var_8h)\l0x80002280      jr ra\l0x80002284      addiu sp, sp, 0x18\l"]
+        "0x80002208" -> "0x8000225c" [color="#13a10e"];
+        "0x80002208" -> "0x80002238" [color="#c50f1f"];
+        "0x80002238" -> "0x8000226c" [color="#13a10e"];
+        "0x80002238" -> "0x8000225c" [color="#c50f1f"];
+        "0x8000225c" -> "0x80002278" [color="#0037da"];
+        "0x8000226c" -> "0x80002278" [color="#0037da"];
+}

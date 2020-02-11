@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80008e44" [URL="sym.testPrint/0x80008e44", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(120)\l36: sym.testPrint (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x80008e44      addiu v0, zero, 1\l0x80008e48      bne a0, v0, 0x80008e60\l0x80008e4c      lui a0, 0x8001\l"]
+	"0x80008e50" [URL="sym.testPrint/0x80008e50", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80008e50      lui t9, 0x8001\l0x80008e54      addiu t9, t9, 0x1c68                                   ; 0x80011c68\l                                                                       ; sym.printf ; sym.printf\l0x80008e58      jr t9\l0x80008e5c      addiu a0, a0, 0x46f8                                   ; arg1 ; esilref: '  &s'\l"]
+	"0x80008e60" [URL="sym.testPrint/0x80008e60", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.testPrint @ 0x80008e48\l0x80008e60      jr ra\l0x80008e64      nop\l"]
+        "0x80008e44" -> "0x80008e60" [color="#13a10e"];
+        "0x80008e44" -> "0x80008e50" [color="#c50f1f"];
+}

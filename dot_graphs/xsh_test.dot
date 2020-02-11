@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80008a54" [URL="sym.xsh_test/0x80008a54", fillcolor="white",color="#767676", fontname="Courier",label="  ; UNKNOWN XREF from obj.commandtab @ +0xa4\l8: sym.xsh_test ();\l0x80008a54      jr ra\l0x80008a58      move v0, zero\l"]
+}

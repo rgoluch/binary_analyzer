@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000a76c" [URL="sym.test_semWaiter/0x8000a76c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x80009674  DATA 0x800096c0  DATA 0x80009de8  \l  ; XREFS: DATA 0x8000aa64  DATA 0x80010e68  DATA 0x80010eb4  \l96: sym.test_semWaiter (int32_t arg_0h);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_ch @ sp+0x14\l; var int32_t var_8h @ sp+0x18\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg_0h @ sp+0x20\l0x8000a76c      addiu sp, sp, -0x20\l0x8000a770      sw s2, (var_8h)\l0x8000a774      lui s2, 0x8000\l0x8000a778      sw s1, (var_ch)\l0x8000a77c      sw s0, (var_10h)\l0x8000a780      sw ra, (var_4h)\l0x8000a784      move s0, a1\l0x8000a788      move s1, a2\l0x8000a78c      addiu s2, s2, 0x2dd4                                   ; 0x80002dd4\l                                                                       ; sym.wait ; sym.wait\l"]
+	"0x8000a790" [URL="sym.test_semWaiter/0x8000a790", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.test_semWaiter @ 0x8000a7c4\l0x8000a790      bgtz s0, 0x8000a7ac\l0x8000a794      lw ra, (var_4h)\l"]
+	"0x8000a798" [URL="sym.test_semWaiter/0x8000a798", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000a798      lw s2, (var_8h)\l0x8000a79c      lw s1, (var_ch)\l0x8000a7a0      lw s0, (var_10h)\l0x8000a7a4      jr ra\l0x8000a7a8      addiu sp, sp, 0x20\l"]
+	"0x8000a7ac" [URL="sym.test_semWaiter/0x8000a7ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.test_semWaiter @ 0x8000a790\l0x8000a7ac      jalr s2\l0x8000a7b0      sw a0, (arg_0h)\l0x8000a7b4      lbu v0, (s1)\l0x8000a7b8      lw a0, (arg_0h)\l0x8000a7bc      addiu v0, v0, 1\l0x8000a7c0      sb v0, (s1)\l0x8000a7c4      b 0x8000a790\l0x8000a7c8      addiu s0, s0, -1\l"]
+        "0x8000a76c" -> "0x8000a790" [color="#0037da"];
+        "0x8000a790" -> "0x8000a7ac" [color="#13a10e"];
+        "0x8000a790" -> "0x8000a798" [color="#c50f1f"];
+        "0x8000a7ac" -> "0x8000a790" [color="#0037da"];
+}

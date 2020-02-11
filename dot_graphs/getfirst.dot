@@ -1,0 +1,17 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800022d0" [URL="sym.getfirst/0x800022d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.dequeue @ 0x80001c28, 0x80001c2c\l  ; CALL XREFS from sym.test_procQueue @ 0x8000c190, 0x8000c194\l84: sym.getfirst (signed int arg1, int32_t arg2);\l; arg signed int arg1 @ a0\l; arg int32_t arg2 @ a1\l0x800022d0      bltz a0, 0x80002314\l0x800022d4      nop\l"]
+	"0x800022d8" [URL="sym.getfirst/0x800022d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800022d8      addiu v0, a0, 1                                        ; arg1\l0x800022dc      slti v0, v0, 0x130\l0x800022e0      beqz v0, 0x80002314\l0x800022e4      addiu v1, zero, 0xc\l"]
+	"0x800022e8" [URL="sym.getfirst/0x800022e8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800022e8      mul a1, a0, v1\l0x800022ec      lui v0, 0x8002\l0x800022f0      addiu v0, v0, -0xf34                                   ; 0x8001f0cc\l                                                                       ; obj.quetab ; obj.quetab\l0x800022f4      addu a0, a1, v0                                        ; arg2\l0x800022f8      lw a0, 4(a0)                                           ; arg1\l0x800022fc      slti v0, a0, 0x64                                      ; arg1\l0x80002300      beqz v0, 0x8000231c\l0x80002304      lui t9, 0x8000\l"]
+	"0x80002308" [URL="sym.getfirst/0x80002308", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80002308      addiu t9, t9, 0x2288                                   ; 0x80002288\l                                                                       ; sym.getitem ; sym.getitem\l0x8000230c      jr t9\l0x80002310      nop\l"]
+	"0x80002314" [URL="sym.getfirst/0x80002314", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREFS from sym.getfirst @ 0x800022d0, 0x800022e0\l0x80002314      jr ra\l0x80002318      addiu v0, zero, -1\l"]
+	"0x8000231c" [URL="sym.getfirst/0x8000231c", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.getfirst @ 0x80002300\l0x8000231c      jr ra\l0x80002320      addiu v0, zero, -2\l"]
+        "0x800022d0" -> "0x80002314" [color="#13a10e"];
+        "0x800022d0" -> "0x800022d8" [color="#c50f1f"];
+        "0x800022d8" -> "0x80002314" [color="#13a10e"];
+        "0x800022d8" -> "0x800022e8" [color="#c50f1f"];
+        "0x800022e8" -> "0x8000231c" [color="#13a10e"];
+        "0x800022e8" -> "0x80002308" [color="#c50f1f"];
+}

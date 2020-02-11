@@ -1,0 +1,25 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80003324" [URL="sym.bfpfree/0x80003324", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.test_bufpool @ 0x8000a20c, 0x8000a210\l232: sym.bfpfree (int32_t arg1);\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_10h @ sp+0x18\l; var int32_t var_ch @ sp+0x1c\l; var int32_t var_8h @ sp+0x20\l; var int32_t var_4h @ sp+0x24\l; arg int32_t arg1 @ a0\l0x80003324      sltiu v0, a0, 8                                        ; arg1\l0x80003328      beqz v0, 0x800033e4\l0x8000332c      nop\l"]
+	"0x80003330" [URL="sym.bfpfree/0x80003330", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80003330      addiu v0, zero, 0x18\l0x80003334      mul v1, a0, v0\l0x80003338      addiu sp, sp, -0x28\l0x8000333c      sw s0, (var_14h)\l0x80003340      lui s0, 0x8002\l0x80003344      addiu s0, s0, -0x3580                                  ; 0x8001ca80\l                                                                       ; obj.bfptab ; obj.bfptab\l0x80003348      sw s2, (var_ch)\l0x8000334c      sw ra, (var_4h)\l0x80003350      sw s3, (var_8h)\l0x80003354      sw s1, (var_10h)\l0x80003358      addu s0, v1, s0\l0x8000335c      lbu v0, (s0)                                           ; [0x8001ca80:4]=0\l                                                                       ; obj.bfptab\l0x80003360      addiu s2, zero, 1\l0x80003364      beq v0, s2, 0x800033ec\l0x80003368      lui v0, 0x8000\l"]
+	"0x8000336c" [URL="sym.bfpfree/0x8000336c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000336c      addiu v0, v0, 0x1318                                   ; 0x80001318\l                                                                       ; loc.disable ; loc.disable\l0x80003370      jalr v0\l0x80003374      addiu s3, zero, -1\l0x80003378      move s1, v0\l0x8000337c      lw a1, 4(s0)\l0x80003380      lw v0, 8(s0)\l0x80003384      lw a0, 0xc(s0)\l0x80003388      mul a1, a1, v0\l0x8000338c      lui v0, 0x8000\l0x80003390      addiu v0, v0, 0x2f94                                   ; 0x80002f94 ; \"N\" ; sym.memfree\l0x80003394      jalr v0\l0x80003398      sb s2, (s0)\l0x8000339c      lui s2, 0x8000\l0x800033a0      addiu s2, s2, 0x1330                                   ; 0x80001330\l                                                                       ; loc.restore ; loc.restore\l0x800033a4      beq v0, s3, 0x800033c4\l0x800033a8      move a0, s1\l"]
+	"0x800033ac" [URL="sym.bfpfree/0x800033ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800033ac      lui v0, 0x8000\l0x800033b0      addiu v0, v0, 0x2ad0                                   ; 0x80002ad0\l                                                                       ; sym.semfree ; sym.semfree\l0x800033b4      jalr v0\l0x800033b8      lw a0, 0x14(s0)\l0x800033bc      bne v0, s3, 0x800033d4\l0x800033c0      move a0, s1\l"]
+	"0x800033c4" [URL="sym.bfpfree/0x800033c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.bfpfree @ 0x800033a4\l0x800033c4      jalr s2\l0x800033c8      nop\l0x800033cc      j 0x800033f0\l0x800033d0      addiu v0, zero, -1\l"]
+	"0x800033d4" [URL="sym.bfpfree/0x800033d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.bfpfree @ 0x800033bc\l0x800033d4      jalr s2\l0x800033d8      nop\l0x800033dc      j 0x800033f0\l0x800033e0      addiu v0, zero, 1\l"]
+	"0x800033e4" [URL="sym.bfpfree/0x800033e4", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.bfpfree @ 0x80003328\l0x800033e4      jr ra\l0x800033e8      addiu v0, zero, -1\l"]
+	"0x800033ec" [URL="sym.bfpfree/0x800033ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.bfpfree @ 0x80003364\l0x800033ec      addiu v0, zero, -1\l"]
+	"0x800033f0" [URL="sym.bfpfree/0x800033f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.bfpfree @ 0x800033cc, 0x800033dc\l0x800033f0      lw ra, (var_4h)\l0x800033f4      lw s3, (var_8h)\l0x800033f8      lw s2, (var_ch)\l0x800033fc      lw s1, (var_10h)\l0x80003400      lw s0, (var_14h)\l0x80003404      jr ra\l0x80003408      addiu sp, sp, 0x28\l"]
+        "0x80003324" -> "0x800033e4" [color="#13a10e"];
+        "0x80003324" -> "0x80003330" [color="#c50f1f"];
+        "0x80003330" -> "0x800033ec" [color="#13a10e"];
+        "0x80003330" -> "0x8000336c" [color="#c50f1f"];
+        "0x8000336c" -> "0x800033c4" [color="#13a10e"];
+        "0x8000336c" -> "0x800033ac" [color="#c50f1f"];
+        "0x800033ac" -> "0x800033d4" [color="#13a10e"];
+        "0x800033ac" -> "0x800033c4" [color="#c50f1f"];
+        "0x800033c4" -> "0x800033f0" [color="#0037da"];
+        "0x800033d4" -> "0x800033f0" [color="#0037da"];
+        "0x800033ec" -> "0x800033f0" [color="#0037da"];
+}

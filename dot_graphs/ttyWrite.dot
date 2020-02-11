@@ -1,0 +1,18 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80004c10" [URL="sym.ttyWrite/0x80004c10", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; UNKNOWN XREFS from obj.devtab @ +0xd0, +0x10c\l124: sym.ttyWrite (int32_t arg_0h);\l; var int32_t var_18h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_10h @ sp+0x18\l; var int32_t var_ch @ sp+0x1c\l; var int32_t var_8h @ sp+0x20\l; var int32_t var_4h @ sp+0x24\l; arg int32_t arg_0h @ sp+0x28\l0x80004c10      addiu sp, sp, -0x28\l0x80004c14      sw s3, (var_ch)\l0x80004c18      lui s3, 0x8000\l0x80004c1c      sw s4, (var_8h)\l0x80004c20      sw s2, (var_10h)\l0x80004c24      sw s1, (var_14h)\l0x80004c28      sw s0, (var_18h)\l0x80004c2c      sw ra, (var_4h)\l0x80004c30      move s2, a1\l0x80004c34      move s1, a2\l0x80004c38      move s0, zero\l0x80004c3c      addiu s3, s3, 0x4b58                                   ; 0x80004b58\l                                                                       ; sym.ttyPutc ; sym.ttyPutc\l0x80004c40      addiu s4, zero, -1\l"]
+	"0x80004c44" [URL="sym.ttyWrite/0x80004c44", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyWrite @ 0x80004c84\l0x80004c44      bne s0, s1, 0x80004c70\l0x80004c48      addu v0, s2, s0\l"]
+	"0x80004c4c" [URL="sym.ttyWrite/0x80004c4c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004c4c      move v0, s0\l"]
+	"0x80004c50" [URL="sym.ttyWrite/0x80004c50", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyWrite @ 0x80004c7c\l0x80004c50      lw ra, (var_4h)\l0x80004c54      lw s4, (var_8h)\l0x80004c58      lw s3, (var_ch)\l0x80004c5c      lw s2, (var_10h)\l0x80004c60      lw s1, (var_14h)\l0x80004c64      lw s0, (var_18h)\l0x80004c68      jr ra\l0x80004c6c      addiu sp, sp, 0x28\l"]
+	"0x80004c70" [URL="sym.ttyWrite/0x80004c70", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyWrite @ 0x80004c44\l0x80004c70      lb a1, (v0)\l0x80004c74      jalr s3\l0x80004c78      sw a0, (arg_0h)\l0x80004c7c      beq v0, s4, 0x80004c50\l0x80004c80      addiu s0, s0, 1\l"]
+	"0x80004c84" [URL="sym.ttyWrite/0x80004c84", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004c84      b 0x80004c44\l0x80004c88      lw a0, (arg_0h)\l"]
+        "0x80004c10" -> "0x80004c44" [color="#0037da"];
+        "0x80004c44" -> "0x80004c70" [color="#13a10e"];
+        "0x80004c44" -> "0x80004c4c" [color="#c50f1f"];
+        "0x80004c4c" -> "0x80004c50" [color="#0037da"];
+        "0x80004c70" -> "0x80004c50" [color="#13a10e"];
+        "0x80004c70" -> "0x80004c84" [color="#c50f1f"];
+        "0x80004c84" -> "0x80004c44" [color="#0037da"];
+}

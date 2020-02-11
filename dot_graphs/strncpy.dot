@@ -1,0 +1,21 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800120d8" [URL="sym.strncpy/0x800120d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x80003dec  CALL 0x80003df0  DATA 0x8000dc24  \l  ; XREFS: CALL 0x8000dc28  DATA 0x8001022c  CALL 0x80010230  \l  ; XREFS: CALL 0x800102ac  \l72: char *sym.strncpy (char *dest, const char *src, size_t  n);\l; arg char *dest @ a0\l; arg const char *src @ a1\l; arg int32_t arg4 @ a3\l0x800120d8      move v0, a0\l0x800120dc      move v1, zero\l"]
+	"0x800120e0" [URL="sym.strncpy/0x800120e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncpy @ 0x800120fc\l0x800120e0      addu a0, a1, v1                                        ; src\l0x800120e4      lb a0, (a0)                                            ; dest\l0x800120e8      beqz a0, 0x8001210c\l0x800120ec      nop\l"]
+	"0x800120f0" [URL="sym.strncpy/0x800120f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800120f0      beq v1, a2, 0x80012118\l0x800120f4      addu a3, v0, v1                                        ; arg4\l"]
+	"0x800120f8" [URL="sym.strncpy/0x800120f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800120f8      sb a0, (a3)                                            ; arg4\l0x800120fc      b 0x800120e0\l0x80012100      addiu v1, v1, 1\l"]
+	"0x80012104" [URL="sym.strncpy/0x80012104", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncpy @ 0x80012110\l0x80012104      sb zero, (a0)                                          ; dest\l0x80012108      addiu v1, v1, 1\l"]
+	"0x8001210c" [URL="sym.strncpy/0x8001210c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncpy @ 0x800120e8\l0x8001210c      sltu a0, v1, a2\l0x80012110      bnez a0, 0x80012104\l0x80012114      addu a0, v0, v1                                        ; dest\l"]
+	"0x80012118" [URL="sym.strncpy/0x80012118", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.strncpy @ 0x800120f0\l0x80012118      jr ra\l0x8001211c      nop\l"]
+        "0x800120d8" -> "0x800120e0" [color="#0037da"];
+        "0x800120e0" -> "0x8001210c" [color="#13a10e"];
+        "0x800120e0" -> "0x800120f0" [color="#c50f1f"];
+        "0x800120f0" -> "0x80012118" [color="#13a10e"];
+        "0x800120f0" -> "0x800120f8" [color="#c50f1f"];
+        "0x800120f8" -> "0x800120e0" [color="#0037da"];
+        "0x80012104" -> "0x8001210c" [color="#0037da"];
+        "0x8001210c" -> "0x80012104" [color="#13a10e"];
+        "0x8001210c" -> "0x80012118" [color="#c50f1f"];
+}

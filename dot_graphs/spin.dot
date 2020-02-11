@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000b72c" [URL="sym.spin/0x8000b72c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.test_preempt @ 0x8000b794\l32: sym.spin ();\l; var int32_t var_8h @ sp+0x0\l0x8000b72c      addiu sp, sp, -8\l0x8000b730      addiu v0, zero, 1\l0x8000b734      sw v0, (sp)\l"]
+	"0x8000b738" [URL="sym.spin/0x8000b738", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.spin @ 0x8000b73c\l0x8000b738      lw v0, (sp)\l0x8000b73c      bnez v0, 0x8000b738\l0x8000b740      addiu v0, zero, 1\l"]
+	"0x8000b744" [URL="sym.spin/0x8000b744", fillcolor="white",color="#767676", fontname="Courier",label="0x8000b744      jr ra\l0x8000b748      addiu sp, sp, 8\l"]
+        "0x8000b72c" -> "0x8000b738" [color="#0037da"];
+        "0x8000b738" -> "0x8000b738" [color="#13a10e"];
+        "0x8000b738" -> "0x8000b744" [color="#c50f1f"];
+}

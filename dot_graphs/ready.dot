@@ -1,0 +1,19 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80002020" [URL="sym.ready/0x80002020", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(49)\l160: sym.ready (int32_t arg1, int32_t arg2, int32_t arg3);\l; var int32_t var_ch @ sp+0x14\l; var int32_t var_8h @ sp+0x18\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x80002020      addiu sp, sp, -0x20\l0x80002024      sltiu v0, a0, 0x64                                     ; arg1\l0x80002028      sw s1, (var_8h)\l0x8000202c      sll s1, a1, 0x18                                       ; arg2\l0x80002030      sw ra, (var_4h)\l0x80002034      sw s0, (var_ch)\l0x80002038      beqz v0, 0x800020a4\l0x8000203c      sra s1, s1, 0x18\l"]
+	"0x80002040" [URL="sym.ready/0x80002040", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80002040      addiu a1, zero, 0x54                                   ; arg2\l0x80002044      mul a2, a0, a1\l0x80002048      lui v0, 0x8002\l0x8000204c      addiu v0, v0, -0x3004                                  ; 0x8001cffc\l                                                                       ; v1 ; obj.thrtab\l0x80002050      addu v0, a2, v0                                        ; arg3\l0x80002054      lbu a1, (v0)\l0x80002058      addiu v1, zero, 2\l0x8000205c      beq a1, v1, 0x800020a4\l0x80002060      addiu v1, zero, 3\l"]
+	"0x80002064" [URL="sym.ready/0x80002064", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80002064      sb v1, (v0)\l0x80002068      lui v1, 0x8002\l0x8000206c      lw a2, 4(v0)\l0x80002070      lw a1, -0x34b8(v1)                                     ; [0x8001cb48:4]=0\l                                                                       ; obj.readylist\l0x80002074      lui v0, 0x8000\l0x80002078      addiu v0, v0, 0x23e8                                   ; 0x800023e8 ; \"*\" ; sym.insert\l0x8000207c      jalr v0\l0x80002080      addiu s0, zero, 1\l0x80002084      bnel s1, s0, 0x800020ac\l0x80002088      lw ra, (var_4h)\l"]
+	"0x8000208c" [URL="sym.ready/0x8000208c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000208c      lui v0, 0x8000\l0x80002090      addiu v0, v0, 0x20c0                                   ; 0x800020c0\l                                                                       ; sym.resched ; sym.resched\l0x80002094      jalr v0\l0x80002098      nop\l0x8000209c      j 0x800020ac\l0x800020a0      lw ra, (var_4h)\l"]
+	"0x800020a4" [URL="sym.ready/0x800020a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ready @ 0x80002038, 0x8000205c\l0x800020a4      addiu s0, zero, -1\l0x800020a8      lw ra, (var_4h)\l"]
+	"0x800020ac" [URL="sym.ready/0x800020ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ready @ 0x80002084, 0x8000209c\l0x800020ac      move v0, s0\l0x800020b0      lw s1, (var_8h)\l0x800020b4      lw s0, (var_ch)\l0x800020b8      jr ra\l0x800020bc      addiu sp, sp, 0x20\l"]
+        "0x80002020" -> "0x800020a4" [color="#13a10e"];
+        "0x80002020" -> "0x80002040" [color="#c50f1f"];
+        "0x80002040" -> "0x800020a4" [color="#13a10e"];
+        "0x80002040" -> "0x80002064" [color="#c50f1f"];
+        "0x80002064" -> "0x800020ac" [color="#13a10e"];
+        "0x80002064" -> "0x8000208c" [color="#c50f1f"];
+        "0x8000208c" -> "0x800020ac" [color="#0037da"];
+        "0x800020a4" -> "0x800020ac" [color="#0037da"];
+}

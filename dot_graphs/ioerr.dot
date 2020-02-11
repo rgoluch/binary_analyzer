@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80003948" [URL="sym.ioerr/0x80003948", fillcolor="white",color="#767676", fontname="Courier",label="  ; XREFS: UNKNOWN 0x800173c8  UNKNOWN 0x80017404  UNKNOWN 0x80017410  \l  ; XREFS: UNKNOWN 0x80017418  UNKNOWN 0x80017440  UNKNOWN 0x80017454  \l  ; XREFS: UNKNOWN 0x8001747c  UNKNOWN 0x80017490  UNKNOWN 0x800174b8  \l  ; XREFS: UNKNOWN 0x800174cc  \l8: sym.ioerr ();\l0x80003948      jr ra\l0x8000394c      addiu v0, zero, -1\l"]
+}

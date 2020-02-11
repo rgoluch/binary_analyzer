@@ -1,0 +1,39 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800044f8" [URL="sym.ttyControl/0x800044f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; UNKNOWN XREFS from obj.devtab @ +0xe0, +0x11c\l196: sym.ttyControl (int32_t arg1, signed int arg2, int32_t arg3, int32_t arg4);\l; arg int32_t arg1 @ a0\l; arg signed int arg2 @ a1\l; arg int32_t arg3 @ a2\l; arg int32_t arg4 @ a3\l0x800044f8      lw a0, 4(a0)                                           ; arg1\l0x800044fc      addiu v1, zero, 0x414\l0x80004500      mul a3, a0, v1\l0x80004504      lui v0, 0x8002\l0x80004508      addiu v0, v0, 0x334                                    ; 0x80020334\l                                                                       ; obj.ttytab ; obj.ttytab\l0x8000450c      addu a0, a3, v0                                        ; arg4\l0x80004510      lw v1, (a0)                                            ; [0x8001ff20:4]=0\l                                                                       ; obj.nextsem.1069 ; arg1\l0x80004514      beqz v1, 0x80004588\l0x80004518      addiu v0, zero, -1\l"]
+	"0x8000451c" [URL="sym.ttyControl/0x8000451c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000451c      addiu v0, zero, 0x22\l0x80004520      beq a1, v0, 0x800045a8\l0x80004524      sll v0, a2, 0x18                                       ; arg3\l"]
+	"0x80004528" [URL="sym.ttyControl/0x80004528", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004528      slti v0, a1, 0x23                                      ; arg2\l0x8000452c      beqz v0, 0x80004550\l0x80004530      addiu v0, zero, 0x20\l"]
+	"0x80004534" [URL="sym.ttyControl/0x80004534", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004534      beq a1, v0, 0x80004574\l0x80004538      sll v0, a2, 0x18\l"]
+	"0x8000453c" [URL="sym.ttyControl/0x8000453c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000453c      addiu v0, zero, 0x21\l0x80004540      beq a1, v0, 0x80004590\l0x80004544      nop\l"]
+	"0x80004548" [URL="sym.ttyControl/0x80004548", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.ttyControl @ 0x80004554\l0x80004548      jr ra\l0x8000454c      addiu v0, zero, -1\l"]
+	"0x80004550" [URL="sym.ttyControl/0x80004550", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyControl @ 0x8000452c\l0x80004550      addiu v0, zero, 0x23\l0x80004554      bne a1, v0, 0x80004548\l0x80004558      nop\l"]
+	"0x8000455c" [URL="sym.ttyControl/0x8000455c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000455c      sll v0, a2, 0x18\l0x80004560      lb v1, 0x410(a0)\l0x80004564      sra v0, v0, 0x18\l0x80004568      nor a1, zero, v0\l0x8000456c      b 0x800045b4\l0x80004570      and a1, v1, a1\l"]
+	"0x80004574" [URL="sym.ttyControl/0x80004574", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyControl @ 0x80004534\l0x80004574      lb v1, 4(a0)                                           ; [0x8001ff24:4]=0\l                                                                       ; obj.looptab\l0x80004578      sra v0, v0, 0x18\l0x8000457c      or a1, v1, v0\l"]
+	"0x80004580" [URL="sym.ttyControl/0x80004580", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyControl @ 0x800045a0\l0x80004580      sb a1, 4(a0)\l"]
+	"0x80004584" [URL="sym.ttyControl/0x80004584", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyControl @ 0x800045b4\l0x80004584      and v0, v1, v0\l"]
+	"0x80004588" [URL="sym.ttyControl/0x80004588", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.ttyControl @ 0x80004514\l0x80004588      jr ra\l0x8000458c      nop\l"]
+	"0x80004590" [URL="sym.ttyControl/0x80004590", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyControl @ 0x80004540\l0x80004590      sll v0, a2, 0x18\l0x80004594      lb v1, 4(a0)                                           ; [0x8001ff24:4]=0\l                                                                       ; obj.looptab\l0x80004598      sra v0, v0, 0x18\l0x8000459c      nor a1, zero, v0\l0x800045a0      b 0x80004580\l0x800045a4      and a1, v1, a1\l"]
+	"0x800045a8" [URL="sym.ttyControl/0x800045a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyControl @ 0x80004520\l0x800045a8      lb v1, 0x410(a0)                                       ; arg1\l0x800045ac      sra v0, v0, 0x18\l0x800045b0      or a1, v1, v0                                          ; arg2\l"]
+	"0x800045b4" [URL="sym.ttyControl/0x800045b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyControl @ 0x8000456c\l0x800045b4      b 0x80004584\l0x800045b8      sb a1, 0x410(a0)\l"]
+        "0x800044f8" -> "0x80004588" [color="#13a10e"];
+        "0x800044f8" -> "0x8000451c" [color="#c50f1f"];
+        "0x8000451c" -> "0x800045a8" [color="#13a10e"];
+        "0x8000451c" -> "0x80004528" [color="#c50f1f"];
+        "0x80004528" -> "0x80004550" [color="#13a10e"];
+        "0x80004528" -> "0x80004534" [color="#c50f1f"];
+        "0x80004534" -> "0x80004574" [color="#13a10e"];
+        "0x80004534" -> "0x8000453c" [color="#c50f1f"];
+        "0x8000453c" -> "0x80004590" [color="#13a10e"];
+        "0x8000453c" -> "0x80004548" [color="#c50f1f"];
+        "0x80004550" -> "0x80004548" [color="#13a10e"];
+        "0x80004550" -> "0x8000455c" [color="#c50f1f"];
+        "0x8000455c" -> "0x800045b4" [color="#0037da"];
+        "0x80004574" -> "0x80004580" [color="#0037da"];
+        "0x80004580" -> "0x80004584" [color="#0037da"];
+        "0x80004584" -> "0x80004588" [color="#0037da"];
+        "0x80004590" -> "0x80004580" [color="#0037da"];
+        "0x800045a8" -> "0x800045b4" [color="#0037da"];
+        "0x800045b4" -> "0x80004584" [color="#0037da"];
+}

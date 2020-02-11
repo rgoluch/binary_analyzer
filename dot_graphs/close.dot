@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80003860" [URL="sym.close/0x80003860", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.test_ttydriver @ 0x8000ca24, 0x8000ca28, 0x8000ca30\l  ; CALL XREFS from aav.0x8000e5fc @ +0x3e4, +0x3e8\l48: int sym.close (int fildes);\l; arg int fildes @ a0\l; arg int32_t arg2 @ a1\l0x80003860      sltiu v0, a0, 5                                        ; fildes\l0x80003864      beqz v0, 0x80003888\l0x80003868      addiu v1, zero, 0x3c\l"]
+	"0x8000386c" [URL="sym.close/0x8000386c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000386c      mul a1, a0, v1\l0x80003870      lui v0, 0x8001\l0x80003874      addiu v0, v0, 0x73a8                                   ; 0x800173a8\l                                                                       ; obj.devtab ; obj.devtab\l0x80003878      addu a0, a1, v0                                        ; arg2\l0x8000387c      lw t9, 0x14(a0)                                        ; fildes\l0x80003880      jr t9\l0x80003884      nop\l"]
+	"0x80003888" [URL="sym.close/0x80003888", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.close @ 0x80003864\l0x80003888      jr ra\l0x8000388c      addiu v0, zero, -1\l"]
+        "0x80003860" -> "0x80003888" [color="#13a10e"];
+        "0x80003860" -> "0x8000386c" [color="#c50f1f"];
+}

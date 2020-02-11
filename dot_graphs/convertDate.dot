@@ -1,0 +1,77 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80005834" [URL="sym.convertDate/0x80005834", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.printDateTZ @ 0x80005b70, 0x80005b7c, 0x80005b9c\l  ;-- t8:\l804: sym.convertDate (int32_t arg1, int32_t arg2, int32_t arg3, int32_t arg4);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l; arg int32_t arg4 @ a3\l0x80005834      lui t0, 1\l0x80005838      addiu a2, t0, 0x5180                                   ; arg3\l0x8000583c      divu zero, a1, a2                                      ; arg3\l0x80005840      teq a2, zero, 7\l0x80005844      addiu v1, zero, 7\l0x80005848      lui t1, 0x1e1\l0x8000584c      addiu t1, t1, 0x3380\l0x80005850      addiu a3, zero, 0x64                                   ; arg4\l0x80005854      mflo v0\l0x80005858      addiu v0, v0, 1\l0x8000585c      divu zero, v0, v1\l0x80005860      teq v1, zero, 7\l0x80005864      mfhi v0\l0x80005868      divu zero, a1, t1                                      ; arg2\l0x8000586c      teq t1, zero, 7\l0x80005870      sw v0, 0x14(a0)                                        ; arg1\l0x80005874      mflo t0\l0x80005878      addiu v1, t0, -1\l0x8000587c      div zero, v1, a3                                       ; arg4\l0x80005880      teq a3, zero, 7\l0x80005884      slti v0, v1, 0\l0x80005888      addiu t0, t0, 2\l0x8000588c      movz t0, v1, v0\l0x80005890      move v0, t0\l0x80005894      sra v0, v0, 2\l0x80005898      mflo t0\l0x8000589c      addu t0, v0, t0\l0x800058a0      mul v0, t0, a2\l0x800058a4      subu t0, a1, v0                                        ; arg2\l0x800058a8      divu zero, t0, t1\l0x800058ac      teq t1, zero, 7\l0x800058b0      mflo a2\l0x800058b4      mul v0, a2, t1\l0x800058b8      sw a2, 0x18(a0)\l0x800058bc      subu t1, a1, v0\l0x800058c0      andi v0, a2, 3\l0x800058c4      bnez v0, 0x800058e0\l0x800058c8      addiu t3, a2, 0x76c\l"]
+	"0x800058cc" [URL="sym.convertDate/0x800058cc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800058cc      div zero, a2, a3\l0x800058d0      teq a3, zero, 7\l0x800058d4      mfhi a3\l0x800058d8      bnez a3, 0x800058f4\l0x800058dc      addiu t2, zero, 1\l"]
+	"0x800058e0" [URL="sym.convertDate/0x800058e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x800058c4\l0x800058e0      addiu t2, zero, 0x190\l0x800058e4      div zero, t3, t2\l0x800058e8      teq t2, zero, 7\l0x800058ec      mfhi t2\l0x800058f0      sltiu t2, t2, 1\l"]
+	"0x800058f4" [URL="sym.convertDate/0x800058f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x800058d8\l0x800058f4      lui v0, 1\l0x800058f8      addiu v0, v0, 0x5180\l0x800058fc      divu zero, t1, v0\l0x80005900      teq v0, zero, 7\l0x80005904      addiu a3, a2, 3\l0x80005908      addiu a1, zero, -0x190\l0x8000590c      sw zero, 0x10(a0)\l0x80005910      mflo t5\l0x80005914      mul v1, t5, v0\l0x80005918      slti v0, a2, 0\l0x8000591c      movz a3, a2, v0\l0x80005920      sra t4, a3, 2\l0x80005924      addiu a3, zero, 0x64\l0x80005928      div zero, a2, a3\l0x8000592c      teq a3, zero, 7\l0x80005930      subu t1, t1, v1\l0x80005934      negu v1, t4\l0x80005938      mflo a3\l0x8000593c      div zero, t3, a1\l0x80005940      teq a1, zero, 7\l0x80005944      subu a3, a3, t4\l0x80005948      addiu a3, a3, 4\l0x8000594c      lui t4, 0x8001\l0x80005950      addiu t4, t4, 0x7910                                   ; 0x80017910\l                                                                       ; obj.days_in_month ; obj.days_in_month\l0x80005954      mflo a1\l0x80005958      addu a1, a3, a1\l0x8000595c      addu a1, a1, t5\l0x80005960      addu a1, a1, t2\l0x80005964      sw a1, 0x1c(a0)\l0x80005968      sw a1, 0xc(a0)\l0x8000596c      addiu t5, zero, 1\l"]
+	"0x80005970" [URL="sym.convertDate/0x80005970", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005a64\l0x80005970      lw a1, 0x10(a0)\l0x80005974      sltiu v0, a1, 0xb\l0x80005978      beqz v0, 0x800059ac\l0x8000597c      lw a3, 0xc(a0)\l"]
+	"0x80005980" [URL="sym.convertDate/0x80005980", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005980      bne t2, t5, 0x80005990\l0x80005984      move v0, t2\l"]
+	"0x80005988" [URL="sym.convertDate/0x80005988", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005988      xori t3, a1, 1\l0x8000598c      sltiu v0, t3, 1\l"]
+	"0x80005990" [URL="sym.convertDate/0x80005990", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005980\l0x80005990      addu t3, a1, t4\l0x80005994      lb t3, (t3)\l0x80005998      addu t3, t3, v0\l0x8000599c      slt v0, a3, t3\l0x800059a0      beqz v0, 0x80005a5c\l0x800059a4      subu a3, a3, t3\l"]
+	"0x800059a8" [URL="sym.convertDate/0x800059a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800059a8      addu a3, a3, t3\l"]
+	"0x800059ac" [URL="sym.convertDate/0x800059ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005978\l0x800059ac      addiu v0, zero, 0xe10\l0x800059b0      divu zero, t1, v0\l0x800059b4      teq v0, zero, 7\l0x800059b8      addiu a3, a3, 1\l0x800059bc      sw a3, 0xc(a0)\l0x800059c0      sw zero, 0x20(a0)\l0x800059c4      mflo t2\l0x800059c8      mul t3, t2, v0\l0x800059cc      sw t2, 8(a0)\l0x800059d0      addiu v0, zero, 0x3c\l0x800059d4      subu t2, t1, t3\l0x800059d8      divu zero, t2, v0\l0x800059dc      teq v0, zero, 7\l0x800059e0      mflo t3\l0x800059e4      mul t4, t3, v0\l0x800059e8      addiu v0, a2, -0x37\l0x800059ec      subu t2, t2, t4\l0x800059f0      sltiu v0, v0, 0x34\l0x800059f4      sw t3, 4(a0)\l0x800059f8      bnez v0, 0x80005a6c\l0x800059fc      sw t2, (a0)\l"]
+	"0x80005a00" [URL="sym.convertDate/0x80005a00", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005a00      lui v0, 0xc920\l0x80005a04      ori v0, v0, 0x8680\l0x80005a08      sltu t0, t0, v0\l0x80005a0c      bnez t0, 0x80005a7c\l0x80005a10      addiu v0, zero, -1\l"]
+	"0x80005a14" [URL="sym.convertDate/0x80005a14", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005a14      addiu v0, a1, -4\l0x80005a18      sltiu v0, v0, 5\l0x80005a1c      bnez v0, 0x80005a7c\l0x80005a20      addiu v0, zero, 1\l"]
+	"0x80005a24" [URL="sym.convertDate/0x80005a24", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005a24      addiu v0, zero, 3\l0x80005a28      bne a1, v0, 0x80005b14\l0x80005a2c      nop\l"]
+	"0x80005a30" [URL="sym.convertDate/0x80005a30", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005a30      sll v0, a2, 2\l0x80005a34      addu a2, v0, a2\l0x80005a38      sra a2, a2, 2\l0x80005a3c      addiu a2, a2, 1\l0x80005a40      addiu v0, zero, 7\l0x80005a44      div zero, a2, v0\l0x80005a48      teq v0, zero, 7\l0x80005a4c      addiu v0, zero, 0xe\l0x80005a50      mfhi a2\l"]
+	"0x80005a54" [URL="sym.convertDate/0x80005a54", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005b3c\l0x80005a54      b 0x80005ab8\l0x80005a58      subu v0, v0, a2\l"]
+	"0x80005a5c" [URL="sym.convertDate/0x80005a5c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x800059a0\l0x80005a5c      addiu a1, a1, 1\l0x80005a60      sw a3, 0xc(a0)\l0x80005a64      b 0x80005970\l0x80005a68      sw a1, 0x10(a0)\l"]
+	"0x80005a6c" [URL="sym.convertDate/0x80005a6c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x800059f8\l0x80005a6c      addiu v0, a1, -5\l0x80005a70      sltiu v0, v0, 3\l0x80005a74      beqz v0, 0x80005a88\l0x80005a78      addiu v0, zero, 1\l"]
+	"0x80005a7c" [URL="sym.convertDate/0x80005a7c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.convertDate @ 0x80005a0c, 0x80005a1c\l0x80005a7c      sw v0, 0x20(a0)\l0x80005a80      b 0x80005ab8\l0x80005a84      addiu v0, zero, 0x16e\l"]
+	"0x80005a88" [URL="sym.convertDate/0x80005a88", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005a74\l0x80005a88      addiu v0, zero, 4\l0x80005a8c      bne a1, v0, 0x80005ad4\l0x80005a90      nop\l"]
+	"0x80005a94" [URL="sym.convertDate/0x80005a94", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005a94      addiu v0, zero, 6\l0x80005a98      mul a1, a2, v0\l0x80005a9c      addu v0, a1, v1\l0x80005aa0      addiu v0, v0, 2\l0x80005aa4      addiu v1, zero, 7\l0x80005aa8      div zero, v0, v1\l0x80005aac      teq v1, zero, 7\l0x80005ab0      mfhi v0\l0x80005ab4      addiu v0, v0, 1\l"]
+	"0x80005ab8" [URL="sym.convertDate/0x80005ab8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.convertDate @ 0x80005a54, 0x80005a80, 0x80005ad8, 0x80005b0c, 0x80005b18\l0x80005ab8      bne a3, v0, 0x80005b44\l0x80005abc      slt v0, v0, a3\l"]
+	"0x80005ac0" [URL="sym.convertDate/0x80005ac0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005ac0      sltiu t1, t1, 0x1c20\l0x80005ac4      beqz t1, 0x80005b4c\l0x80005ac8      addiu v0, zero, 1\l"]
+	"0x80005acc" [URL="sym.convertDate/0x80005acc", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005b44\l0x80005acc      jr ra\l0x80005ad0      nop\l"]
+	"0x80005ad4" [URL="sym.convertDate/0x80005ad4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005a8c\l0x80005ad4      addiu v1, zero, 8\l0x80005ad8      bne a1, v1, 0x80005ab8\l0x80005adc      addiu v0, zero, 0x16e\l"]
+	"0x80005ae0" [URL="sym.convertDate/0x80005ae0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005ae0      sll v0, a2, 2\l0x80005ae4      addu a2, v0, a2\l0x80005ae8      slti v0, a2, 0\l0x80005aec      addiu v1, a2, 3\l0x80005af0      movn a2, v1, v0\l0x80005af4      sra v0, a2, 2\l0x80005af8      negu v0, v0\l0x80005afc      addiu a2, v0, 0x1e\l0x80005b00      addiu v0, zero, 7\l0x80005b04      div zero, a2, v0\l0x80005b08      teq v0, zero, 7\l0x80005b0c      b 0x80005ab8\l0x80005b10      mfhi v0\l"]
+	"0x80005b14" [URL="sym.convertDate/0x80005b14", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005a28\l0x80005b14      addiu v1, zero, 9\l0x80005b18      bne a1, v1, 0x80005ab8\l0x80005b1c      addiu v0, zero, 0x16e\l"]
+	"0x80005b20" [URL="sym.convertDate/0x80005b20", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005b20      sll v0, a2, 2\l0x80005b24      addu a2, v0, a2\l0x80005b28      sra a2, a2, 2\l0x80005b2c      addiu a2, a2, 1\l0x80005b30      addiu v0, zero, 7\l0x80005b34      div zero, a2, v0\l0x80005b38      teq v0, zero, 7\l0x80005b3c      b 0x80005a54\l0x80005b40      mfhi a2\l"]
+	"0x80005b44" [URL="sym.convertDate/0x80005b44", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005ab8\l0x80005b44      beqz v0, 0x80005acc\l0x80005b48      addiu v0, zero, 1\l"]
+	"0x80005b4c" [URL="sym.convertDate/0x80005b4c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.convertDate @ 0x80005ac4\l0x80005b4c      sw v0, 0x20(a0)\l0x80005b50      jr ra\l0x80005b54      nop\l"]
+        "0x80005834" -> "0x800058e0" [color="#13a10e"];
+        "0x80005834" -> "0x800058cc" [color="#c50f1f"];
+        "0x800058cc" -> "0x800058f4" [color="#13a10e"];
+        "0x800058cc" -> "0x800058e0" [color="#c50f1f"];
+        "0x800058e0" -> "0x800058f4" [color="#0037da"];
+        "0x800058f4" -> "0x80005970" [color="#0037da"];
+        "0x80005970" -> "0x800059ac" [color="#13a10e"];
+        "0x80005970" -> "0x80005980" [color="#c50f1f"];
+        "0x80005980" -> "0x80005990" [color="#13a10e"];
+        "0x80005980" -> "0x80005988" [color="#c50f1f"];
+        "0x80005988" -> "0x80005990" [color="#0037da"];
+        "0x80005990" -> "0x80005a5c" [color="#13a10e"];
+        "0x80005990" -> "0x800059a8" [color="#c50f1f"];
+        "0x800059a8" -> "0x800059ac" [color="#0037da"];
+        "0x800059ac" -> "0x80005a6c" [color="#13a10e"];
+        "0x800059ac" -> "0x80005a00" [color="#c50f1f"];
+        "0x80005a00" -> "0x80005a7c" [color="#13a10e"];
+        "0x80005a00" -> "0x80005a14" [color="#c50f1f"];
+        "0x80005a14" -> "0x80005a7c" [color="#13a10e"];
+        "0x80005a14" -> "0x80005a24" [color="#c50f1f"];
+        "0x80005a24" -> "0x80005b14" [color="#13a10e"];
+        "0x80005a24" -> "0x80005a30" [color="#c50f1f"];
+        "0x80005a30" -> "0x80005a54" [color="#0037da"];
+        "0x80005a54" -> "0x80005ab8" [color="#0037da"];
+        "0x80005a5c" -> "0x80005970" [color="#0037da"];
+        "0x80005a6c" -> "0x80005a88" [color="#13a10e"];
+        "0x80005a6c" -> "0x80005a7c" [color="#c50f1f"];
+        "0x80005a7c" -> "0x80005ab8" [color="#0037da"];
+        "0x80005a88" -> "0x80005ad4" [color="#13a10e"];
+        "0x80005a88" -> "0x80005a94" [color="#c50f1f"];
+        "0x80005a94" -> "0x80005ab8" [color="#0037da"];
+        "0x80005ab8" -> "0x80005b44" [color="#13a10e"];
+        "0x80005ab8" -> "0x80005ac0" [color="#c50f1f"];
+        "0x80005ac0" -> "0x80005b4c" [color="#13a10e"];
+        "0x80005ac0" -> "0x80005acc" [color="#c50f1f"];
+        "0x80005ad4" -> "0x80005ab8" [color="#13a10e"];
+        "0x80005ad4" -> "0x80005ae0" [color="#c50f1f"];
+        "0x80005ae0" -> "0x80005ab8" [color="#0037da"];
+        "0x80005b14" -> "0x80005ab8" [color="#13a10e"];
+        "0x80005b14" -> "0x80005b20" [color="#c50f1f"];
+        "0x80005b20" -> "0x80005a54" [color="#0037da"];
+        "0x80005b44" -> "0x80005acc" [color="#13a10e"];
+        "0x80005b44" -> "0x80005b4c" [color="#c50f1f"];
+}

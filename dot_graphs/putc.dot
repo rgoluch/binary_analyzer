@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80003988" [URL="sym.putc/0x80003988", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.test_ttydriver @ 0x8000c68c, 0x8000c690\l  ; CALL XREFS from sym.fputc @ 0x80011a5c, 0x80011a60\l56: int sym.putc (int c, FILE *stream);\l; arg int c @ a0\l; arg FILE *stream @ a1\l; arg int32_t arg3 @ a2\l0x80003988      sll a1, a1, 0x18                                       ; stream\l0x8000398c      sltiu v0, a0, 5                                        ; c\l0x80003990      beqz v0, 0x800039b8\l0x80003994      sra a1, a1, 0x18                                       ; stream\l"]
+	"0x80003998" [URL="sym.putc/0x80003998", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80003998      addiu v1, zero, 0x3c\l0x8000399c      mul a2, a0, v1\l0x800039a0      lui v0, 0x8001\l0x800039a4      addiu v0, v0, 0x73a8                                   ; 0x800173a8\l                                                                       ; obj.devtab ; obj.devtab\l0x800039a8      addu a0, a2, v0                                        ; arg3\l0x800039ac      lw t9, 0x28(a0)                                        ; c\l0x800039b0      jr t9\l0x800039b4      nop\l"]
+	"0x800039b8" [URL="sym.putc/0x800039b8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.putc @ 0x80003990\l0x800039b8      jr ra\l0x800039bc      addiu v0, zero, -1\l"]
+        "0x80003988" -> "0x800039b8" [color="#13a10e"];
+        "0x80003988" -> "0x80003998" [color="#c50f1f"];
+}

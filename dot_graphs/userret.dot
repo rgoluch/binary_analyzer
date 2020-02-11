@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000254c" [URL="sym.userret/0x8000254c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.create @ 0x80001e30\l48: sym.userret ();\l; var int32_t var_4h @ sp+0x14\l0x8000254c      addiu sp, sp, -0x18\l0x80002550      lui v0, 0x8000\l0x80002554      addiu v0, v0, 0x249c                                   ; 0x8000249c\l                                                                       ; sym.gettid ; sym.gettid\l0x80002558      sw ra, (var_4h)\l0x8000255c      jalr v0\l0x80002560      nop\l0x80002564      lw ra, (var_4h)\l0x80002568      lui t9, 0x8000\l0x8000256c      move a0, v0\l0x80002570      addiu t9, t9, 0x1e78                                   ; 0x80001e78\l                                                                       ; sym.kill ; sym.kill\l0x80002574      jr t9\l0x80002578      addiu sp, sp, 0x18\l"]
+}

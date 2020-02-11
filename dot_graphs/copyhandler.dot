@@ -1,0 +1,9 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800011e0" [URL="loc.copyhandler/0x800011e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from entry0 @ 0x80001144\l  ; CODE XREF from loc.copyhandler @ 0x800011f4\l36: loc.copyhandler (int32_t arg1, int32_t arg2, int32_t arg3);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x800011e0      lw v0, (a1)                                            ; arg2\l0x800011e4      sw v0, (a0)                                            ; arg1\l0x800011e8      addiu a1, a1, 4                                        ; arg2\l0x800011ec      addiu a0, a0, 4                                        ; arg1\l0x800011f0      addiu a2, a2, -4                                       ; arg3\l0x800011f4      bgtz a2, loc.copyhandler\l0x800011f8      nop\l"]
+	"0x800011fc" [URL="loc.copyhandler/0x800011fc", fillcolor="white",color="#767676", fontname="Courier",label="0x800011fc      jr ra\l0x80001200      nop\l"]
+        "0x800011e0" -> "0x800011e0" [color="#13a10e"];
+        "0x800011e0" -> "0x800011fc" [color="#c50f1f"];
+}

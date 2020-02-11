@@ -1,0 +1,15 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011be4" [URL="sym.memcmp/0x80011be4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x8000a164  CALL 0x8000a178  DATA 0x8000d1bc  \l  ; XREFS: CALL 0x8000d1c0  CALL 0x8000d2d0  CALL 0x8000d378  \l  ; XREFS: CALL 0x8000d4e4  CALL 0x8000d58c  DATA 0x8000dfb8  \l48: int sym.memcmp (const void *s1, const void *s2, size_t n);\l; arg const void *s1 @ a0\l; arg const void *s2 @ a1\l; arg int32_t arg4 @ a3\l0x80011be4      move v1, zero\l"]
+	"0x80011be8" [URL="sym.memcmp/0x80011be8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.memcmp @ 0x80011c04\l0x80011be8      bne v1, a2, 0x80011bf8\l0x80011bec      addu a3, a1, v1                                        ; arg4\l"]
+	"0x80011bf0" [URL="sym.memcmp/0x80011bf0", fillcolor="white",color="#767676", fontname="Courier",label="0x80011bf0      jr ra\l0x80011bf4      move v0, zero\l"]
+	"0x80011bf8" [URL="sym.memcmp/0x80011bf8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.memcmp @ 0x80011be8\l0x80011bf8      addu v0, a0, v1                                        ; s1\l0x80011bfc      lbu v0, (v0)\l0x80011c00      lbu a3, (a3)                                           ; arg4\l0x80011c04      beq v0, a3, 0x80011be8\l0x80011c08      addiu v1, v1, 1\l"]
+	"0x80011c0c" [URL="sym.memcmp/0x80011c0c", fillcolor="white",color="#767676", fontname="Courier",label="0x80011c0c      jr ra\l0x80011c10      subu v0, v0, a3                                        ; arg4\l"]
+        "0x80011be4" -> "0x80011be8" [color="#0037da"];
+        "0x80011be8" -> "0x80011bf8" [color="#13a10e"];
+        "0x80011be8" -> "0x80011bf0" [color="#c50f1f"];
+        "0x80011bf8" -> "0x80011be8" [color="#13a10e"];
+        "0x80011bf8" -> "0x80011c0c" [color="#c50f1f"];
+}

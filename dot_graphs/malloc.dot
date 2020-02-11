@@ -1,0 +1,17 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800121fc" [URL="sym.malloc/0x800121fc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.test_umemory @ 0x8000f358, 0x8000f35c, 0x8000f3b8, 0x8000f410, 0x8000f458\l96:  void *sym.malloc (size_t size);\l; var int32_t var_8h @ sp+0x10\l; var int32_t var_4h @ sp+0x14\l; arg size_t size @ a0\l0x800121fc      bnez a0, 0x80012220\l0x80012200      move v0, zero\l"]
+	"0x80012204" [URL="sym.malloc/0x80012204", fillcolor="white",color="#767676", fontname="Courier",label="0x80012204      jr ra\l0x80012208      nop\l"]
+	"0x8001220c" [URL="sym.malloc/0x8001220c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.malloc @ 0x80012244\l0x8001220c      move v0, zero\l"]
+	"0x80012210" [URL="sym.malloc/0x80012210", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.malloc @ 0x80012254\l0x80012210      lw ra, (var_4h)\l0x80012214      lw s0, (var_8h)\l0x80012218      jr ra\l0x8001221c      addiu sp, sp, 0x18\l"]
+	"0x80012220" [URL="sym.malloc/0x80012220", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.malloc @ 0x800121fc\l0x80012220      addiu sp, sp, -0x18\l0x80012224      lui v0, 0x8000\l0x80012228      sw s0, (var_8h)\l0x8001222c      addiu s0, a0, 8                                        ; size\l0x80012230      sw ra, (var_4h)\l0x80012234      addiu v0, v0, 0x2eb8                                   ; 0x80002eb8 ; \"4\" ; sym.memget\l0x80012238      jalr v0\l0x8001223c      move a0, s0\l0x80012240      addiu v1, zero, -1\l0x80012244      beq v0, v1, 0x8001220c\l0x80012248      nop\l"]
+	"0x8001224c" [URL="sym.malloc/0x8001224c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001224c      sw v0, (v0)\l0x80012250      sw s0, 4(v0)\l0x80012254      b 0x80012210\l0x80012258      addiu v0, v0, 8\l"]
+        "0x800121fc" -> "0x80012220" [color="#13a10e"];
+        "0x800121fc" -> "0x80012204" [color="#c50f1f"];
+        "0x8001220c" -> "0x80012210" [color="#0037da"];
+        "0x80012220" -> "0x8001220c" [color="#13a10e"];
+        "0x80012220" -> "0x8001224c" [color="#c50f1f"];
+        "0x8001224c" -> "0x80012210" [color="#0037da"];
+}

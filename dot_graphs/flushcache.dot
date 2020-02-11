@@ -1,0 +1,36 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80001010" [URL="loc.flushcache/0x80001010", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from entry0 @ 0x80001000, 0x8000116c\l288: loc.flushcache ();\l0x80001010      mfc0 t0, s0, 1\l0x80001014      srl t1, t0, 0x16\l0x80001018      andi t1, t1, 7\l0x8000101c      addiu t2, zero, 0x40\l0x80001020      sllv t2, t2, t1\l0x80001024      srl t1, t0, 0x10\l0x80001028      andi t1, t1, 7\l0x8000102c      addiu t3, t1, 1\l0x80001030      multu t3, t2\l0x80001034      mflo t4\l0x80001038      srl t1, t0, 0x13\l0x8000103c      andi t1, t1, 7\l0x80001040      addiu t5, zero, 2\l0x80001044      sllv t5, t5, t1\l0x80001048      multu t5, t4\l0x8000104c      mflo t6\l0x80001050      mtc0 zero, gp, 0\l0x80001054      mtc0 zero, sp, 0\l0x80001058      lui t0, 0x8000\l0x8000105c      addu t1, t0, t6\l"]
+	"0x80001060" [URL="loc.flushcache/0x80001060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from loc.flushcache @ 0x80001068\l0x80001060      cache 8, (t0)\l0x80001064      addu t0, t0, t5\l0x80001068      bne t0, t1, 0x80001060\l0x8000106c      nop\l"]
+	"0x80001070" [URL="loc.flushcache/0x80001070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001070      lui t0, 0x8000\l0x80001074      addu t1, t0, t6\l"]
+	"0x80001078" [URL="loc.flushcache/0x80001078", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from loc.flushcache @ 0x80001080\l0x80001078      cache 0x14, (t0)\l0x8000107c      addu t0, t0, t5\l0x80001080      bne t0, t1, 0x80001078\l0x80001084      nop\l"]
+	"0x80001088" [URL="loc.flushcache/0x80001088", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001088      lui t0, 0x8000\l0x8000108c      addu t1, t0, t6\l"]
+	"0x80001090" [URL="loc.flushcache/0x80001090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from loc.flushcache @ 0x80001098\l0x80001090      cache 8, (t0)\l0x80001094      addu t0, t0, t5\l0x80001098      bne t0, t1, 0x80001090\l0x8000109c      nop\l"]
+	"0x800010a0" [URL="loc.flushcache/0x800010a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800010a0      mfc0 t0, s0, 1\l0x800010a4      srl t1, t0, 0xd\l0x800010a8      andi t1, t1, 7\l0x800010ac      addiu t2, zero, 0x40\l0x800010b0      sllv t2, t2, t1\l0x800010b4      srl t1, t0, 7\l0x800010b8      andi t1, t1, 7\l0x800010bc      addiu t3, t1, 1\l0x800010c0      multu t3, t2\l0x800010c4      mflo t4\l0x800010c8      srl t1, t0, 0xa\l0x800010cc      andi t1, t1, 7\l0x800010d0      addiu t5, zero, 2\l0x800010d4      sllv t5, t5, t1\l0x800010d8      multu t5, t4\l0x800010dc      mflo t6\l0x800010e0      lui t0, 0x8000\l0x800010e4      addu t1, t0, t6\l"]
+	"0x800010e8" [URL="loc.flushcache/0x800010e8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from loc.flushcache @ 0x800010f0\l0x800010e8      cache 8, (t0)\l0x800010ec      addu t0, t0, t5\l0x800010f0      bne t0, t1, 0x800010e8\l0x800010f4      nop\l"]
+	"0x800010f8" [URL="loc.flushcache/0x800010f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800010f8      lui t0, 0x8000\l0x800010fc      addu t1, t0, t6\l"]
+	"0x80001100" [URL="loc.flushcache/0x80001100", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from loc.flushcache @ 0x80001108\l0x80001100      lw t4, (t0)\l0x80001104      addu t0, t0, t5\l0x80001108      bne t0, t1, 0x80001100\l0x8000110c      nop\l"]
+	"0x80001110" [URL="loc.flushcache/0x80001110", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001110      lui t0, 0x8000\l0x80001114      addu t1, t0, t6\l"]
+	"0x80001118" [URL="loc.flushcache/0x80001118", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from loc.flushcache @ 0x80001120\l0x80001118      cache 8, (t0)\l0x8000111c      addu t0, t0, t5\l0x80001120      bne t0, t1, 0x80001118\l0x80001124      nop\l"]
+	"0x80001128" [URL="loc.flushcache/0x80001128", fillcolor="white",color="#767676", fontname="Courier",label="0x80001128      jr ra\l0x8000112c      nop\l"]
+        "0x80001010" -> "0x80001060" [color="#0037da"];
+        "0x80001060" -> "0x80001060" [color="#13a10e"];
+        "0x80001060" -> "0x80001070" [color="#c50f1f"];
+        "0x80001070" -> "0x80001078" [color="#0037da"];
+        "0x80001078" -> "0x80001078" [color="#13a10e"];
+        "0x80001078" -> "0x80001088" [color="#c50f1f"];
+        "0x80001088" -> "0x80001090" [color="#0037da"];
+        "0x80001090" -> "0x80001090" [color="#13a10e"];
+        "0x80001090" -> "0x800010a0" [color="#c50f1f"];
+        "0x800010a0" -> "0x800010e8" [color="#0037da"];
+        "0x800010e8" -> "0x800010e8" [color="#13a10e"];
+        "0x800010e8" -> "0x800010f8" [color="#c50f1f"];
+        "0x800010f8" -> "0x80001100" [color="#0037da"];
+        "0x80001100" -> "0x80001100" [color="#13a10e"];
+        "0x80001100" -> "0x80001110" [color="#c50f1f"];
+        "0x80001110" -> "0x80001118" [color="#0037da"];
+        "0x80001118" -> "0x80001118" [color="#13a10e"];
+        "0x80001118" -> "0x80001128" [color="#c50f1f"];
+}

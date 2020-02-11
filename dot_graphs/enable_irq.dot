@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80001774" [URL="sym.enable_irq/0x80001774", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.uartHwInit @ 0x80004eb4, 0x80004eb8\l16: sym.enable_irq ();\l0x80001774      lui t9, 0x8000\l0x80001778      addiu t9, t9, 0x1344                                   ; 0x80001344\l                                                                       ; loc.enable_cpuirq ; loc.enable_cpuirq\l0x8000177c      jr t9\l0x80001780      nop\l"]
+}

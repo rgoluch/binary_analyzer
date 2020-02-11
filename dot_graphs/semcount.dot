@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80002bd8" [URL="sym.semcount/0x80002bd8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.loopbackGetc @ 0x80004010, 0x80004014\l  ; CALL XREFS from sym.test_checkSemCount @ 0x8000a81c, 0x8000a820, 0x8000a830\l60: sym.semcount (int32_t arg1, int32_t arg2);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x80002bd8      sltiu v0, a0, 0x64                                     ; arg1\l0x80002bdc      beqz v0, 0x80002c0c\l0x80002be0      addiu v1, zero, 0xc\l"]
+	"0x80002be4" [URL="sym.semcount/0x80002be4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80002be4      mul a1, a0, v1\l0x80002be8      lui v0, 0x8002\l0x80002bec      addiu v0, v0, -0x34b4                                  ; 0x8001cb4c\l                                                                       ; obj.montab ; obj.semtab\l0x80002bf0      addu a0, a1, v0                                        ; arg2\l0x80002bf4      lb v1, (a0)                                            ; arg1\l0x80002bf8      addiu v0, zero, 1\l0x80002bfc      beq v1, v0, 0x80002c0c\l0x80002c00      nop\l"]
+	"0x80002c04" [URL="sym.semcount/0x80002c04", fillcolor="white",color="#767676", fontname="Courier",label="0x80002c04      jr ra\l0x80002c08      lw v0, 4(a0)                                           ; arg1\l"]
+	"0x80002c0c" [URL="sym.semcount/0x80002c0c", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREFS from sym.semcount @ 0x80002bdc, 0x80002bfc\l0x80002c0c      jr ra\l0x80002c10      addiu v0, zero, -1\l"]
+        "0x80002bd8" -> "0x80002c0c" [color="#13a10e"];
+        "0x80002bd8" -> "0x80002be4" [color="#c50f1f"];
+        "0x80002be4" -> "0x80002c0c" [color="#13a10e"];
+        "0x80002be4" -> "0x80002c04" [color="#c50f1f"];
+}

@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80005ebc" [URL="sym.mailboxInit/0x80005ebc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from entry0 @ 0x80001ab8, 0x80001abc\l92: sym.mailboxInit (int32_t arg1);\l; var int32_t var_4h @ sp+0x14\l; arg int32_t arg1 @ a0\l0x80005ebc      lui v0, 0x8002\l0x80005ec0      addiu sp, sp, -0x18\l0x80005ec4      addiu v0, v0, 0x13a4                                   ; 0x800213a4\l                                                                       ; obj.mboxtab ; obj.mboxtab\l0x80005ec8      addiu v1, v0, 0x1a4\l0x80005ecc      sw ra, (var_4h)\l"]
+	"0x80005ed0" [URL="sym.mailboxInit/0x80005ed0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.mailboxInit @ 0x80005ed8\l0x80005ed0      sb zero, 0x14(v0)\l0x80005ed4      addiu v0, v0, 0x1c\l0x80005ed8      bne v0, v1, 0x80005ed0\l0x80005edc      nop\l"]
+	"0x80005ee0" [URL="sym.mailboxInit/0x80005ee0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005ee0      lui v0, 0x8000\l0x80005ee4      addiu v0, v0, 0x2a04                                   ; 0x80002a04\l                                                                       ; sym.semcreate ; sym.semcreate\l0x80005ee8      jalr v0\l0x80005eec      addiu a0, zero, 1                                      ; arg1\l0x80005ef0      lui v1, 0x8002\l0x80005ef4      lw ra, (var_4h)\l0x80005ef8      sw v0, 0x13a0(v1)\l0x80005efc      addiu a0, zero, 1                                      ; arg1\l0x80005f00      nor v0, zero, v0\l0x80005f04      addiu v1, zero, -1\l0x80005f08      movn v1, a0, v0\l0x80005f0c      move v0, v1\l0x80005f10      jr ra\l0x80005f14      addiu sp, sp, 0x18\l"]
+        "0x80005ebc" -> "0x80005ed0" [color="#0037da"];
+        "0x80005ed0" -> "0x80005ed0" [color="#13a10e"];
+        "0x80005ed0" -> "0x80005ee0" [color="#c50f1f"];
+}

@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011ff8" [URL="sym.strlen/0x80011ff8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x8000dfa0  DATA 0x80011368  DATA 0x80011f80  \l  ; XREFS: CALL 0x80011fa0  DATA 0x8001217c  CALL 0x800121a0  \l  ; XREFS: CALL 0x80012428  CALL 0x800124b4  \l36: size_t sym.strlen (const char *s);\l; arg const char *s @ a0\l0x80011ff8      move v0, zero\l"]
+	"0x80011ffc" [URL="sym.strlen/0x80011ffc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strlen @ 0x80012014\l0x80011ffc      addu v1, a0, v0                                        ; s\l0x80012000      lb v1, (v1)\l0x80012004      bnez v1, 0x80012014\l0x80012008      nop\l"]
+	"0x8001200c" [URL="sym.strlen/0x8001200c", fillcolor="white",color="#767676", fontname="Courier",label="0x8001200c      jr ra\l0x80012010      nop\l"]
+	"0x80012014" [URL="sym.strlen/0x80012014", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strlen @ 0x80012004\l0x80012014      b 0x80011ffc\l0x80012018      addiu v0, v0, 1\l"]
+        "0x80011ff8" -> "0x80011ffc" [color="#0037da"];
+        "0x80011ffc" -> "0x80012014" [color="#13a10e"];
+        "0x80011ffc" -> "0x8001200c" [color="#c50f1f"];
+        "0x80012014" -> "0x80011ffc" [color="#0037da"];
+}

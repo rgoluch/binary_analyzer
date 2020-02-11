@@ -1,0 +1,26 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800042f8" [URL="sym.loopbackWrite/0x800042f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; UNKNOWN XREF from obj.devtab @ +0x94\l188: sym.loopbackWrite (int32_t arg1, int32_t arg2);\l; var int32_t var_1ch @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_14h @ sp+0x1c\l; var int32_t var_10h @ sp+0x20\l; var int32_t var_ch @ sp+0x24\l; var int32_t var_8h @ sp+0x28\l; var int32_t var_4h @ sp+0x2c\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x800042f8      addiu sp, sp, -0x30\l0x800042fc      sw s3, (var_10h)\l0x80004300      sw s1, (var_18h)\l0x80004304      sw ra, (var_4h)\l0x80004308      sw s5, (var_8h)\l0x8000430c      sw s4, (var_ch)\l0x80004310      sw s2, (var_14h)\l0x80004314      sw s0, (var_1ch)\l0x80004318      lw v0, 4(a0)                                           ; arg1\l0x8000431c      move s1, a0\l0x80004320      addiu a0, zero, 0x410                                  ; arg1\l0x80004324      move s3, a1\l0x80004328      mul a1, v0, a0\l0x8000432c      lui v1, 0x8002\l0x80004330      addiu v1, v1, -0xdc                                    ; 0x8001ff24\l                                                                       ; obj.looptab ; obj.looptab\l0x80004334      addu v0, a1, v1                                        ; arg2\l0x80004338      lw a0, (v0)\l0x8000433c      addiu v1, zero, 1\l0x80004340      bne a0, v1, 0x80004388\l0x80004344      addiu v0, zero, -1\l"]
+	"0x80004348" [URL="sym.loopbackWrite/0x80004348", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004348      lui s4, 0x8000\l0x8000434c      move s2, a2\l0x80004350      move s0, zero\l0x80004354      addiu s4, s4, 0x4210                                   ; 0x80004210\l                                                                       ; sym.loopbackPutc ; sym.loopbackPutc\l0x80004358      addiu s5, zero, -1\l"]
+	"0x8000435c" [URL="sym.loopbackWrite/0x8000435c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.loopbackWrite @ 0x800043ac\l0x8000435c      beq s0, s2, 0x80004384\l0x80004360      addu v0, s3, s0\l"]
+	"0x80004364" [URL="sym.loopbackWrite/0x80004364", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004364      lb a1, (v0)\l0x80004368      jalr s4\l0x8000436c      move a0, s1\l0x80004370      bne v0, s5, 0x800043ac\l0x80004374      nop\l"]
+	"0x80004378" [URL="sym.loopbackWrite/0x80004378", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004378      bnez s0, 0x80004388\l0x8000437c      move v0, s0\l"]
+	"0x80004380" [URL="sym.loopbackWrite/0x80004380", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004380      addiu s0, zero, -1\l"]
+	"0x80004384" [URL="sym.loopbackWrite/0x80004384", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.loopbackWrite @ 0x8000435c\l0x80004384      move v0, s0\l"]
+	"0x80004388" [URL="sym.loopbackWrite/0x80004388", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.loopbackWrite @ 0x80004340, 0x80004378\l0x80004388      lw ra, (var_4h)\l0x8000438c      lw s5, (var_8h)\l0x80004390      lw s4, (var_ch)\l0x80004394      lw s3, (var_10h)\l0x80004398      lw s2, (var_14h)\l0x8000439c      lw s1, (var_18h)\l0x800043a0      lw s0, (var_1ch)\l0x800043a4      jr ra\l0x800043a8      addiu sp, sp, 0x30\l"]
+	"0x800043ac" [URL="sym.loopbackWrite/0x800043ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.loopbackWrite @ 0x80004370\l0x800043ac      b 0x8000435c\l0x800043b0      addiu s0, s0, 1\l"]
+        "0x800042f8" -> "0x80004388" [color="#13a10e"];
+        "0x800042f8" -> "0x80004348" [color="#c50f1f"];
+        "0x80004348" -> "0x8000435c" [color="#0037da"];
+        "0x8000435c" -> "0x80004384" [color="#13a10e"];
+        "0x8000435c" -> "0x80004364" [color="#c50f1f"];
+        "0x80004364" -> "0x800043ac" [color="#13a10e"];
+        "0x80004364" -> "0x80004378" [color="#c50f1f"];
+        "0x80004378" -> "0x80004388" [color="#13a10e"];
+        "0x80004378" -> "0x80004380" [color="#c50f1f"];
+        "0x80004380" -> "0x80004384" [color="#0037da"];
+        "0x80004384" -> "0x80004388" [color="#0037da"];
+        "0x800043ac" -> "0x8000435c" [color="#0037da"];
+}

@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80004c8c" [URL="sym.kputc/0x80004c8c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.kvprintf @ 0x800057ec\l84: sym.kputc (int32_t arg1, int32_t arg2, int32_t arg3, int32_t arg4);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l; arg int32_t arg4 @ a3\l0x80004c8c      lw v1, 0x30(a1)                                        ; arg2\l0x80004c90      move v0, a0\l0x80004c94      lw a0, 4(a1)                                           ; arg2\l0x80004c98      lbu a1, 1(v1)\l0x80004c9c      sb zero, 1(v1)\l0x80004ca0      andi a1, a1, 0xff                                      ; arg2\l"]
+	"0x80004ca4" [URL="sym.kputc/0x80004ca4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.kputc @ 0x80004cac\l0x80004ca4      lbu a2, 5(v1)\l0x80004ca8      andi a2, a2, 0x40                                      ; arg3\l0x80004cac      beqz a2, 0x80004ca4\l0x80004cb0      addiu a3, zero, 0x83c                                  ; arg4\l"]
+	"0x80004cb4" [URL="sym.kputc/0x80004cb4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004cb4      mul t0, a0, a3\l0x80004cb8      lui a2, 0x8002\l0x80004cbc      addiu a2, a2, 0xb5c                                    ; 0x80020b5c\l                                                                       ; obj.uarttab ; arg3 ; obj.uarttab\l0x80004cc0      sb v0, (v1)\l0x80004cc4      addu a0, t0, a2                                        ; arg3\l0x80004cc8      lw a2, 8(a0)\l0x80004ccc      addiu a2, a2, 1\l0x80004cd0      sw a2, 8(a0)\l0x80004cd4      sb a1, 1(v1)\l0x80004cd8      jr ra\l0x80004cdc      nop\l"]
+        "0x80004c8c" -> "0x80004ca4" [color="#0037da"];
+        "0x80004ca4" -> "0x80004ca4" [color="#13a10e"];
+        "0x80004ca4" -> "0x80004cb4" [color="#c50f1f"];
+}

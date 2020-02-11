@@ -1,0 +1,9 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80001204" [URL="loc.memzero/0x80001204", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from entry0 @ 0x8000115c, 0x8000119c, 0x800011b4\l  ; CODE XREF from loc.memzero @ 0x80001210\l28: loc.memzero (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x80001204      sw zero, (a0)                                          ; arg1\l0x80001208      addiu a0, a0, 4                                        ; arg1\l0x8000120c      slt at, a0, a1\l0x80001210      bnez at, loc.memzero\l0x80001214      nop\l"]
+	"0x80001218" [URL="loc.memzero/0x80001218", fillcolor="white",color="#767676", fontname="Courier",label="0x80001218      jr ra\l0x8000121c      nop\l"]
+        "0x80001204" -> "0x80001204" [color="#13a10e"];
+        "0x80001204" -> "0x80001218" [color="#c50f1f"];
+}

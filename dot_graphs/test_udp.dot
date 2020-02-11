@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000cdcc" [URL="sym.test_udp/0x8000cdcc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; UNKNOWN XREF from obj.testtab @ +0xe4\l48: sym.test_udp (int32_t arg1, int32_t arg2);\l; var int32_t var_4h @ sp+0x14\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x8000cdcc      addiu sp, sp, -0x18\l0x8000cdd0      lui a1, 0x8001\l0x8000cdd4      lui v0, 0x8001\l0x8000cdd8      addiu v0, v0, -0x71e0                                  ; 0x80008e20\l                                                                       ; sym.testSkip ; sym.testSkip\l0x8000cddc      sw ra, (var_4h)\l0x8000cde0      addiu a1, a1, 0x43fc                                   ; 0x800143fc\l                                                                       ; aav.0x800143fc ; arg2 ; aav.0x800143fc\l0x8000cde4      jalr v0\l0x8000cde8      addiu a0, zero, 1                                      ; arg1\l0x8000cdec      lw ra, (var_4h)\l0x8000cdf0      addiu v0, zero, 1\l0x8000cdf4      jr ra\l0x8000cdf8      addiu sp, sp, 0x18\l"]
+}

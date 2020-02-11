@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011eb0" [URL="sym.sungetch/0x80011eb0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.sscanf @ 0x80011efc\l20: sym.sungetch (int32_t arg2);\l; arg int32_t arg2 @ a1\l0x80011eb0      lw v1, (a1)                                            ; arg2\l0x80011eb4      lbu v0, -1(v1)\l0x80011eb8      addiu v1, v1, -1\l0x80011ebc      jr ra\l0x80011ec0      sw v1, (a1)                                            ; arg2\l"]
+}

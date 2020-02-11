@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000f2a8" [URL="sym.list_check_1/0x8000f2a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.test_umemory @ 0x8000f484, 0x8000f488\l108: sym.list_check_1 (int32_t arg1, int32_t arg2, int32_t arg3);\l; var int32_t var_4h @ sp+0x14\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x8000f2a8      addiu sp, sp, -0x18\l0x8000f2ac      lui v0, 0x8000\l0x8000f2b0      addiu v0, v0, 0x249c                                   ; 0x8000249c\l                                                                       ; sym.gettid ; sym.gettid\l0x8000f2b4      sw ra, (var_4h)\l0x8000f2b8      jalr v0\l0x8000f2bc      nop\l0x8000f2c0      addiu a0, zero, 0x54                                   ; arg1\l0x8000f2c4      mul a1, v0, a0\l0x8000f2c8      lui v1, 0x8002\l0x8000f2cc      addiu v1, v1, -0x3004                                  ; 0x8001cffc ; obj.thrtab\l0x8000f2d0      addu a0, a1, v1                                        ; arg2\l0x8000f2d4      lw a0, 0x38(a0)                                        ; arg1\l0x8000f2d8      move a1, zero\l"]
+	"0x8000f2dc" [URL="sym.list_check_1/0x8000f2dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.list_check_1 @ 0x8000f30c\l0x8000f2dc      bnez a0, 0x8000f304\l0x8000f2e0      lw ra, (var_4h)\l"]
+	"0x8000f2e4" [URL="sym.list_check_1/0x8000f2e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000f2e4      addiu a0, zero, 0x54                                   ; arg1\l0x8000f2e8      mul a2, v0, a0\l0x8000f2ec      addu v0, a2, v1                                        ; arg3\l0x8000f2f0      lw v0, 0x3c(v0)\l0x8000f2f4      addiu sp, sp, 0x18\l0x8000f2f8      xor v0, v0, a1\l0x8000f2fc      jr ra\l0x8000f300      sltiu v0, v0, 1\l"]
+	"0x8000f304" [URL="sym.list_check_1/0x8000f304", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.list_check_1 @ 0x8000f2dc\l0x8000f304      lw a2, 4(a0)                                           ; arg1\l0x8000f308      lw a0, (a0)                                            ; arg1\l0x8000f30c      b 0x8000f2dc\l0x8000f310      addu a1, a1, a2\l"]
+        "0x8000f2a8" -> "0x8000f2dc" [color="#0037da"];
+        "0x8000f2dc" -> "0x8000f304" [color="#13a10e"];
+        "0x8000f2dc" -> "0x8000f2e4" [color="#c50f1f"];
+        "0x8000f304" -> "0x8000f2dc" [color="#0037da"];
+}

@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80004ed0" [URL="sym.uartHwPutc/0x80004ed0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.uartWrite @ 0x80005564, 0x80005598\l12: sym.uartHwPutc (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x80004ed0      sb a1, (a0)                                            ; arg1\l0x80004ed4      jr ra\l0x80004ed8      nop\l"]
+}

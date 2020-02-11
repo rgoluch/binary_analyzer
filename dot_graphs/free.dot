@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8001225c" [URL="sym.free/0x8001225c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.test_umemory @ 0x8000f478, 0x8000f554, 0x8000f558, 0x8000f594, 0x8000f598\l40: void sym.free (void *ptr);\l; arg void *ptr @ a0\l0x8001225c      move v0, a0\l0x80012260      addiu v1, a0, -8                                       ; ptr\l0x80012264      lw a0, -8(a0)                                          ; ptr\l0x80012268      bne a0, v1, 0x8001227c\l0x8001226c      lui t9, 0x8000\l"]
+	"0x80012270" [URL="sym.free/0x80012270", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012270      addiu t9, t9, 0x2f94                                   ; 0x80002f94 ; \"N\" ; sym.memfree\l0x80012274      jr t9\l0x80012278      lw a1, -4(v0)\l"]
+	"0x8001227c" [URL="sym.free/0x8001227c", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.free @ 0x80012268\l0x8001227c      jr ra\l0x80012280      nop\l"]
+        "0x8001225c" -> "0x8001227c" [color="#13a10e"];
+        "0x8001225c" -> "0x80012270" [color="#c50f1f"];
+}

@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000581c" [URL="sym.get_datetime/0x8000581c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.xsh_date @ 0x80006bdc, 0x80006be0\l24: sym.get_datetime ();\l0x8000581c      lui v0, 0x8002\l0x80005820      lw v1, -0xe8(v0)                                       ; [0x8001ff18:4]=0\l                                                                       ; obj.clktime\l0x80005824      lui v0, 0x8002\l0x80005828      lw v0, 0x1398(v0)                                      ; [0x80021398:4]=0\l                                                                       ; obj.date_time\l0x8000582c      jr ra\l0x80005830      addu v0, v1, v0\l"]
+}

@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80008dfc" [URL="sym.testFail/0x80008dfc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(312)\l36: sym.testFail (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x80008dfc      addiu v0, zero, 1\l0x80008e00      bne a0, v0, 0x80008e18\l; DATA XREF from sym.test_procQueue @ 0x8000bd50\l0x80008e04      lui a0, 0x8001\l"]
+	"0x80008e08" [URL="sym.testFail/0x80008e08", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80008e08      lui t9, 0x8001\l0x80008e0c      addiu t9, t9, 0x1c68                                   ; 0x80011c68\l                                                                       ; sym.printf ; sym.printf\l0x80008e10      jr t9\l0x80008e14      addiu a0, a0, 0x46b8                                   ; arg1\l"]
+	"0x80008e18" [URL="sym.testFail/0x80008e18", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.testFail @ 0x80008e00\l0x80008e18      jr ra\l0x80008e1c      nop\l"]
+        "0x80008dfc" -> "0x80008e18" [color="#13a10e"];
+        "0x80008dfc" -> "0x80008e08" [color="#c50f1f"];
+}

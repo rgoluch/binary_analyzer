@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800098a8" [URL="sym.bigargs/0x800098a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.test_bigargs @ 0x80009948\l64: sym.bigargs (int32_t arg1, int32_t arg2, int32_t arg3, int32_t arg4, int32_t arg_10h, int32_t arg_14h, int32_t arg_18h);\l; arg int32_t arg_10h @ sp+0x10\l; arg int32_t arg_14h @ sp+0x14\l; arg int32_t arg_18h @ sp+0x18\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l; arg int32_t arg4 @ a3\l0x800098a8      lw t0, (arg_18h)\l0x800098ac      lbu v0, (arg_10h)\l0x800098b0      lbu v1, (arg_14h)\l0x800098b4      sb a3, 3(t0)\l0x800098b8      sb v1, 5(t0)\l0x800098bc      addu v1, v0, v1\l0x800098c0      addu a3, v1, a3                                        ; arg4\l0x800098c4      sb a1, 1(t0)\l0x800098c8      sb a2, 2(t0)\l0x800098cc      addu a1, a0, a1                                        ; arg2\l0x800098d0      addu a2, a3, a2                                        ; arg4\l0x800098d4      sb v0, 4(t0)\l0x800098d8      addu v0, a2, a1                                        ; arg3\l0x800098dc      sb a0, (t0)\l0x800098e0      jr ra\l0x800098e4      sb v0, 6(t0)\l"]
+}

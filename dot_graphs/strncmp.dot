@@ -1,0 +1,20 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80012094" [URL="sym.strncmp/0x80012094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(24)\l68: int sym.strncmp (const char *s1, const char *s2, size_t n);\l; arg const char *s1 @ a0\l; arg const char *s2 @ a1\l; arg int32_t arg4 @ a3\l0x80012094      move v1, zero\l"]
+	"0x80012098" [URL="sym.strncmp/0x80012098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncmp @ 0x800120d0\l0x80012098      bne v1, a2, 0x800120a8\l0x8001209c      addu a3, a1, v1                                        ; arg4\l"]
+	"0x800120a0" [URL="sym.strncmp/0x800120a0", fillcolor="white",color="#767676", fontname="Courier",label="0x800120a0      jr ra\l0x800120a4      move v0, zero\l"]
+	"0x800120a8" [URL="sym.strncmp/0x800120a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncmp @ 0x80012098\l0x800120a8      addu v0, a0, v1                                        ; s1\l0x800120ac      lb v0, (v0)                                            ; [0x80011f18:4]=0x52e00 ; sym.strchr\l0x800120b0      beqz v0, 0x800120c0\l0x800120b4      lb a3, (a3)                                            ; arg4\l"]
+	"0x800120b8" [URL="sym.strncmp/0x800120b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800120b8      beq v0, a3, 0x800120d0\l0x800120bc      nop\l"]
+	"0x800120c0" [URL="sym.strncmp/0x800120c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncmp @ 0x800120b0\l0x800120c0      andi a3, a3, 0xff                                      ; arg4\l0x800120c4      andi v0, v0, 0xff\l0x800120c8      jr ra\l0x800120cc      subu v0, v0, a3                                        ; arg4\l"]
+	"0x800120d0" [URL="sym.strncmp/0x800120d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncmp @ 0x800120b8\l0x800120d0      b 0x80012098\l0x800120d4      addiu v1, v1, 1\l"]
+        "0x80012094" -> "0x80012098" [color="#0037da"];
+        "0x80012098" -> "0x800120a8" [color="#13a10e"];
+        "0x80012098" -> "0x800120a0" [color="#c50f1f"];
+        "0x800120a8" -> "0x800120c0" [color="#13a10e"];
+        "0x800120a8" -> "0x800120b8" [color="#c50f1f"];
+        "0x800120b8" -> "0x800120d0" [color="#13a10e"];
+        "0x800120b8" -> "0x800120c0" [color="#c50f1f"];
+        "0x800120d0" -> "0x80012098" [color="#0037da"];
+}

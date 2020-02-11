@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80003d48" [URL="sym.tarFilesize/0x80003d48", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x80003df8  CALL 0x80003dfc  DATA 0x80003eb0  \l  ; XREFS: CALL 0x80003eb4  DATA 0x80003f04  DATA 0x80003f18  \l  ; XREFS: CALL 0x80003f44  \l48: sym.tarFilesize (int32_t arg1, int32_t arg2, int32_t arg3);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x80003d48      move v0, zero\l0x80003d4c      move v1, zero\l0x80003d50      addiu a1, zero, 0xb                                    ; arg2\l"]
+	"0x80003d54" [URL="sym.tarFilesize/0x80003d54", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.tarFilesize @ 0x80003d68\l0x80003d54      addu a2, a0, v1                                        ; arg3\l0x80003d58      sll v0, v0, 3\l0x80003d5c      lb a2, (a2)                                            ; arg3\l0x80003d60      addiu v0, v0, -0x30\l0x80003d64      addiu v1, v1, 1\l0x80003d68      bne v1, a1, 0x80003d54\l0x80003d6c      addu v0, v0, a2                                        ; arg3\l"]
+	"0x80003d70" [URL="sym.tarFilesize/0x80003d70", fillcolor="white",color="#767676", fontname="Courier",label="0x80003d70      jr ra\l0x80003d74      nop\l"]
+        "0x80003d48" -> "0x80003d54" [color="#0037da"];
+        "0x80003d54" -> "0x80003d54" [color="#13a10e"];
+        "0x80003d54" -> "0x80003d70" [color="#c50f1f"];
+}

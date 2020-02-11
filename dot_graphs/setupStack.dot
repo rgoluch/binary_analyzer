@@ -1,0 +1,23 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80001644" [URL="sym.setupStack/0x80001644", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.create @ 0x80001e28, 0x80001e2c\l112: sym.setupStack (int32_t arg1, int32_t arg4, int32_t arg_10h);\l; arg int32_t arg_10h @ sp+0x10\l; arg int32_t arg1 @ a0\l; arg int32_t arg4 @ a3\l0x80001644      sltiu v0, a3, 4                                        ; arg4\l0x80001648      addiu t0, zero, 4\l0x8000164c      movz t0, a3, v0\l0x80001650      sll v0, t0, 2\l0x80001654      subu a0, a0, v0                                        ; arg1\l0x80001658      andi v0, a0, 4                                         ; arg1\l0x8000165c      beqz v0, 0x80001668\l0x80001660      lw v1, (arg_10h)\l"]
+	"0x80001664" [URL="sym.setupStack/0x80001664", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001664      addiu a0, a0, -4\l"]
+	"0x80001668" [URL="sym.setupStack/0x80001668", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.setupStack @ 0x8000165c\l0x80001668      sll a3, a3, 2                                          ; arg4\l0x8000166c      move v0, zero\l"]
+	"0x80001670" [URL="sym.setupStack/0x80001670", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.setupStack @ 0x800016ac\l0x80001670      bne v0, a3, 0x800016a0\l0x80001674      addu t0, v1, v0\l"]
+	"0x80001678" [URL="sym.setupStack/0x80001678", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001678      addiu v0, a0, -0x40                                    ; arg1\l0x8000167c      move v1, v0\l0x80001680      addiu a3, a0, -8                                       ; arg4\l"]
+	"0x80001684" [URL="sym.setupStack/0x80001684", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.setupStack @ 0x8000168c\l0x80001684      sw zero, (v1)\l0x80001688      addiu v1, v1, 4\l0x8000168c      bne v1, a3, 0x80001684\l0x80001690      nop\l"]
+	"0x80001694" [URL="sym.setupStack/0x80001694", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001694      sw a2, -8(a0)\l0x80001698      jr ra\l0x8000169c      sw a1, -4(a0)\l"]
+	"0x800016a0" [URL="sym.setupStack/0x800016a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.setupStack @ 0x80001670\l0x800016a0      lw t1, (t0)\l0x800016a4      addu t0, a0, v0                                        ; arg1\l0x800016a8      sw t1, (t0)\l0x800016ac      b 0x80001670\l0x800016b0      addiu v0, v0, 4\l"]
+        "0x80001644" -> "0x80001668" [color="#13a10e"];
+        "0x80001644" -> "0x80001664" [color="#c50f1f"];
+        "0x80001664" -> "0x80001668" [color="#0037da"];
+        "0x80001668" -> "0x80001670" [color="#0037da"];
+        "0x80001670" -> "0x800016a0" [color="#13a10e"];
+        "0x80001670" -> "0x80001678" [color="#c50f1f"];
+        "0x80001678" -> "0x80001684" [color="#0037da"];
+        "0x80001684" -> "0x80001684" [color="#13a10e"];
+        "0x80001684" -> "0x80001694" [color="#c50f1f"];
+        "0x800016a0" -> "0x80001670" [color="#0037da"];
+}

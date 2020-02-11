@@ -1,0 +1,28 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80001be0" [URL="sym.dequeue/0x80001be0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(21)\l184: sym.dequeue (int32_t arg1, int32_t arg2);\l; var int32_t var_ch @ sp+0x14\l; var int32_t var_8h @ sp+0x18\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x80001be0      bltz a0, 0x80001c78\l0x80001be4      addiu v1, a0, 1                                        ; arg1\l"]
+	"0x80001be8" [URL="sym.dequeue/0x80001be8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001be8      slti v1, v1, 0x130\l0x80001bec      beqz v1, 0x80001c78\l0x80001bf0      nop\l"]
+	"0x80001bf4" [URL="sym.dequeue/0x80001bf4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001bf4      addiu sp, sp, -0x20\l0x80001bf8      sw s1, (var_8h)\l0x80001bfc      addiu s1, zero, 0xc\l0x80001c00      mul v1, a0, s1\l0x80001c04      sw s0, (var_ch)\l0x80001c08      lui s0, 0x8002\l0x80001c0c      addiu s0, s0, -0xf34                                   ; 0x8001f0cc\l                                                                       ; obj.quetab ; obj.quetab\l0x80001c10      sw ra, (var_4h)\l0x80001c14      addu v0, v1, s0\l0x80001c18      lw v0, 4(v0)\l0x80001c1c      slti v0, v0, 0x64\l0x80001c20      beqz v0, 0x80001c80\l0x80001c24      lui v0, 0x8000\l"]
+	"0x80001c28" [URL="sym.dequeue/0x80001c28", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001c28      addiu v0, v0, 0x22d0                                   ; 0x800022d0\l                                                                       ; sym.getfirst ; sym.getfirst\l0x80001c2c      jalr v0\l0x80001c30      nop\l0x80001c34      sltiu v1, v0, 0x64\l0x80001c38      beqz v1, 0x80001c88\l0x80001c3c      lw ra, (var_4h)\l"]
+	"0x80001c40" [URL="sym.dequeue/0x80001c40", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001c40      addiu a0, zero, 0x54                                   ; arg1\l0x80001c44      mul a1, v0, a0\l0x80001c48      lui v1, 0x8002\l0x80001c4c      addiu v1, v1, -0x3004                                  ; 0x8001cffc ; obj.thrtab\l0x80001c50      addu v1, a1, v1                                        ; arg2\l0x80001c54      lbu a0, (v1)\l0x80001c58      addiu v1, zero, 2\l0x80001c5c      beq a0, v1, 0x80001c88\l0x80001c60      mul v1, v0, s1\l"]
+	"0x80001c64" [URL="sym.dequeue/0x80001c64", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001c64      addu s0, v1, s0\l0x80001c68      addiu v1, zero, -2\l0x80001c6c      sw v1, 8(s0)\l0x80001c70      j 0x80001c84\l0x80001c74      sw v1, 4(s0)\l"]
+	"0x80001c78" [URL="sym.dequeue/0x80001c78", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREFS from sym.dequeue @ 0x80001be0, 0x80001bec\l0x80001c78      jr ra\l0x80001c7c      addiu v0, zero, -1\l"]
+	"0x80001c80" [URL="sym.dequeue/0x80001c80", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dequeue @ 0x80001c20\l0x80001c80      addiu v0, zero, -2\l"]
+	"0x80001c84" [URL="sym.dequeue/0x80001c84", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dequeue @ 0x80001c70\l0x80001c84      lw ra, (var_4h)\l"]
+	"0x80001c88" [URL="sym.dequeue/0x80001c88", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.dequeue @ 0x80001c38, 0x80001c5c\l0x80001c88      lw s1, (var_8h)\l0x80001c8c      lw s0, (var_ch)\l0x80001c90      jr ra\l0x80001c94      addiu sp, sp, 0x20\l"]
+        "0x80001be0" -> "0x80001c78" [color="#13a10e"];
+        "0x80001be0" -> "0x80001be8" [color="#c50f1f"];
+        "0x80001be8" -> "0x80001c78" [color="#13a10e"];
+        "0x80001be8" -> "0x80001bf4" [color="#c50f1f"];
+        "0x80001bf4" -> "0x80001c80" [color="#13a10e"];
+        "0x80001bf4" -> "0x80001c28" [color="#c50f1f"];
+        "0x80001c28" -> "0x80001c88" [color="#13a10e"];
+        "0x80001c28" -> "0x80001c40" [color="#c50f1f"];
+        "0x80001c40" -> "0x80001c88" [color="#13a10e"];
+        "0x80001c40" -> "0x80001c64" [color="#c50f1f"];
+        "0x80001c64" -> "0x80001c84" [color="#0037da"];
+        "0x80001c80" -> "0x80001c84" [color="#0037da"];
+        "0x80001c84" -> "0x80001c88" [color="#0037da"];
+}

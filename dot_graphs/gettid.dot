@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000249c" [URL="sym.gettid/0x8000249c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(21)\l12: sym.gettid ();\l0x8000249c      lui v0, 0x8002\l0x800024a0      jr ra\l0x800024a4      lw v0, -0x3588(v0)                                     ; [0x8001ca78:4]=0\l                                                                       ; obj.thrcurrent\l"]
+}

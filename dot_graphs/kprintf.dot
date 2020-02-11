@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80005770" [URL="sym.kprintf/0x80005770", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(26)\l52: sym.kprintf (int32_t arg2, int32_t arg_4h, int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg_4h @ sp+0x24\l; arg int32_t arg_8h @ sp+0x28\l; arg int32_t arg_ch @ sp+0x2c\l; arg int32_t arg2 @ a1\l0x80005770      addiu sp, sp, -0x20\l0x80005774      lui v0, 0x8000\l0x80005778      sw a1, (arg_4h)\l0x8000577c      addiu a1, sp, 0x24                                     ; arg2\l0x80005780      sw ra, (var_4h)\l0x80005784      sw a2, (arg_8h)\l0x80005788      sw a3, (arg_ch)\l0x8000578c      addiu v0, v0, 0x57a4                                   ; 0x800057a4\l                                                                       ; sym.kvprintf ; sym.kvprintf\l0x80005790      jalr v0\l0x80005794      sw a1, (var_10h)\l0x80005798      lw ra, (var_4h)\l0x8000579c      jr ra\l0x800057a0      addiu sp, sp, 0x20\l"]
+}

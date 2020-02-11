@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800038c0" [URL="sym.getc/0x800038c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.fgetc @ 0x8001190c, 0x80011914\l48: int sym.getc (FILE *stream);\l; arg FILE *stream @ a0\l; arg int32_t arg2 @ a1\l0x800038c0      sltiu v0, a0, 5                                        ; stream\l0x800038c4      beqz v0, 0x800038e8\l0x800038c8      addiu v1, zero, 0x3c\l"]
+	"0x800038cc" [URL="sym.getc/0x800038cc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800038cc      mul a1, a0, v1\l0x800038d0      lui v0, 0x8001\l0x800038d4      addiu v0, v0, 0x73a8                                   ; 0x800173a8\l                                                                       ; obj.devtab ; obj.devtab\l0x800038d8      addu a0, a1, v0                                        ; arg2\l0x800038dc      lw t9, 0x24(a0)                                        ; stream\l0x800038e0      jr t9\l0x800038e4      nop\l"]
+	"0x800038e8" [URL="sym.getc/0x800038e8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.getc @ 0x800038c4\l0x800038e8      jr ra\l0x800038ec      addiu v0, zero, -1\l"]
+        "0x800038c0" -> "0x800038e8" [color="#13a10e"];
+        "0x800038c0" -> "0x800038cc" [color="#c50f1f"];
+}

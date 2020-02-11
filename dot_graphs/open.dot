@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800038f0" [URL="sym.open/0x800038f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x8000c30c  CALL 0x8000c334  CALL 0x8000c344  \l  ; XREFS: DATA 0x8000ce04  CALL 0x8000ce38  DATA 0x80011210  \l  ; XREFS: CALL 0x80011214  \l88: int sym.open (const char *path, int oflag);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_4h @ sp+0x1c\l; arg char *arg_4h @ sp+0x24\l; arg int32_t arg_8h @ sp+0x28\l; arg int32_t arg_ch @ sp+0x2c\l; arg const char *path @ a0\l; arg int oflag @ a1\l0x800038f0      addiu sp, sp, -0x20\l0x800038f4      sltiu v0, a0, 5                                        ; path\l0x800038f8      sw ra, (var_4h)\l0x800038fc      sw a1, (arg_4h)\l0x80003900      sw a2, (arg_8h)\l0x80003904      beqz v0, 0x80003938\l0x80003908      sw a3, (arg_ch)\l"]
+	"0x8000390c" [URL="sym.open/0x8000390c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000390c      addiu v1, zero, 0x3c\l0x80003910      mul a1, a0, v1\l0x80003914      lui v0, 0x8001\l0x80003918      addiu v0, v0, 0x73a8                                   ; 0x800173a8\l                                                                       ; obj.devtab ; obj.devtab\l0x8000391c      addu a0, a1, v0                                        ; oflag\l0x80003920      lw v0, 0x10(a0)                                        ; path\l0x80003924      addiu a1, sp, 0x24                                     ; oflag\l0x80003928      jalr v0\l0x8000392c      sw a1, (var_10h)\l0x80003930      j 0x80003940\l0x80003934      lw ra, (var_4h)\l"]
+	"0x80003938" [URL="sym.open/0x80003938", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.open @ 0x80003904\l0x80003938      addiu v0, zero, -1\l0x8000393c      lw ra, (var_4h)\l"]
+	"0x80003940" [URL="sym.open/0x80003940", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.open @ 0x80003930\l0x80003940      jr ra\l0x80003944      addiu sp, sp, 0x20\l"]
+        "0x800038f0" -> "0x80003938" [color="#13a10e"];
+        "0x800038f0" -> "0x8000390c" [color="#c50f1f"];
+        "0x8000390c" -> "0x80003940" [color="#0037da"];
+        "0x80003938" -> "0x80003940" [color="#0037da"];
+}

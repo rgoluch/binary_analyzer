@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000f624" [URL="sym.cmp_uints/0x8000f624", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.test_libStdlib @ 0x8000f9e4\l36: sym.cmp_uints (int32_t arg1, int32_t arg2);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x8000f624      lw v1, (a0)                                            ; arg1\l0x8000f628      lw a0, (a1)                                            ; arg2\l0x8000f62c      sltu a1, v1, a0\l0x8000f630      bnez a1, 0x8000f640\l0x8000f634      addiu v0, zero, -1\l"]
+	"0x8000f638" [URL="sym.cmp_uints/0x8000f638", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000f638      xor v1, v1, a0\l0x8000f63c      sltu v0, zero, v1\l"]
+	"0x8000f640" [URL="sym.cmp_uints/0x8000f640", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.cmp_uints @ 0x8000f630\l0x8000f640      jr ra\l0x8000f644      nop\l"]
+        "0x8000f624" -> "0x8000f640" [color="#13a10e"];
+        "0x8000f624" -> "0x8000f638" [color="#c50f1f"];
+        "0x8000f638" -> "0x8000f640" [color="#0037da"];
+}

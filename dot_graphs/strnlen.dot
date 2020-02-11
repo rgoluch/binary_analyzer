@@ -1,0 +1,16 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80012120" [URL="sym.strnlen/0x80012120", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.test_libString @ 0x80010750, 0x80010758\l44: sym.strnlen (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x80012120      move v0, zero\l"]
+	"0x80012124" [URL="sym.strnlen/0x80012124", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strnlen @ 0x80012144\l0x80012124      addu v1, a0, v0                                        ; arg1\l0x80012128      lb v1, (v1)\l0x8001212c      beqz v1, 0x8001213c\l0x80012130      nop\l"]
+	"0x80012134" [URL="sym.strnlen/0x80012134", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012134      bne v0, a1, 0x80012144\l0x80012138      nop\l"]
+	"0x8001213c" [URL="sym.strnlen/0x8001213c", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.strnlen @ 0x8001212c\l0x8001213c      jr ra\l0x80012140      nop\l"]
+	"0x80012144" [URL="sym.strnlen/0x80012144", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strnlen @ 0x80012134\l0x80012144      b 0x80012124\l0x80012148      addiu v0, v0, 1\l"]
+        "0x80012120" -> "0x80012124" [color="#0037da"];
+        "0x80012124" -> "0x8001213c" [color="#13a10e"];
+        "0x80012124" -> "0x80012134" [color="#c50f1f"];
+        "0x80012134" -> "0x80012144" [color="#13a10e"];
+        "0x80012134" -> "0x8001213c" [color="#c50f1f"];
+        "0x80012144" -> "0x80012124" [color="#0037da"];
+}

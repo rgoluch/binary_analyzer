@@ -1,0 +1,317 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80012284" [URL="sym._doscan/0x80012284", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.fscanf @ 0x80011b94, 0x80011b98\l  ; CALL XREFS from sym.sscanf @ 0x80011f00, 0x80011f04\l1576: sym._doscan (int32_t arg1, int32_t arg2, int32_t arg3, int32_t arg_4h, int32_t arg_ch, int32_t arg_10h, int32_t arg_14h);\l; var int32_t var_2bh @ fp-0x2b\l; var int32_t var_140h @ sp+0x10\l; var int32_t var_40h @ sp+0x110\l; var int32_t var_3ch @ sp+0x114\l; var int32_t var_38h @ sp+0x118\l; var int32_t var_34h @ sp+0x11c\l; var int32_t var_30h @ sp+0x120\l; var int32_t var_2ch @ sp+0x124\l; var int32_t var_28h @ sp+0x128\l; var int32_t var_24h @ sp+0x12c\l; var int32_t var_20h @ sp+0x130\l; var int32_t var_1ch @ sp+0x134\l; var int32_t var_18h @ sp+0x138\l; var int32_t var_14h @ sp+0x13c\l; var int32_t var_10h @ sp+0x140\l; var int32_t var_ch @ sp+0x144\l; var int32_t var_8h @ sp+0x148\l; var int32_t var_4h @ sp+0x14c\l; arg int32_t arg_4h @ sp+0x154\l; arg int32_t arg_ch @ sp+0x15c\l; arg int32_t arg_10h @ sp+0x160\l; arg int32_t arg_14h @ sp+0x164\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x80012284      addiu sp, sp, -0x150\l0x80012288      lui v0, 0x8001\l0x8001228c      addiu v0, v0, 0x1c40                                   ; 0x80011c40 ; \"%\\x10\\x80\" ; sym.memset\l0x80012290      sw s3, (var_1ch)\l0x80012294      sw s2, (var_20h)\l0x80012298      sw s1, (var_24h)\l0x8001229c      lui s3, 0x8001\l0x800122a0      lw s1, (arg_10h)\l0x800122a4      lw s2, (arg_14h)\l0x800122a8      sw s7, (var_ch)\l0x800122ac      sw s6, (var_10h)\l0x800122b0      sw s0, (var_28h)\l0x800122b4      sw ra, (var_4h)\l0x800122b8      sw fp, (var_8h)\l0x800122bc      sw s5, (var_14h)\l0x800122c0      sw s4, (var_18h)\l0x800122c4      move s0, a0\l0x800122c8      sw a1, (arg_4h)\l0x800122cc      move s7, a2\l0x800122d0      sw a3, (arg_ch)\l0x800122d4      move s6, zero\l0x800122d8      addiu s3, s3, 0x7634                                   ; 0x80017634 ; \"         (((((                  \\b\\x10\\x10\\x10\\x10\\x10\\x10\\x10\\x10\\x10\\x10\\x10\\x10\\x10\\x10\\x10\\x04\\x04\\x04\\x04\\x04\\x04\\x04\\x04\\x04\\x04\\x10\\x10\\x10\\x10\\x10\\x10\\x10AAAAAA\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x01\\x10\\x10\\x10\\x10\\x10\\x10BBBBBB\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x02\\x10\\x10\\x10\\x10 \" ; obj._ctype\l0x800122dc      sw v0, (var_38h)\l"]
+	"0x800122e0" [URL="sym._doscan/0x800122e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800126f0\l0x800122e0      lbu v0, (s0)\l"]
+	"0x800122e4" [URL="sym._doscan/0x800122e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x80012674, 0x8001286c, 0x80012894\l0x800122e4      beqz v0, 0x80012538\l0x800122e8      addiu v1, zero, 0x25\l"]
+	"0x800122ec" [URL="sym._doscan/0x800122ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800122ec      bne v0, v1, 0x80012808\l0x800122f0      nop\l"]
+	"0x800122f4" [URL="sym._doscan/0x800122f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800122f4      lbu a0, 1(s0)\l0x800122f8      beq a0, v0, 0x80012804\l0x800122fc      addiu v1, s0, 1\l"]
+	"0x80012300" [URL="sym._doscan/0x80012300", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012300      addiu v0, zero, 0x2a\l0x80012304      bne a0, v0, 0x800123d0\l0x80012308      lw v0, (arg_4h)\l"]
+	"0x8001230c" [URL="sym._doscan/0x8001230c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001230c      addiu v1, s0, 2\l0x80012310      move s4, zero\l"]
+	"0x80012314" [URL="sym._doscan/0x80012314", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800123d8\l0x80012314      move s5, zero\l0x80012318      addiu a2, zero, 0xa                                    ; arg3\l"]
+	"0x8001231c" [URL="sym._doscan/0x8001231c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800123ec\l0x8001231c      lbu v0, (v1)\l0x80012320      addu a0, s3, v0                                        ; arg1\l0x80012324      lbu a1, (a0)                                           ; arg1\l0x80012328      andi fp, a1, 4                                         ; arg2\l0x8001232c      bnez fp, 0x800123e0\l0x80012330      addiu a0, v1, 1                                        ; arg1\l"]
+	"0x80012334" [URL="sym._doscan/0x80012334", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012334      bnez s5, 0x80012340\l0x80012338      addiu a1, zero, 2                                      ; arg2\l"]
+	"0x8001233c" [URL="sym._doscan/0x8001233c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001233c      addiu s5, zero, -1\l"]
+	"0x80012340" [URL="sym._doscan/0x80012340", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012334\l0x80012340      addiu a2, zero, 0x6c                                   ; arg3\l0x80012344      beq v0, a2, 0x8001235c\l0x80012348      sw a1, (var_40h)\l"]
+	"0x8001234c" [URL="sym._doscan/0x8001234c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001234c      xori v0, v0, 0x68\l0x80012350      sltu a1, zero, v0\l0x80012354      sw a1, (var_40h)\l0x80012358      movn a0, v1, v0\l"]
+	"0x8001235c" [URL="sym._doscan/0x8001235c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012344\l0x8001235c      lbu v1, (a0)                                           ; arg1\l0x80012360      addiu v0, zero, 0x5b\l0x80012364      bne v1, v0, 0x8001256c\l0x80012368      addiu s0, a0, 1\l"]
+	"0x8001236c" [URL="sym._doscan/0x8001236c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001236c      lbu a2, 1(a0)\l0x80012370      addiu v0, zero, 0x5e\l0x80012374      bne a2, v0, 0x800123f4\l0x80012378      nop\l"]
+	"0x8001237c" [URL="sym._doscan/0x8001237c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001237c      addiu s0, a0, 2\l"]
+	"0x80012380" [URL="sym._doscan/0x80012380", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800123f4\l0x80012380      lw v0, (var_38h)\l0x80012384      addiu a2, zero, 0x100\l0x80012388      move a1, fp\l0x8001238c      addiu a0, sp, 0x10\l0x80012390      jalr v0\l0x80012394      sw v1, (var_3ch)\l0x80012398      lw v1, (var_3ch)\l0x8001239c      xori a1, fp, 1\l0x800123a0      addiu a2, zero, 1\l0x800123a4      addiu a3, zero, 0x5d\l"]
+	"0x800123a8" [URL="sym._doscan/0x800123a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800123c8\l0x800123a8      lbu v0, (s0)\l0x800123ac      bne v0, a3, 0x800123fc\l0x800123b0      addiu a0, s0, 1\l"]
+	"0x800123b4" [URL="sym._doscan/0x800123b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800123b4      beqz a2, 0x80012594\l0x800123b8      addiu a2, sp, 0x10\l"]
+	"0x800123bc" [URL="sym._doscan/0x800123bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800123fc\l0x800123bc      addu v0, a2, v0\l0x800123c0      sb a1, (v0)\l0x800123c4      move s0, a0\l0x800123c8      b 0x800123a8\l0x800123cc      move a2, zero\l"]
+	"0x800123d0" [URL="sym._doscan/0x800123d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012304\l0x800123d0      lw s4, (v0)\l0x800123d4      addiu v0, v0, 4\l0x800123d8      b 0x80012314\l0x800123dc      sw v0, (arg_4h)\l"]
+	"0x800123e0" [URL="sym._doscan/0x800123e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x8001232c\l0x800123e0      mul v1, s5, a2\l0x800123e4      addu s5, v1, v0\l0x800123e8      addiu s5, s5, -0x30\l0x800123ec      b 0x8001231c\l0x800123f0      move v1, a0\l"]
+	"0x800123f4" [URL="sym._doscan/0x800123f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012374\l0x800123f4      b 0x80012380\l0x800123f8      addiu fp, zero, 1\l"]
+	"0x800123fc" [URL="sym._doscan/0x800123fc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800123ac\l0x800123fc      bnez v0, 0x800123bc\l0x80012400      addiu a2, sp, 0x10\l"]
+	"0x80012404" [URL="sym._doscan/0x80012404", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x8001258c, 0x80012594\l0x80012404      andi a2, v1, 0xff\l"]
+	"0x80012408" [URL="sym._doscan/0x80012408", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x8001257c\l0x80012408      addiu a3, a2, -0x5b\l0x8001240c      andi a3, a3, 0xf7\l0x80012410      beqz a3, 0x8001259c\l0x80012414      addiu v0, zero, 0x6f\l"]
+	"0x80012418" [URL="sym._doscan/0x80012418", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012454\l0x80012418      move a1, s2\l0x8001241c      move a0, s1\l0x80012420      sw v1, (var_30h)\l0x80012424      sw a3, (var_34h)\l0x80012428      jalr s7\l0x8001242c      sw a2, (var_3ch)\l0x80012430      addiu t1, zero, -2\l0x80012434      beq v0, t1, 0x800127fc\l0x80012438      move fp, v0\l"]
+	"0x8001243c" [URL="sym._doscan/0x8001243c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001243c      andi v0, v0, 0xff\l0x80012440      addu v0, s3, v0\l0x80012444      lbu v0, (v0)\l0x80012448      lw a2, (var_3ch)\l0x8001244c      andi v0, v0, 8\l0x80012450      lw a3, (var_34h)\l0x80012454      bnez v0, 0x80012418\l0x80012458      lw v1, (var_30h)\l"]
+	"0x8001245c" [URL="sym._doscan/0x8001245c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001245c      addiu v0, zero, 0x73\l0x80012460      bne a2, v0, 0x800125a0\l0x80012464      addiu v0, zero, 0x6f\l"]
+	"0x80012468" [URL="sym._doscan/0x80012468", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012468      lw v0, (arg_ch)\l0x8001246c      move a1, s2\l0x80012470      move a0, s1\l0x80012474      jalr v0\l0x80012478      sw v1, (var_40h)\l0x8001247c      lw v1, (var_40h)\l"]
+	"0x80012480" [URL="sym._doscan/0x80012480", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x800125b0, 0x8001267c\l0x80012480      andi v1, v1, 0xff\l0x80012484      addiu v0, zero, 0x63\l0x80012488      bne v1, v0, 0x800124a4\l0x8001248c      move a2, s4\l"]
+	"0x80012490" [URL="sym._doscan/0x80012490", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012490      addiu v0, zero, -1\l0x80012494      bne s5, v0, 0x800124a8\l0x80012498      move fp, zero\l"]
+	"0x8001249c" [URL="sym._doscan/0x8001249c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001249c      addiu s5, zero, 1\l0x800124a0      move a2, s4\l"]
+	"0x800124a4" [URL="sym._doscan/0x800124a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012488\l0x800124a4      move fp, zero\l"]
+	"0x800124a8" [URL="sym._doscan/0x800124a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012494\l0x800124a8      move a1, s2\l"]
+	"0x800124ac" [URL="sym._doscan/0x800124ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800126c4\l0x800124ac      move a0, s1\l0x800124b0      sw v1, (var_3ch)\l0x800124b4      jalr s7\l0x800124b8      sw a2, (var_40h)\l0x800124bc      addiu a3, zero, -2\l0x800124c0      lw a2, (var_40h)\l0x800124c4      beq v0, a3, 0x80012708\l0x800124c8      lw v1, (var_3ch)\l"]
+	"0x800124cc" [URL="sym._doscan/0x800124cc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800124cc      addiu t0, zero, 0x5b\l0x800124d0      bne v1, t0, 0x80012698\l0x800124d4      addiu t1, zero, 0x73\l"]
+	"0x800124d8" [URL="sym._doscan/0x800124d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800124d8      addiu a0, sp, 0x10\l0x800124dc      addu a0, a0, v0\l0x800124e0      lbu a0, (a0)\l"]
+	"0x800124e4" [URL="sym._doscan/0x800124e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800126a8\l0x800124e4      beqz a0, 0x800126b0\l0x800124e8      move a0, s1\l"]
+	"0x800124ec" [URL="sym._doscan/0x800124ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800124ec      lw v0, (arg_ch)\l0x800124f0      move a1, s2\l0x800124f4      sw v1, (var_3ch)\l0x800124f8      jalr v0\l0x800124fc      sw a2, (var_40h)\l0x80012500      lw a2, (var_40h)\l0x80012504      lw v1, (var_3ch)\l0x80012508      move a0, zero\l"]
+	"0x8001250c" [URL="sym._doscan/0x8001250c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012708\l0x8001250c      beqz a2, 0x80012710\l0x80012510      nop\l"]
+	"0x80012514" [URL="sym._doscan/0x80012514", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800126cc\l0x80012514      addiu v0, zero, 0x63\l0x80012518      beq v1, v0, 0x8001289c\l0x8001251c      nop\l"]
+	"0x80012520" [URL="sym._doscan/0x80012520", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012520      bnez fp, 0x800126e8\l0x80012524      sb zero, (a2)\l"]
+	"0x80012528" [URL="sym._doscan/0x80012528", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x800126e0, 0x80012710, 0x800127fc, 0x8001289c\l0x80012528      beqz s4, 0x800126f0\l0x8001252c      nop\l"]
+	"0x80012530" [URL="sym._doscan/0x80012530", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x800127ac, 0x800127c0\l0x80012530      bnez a0, 0x800126f8\l0x80012534      nop\l"]
+	"0x80012538" [URL="sym._doscan/0x80012538", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x800122e4, 0x8001256c, 0x8001288c\l0x80012538      lw ra, (var_4h)\l"]
+	"0x8001253c" [URL="sym._doscan/0x8001253c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x800126f8, 0x80012700\l0x8001253c      lw fp, (var_8h)\l0x80012540      lw s7, (var_ch)\l0x80012544      lw s5, (var_14h)\l0x80012548      lw s4, (var_18h)\l0x8001254c      lw s3, (var_1ch)\l0x80012550      lw s2, (var_20h)\l0x80012554      lw s1, (var_24h)\l0x80012558      lw s0, (var_28h)\l0x8001255c      move v0, s6\l0x80012560      lw s6, (var_10h)\l0x80012564      jr ra\l0x80012568      addiu sp, sp, 0x150\l"]
+	"0x8001256c" [URL="sym._doscan/0x8001256c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012364\l0x8001256c      beqz v1, 0x80012538\l0x80012570      addu v0, s3, v1\l"]
+	"0x80012574" [URL="sym._doscan/0x80012574", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012574      lbu v0, (v0)\l0x80012578      andi v0, v0, 1\l0x8001257c      beqz v0, 0x80012408\l0x80012580      andi a2, v1, 0xff\l"]
+	"0x80012584" [URL="sym._doscan/0x80012584", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012584      addiu v0, zero, 2\l0x80012588      addiu v1, v1, 0x20\l0x8001258c      b 0x80012404\l0x80012590      sw v0, (var_40h)\l"]
+	"0x80012594" [URL="sym._doscan/0x80012594", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800123b4\l0x80012594      b 0x80012404\l0x80012598      move s0, a0\l"]
+	"0x8001259c" [URL="sym._doscan/0x8001259c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012410\l0x8001259c      addiu fp, zero, -2\l"]
+	"0x800125a0" [URL="sym._doscan/0x800125a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012460\l0x800125a0      beq a2, v0, 0x80012720\l0x800125a4      sltiu v0, a2, 0x70\l"]
+	"0x800125a8" [URL="sym._doscan/0x800125a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800125a8      beqz v0, 0x8001267c\l0x800125ac      addiu v0, zero, 0x73\l"]
+	"0x800125b0" [URL="sym._doscan/0x800125b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800125b0      beqz a3, 0x80012480\l0x800125b4      addiu a2, zero, 0xa\l"]
+	"0x800125b8" [URL="sym._doscan/0x800125b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x80012690, 0x80012720\l0x800125b8      addiu v0, fp, -0x2b\l0x800125bc      addiu v1, zero, -3\l0x800125c0      and v0, v0, v1\l0x800125c4      bnez v0, 0x80012728\l0x800125c8      move v0, fp\l"]
+	"0x800125cc" [URL="sym._doscan/0x800125cc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800125cc      move a1, s2\l0x800125d0      move a0, s1\l0x800125d4      jalr s7\l0x800125d8      sw a2, (var_34h)\l0x800125dc      addiu v1, zero, 1\l0x800125e0      lw a2, (var_34h)\l0x800125e4      sw v1, (var_3ch)\l0x800125e8      addiu t1, zero, 1\l"]
+	"0x800125ec" [URL="sym._doscan/0x800125ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x8001272c\l0x800125ec      move a3, zero\l"]
+	"0x800125f0" [URL="sym._doscan/0x800125f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x8001277c\l0x800125f0      addiu t2, zero, -2\l0x800125f4      addiu t3, zero, 0xa\l0x800125f8      addiu t4, zero, 0x10\l0x800125fc      beq v0, t2, 0x800127a0\l0x80012600      addiu t5, zero, 8\l"]
+	"0x80012604" [URL="sym._doscan/0x80012604", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012604      andi v1, v0, 0xff\l0x80012608      addu v0, s3, v1\l0x8001260c      lbu v0, (v0)\l0x80012610      andi v0, v0, 1\l0x80012614      beqz v0, 0x80012620\l0x80012618      nop\l"]
+	"0x8001261c" [URL="sym._doscan/0x8001261c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001261c      addiu v1, v1, 0x20\l"]
+	"0x80012620" [URL="sym._doscan/0x80012620", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012614\l0x80012620      beq a2, t3, 0x80012784\l0x80012624      addiu v0, v1, -0x38\l"]
+	"0x80012628" [URL="sym._doscan/0x80012628", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012628      beq a2, t4, 0x80012734\l0x8001262c      addiu v0, v1, -0x61\l"]
+	"0x80012630" [URL="sym._doscan/0x80012630", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012630      bne a2, t5, 0x8001264c\l0x80012634      lw v0, (arg_ch)\l"]
+	"0x80012638" [URL="sym._doscan/0x80012638", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012638      addiu v0, v1, -0x30\l"]
+	"0x8001263c" [URL="sym._doscan/0x8001263c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012788\l0x8001263c      sltiu v0, v0, 8\l0x80012640      bnez v0, 0x80012794\l0x80012644      mul v0, a2, a3\l"]
+	"0x80012648" [URL="sym._doscan/0x80012648", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012648      lw v0, (arg_ch)\l"]
+	"0x8001264c" [URL="sym._doscan/0x8001264c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012630\l0x8001264c      move a1, s2\l0x80012650      move a0, s1\l0x80012654      sw t1, (var_30h)\l0x80012658      jalr v0\l0x8001265c      sw a3, (var_34h)\l0x80012660      lw t1, (var_30h)\l0x80012664      lw a3, (var_34h)\l0x80012668      move v1, t1\l"]
+	"0x8001266c" [URL="sym._doscan/0x8001266c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x8001275c\l0x8001266c      bnez s4, 0x800127ac\l0x80012670      move a0, zero\l"]
+	"0x80012674" [URL="sym._doscan/0x80012674", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012674      b 0x800122e4\l0x80012678      lbu v0, (s0)\l"]
+	"0x8001267c" [URL="sym._doscan/0x8001267c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800125a8\l0x8001267c      beq a2, v0, 0x80012480\l0x80012680      xori a2, a2, 0x78\l"]
+	"0x80012684" [URL="sym._doscan/0x80012684", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012684      addiu v1, zero, 0xa\l0x80012688      addiu v0, zero, 0x10\l0x8001268c      movn v0, v1, a2\l0x80012690      b 0x800125b8\l0x80012694      move a2, v0\l"]
+	"0x80012698" [URL="sym._doscan/0x80012698", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800124d0\l0x80012698      bne v1, t1, 0x800126b0\l0x8001269c      andi a0, v0, 0xff\l"]
+	"0x800126a0" [URL="sym._doscan/0x800126a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800126a0      addu a0, s3, a0\l0x800126a4      lbu a0, (a0)\l0x800126a8      b 0x800124e4\l0x800126ac      andi a0, a0, 8\l"]
+	"0x800126b0" [URL="sym._doscan/0x800126b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x800124e4, 0x80012698\l0x800126b0      beqz a2, 0x800126c0\l0x800126b4      nop\l"]
+	"0x800126b8" [URL="sym._doscan/0x800126b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800126b8      sb v0, (a2)\l0x800126bc      addiu a2, a2, 1\l"]
+	"0x800126c0" [URL="sym._doscan/0x800126c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800126b0\l0x800126c0      addiu fp, fp, 1\l0x800126c4      bne fp, s5, 0x800124ac\l0x800126c8      move a1, s2\l"]
+	"0x800126cc" [URL="sym._doscan/0x800126cc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800126cc      bnez a2, 0x80012514\l0x800126d0      move a0, zero\l"]
+	"0x800126d4" [URL="sym._doscan/0x800126d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800126d4      addiu v0, zero, 0x63\l"]
+	"0x800126d8" [URL="sym._doscan/0x800126d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012718\l0x800126d8      bne v1, v0, 0x800126e8\l0x800126dc      sltu s5, fp, s5\l"]
+	"0x800126e0" [URL="sym._doscan/0x800126e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800128a4\l0x800126e0      bnez s5, 0x80012528\l0x800126e4      nop\l"]
+	"0x800126e8" [URL="sym._doscan/0x800126e8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x80012520, 0x800126d8\l0x800126e8      bnez s4, 0x800127ec\l0x800126ec      nop\l"]
+	"0x800126f0" [URL="sym._doscan/0x800126f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x80012528, 0x800127ec\l0x800126f0      beqz a0, 0x800122e0\l0x800126f4      nop\l"]
+	"0x800126f8" [URL="sym._doscan/0x800126f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x80012530, 0x800127a0, 0x8001282c, 0x80012880\l0x800126f8      bnez s6, 0x8001253c\l0x800126fc      lw ra, (var_4h)\l"]
+	"0x80012700" [URL="sym._doscan/0x80012700", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012700      b 0x8001253c\l0x80012704      addiu s6, zero, -2\l"]
+	"0x80012708" [URL="sym._doscan/0x80012708", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800124c4\l0x80012708      b 0x8001250c\l0x8001270c      addiu a0, zero, 1\l"]
+	"0x80012710" [URL="sym._doscan/0x80012710", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x8001250c\l0x80012710      beqz fp, 0x80012528\l0x80012714      addiu v0, zero, 0x63\l"]
+	"0x80012718" [URL="sym._doscan/0x80012718", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012718      b 0x800126d8\l0x8001271c      nop\l"]
+	"0x80012720" [URL="sym._doscan/0x80012720", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800125a0\l0x80012720      b 0x800125b8\l0x80012724      addiu a2, zero, 8\l"]
+	"0x80012728" [URL="sym._doscan/0x80012728", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800125c4\l0x80012728      sw zero, (var_3ch)\l0x8001272c      b 0x800125ec\l0x80012730      move t1, zero\l"]
+	"0x80012734" [URL="sym._doscan/0x80012734", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012628\l0x80012734      sltiu v0, v0, 6\l0x80012738      beqz v0, 0x80012784\l0x8001273c      addiu v0, v1, -0x38\l"]
+	"0x80012740" [URL="sym._doscan/0x80012740", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012740      sll a3, a3, 4\l0x80012744      addiu a3, a3, -0x57\l0x80012748      addu a3, v1, a3\l"]
+	"0x8001274c" [URL="sym._doscan/0x8001274c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012798\l0x8001274c      addiu v1, t1, 1\l0x80012750      sltu v0, v1, s5\l0x80012754      addiu t1, t1, 1\l0x80012758      sw a2, (var_2ch)\l0x8001275c      beqz v0, 0x8001266c\l0x80012760      sw t1, (var_30h)\l"]
+	"0x80012764" [URL="sym._doscan/0x80012764", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012764      move a1, s2\l0x80012768      move a0, s1\l0x8001276c      jalr s7\l0x80012770      sw a3, (var_34h)\l0x80012774      lw a3, (var_34h)\l0x80012778      lw t1, (var_30h)\l0x8001277c      b 0x800125f0\l0x80012780      lw a2, (var_2ch)\l"]
+	"0x80012784" [URL="sym._doscan/0x80012784", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x80012620, 0x80012738\l0x80012784      sltiu v0, v0, 2\l0x80012788      beqz v0, 0x8001263c\l0x8001278c      addiu v0, v1, -0x30\l"]
+	"0x80012790" [URL="sym._doscan/0x80012790", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012790      mul v0, a2, a3\l"]
+	"0x80012794" [URL="sym._doscan/0x80012794", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012640\l0x80012794      addu v1, v0, v1\l0x80012798      b 0x8001274c\l0x8001279c      addiu a3, v1, -0x30\l"]
+	"0x800127a0" [URL="sym._doscan/0x800127a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800125fc\l0x800127a0      beqz s4, 0x800126f8\l0x800127a4      move v1, t1\l"]
+	"0x800127a8" [URL="sym._doscan/0x800127a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800127a8      addiu a0, zero, 1\l"]
+	"0x800127ac" [URL="sym._doscan/0x800127ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x8001266c\l0x800127ac      beqz v1, 0x80012530\l0x800127b0      lw v0, (var_3ch)\l"]
+	"0x800127b4" [URL="sym._doscan/0x800127b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800127b4      beqz v0, 0x800127c8\l0x800127b8      addiu v0, zero, 0x2d\l"]
+	"0x800127bc" [URL="sym._doscan/0x800127bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800127bc      addiu v0, zero, 1\l0x800127c0      beq v1, v0, 0x80012530\l0x800127c4      addiu v0, zero, 0x2d\l"]
+	"0x800127c8" [URL="sym._doscan/0x800127c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800127b4\l0x800127c8      bne fp, v0, 0x800127d4\l0x800127cc      lw v1, (var_40h)\l"]
+	"0x800127d0" [URL="sym._doscan/0x800127d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800127d0      negu a3, a3\l"]
+	"0x800127d4" [URL="sym._doscan/0x800127d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800127c8\l0x800127d4      addiu v0, zero, 1\l0x800127d8      beq v1, v0, 0x800127f4\l0x800127dc      addiu v0, zero, 2\l"]
+	"0x800127e0" [URL="sym._doscan/0x800127e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800127e0      beq v1, v0, 0x800127f4\l0x800127e4      nop\l"]
+	"0x800127e8" [URL="sym._doscan/0x800127e8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800127e8      sh a3, (s4)\l"]
+	"0x800127ec" [URL="sym._doscan/0x800127ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x800126e8, 0x800127f4\l0x800127ec      b 0x800126f0\l0x800127f0      addiu s6, s6, 1\l"]
+	"0x800127f4" [URL="sym._doscan/0x800127f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._doscan @ 0x800127d8, 0x800127e0\l0x800127f4      b 0x800127ec\l0x800127f8      sw a3, (s4)\l"]
+	"0x800127fc" [URL="sym._doscan/0x800127fc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012434\l0x800127fc      b 0x80012528\l0x80012800      addiu a0, zero, 1\l"]
+	"0x80012804" [URL="sym._doscan/0x80012804", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800122f8\l0x80012804      move s0, v1\l"]
+	"0x80012808" [URL="sym._doscan/0x80012808", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x800122ec\l0x80012808      lbu v0, (s0)\l0x8001280c      addu v0, s3, v0\l0x80012810      lbu v0, (v0)\l0x80012814      andi v0, v0, 8\l0x80012818      beqz v0, 0x80012874\l0x8001281c      move a1, s2\l"]
+	"0x80012820" [URL="sym._doscan/0x80012820", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012820      addiu s4, zero, -2\l"]
+	"0x80012824" [URL="sym._doscan/0x80012824", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012840\l0x80012824      jalr s7\l0x80012828      move a0, s1\l0x8001282c      beq v0, s4, 0x800126f8\l0x80012830      andi v0, v0, 0xff\l"]
+	"0x80012834" [URL="sym._doscan/0x80012834", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012834      addu v0, s3, v0\l0x80012838      lbu v0, (v0)\l0x8001283c      andi v0, v0, 8\l0x80012840      bnez v0, 0x80012824\l0x80012844      move a1, s2\l"]
+	"0x80012848" [URL="sym._doscan/0x80012848", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012848      lw v0, (arg_ch)\l0x8001284c      jalr v0\l0x80012850      move a0, s1\l"]
+	"0x80012854" [URL="sym._doscan/0x80012854", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012864\l0x80012854      lbu v0, 1(s0)\l0x80012858      addu v0, s3, v0\l0x8001285c      lbu v0, (v0)\l0x80012860      andi v0, v0, 8\l0x80012864      bnez v0, 0x80012854\l0x80012868      addiu s0, s0, 1\l"]
+	"0x8001286c" [URL="sym._doscan/0x8001286c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001286c      b 0x800122e4\l0x80012870      lbu v0, (s0)\l"]
+	"0x80012874" [URL="sym._doscan/0x80012874", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012818\l0x80012874      jalr s7\l0x80012878      move a0, s1\l0x8001287c      addiu v1, zero, -2\l0x80012880      beq v0, v1, 0x800126f8\l0x80012884      nop\l"]
+	"0x80012888" [URL="sym._doscan/0x80012888", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012888      lbu v1, (s0)\l0x8001288c      bne v1, v0, 0x80012538\l0x80012890      addiu s0, s0, 1\l"]
+	"0x80012894" [URL="sym._doscan/0x80012894", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80012894      b 0x800122e4\l0x80012898      lbu v0, (s0)\l"]
+	"0x8001289c" [URL="sym._doscan/0x8001289c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._doscan @ 0x80012518\l0x8001289c      beqz fp, 0x80012528\l0x800128a0      nop\l"]
+	"0x800128a4" [URL="sym._doscan/0x800128a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800128a4      b 0x800126e0\l0x800128a8      sltu s5, fp, s5\l"]
+        "0x80012284" -> "0x800122e0" [color="#0037da"];
+        "0x800122e0" -> "0x800122e4" [color="#0037da"];
+        "0x800122e4" -> "0x80012538" [color="#13a10e"];
+        "0x800122e4" -> "0x800122ec" [color="#c50f1f"];
+        "0x800122ec" -> "0x80012808" [color="#13a10e"];
+        "0x800122ec" -> "0x800122f4" [color="#c50f1f"];
+        "0x800122f4" -> "0x80012804" [color="#13a10e"];
+        "0x800122f4" -> "0x80012300" [color="#c50f1f"];
+        "0x80012300" -> "0x800123d0" [color="#13a10e"];
+        "0x80012300" -> "0x8001230c" [color="#c50f1f"];
+        "0x8001230c" -> "0x80012314" [color="#0037da"];
+        "0x80012314" -> "0x8001231c" [color="#0037da"];
+        "0x8001231c" -> "0x800123e0" [color="#13a10e"];
+        "0x8001231c" -> "0x80012334" [color="#c50f1f"];
+        "0x80012334" -> "0x80012340" [color="#13a10e"];
+        "0x80012334" -> "0x8001233c" [color="#c50f1f"];
+        "0x8001233c" -> "0x80012340" [color="#0037da"];
+        "0x80012340" -> "0x8001235c" [color="#13a10e"];
+        "0x80012340" -> "0x8001234c" [color="#c50f1f"];
+        "0x8001234c" -> "0x8001235c" [color="#0037da"];
+        "0x8001235c" -> "0x8001256c" [color="#13a10e"];
+        "0x8001235c" -> "0x8001236c" [color="#c50f1f"];
+        "0x8001236c" -> "0x800123f4" [color="#13a10e"];
+        "0x8001236c" -> "0x8001237c" [color="#c50f1f"];
+        "0x8001237c" -> "0x80012380" [color="#0037da"];
+        "0x80012380" -> "0x800123a8" [color="#0037da"];
+        "0x800123a8" -> "0x800123fc" [color="#13a10e"];
+        "0x800123a8" -> "0x800123b4" [color="#c50f1f"];
+        "0x800123b4" -> "0x80012594" [color="#13a10e"];
+        "0x800123b4" -> "0x800123bc" [color="#c50f1f"];
+        "0x800123bc" -> "0x800123a8" [color="#0037da"];
+        "0x800123d0" -> "0x80012314" [color="#0037da"];
+        "0x800123e0" -> "0x8001231c" [color="#0037da"];
+        "0x800123f4" -> "0x80012380" [color="#0037da"];
+        "0x800123fc" -> "0x800123bc" [color="#13a10e"];
+        "0x800123fc" -> "0x80012404" [color="#c50f1f"];
+        "0x80012404" -> "0x80012408" [color="#0037da"];
+        "0x80012408" -> "0x8001259c" [color="#13a10e"];
+        "0x80012408" -> "0x80012418" [color="#c50f1f"];
+        "0x80012418" -> "0x800127fc" [color="#13a10e"];
+        "0x80012418" -> "0x8001243c" [color="#c50f1f"];
+        "0x8001243c" -> "0x80012418" [color="#13a10e"];
+        "0x8001243c" -> "0x8001245c" [color="#c50f1f"];
+        "0x8001245c" -> "0x800125a0" [color="#13a10e"];
+        "0x8001245c" -> "0x80012468" [color="#c50f1f"];
+        "0x80012468" -> "0x80012480" [color="#0037da"];
+        "0x80012480" -> "0x800124a4" [color="#13a10e"];
+        "0x80012480" -> "0x80012490" [color="#c50f1f"];
+        "0x80012490" -> "0x800124a8" [color="#13a10e"];
+        "0x80012490" -> "0x8001249c" [color="#c50f1f"];
+        "0x8001249c" -> "0x800124a4" [color="#0037da"];
+        "0x800124a4" -> "0x800124a8" [color="#0037da"];
+        "0x800124a8" -> "0x800124ac" [color="#0037da"];
+        "0x800124ac" -> "0x80012708" [color="#13a10e"];
+        "0x800124ac" -> "0x800124cc" [color="#c50f1f"];
+        "0x800124cc" -> "0x80012698" [color="#13a10e"];
+        "0x800124cc" -> "0x800124d8" [color="#c50f1f"];
+        "0x800124d8" -> "0x800124e4" [color="#0037da"];
+        "0x800124e4" -> "0x800126b0" [color="#13a10e"];
+        "0x800124e4" -> "0x800124ec" [color="#c50f1f"];
+        "0x800124ec" -> "0x8001250c" [color="#0037da"];
+        "0x8001250c" -> "0x80012710" [color="#13a10e"];
+        "0x8001250c" -> "0x80012514" [color="#c50f1f"];
+        "0x80012514" -> "0x8001289c" [color="#13a10e"];
+        "0x80012514" -> "0x80012520" [color="#c50f1f"];
+        "0x80012520" -> "0x800126e8" [color="#13a10e"];
+        "0x80012520" -> "0x80012528" [color="#c50f1f"];
+        "0x80012528" -> "0x800126f0" [color="#13a10e"];
+        "0x80012528" -> "0x80012530" [color="#c50f1f"];
+        "0x80012530" -> "0x800126f8" [color="#13a10e"];
+        "0x80012530" -> "0x80012538" [color="#c50f1f"];
+        "0x80012538" -> "0x8001253c" [color="#0037da"];
+        "0x8001256c" -> "0x80012538" [color="#13a10e"];
+        "0x8001256c" -> "0x80012574" [color="#c50f1f"];
+        "0x80012574" -> "0x80012408" [color="#13a10e"];
+        "0x80012574" -> "0x80012584" [color="#c50f1f"];
+        "0x80012584" -> "0x80012404" [color="#0037da"];
+        "0x80012594" -> "0x80012404" [color="#0037da"];
+        "0x8001259c" -> "0x800125a0" [color="#0037da"];
+        "0x800125a0" -> "0x80012720" [color="#13a10e"];
+        "0x800125a0" -> "0x800125a8" [color="#c50f1f"];
+        "0x800125a8" -> "0x8001267c" [color="#13a10e"];
+        "0x800125a8" -> "0x800125b0" [color="#c50f1f"];
+        "0x800125b0" -> "0x80012480" [color="#13a10e"];
+        "0x800125b0" -> "0x800125b8" [color="#c50f1f"];
+        "0x800125b8" -> "0x80012728" [color="#13a10e"];
+        "0x800125b8" -> "0x800125cc" [color="#c50f1f"];
+        "0x800125cc" -> "0x800125ec" [color="#0037da"];
+        "0x800125ec" -> "0x800125f0" [color="#0037da"];
+        "0x800125f0" -> "0x800127a0" [color="#13a10e"];
+        "0x800125f0" -> "0x80012604" [color="#c50f1f"];
+        "0x80012604" -> "0x80012620" [color="#13a10e"];
+        "0x80012604" -> "0x8001261c" [color="#c50f1f"];
+        "0x8001261c" -> "0x80012620" [color="#0037da"];
+        "0x80012620" -> "0x80012784" [color="#13a10e"];
+        "0x80012620" -> "0x80012628" [color="#c50f1f"];
+        "0x80012628" -> "0x80012734" [color="#13a10e"];
+        "0x80012628" -> "0x80012630" [color="#c50f1f"];
+        "0x80012630" -> "0x8001264c" [color="#13a10e"];
+        "0x80012630" -> "0x80012638" [color="#c50f1f"];
+        "0x80012638" -> "0x8001263c" [color="#0037da"];
+        "0x8001263c" -> "0x80012794" [color="#13a10e"];
+        "0x8001263c" -> "0x80012648" [color="#c50f1f"];
+        "0x80012648" -> "0x8001264c" [color="#0037da"];
+        "0x8001264c" -> "0x8001266c" [color="#0037da"];
+        "0x8001266c" -> "0x800127ac" [color="#13a10e"];
+        "0x8001266c" -> "0x80012674" [color="#c50f1f"];
+        "0x80012674" -> "0x800122e4" [color="#0037da"];
+        "0x8001267c" -> "0x80012480" [color="#13a10e"];
+        "0x8001267c" -> "0x80012684" [color="#c50f1f"];
+        "0x80012684" -> "0x800125b8" [color="#0037da"];
+        "0x80012698" -> "0x800126b0" [color="#13a10e"];
+        "0x80012698" -> "0x800126a0" [color="#c50f1f"];
+        "0x800126a0" -> "0x800124e4" [color="#0037da"];
+        "0x800126b0" -> "0x800126c0" [color="#13a10e"];
+        "0x800126b0" -> "0x800126b8" [color="#c50f1f"];
+        "0x800126b8" -> "0x800126c0" [color="#0037da"];
+        "0x800126c0" -> "0x800124ac" [color="#13a10e"];
+        "0x800126c0" -> "0x800126cc" [color="#c50f1f"];
+        "0x800126cc" -> "0x80012514" [color="#13a10e"];
+        "0x800126cc" -> "0x800126d4" [color="#c50f1f"];
+        "0x800126d4" -> "0x800126d8" [color="#0037da"];
+        "0x800126d8" -> "0x800126e8" [color="#13a10e"];
+        "0x800126d8" -> "0x800126e0" [color="#c50f1f"];
+        "0x800126e0" -> "0x80012528" [color="#13a10e"];
+        "0x800126e0" -> "0x800126e8" [color="#c50f1f"];
+        "0x800126e8" -> "0x800127ec" [color="#13a10e"];
+        "0x800126e8" -> "0x800126f0" [color="#c50f1f"];
+        "0x800126f0" -> "0x800122e0" [color="#13a10e"];
+        "0x800126f0" -> "0x800126f8" [color="#c50f1f"];
+        "0x800126f8" -> "0x8001253c" [color="#13a10e"];
+        "0x800126f8" -> "0x80012700" [color="#c50f1f"];
+        "0x80012700" -> "0x8001253c" [color="#0037da"];
+        "0x80012708" -> "0x8001250c" [color="#0037da"];
+        "0x80012710" -> "0x80012528" [color="#13a10e"];
+        "0x80012710" -> "0x80012718" [color="#c50f1f"];
+        "0x80012718" -> "0x800126d8" [color="#0037da"];
+        "0x80012720" -> "0x800125b8" [color="#0037da"];
+        "0x80012728" -> "0x800125ec" [color="#0037da"];
+        "0x80012734" -> "0x80012784" [color="#13a10e"];
+        "0x80012734" -> "0x80012740" [color="#c50f1f"];
+        "0x80012740" -> "0x8001274c" [color="#0037da"];
+        "0x8001274c" -> "0x8001266c" [color="#13a10e"];
+        "0x8001274c" -> "0x80012764" [color="#c50f1f"];
+        "0x80012764" -> "0x800125f0" [color="#0037da"];
+        "0x80012784" -> "0x8001263c" [color="#13a10e"];
+        "0x80012784" -> "0x80012790" [color="#c50f1f"];
+        "0x80012790" -> "0x80012794" [color="#0037da"];
+        "0x80012794" -> "0x8001274c" [color="#0037da"];
+        "0x800127a0" -> "0x800126f8" [color="#13a10e"];
+        "0x800127a0" -> "0x800127a8" [color="#c50f1f"];
+        "0x800127a8" -> "0x800127ac" [color="#0037da"];
+        "0x800127ac" -> "0x80012530" [color="#13a10e"];
+        "0x800127ac" -> "0x800127b4" [color="#c50f1f"];
+        "0x800127b4" -> "0x800127c8" [color="#13a10e"];
+        "0x800127b4" -> "0x800127bc" [color="#c50f1f"];
+        "0x800127bc" -> "0x80012530" [color="#13a10e"];
+        "0x800127bc" -> "0x800127c8" [color="#c50f1f"];
+        "0x800127c8" -> "0x800127d4" [color="#13a10e"];
+        "0x800127c8" -> "0x800127d0" [color="#c50f1f"];
+        "0x800127d0" -> "0x800127d4" [color="#0037da"];
+        "0x800127d4" -> "0x800127f4" [color="#13a10e"];
+        "0x800127d4" -> "0x800127e0" [color="#c50f1f"];
+        "0x800127e0" -> "0x800127f4" [color="#13a10e"];
+        "0x800127e0" -> "0x800127e8" [color="#c50f1f"];
+        "0x800127e8" -> "0x800127ec" [color="#0037da"];
+        "0x800127ec" -> "0x800126f0" [color="#0037da"];
+        "0x800127f4" -> "0x800127ec" [color="#0037da"];
+        "0x800127fc" -> "0x80012528" [color="#0037da"];
+        "0x80012804" -> "0x80012808" [color="#0037da"];
+        "0x80012808" -> "0x80012874" [color="#13a10e"];
+        "0x80012808" -> "0x80012820" [color="#c50f1f"];
+        "0x80012820" -> "0x80012824" [color="#0037da"];
+        "0x80012824" -> "0x800126f8" [color="#13a10e"];
+        "0x80012824" -> "0x80012834" [color="#c50f1f"];
+        "0x80012834" -> "0x80012824" [color="#13a10e"];
+        "0x80012834" -> "0x80012848" [color="#c50f1f"];
+        "0x80012848" -> "0x80012854" [color="#0037da"];
+        "0x80012854" -> "0x80012854" [color="#13a10e"];
+        "0x80012854" -> "0x8001286c" [color="#c50f1f"];
+        "0x8001286c" -> "0x800122e4" [color="#0037da"];
+        "0x80012874" -> "0x800126f8" [color="#13a10e"];
+        "0x80012874" -> "0x80012888" [color="#c50f1f"];
+        "0x80012888" -> "0x80012538" [color="#13a10e"];
+        "0x80012888" -> "0x80012894" [color="#c50f1f"];
+        "0x80012894" -> "0x800122e4" [color="#0037da"];
+        "0x8001289c" -> "0x80012528" [color="#13a10e"];
+        "0x8001289c" -> "0x800128a4" [color="#c50f1f"];
+        "0x800128a4" -> "0x800126e0" [color="#0037da"];
+}

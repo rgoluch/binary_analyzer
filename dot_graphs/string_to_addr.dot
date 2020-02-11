@@ -1,0 +1,26 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800077c8" [URL="sym.string_to_addr/0x800077c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="156: sym.string_to_addr (int32_t arg1, int32_t arg2, int32_t arg3);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x800077c8      lb v1, (a0)                                            ; arg1\l0x800077cc      addiu sp, sp, -0x20\l0x800077d0      addiu v0, zero, 0x30\l0x800077d4      bne v1, v0, 0x80007858\l0x800077d8      sw ra, (var_4h)\l"]
+	"0x800077dc" [URL="sym.string_to_addr/0x800077dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800077dc      lb v0, 1(a0)                                           ; arg1\l0x800077e0      addiu v1, zero, -0x21\l0x800077e4      and v1, v0, v1\l0x800077e8      addiu a1, zero, 0x58                                   ; arg2\l0x800077ec      bne v1, a1, 0x80007830\l0x800077f0      lui v1, 0x8001\l"]
+	"0x800077f4" [URL="sym.string_to_addr/0x800077f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800077f4      lui a1, 0x8001\l0x800077f8      addiu a0, a0, 2                                        ; arg1\l0x800077fc      addiu a1, a1, 0x3d3c                                   ; arg2 ; esilref: '&lx'\l"]
+	"0x80007800" [URL="sym.string_to_addr/0x80007800", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.string_to_addr @ 0x80007850, 0x8000785c\l0x80007800      lui v0, 0x8001\l0x80007804      addiu v0, v0, 0x1ec4                                   ; 0x80011ec4\l                                                                       ; sym.sscanf ; sym.sscanf\l0x80007808      jalr v0\l0x8000780c      addiu a2, sp, 0x10                                     ; arg3\l0x80007810      addiu v1, zero, 1\l0x80007814      beq v0, v1, 0x80007820\l0x80007818      addiu v0, zero, -1\l"]
+	"0x8000781c" [URL="sym.string_to_addr/0x8000781c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000781c      sw v0, (var_10h)\l"]
+	"0x80007820" [URL="sym.string_to_addr/0x80007820", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.string_to_addr @ 0x80007814\l0x80007820      lw ra, (var_4h)\l0x80007824      lw v0, (var_10h)\l0x80007828      jr ra\l0x8000782c      addiu sp, sp, 0x20\l"]
+	"0x80007830" [URL="sym.string_to_addr/0x80007830", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.string_to_addr @ 0x800077ec\l0x80007830      andi v0, v0, 0xff\l0x80007834      addiu v1, v1, 0x7634\l0x80007838      addu v0, v0, v1\l0x8000783c      lbu v0, (v0)\l0x80007840      andi v0, v0, 4\l0x80007844      beqz v0, 0x80007858\l0x80007848      nop\l"]
+	"0x8000784c" [URL="sym.string_to_addr/0x8000784c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000784c      lui a1, 0x8001\l0x80007850      b 0x80007800\l0x80007854      addiu a1, a1, 0x3d44                                   ; arg2 ; esilref: '&lo'\l"]
+	"0x80007858" [URL="sym.string_to_addr/0x80007858", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.string_to_addr @ 0x800077d4, 0x80007844\l0x80007858      lui a1, 0x8001\l0x8000785c      b 0x80007800\l0x80007860      addiu a1, a1, 0x3d40                                   ; arg2 ; esilref: '&lu'\l"]
+        "0x800077c8" -> "0x80007858" [color="#13a10e"];
+        "0x800077c8" -> "0x800077dc" [color="#c50f1f"];
+        "0x800077dc" -> "0x80007830" [color="#13a10e"];
+        "0x800077dc" -> "0x800077f4" [color="#c50f1f"];
+        "0x800077f4" -> "0x80007800" [color="#0037da"];
+        "0x80007800" -> "0x80007820" [color="#13a10e"];
+        "0x80007800" -> "0x8000781c" [color="#c50f1f"];
+        "0x8000781c" -> "0x80007820" [color="#0037da"];
+        "0x80007830" -> "0x80007858" [color="#13a10e"];
+        "0x80007830" -> "0x8000784c" [color="#c50f1f"];
+        "0x8000784c" -> "0x80007800" [color="#0037da"];
+        "0x80007858" -> "0x80007800" [color="#0037da"];
+}

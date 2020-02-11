@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80003890" [URL="sym.control/0x80003890", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x80006184  DATA 0x8000c34c  CALL 0x8000c35c  \l  ; XREFS: CALL 0x8000c374  CALL 0x8000c38c  CALL 0x8000c5d0  \l  ; XREFS: CALL 0x8000c604  CALL 0x8000c7b4  CALL 0x8000c7ec  \l  ; XREFS: CALL 0x8000c860  CALL 0x8000c898  CALL 0x8000c91c  \l  ; XREFS: CALL 0x8000c970  CALL 0x8000c9d8  CALL 0x8000c9ec  \l  ; XREFS: CALL 0x8000ca00  DATA 0x8000ce98  CALL 0x8000ce9c  \l  ; XREFS: DATA 0x8000e9b0  CALL 0x8000e9b4  \l48: sym.control (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x80003890      sltiu v0, a0, 5                                        ; arg1\l0x80003894      beqz v0, 0x800038b8\l0x80003898      addiu v1, zero, 0x3c\l"]
+	"0x8000389c" [URL="sym.control/0x8000389c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000389c      mul t0, a0, v1\l0x800038a0      lui v0, 0x8001\l0x800038a4      addiu v0, v0, 0x73a8                                   ; 0x800173a8\l                                                                       ; obj.devtab ; obj.devtab\l0x800038a8      addu a0, t0, v0                                        ; arg1\l0x800038ac      lw t9, 0x2c(a0)                                        ; arg1\l0x800038b0      jr t9\l0x800038b4      nop\l"]
+	"0x800038b8" [URL="sym.control/0x800038b8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.control @ 0x80003894\l0x800038b8      jr ra\l0x800038bc      addiu v0, zero, -1\l"]
+        "0x80003890" -> "0x800038b8" [color="#13a10e"];
+        "0x80003890" -> "0x8000389c" [color="#c50f1f"];
+}

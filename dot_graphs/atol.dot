@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011318" [URL="sym.atol/0x80011318", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.xsh_uartstat @ 0x80008178, 0x8000817c\l  ; CALL XREFS from sym.test_libStdlib @ 0x8000f71c, 0x8000f720\l  ; DATA XREF from sym.atoi @ 0x8001130c\l52: long sym.atol (const char *str);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x80011318      addiu sp, sp, -0x20\l0x8001131c      lui a1, 0x8001\l0x80011320      lui v0, 0x8001\l0x80011324      addiu a2, sp, 0x10                                     ; arg3\l0x80011328      sw ra, (var_4h)\l0x8001132c      addiu a1, a1, 0x6058                                   ; 0x80016058 ; \"%ld\" ; arg2 ; aav.0x80016058\l0x80011330      addiu v0, v0, 0x1ec4                                   ; 0x80011ec4\l                                                                       ; sym.sscanf ; sym.sscanf\l0x80011334      jalr v0\l0x80011338      sw zero, (var_10h)\l0x8001133c      lw ra, (var_4h)\l0x80011340      lw v0, (var_10h)\l0x80011344      jr ra\l0x80011348      addiu sp, sp, 0x20\l"]
+}

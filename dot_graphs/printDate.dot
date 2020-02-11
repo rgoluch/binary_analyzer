@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80005c6c" [URL="sym.printDate/0x80005c6c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.xsh_date @ 0x80006bf0, 0x80006bf4\l16: sym.printDate (int32_t arg2);\l; arg int32_t arg2 @ a1\l0x80005c6c      lui t9, 0x8000\l0x80005c70      addiu t9, t9, 0x5b58                                   ; 0x80005b58\l                                                                       ; sym.printDateTZ ; sym.printDateTZ\l0x80005c74      jr t9\l0x80005c78      addiu a1, zero, -6                                     ; arg2\l"]
+}

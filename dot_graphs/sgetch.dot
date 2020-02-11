@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011e8c" [URL="sym.sgetch/0x80011e8c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.sscanf @ 0x80011f08\l36: sym.sgetch (int32_t arg1, int32_t arg2);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x80011e8c      lw v1, (a1)                                            ; arg2\l0x80011e90      lb a0, (v1)\l0x80011e94      beqz a0, 0x80011ea8\l0x80011e98      addiu v0, zero, -2\l"]
+	"0x80011e9c" [URL="sym.sgetch/0x80011e9c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80011e9c      addiu v1, v1, 1\l0x80011ea0      andi v0, a0, 0xff                                      ; arg1\l0x80011ea4      sw v1, (a1)                                            ; arg2\l"]
+	"0x80011ea8" [URL="sym.sgetch/0x80011ea8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.sgetch @ 0x80011e94\l0x80011ea8      jr ra\l0x80011eac      nop\l"]
+        "0x80011e8c" -> "0x80011ea8" [color="#13a10e"];
+        "0x80011e8c" -> "0x80011e9c" [color="#c50f1f"];
+        "0x80011e9c" -> "0x80011ea8" [color="#0037da"];
+}

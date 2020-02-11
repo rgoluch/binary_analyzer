@@ -1,0 +1,18 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80012174" [URL="sym.strstr/0x80012174", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.test_libString @ 0x800106e8, 0x800106ec\l136: char *sym.strstr (const char *s1, const char *s2);\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_10h @ sp+0x18\l; var int32_t var_ch @ sp+0x1c\l; var int32_t var_8h @ sp+0x20\l; var int32_t var_4h @ sp+0x24\l0x80012174      addiu sp, sp, -0x28\l0x80012178      lui v0, 0x8001\l0x8001217c      addiu v0, v0, 0x1ff8                                   ; 0x80011ff8 ; \"%\\x10\" ; sym.strlen\l0x80012180      sw s3, (var_8h)\l0x80012184      sw s2, (var_ch)\l0x80012188      sw s1, (var_10h)\l0x8001218c      sw s0, (var_14h)\l0x80012190      sw ra, (var_4h)\l0x80012194      move s0, a0\l0x80012198      move a0, a1\l0x8001219c      move s1, a1\l0x800121a0      jalr v0\l0x800121a4      lui s3, 0x8001\l0x800121a8      move s2, v0\l0x800121ac      addiu s3, s3, 0x2094                                   ; 0x80012094 ; \"%\\x18\" ; sym.strncmp\l"]
+	"0x800121b0" [URL="sym.strstr/0x800121b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strstr @ 0x800121f4\l0x800121b0      lb v0, (s0)\l0x800121b4      bnez v0, 0x800121e0\l0x800121b8      move a2, s2\l"]
+	"0x800121bc" [URL="sym.strstr/0x800121bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800121bc      move s0, zero\l0x800121c0      lw ra, (var_4h)\l"]
+	"0x800121c4" [URL="sym.strstr/0x800121c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strstr @ 0x800121ec\l0x800121c4      lw s3, (var_8h)\l0x800121c8      lw s2, (var_ch)\l0x800121cc      lw s1, (var_10h)\l0x800121d0      move v0, s0\l0x800121d4      lw s0, (var_14h)\l0x800121d8      jr ra\l0x800121dc      addiu sp, sp, 0x28\l"]
+	"0x800121e0" [URL="sym.strstr/0x800121e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strstr @ 0x800121b4\l0x800121e0      move a1, s1\l0x800121e4      jalr s3\l0x800121e8      move a0, s0\l0x800121ec      beqz v0, 0x800121c4\l0x800121f0      lw ra, (var_4h)\l"]
+	"0x800121f4" [URL="sym.strstr/0x800121f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800121f4      b 0x800121b0\l0x800121f8      addiu s0, s0, 1\l"]
+        "0x80012174" -> "0x800121b0" [color="#0037da"];
+        "0x800121b0" -> "0x800121e0" [color="#13a10e"];
+        "0x800121b0" -> "0x800121bc" [color="#c50f1f"];
+        "0x800121bc" -> "0x800121c4" [color="#0037da"];
+        "0x800121e0" -> "0x800121c4" [color="#13a10e"];
+        "0x800121e0" -> "0x800121f4" [color="#c50f1f"];
+        "0x800121f4" -> "0x800121b0" [color="#0037da"];
+}

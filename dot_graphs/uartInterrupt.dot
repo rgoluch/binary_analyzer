@@ -1,0 +1,66 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8000513c" [URL="sym.uartInterrupt/0x8000513c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; UNKNOWN XREF from obj.devtab @ +0x34\l512: sym.uartInterrupt (int32_t arg1, int32_t arg2, int32_t arg3);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_ch @ sp+0x14\l; var int32_t var_8h @ sp+0x18\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x8000513c      addiu sp, sp, -0x20\l0x80005140      lui v1, 0x8002\l0x80005144      sw s1, (var_ch)\l0x80005148      lw s1, 0xb5c(v1)                                       ; [0x80020b5c:4]=0\l                                                                       ; obj.uarttab\l0x8000514c      sw s2, (var_8h)\l0x80005150      addiu v0, zero, 1\l0x80005154      lui s2, 0x8002\l0x80005158      sw ra, (var_4h)\l0x8000515c      sw s0, (var_10h)\l0x80005160      beqz s1, 0x800051a8\l0x80005164      sw v0, -0xf0(s2)\l"]
+	"0x80005168" [URL="sym.uartInterrupt/0x80005168", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005168      lbu a0, 2(s1)\l0x8000516c      andi v0, a0, 0xff                                      ; arg1\l0x80005170      andi a0, a0, 1                                         ; arg1\l0x80005174      bnez a0, 0x800051a8\l0x80005178      andi v0, v0, 0xe\l"]
+	"0x8000517c" [URL="sym.uartInterrupt/0x8000517c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000517c      addiu a0, zero, 6                                      ; arg1\l0x80005180      beq v0, a0, 0x800051d0\l0x80005184      move s0, v1\l"]
+	"0x80005188" [URL="sym.uartInterrupt/0x80005188", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005188      sltiu v1, v0, 7\l0x8000518c      beqz v1, 0x800051a0\l0x80005190      addiu v1, zero, 0xc\l"]
+	"0x80005194" [URL="sym.uartInterrupt/0x80005194", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005194      addiu v1, zero, 2\l0x80005198      beq v0, v1, 0x80005228\l0x8000519c      addiu v1, zero, 4\l"]
+	"0x800051a0" [URL="sym.uartInterrupt/0x800051a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x8000518c\l0x800051a0      beq v0, v1, 0x800051e8\l0x800051a4      addiu v0, s0, 0xb5c                                    ; 0x80020b5c\l                                                                       ; obj.uarttab ; obj.uarttab\l"]
+	"0x800051a8" [URL="sym.uartInterrupt/0x800051a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.uartInterrupt @ 0x80005160, 0x80005174, 0x800051e0\l0x800051a8      lw v0, -0xf0(s2)                                       ; [0x8001ff10:4]=0\l                                                                       ; obj.resdefer\l"]
+	"0x800051ac" [URL="sym.uartInterrupt/0x800051ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.uartInterrupt @ 0x80005230, 0x80005258, 0x80005314\l0x800051ac      addiu v0, v0, -1\l0x800051b0      bgtz v0, 0x8000531c\l0x800051b4      lw ra, (var_4h)\l"]
+	"0x800051b8" [URL="sym.uartInterrupt/0x800051b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800051b8      lw s1, (var_ch)\l0x800051bc      lw s0, (var_10h)\l0x800051c0      sw v0, -0xf0(s2)\l0x800051c4      lw s2, (var_8h)\l0x800051c8      jr ra\l0x800051cc      addiu sp, sp, 0x20\l"]
+	"0x800051d0" [URL="sym.uartInterrupt/0x800051d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x80005180\l0x800051d0      addiu v1, v1, 0xb5c\l0x800051d4      lbu v0, 5(s1)\l0x800051d8      lw v0, 0x10(v1)\l0x800051dc      addiu v0, v0, 1\l0x800051e0      b 0x800051a8\l0x800051e4      sw v0, 0x10(v1)\l"]
+	"0x800051e8" [URL="sym.uartInterrupt/0x800051e8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x800051a0\l0x800051e8      lw v1, 0x18(v0)\l0x800051ec      move a1, zero\l0x800051f0      addiu v1, v1, 1\l0x800051f4      sw v1, 0x18(v0)\l"]
+	"0x800051f8" [URL="sym.uartInterrupt/0x800051f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.uartInterrupt @ 0x80005290, 0x800052a0\l0x800051f8      lbu v1, 5(s1)\l0x800051fc      andi v1, v1, 1\l0x80005200      bnez v1, 0x80005260\l0x80005204      nop\l"]
+	"0x80005208" [URL="sym.uartInterrupt/0x80005208", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005208      lw v1, 0xc(v0)\l0x8000520c      lw a0, 0x24(v0)\l0x80005210      addu v1, v1, a1\l0x80005214      sw v1, 0xc(v0)\l0x80005218      lui v0, 0x8000\l0x8000521c      addiu v0, v0, 0x2cd4                                   ; 0x80002cd4\l                                                                       ; sym.signaln ; sym.signaln\l0x80005220      jalr v0\l0x80005224      nop\l"]
+	"0x80005228" [URL="sym.uartInterrupt/0x80005228", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x80005198\l0x80005228      lbu v0, 5(s1)\l0x8000522c      andi v0, v0, 0x20\l0x80005230      beqz v0, 0x800051ac\l0x80005234      lw v0, -0xf0(s2)\l"]
+	"0x80005238" [URL="sym.uartInterrupt/0x80005238", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005238      addiu v0, s0, 0xb5c\l0x8000523c      lw v1, 0x1c(v0)\l0x80005240      addiu v1, v1, 1\l0x80005244      sw v1, 0x1c(v0)\l0x80005248      lhu v1, 0x436(v0)\l0x8000524c      bnez v1, 0x800052a8\l0x80005250      addiu v1, zero, 1\l"]
+	"0x80005254" [URL="sym.uartInterrupt/0x80005254", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005254      sb v1, 0x838(v0)\l0x80005258      b 0x800051ac\l0x8000525c      lw v0, -0xf0(s2)\l"]
+	"0x80005260" [URL="sym.uartInterrupt/0x80005260", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x80005200\l0x80005260      lhu a0, 0x2a(v0)\l0x80005264      lbu a2, (s1)\l0x80005268      sltiu v1, a0, 0x400                                    ; arg1\l0x8000526c      beqz v1, 0x80005298\l0x80005270      andi a2, a2, 0xff                                      ; arg3\l"]
+	"0x80005274" [URL="sym.uartInterrupt/0x80005274", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80005274      lhu v1, 0x28(v0)\l0x80005278      addiu a1, a1, 1                                        ; arg2\l0x8000527c      addu v1, a0, v1                                        ; arg1\l0x80005280      andi v1, v1, 0x3ff\l0x80005284      addu v1, v0, v1\l0x80005288      addiu a0, a0, 1                                        ; arg1\l0x8000528c      sb a2, 0x2c(v1)\l0x80005290      b 0x800051f8\l0x80005294      sh a0, 0x2a(v0)\l"]
+	"0x80005298" [URL="sym.uartInterrupt/0x80005298", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x8000526c\l0x80005298      lw v1, 0x14(v0)\l0x8000529c      addiu v1, v1, 1\l0x800052a0      b 0x800051f8\l0x800052a4      sw v1, 0x14(v0)\l"]
+	"0x800052a8" [URL="sym.uartInterrupt/0x800052a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x8000524c\l0x800052a8      move a1, zero\l0x800052ac      addiu a0, zero, 0x10\l0x800052b0      lhu v1, 0x436(v0)\l0x800052b4      addiu a1, a1, 1\l"]
+	"0x800052b8" [URL="sym.uartInterrupt/0x800052b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x800052e8\l0x800052b8      addiu v1, v1, -1\l0x800052bc      sh v1, 0x436(v0)\l0x800052c0      lhu v1, 0x434(v0)\l0x800052c4      addu v1, v0, v1\l0x800052c8      lbu v1, 0x438(v1)\l0x800052cc      sb v1, (s1)\l0x800052d0      lhu v1, 0x434(v0)\l0x800052d4      addiu v1, v1, 1\l0x800052d8      andi v1, v1, 0x3ff\l0x800052dc      beq a1, a0, 0x800052f4\l0x800052e0      sh v1, 0x434(v0)\l"]
+	"0x800052e4" [URL="sym.uartInterrupt/0x800052e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800052e4      lhu v1, 0x436(v0)\l0x800052e8      bnez v1, 0x800052b8\l0x800052ec      addiu a1, a1, 1\l"]
+	"0x800052f0" [URL="sym.uartInterrupt/0x800052f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800052f0      addiu a1, a1, -1\l"]
+	"0x800052f4" [URL="sym.uartInterrupt/0x800052f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x800052dc\l0x800052f4      lw v1, 8(v0)\l0x800052f8      lw a0, 0x430(v0)\l0x800052fc      addu v1, v1, a1\l0x80005300      sw v1, 8(v0)\l0x80005304      lui v0, 0x8000\l0x80005308      addiu v0, v0, 0x2cd4                                   ; 0x80002cd4\l                                                                       ; sym.signaln ; sym.signaln\l0x8000530c      jalr v0\l0x80005310      nop\l0x80005314      b 0x800051ac\l0x80005318      lw v0, -0xf0(s2)\l"]
+	"0x8000531c" [URL="sym.uartInterrupt/0x8000531c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartInterrupt @ 0x800051b0\l0x8000531c      lw s1, (var_ch)\l0x80005320      lw s0, (var_10h)\l0x80005324      sw zero, -0xf0(s2)\l0x80005328      lui t9, 0x8000\l0x8000532c      lw s2, (var_8h)\l0x80005330      addiu t9, t9, 0x20c0                                   ; 0x800020c0\l                                                                       ; sym.resched ; sym.resched\l0x80005334      jr t9\l0x80005338      addiu sp, sp, 0x20\l"]
+        "0x8000513c" -> "0x800051a8" [color="#13a10e"];
+        "0x8000513c" -> "0x80005168" [color="#c50f1f"];
+        "0x80005168" -> "0x800051a8" [color="#13a10e"];
+        "0x80005168" -> "0x8000517c" [color="#c50f1f"];
+        "0x8000517c" -> "0x800051d0" [color="#13a10e"];
+        "0x8000517c" -> "0x80005188" [color="#c50f1f"];
+        "0x80005188" -> "0x800051a0" [color="#13a10e"];
+        "0x80005188" -> "0x80005194" [color="#c50f1f"];
+        "0x80005194" -> "0x80005228" [color="#13a10e"];
+        "0x80005194" -> "0x800051a0" [color="#c50f1f"];
+        "0x800051a0" -> "0x800051e8" [color="#13a10e"];
+        "0x800051a0" -> "0x800051a8" [color="#c50f1f"];
+        "0x800051a8" -> "0x800051ac" [color="#0037da"];
+        "0x800051ac" -> "0x8000531c" [color="#13a10e"];
+        "0x800051ac" -> "0x800051b8" [color="#c50f1f"];
+        "0x800051d0" -> "0x800051a8" [color="#0037da"];
+        "0x800051e8" -> "0x800051f8" [color="#0037da"];
+        "0x800051f8" -> "0x80005260" [color="#13a10e"];
+        "0x800051f8" -> "0x80005208" [color="#c50f1f"];
+        "0x80005208" -> "0x80005228" [color="#0037da"];
+        "0x80005228" -> "0x800051ac" [color="#13a10e"];
+        "0x80005228" -> "0x80005238" [color="#c50f1f"];
+        "0x80005238" -> "0x800052a8" [color="#13a10e"];
+        "0x80005238" -> "0x80005254" [color="#c50f1f"];
+        "0x80005254" -> "0x800051ac" [color="#0037da"];
+        "0x80005260" -> "0x80005298" [color="#13a10e"];
+        "0x80005260" -> "0x80005274" [color="#c50f1f"];
+        "0x80005274" -> "0x800051f8" [color="#0037da"];
+        "0x80005298" -> "0x800051f8" [color="#0037da"];
+        "0x800052a8" -> "0x800052b8" [color="#0037da"];
+        "0x800052b8" -> "0x800052f4" [color="#13a10e"];
+        "0x800052b8" -> "0x800052e4" [color="#c50f1f"];
+        "0x800052e4" -> "0x800052b8" [color="#13a10e"];
+        "0x800052e4" -> "0x800052f0" [color="#c50f1f"];
+        "0x800052f0" -> "0x800052f4" [color="#0037da"];
+        "0x800052f4" -> "0x800051ac" [color="#0037da"];
+}

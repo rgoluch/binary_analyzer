@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011a00" [URL="sym.fprintf/0x80011a00", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(77)\l  ;-- t9:\l68: int sym.fprintf (FILE *stream, const char *format,   ...);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_4h @ sp+0x1c\l; arg char *arg_8h @ sp+0x28\l; arg int32_t arg_ch @ sp+0x2c\l; arg const char *format @ a1\l; arg   ... @ a2\l0x80011a00      addiu sp, sp, -0x20\l0x80011a04      move v0, a1\l0x80011a08      addiu a1, sp, 0x28                                     ; format\l0x80011a0c      sw a2, (arg_8h)\l0x80011a10      sw a3, (arg_ch)\l0x80011a14      lui a2, 0x8001\l0x80011a18      move a3, a0\l0x80011a1c      move a0, v0\l0x80011a20      lui v0, 0x8001\l0x80011a24      sw ra, (var_4h)\l0x80011a28      sw a1, (var_10h)\l0x80011a2c      addiu v0, v0, 0x1360                                   ; 0x80011360\l                                                                       ; sym._doprnt ; sym._doprnt\l0x80011a30      jalr v0\l0x80011a34      addiu a2, a2, 0x1a44                                   ; 0x80011a44 ; \"%\\x10\\xa0\" ; ... ; sym.fputc\l0x80011a38      lw ra, (var_4h)\l0x80011a3c      jr ra\l0x80011a40      addiu sp, sp, 0x20\l"]
+}

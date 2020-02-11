@@ -1,0 +1,19 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80001b5c" [URL="sym.enqueue/0x80001b5c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.wait @ 0x80002e78, 0x80002e7c\l132: sym.enqueue (int32_t arg1, signed int arg2, int32_t arg3, int32_t arg4);\l; arg int32_t arg1 @ a0\l; arg signed int arg2 @ a1\l; arg int32_t arg3 @ a2\l; arg int32_t arg4 @ a3\l0x80001b5c      bltz a1, 0x80001bd8\l0x80001b60      addiu a1, a1, 1                                        ; arg2\l"]
+	"0x80001b64" [URL="sym.enqueue/0x80001b64", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001b64      slti v0, a1, 0x130                                     ; arg2\l0x80001b68      beqz v0, 0x80001bd8\l0x80001b6c      nop\l"]
+	"0x80001b70" [URL="sym.enqueue/0x80001b70", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001b70      sltiu v0, a0, 0x64                                     ; arg1\l0x80001b74      beqz v0, 0x80001bd8\l0x80001b78      addiu v1, zero, 0x54\l"]
+	"0x80001b7c" [URL="sym.enqueue/0x80001b7c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001b7c      mul a2, a0, v1\l0x80001b80      lui v0, 0x8002\l0x80001b84      addiu v0, v0, -0x3004                                  ; 0x8001cffc\l                                                                       ; v1 ; obj.thrtab\l0x80001b88      addu v0, a2, v0                                        ; arg3\l0x80001b8c      lbu v1, (v0)\l0x80001b90      addiu v0, zero, 2\l0x80001b94      beq v1, v0, 0x80001bd8\l0x80001b98      addiu v1, zero, 0xc\l"]
+	"0x80001b9c" [URL="sym.enqueue/0x80001b9c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80001b9c      mul a3, a1, v1\l0x80001ba0      mul t1, a0, v1\l0x80001ba4      lui v0, 0x8002\l0x80001ba8      addiu v0, v0, -0xf34                                   ; 0x8001f0cc\l                                                                       ; obj.quetab ; obj.quetab\l0x80001bac      addu a2, a3, v0                                        ; arg4\l; XREFS: CALL 0x8000b69c  CALL 0x8000e098  CALL 0x8000e190  \l; XREFS: CALL 0x8000e1e0  CALL 0x8000e214  CALL 0x8000e280  \l; XREFS: CALL 0x8000e2b4  CALL 0x8000e300  CALL 0x8000fd64  \l; XREFS: CALL 0x80010b0c  CALL 0x80010bb0  CALL 0x80010c0c  \l; XREFS: CALL 0x80010d18  \l0x80001bb0      lw a3, 8(a2)                                           ; arg3\l0x80001bb4      addu t0, t1, v0\l0x80001bb8      sw a1, 4(t0)\l0x80001bbc      mul a1, a3, v1\l0x80001bc0      sw a3, 8(t0)\l0x80001bc4      addu v0, a1, v0                                        ; arg2\l0x80001bc8      sw a0, 4(v0)\l0x80001bcc      sw a0, 8(a2)\l0x80001bd0      jr ra\l; CALL XREF from sym.test_semaphore2 @ 0x80011120\l0x80001bd4      move v0, a0\l"]
+	"0x80001bd8" [URL="sym.enqueue/0x80001bd8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREFS from sym.enqueue @ 0x80001b5c, 0x80001b68, 0x80001b74, 0x80001b94\l0x80001bd8      jr ra\l0x80001bdc      addiu v0, zero, -1\l"]
+        "0x80001b5c" -> "0x80001bd8" [color="#13a10e"];
+        "0x80001b5c" -> "0x80001b64" [color="#c50f1f"];
+        "0x80001b64" -> "0x80001bd8" [color="#13a10e"];
+        "0x80001b64" -> "0x80001b70" [color="#c50f1f"];
+        "0x80001b70" -> "0x80001bd8" [color="#13a10e"];
+        "0x80001b70" -> "0x80001b7c" [color="#c50f1f"];
+        "0x80001b7c" -> "0x80001bd8" [color="#13a10e"];
+        "0x80001b7c" -> "0x80001b9c" [color="#c50f1f"];
+}

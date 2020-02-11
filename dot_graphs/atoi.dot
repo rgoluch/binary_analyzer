@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011308" [URL="sym.atoi/0x80011308", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x800073d4  CALL 0x800073d8  DATA 0x80007cd4  \l  ; XREFS: DATA 0x80008c4c  DATA 0x8000f6b8  CALL 0x8000f6bc  \l16: int sym.atoi (const char *str);\l0x80011308      lui t9, 0x8001\l0x8001130c      addiu t9, t9, 0x1318                                   ; 0x80011318\l                                                                       ; sym.atol ; sym.atol\l0x80011310      jr t9\l0x80011314      nop\l"]
+}

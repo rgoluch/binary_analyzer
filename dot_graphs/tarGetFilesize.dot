@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80003f00" [URL="sym.tarGetFilesize/0x80003f00", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.xsh_tar @ 0x800089a4, 0x800089a8\l16: sym.tarGetFilesize (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x80003f00      lui t9, 0x8000\l0x80003f04      addiu t9, t9, 0x3d48                                   ; 0x80003d48 ; \"%\\x10\" ; sym.tarFilesize\l0x80003f08      jr t9\l0x80003f0c      addiu a0, a0, 0x7c                                     ; arg1\l"]
+}

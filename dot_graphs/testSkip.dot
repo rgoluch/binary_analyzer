@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80008e20" [URL="sym.testSkip/0x80008e20", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(22)\l36: sym.testSkip (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x80008e20      addiu v0, zero, 1\l0x80008e24      bne a0, v0, 0x80008e3c\l0x80008e28      lui a0, 0x8001\l"]
+	"0x80008e2c" [URL="sym.testSkip/0x80008e2c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80008e2c      lui t9, 0x8001\l0x80008e30      addiu t9, t9, 0x1c68                                   ; 0x80011c68\l                                                                       ; sym.printf ; sym.printf\l0x80008e34      jr t9\l0x80008e38      addiu a0, a0, 0x46d8                                   ; arg1\l"]
+	"0x80008e3c" [URL="sym.testSkip/0x80008e3c", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.testSkip @ 0x80008e24\l0x80008e3c      jr ra\l0x80008e40      nop\l"]
+        "0x80008e20" -> "0x80008e3c" [color="#13a10e"];
+        "0x80008e20" -> "0x80008e2c" [color="#c50f1f"];
+}

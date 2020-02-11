@@ -1,0 +1,104 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80006728" [URL="sym.lexan/0x80006728", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.shell @ 0x80006248, 0x8000624c\l548: sym.lexan (int32_t arg1, int32_t arg3, int32_t arg4);\l; var int32_t var_18h @ sp+0x0\l; var int32_t var_14h @ sp+0x4\l; var int32_t var_10h @ sp+0x8\l; var int32_t var_ch @ sp+0xc\l; var int32_t var_8h @ sp+0x10\l; var int32_t var_4h @ sp+0x14\l; arg int32_t arg1 @ a0\l; arg int32_t arg3 @ a2\l; arg int32_t arg4 @ a3\l0x80006728      addiu sp, sp, -0x18\l0x8000672c      lui t2, 0x6200\l0x80006730      move t1, a2\l0x80006734      sw s3, (var_ch)\l0x80006738      sw s2, (var_10h)\l0x8000673c      sw s1, (var_14h)\l0x80006740      sw s0, (sp)\l0x80006744      sw s5, (var_4h)\l0x80006748      sw s4, (var_8h)\l0x8000674c      move v0, zero\l0x80006750      move v1, zero\l0x80006754      addiu t3, zero, 0x20\l0x80006758      addiu t6, zero, 9\l0x8000675c      addiu t7, zero, 0x2401\l0x80006760      addiu t8, zero, 0x22\l0x80006764      addiu t9, zero, 0xd\l0x80006768      addiu s0, zero, 0xa\l0x8000676c      addiu s1, zero, 0x27\l0x80006770      addiu t4, zero, -3\l0x80006774      addiu t5, zero, 0x3c\l0x80006778      addiu s2, zero, 0x26\l0x8000677c      addiu s3, zero, -0x21\l0x80006780      addiu t2, t2, 0x13\l"]
+	"0x80006784" [URL="sym.lexan/0x80006784", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x800068b0\l0x80006784      sltu t0, v1, a1\l0x80006788      beqz t0, 0x8000679c\l0x8000678c      andi a2, v0, 0xffff\l"]
+	"0x80006790" [URL="sym.lexan/0x80006790", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006790      bne v0, t3, 0x800067a8\l0x80006794      addu s4, a0, v1                                        ; arg1\l"]
+	"0x80006798" [URL="sym.lexan/0x80006798", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006798      addiu a2, zero, 0x20\l"]
+	"0x8000679c" [URL="sym.lexan/0x8000679c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x80006788\l0x8000679c      b 0x800067f4\l0x800067a0      sll v0, a2, 0x10                                       ; arg3\l"]
+	"0x800067a4" [URL="sym.lexan/0x800067a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x800067c0\l0x800067a4      addu s4, a0, v1                                        ; arg1\l"]
+	"0x800067a8" [URL="sym.lexan/0x800067a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x80006790\l0x800067a8      lb t0, (s4)\l0x800067ac      beq t0, t3, 0x800067bc\l0x800067b0      andi a2, v1, 0xffff                                    ; arg3\l"]
+	"0x800067b4" [URL="sym.lexan/0x800067b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067b4      bne t0, t6, 0x800067c8\l0x800067b8      nop\l"]
+	"0x800067bc" [URL="sym.lexan/0x800067bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x800067ac\l0x800067bc      sltu s5, a2, a1\l0x800067c0      bnez s5, 0x800067a4\l0x800067c4      addiu v1, v1, 1\l"]
+	"0x800067c8" [URL="sym.lexan/0x800067c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x800067b4\l0x800067c8      andi t0, t0, 0xff\l0x800067cc      sltiu v1, t0, 0xe\l0x800067d0      beqz v1, 0x800067e8\l0x800067d4      sltu v1, a2, a1\l"]
+	"0x800067d8" [URL="sym.lexan/0x800067d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067d8      srlv t0, t7, t0\l0x800067dc      andi t0, t0, 1\l0x800067e0      bnez t0, 0x800067f0\l0x800067e4      nop\l"]
+	"0x800067e8" [URL="sym.lexan/0x800067e8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x800067d0\l0x800067e8      bnez v1, 0x800067fc\l0x800067ec      nop\l"]
+	"0x800067f0" [URL="sym.lexan/0x800067f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x800067e0\l0x800067f0      sll v0, v0, 0x10\l"]
+	"0x800067f4" [URL="sym.lexan/0x800067f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x8000679c\l0x800067f4      b 0x8000685c\l0x800067f8      sra v0, v0, 0x10\l"]
+	"0x800067fc" [URL="sym.lexan/0x800067fc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x800067e8\l0x800067fc      sll v1, v0, 2\l0x80006800      addu v1, a3, v1                                        ; arg4\l0x80006804      sw t1, (v1)\l0x80006808      lb s4, (s4)\l0x8000680c      addiu v1, a2, 1                                        ; arg3\l0x80006810      andi v1, v1, 0xffff\l0x80006814      addiu t0, t1, 1\l0x80006818      addu a2, a0, v1                                        ; arg3\l0x8000681c      beq s4, t8, 0x8000682c\l0x80006820      sb s4, (t1)\l"]
+	"0x80006824" [URL="sym.lexan/0x80006824", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006824      bne s4, s1, 0x800068b8\l0x80006828      nop\l"]
+	"0x8000682c" [URL="sym.lexan/0x8000682c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.lexan @ 0x8000681c, 0x80006888\l0x8000682c      lb t1, (a2)\l0x80006830      beq s4, t1, 0x80006898\l0x80006834      nop\l"]
+	"0x80006838" [URL="sym.lexan/0x80006838", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006838      beqz t1, 0x80006890\l0x8000683c      nop\l"]
+	"0x80006840" [URL="sym.lexan/0x80006840", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006840      beq t1, t9, 0x80006890\l0x80006844      nop\l"]
+	"0x80006848" [URL="sym.lexan/0x80006848", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006848      beq t1, s0, 0x80006890\l0x8000684c      nop\l"]
+	"0x80006850" [URL="sym.lexan/0x80006850", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006850      bne v1, a1, 0x8000687c\l0x80006854      addiu a2, a2, 1\l"]
+	"0x80006858" [URL="sym.lexan/0x80006858", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.lexan @ 0x80006890, 0x8000691c\l0x80006858      addiu v0, zero, -1\l"]
+	"0x8000685c" [URL="sym.lexan/0x8000685c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.lexan @ 0x800067f4, 0x80006944\l0x8000685c      lw s5, (var_4h)\l0x80006860      lw s4, (var_8h)\l0x80006864      lw s3, (var_ch)\l0x80006868      lw s2, (var_10h)\l0x8000686c      lw s1, (var_14h)\l0x80006870      lw s0, (sp)\l0x80006874      jr ra\l0x80006878      addiu sp, sp, 0x18\l"]
+	"0x8000687c" [URL="sym.lexan/0x8000687c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x80006850\l0x8000687c      addiu v1, v1, 1\l0x80006880      addiu t0, t0, 1\l0x80006884      andi v1, v1, 0xffff\l0x80006888      b 0x8000682c\l0x8000688c      sb t1, -1(t0)\l"]
+	"0x80006890" [URL="sym.lexan/0x80006890", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.lexan @ 0x80006838, 0x80006840, 0x80006848\l0x80006890      bne t1, s4, 0x80006858\l0x80006894      nop\l"]
+	"0x80006898" [URL="sym.lexan/0x80006898", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x80006830\l0x80006898      addiu v1, v1, 1\l0x8000689c      sb t1, (t0)\l0x800068a0      andi v1, v1, 0xffff\l0x800068a4      addiu t0, t0, 1\l"]
+	"0x800068a8" [URL="sym.lexan/0x800068a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x8000693c\l0x800068a8      addiu t1, t0, 1\l"]
+	"0x800068ac" [URL="sym.lexan/0x800068ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.lexan @ 0x800068c8, 0x800068d0\l0x800068ac      sb zero, (t0)\l0x800068b0      b 0x80006784\l0x800068b4      addiu v0, v0, 1\l"]
+	"0x800068b8" [URL="sym.lexan/0x800068b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x80006824\l0x800068b8      lb s4, -1(a2)\l0x800068bc      and t1, s4, t4\l0x800068c0      sll t1, t1, 0x18\l0x800068c4      sra t1, t1, 0x18\l0x800068c8      beq t1, t5, 0x800068ac\l0x800068cc      addiu t1, t0, 1\l"]
+	"0x800068d0" [URL="sym.lexan/0x800068d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800068d0      beq s4, s2, 0x800068ac\l0x800068d4      nop\l"]
+	"0x800068d8" [URL="sym.lexan/0x800068d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x80006930\l0x800068d8      lb s4, (a2)\l0x800068dc      and t1, s4, s3\l0x800068e0      sll t1, t1, 0x18\l0x800068e4      sra t1, t1, 0x18\l0x800068e8      beqz t1, 0x80006938\l0x800068ec      and t1, s4, t4\l"]
+	"0x800068f0" [URL="sym.lexan/0x800068f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800068f0      sll t1, t1, 0x18\l0x800068f4      sra t1, t1, 0x18\l0x800068f8      beq t1, t5, 0x80006938\l0x800068fc      addiu t1, s4, -9\l"]
+	"0x80006900" [URL="sym.lexan/0x80006900", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006900      andi t1, t1, 0xff\l0x80006904      sltiu s5, t1, 0x1f\l0x80006908      beqz s5, 0x8000691c\l0x8000690c      srlv t1, t2, t1\l"]
+	"0x80006910" [URL="sym.lexan/0x80006910", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006910      andi t1, t1, 1\l0x80006914      bnez t1, 0x80006938\l0x80006918      nop\l"]
+	"0x8000691c" [URL="sym.lexan/0x8000691c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lexan @ 0x80006908\l0x8000691c      beq v1, a1, 0x80006858\l0x80006920      addiu a2, a2, 1\l"]
+	"0x80006924" [URL="sym.lexan/0x80006924", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006924      addiu v1, v1, 1\l0x80006928      addiu t0, t0, 1\l0x8000692c      andi v1, v1, 0xffff\l0x80006930      b 0x800068d8\l0x80006934      sb s4, -1(t0)\l"]
+	"0x80006938" [URL="sym.lexan/0x80006938", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.lexan @ 0x800068e8, 0x800068f8, 0x80006914\l0x80006938      sltu a2, v1, a1\l0x8000693c      bnez a2, 0x800068a8\l0x80006940      nop\l"]
+	"0x80006944" [URL="sym.lexan/0x80006944", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006944      b 0x8000685c\l0x80006948      addiu v0, zero, -1\l"]
+        "0x80006728" -> "0x80006784" [color="#0037da"];
+        "0x80006784" -> "0x8000679c" [color="#13a10e"];
+        "0x80006784" -> "0x80006790" [color="#c50f1f"];
+        "0x80006790" -> "0x800067a8" [color="#13a10e"];
+        "0x80006790" -> "0x80006798" [color="#c50f1f"];
+        "0x80006798" -> "0x8000679c" [color="#0037da"];
+        "0x8000679c" -> "0x800067f4" [color="#0037da"];
+        "0x800067a4" -> "0x800067a8" [color="#0037da"];
+        "0x800067a8" -> "0x800067bc" [color="#13a10e"];
+        "0x800067a8" -> "0x800067b4" [color="#c50f1f"];
+        "0x800067b4" -> "0x800067c8" [color="#13a10e"];
+        "0x800067b4" -> "0x800067bc" [color="#c50f1f"];
+        "0x800067bc" -> "0x800067a4" [color="#13a10e"];
+        "0x800067bc" -> "0x800067c8" [color="#c50f1f"];
+        "0x800067c8" -> "0x800067e8" [color="#13a10e"];
+        "0x800067c8" -> "0x800067d8" [color="#c50f1f"];
+        "0x800067d8" -> "0x800067f0" [color="#13a10e"];
+        "0x800067d8" -> "0x800067e8" [color="#c50f1f"];
+        "0x800067e8" -> "0x800067fc" [color="#13a10e"];
+        "0x800067e8" -> "0x800067f0" [color="#c50f1f"];
+        "0x800067f0" -> "0x800067f4" [color="#0037da"];
+        "0x800067f4" -> "0x8000685c" [color="#0037da"];
+        "0x800067fc" -> "0x8000682c" [color="#13a10e"];
+        "0x800067fc" -> "0x80006824" [color="#c50f1f"];
+        "0x80006824" -> "0x800068b8" [color="#13a10e"];
+        "0x80006824" -> "0x8000682c" [color="#c50f1f"];
+        "0x8000682c" -> "0x80006898" [color="#13a10e"];
+        "0x8000682c" -> "0x80006838" [color="#c50f1f"];
+        "0x80006838" -> "0x80006890" [color="#13a10e"];
+        "0x80006838" -> "0x80006840" [color="#c50f1f"];
+        "0x80006840" -> "0x80006890" [color="#13a10e"];
+        "0x80006840" -> "0x80006848" [color="#c50f1f"];
+        "0x80006848" -> "0x80006890" [color="#13a10e"];
+        "0x80006848" -> "0x80006850" [color="#c50f1f"];
+        "0x80006850" -> "0x8000687c" [color="#13a10e"];
+        "0x80006850" -> "0x80006858" [color="#c50f1f"];
+        "0x80006858" -> "0x8000685c" [color="#0037da"];
+        "0x8000687c" -> "0x8000682c" [color="#0037da"];
+        "0x80006890" -> "0x80006858" [color="#13a10e"];
+        "0x80006890" -> "0x80006898" [color="#c50f1f"];
+        "0x80006898" -> "0x800068a8" [color="#0037da"];
+        "0x800068a8" -> "0x800068ac" [color="#0037da"];
+        "0x800068ac" -> "0x80006784" [color="#0037da"];
+        "0x800068b8" -> "0x800068ac" [color="#13a10e"];
+        "0x800068b8" -> "0x800068d0" [color="#c50f1f"];
+        "0x800068d0" -> "0x800068ac" [color="#13a10e"];
+        "0x800068d0" -> "0x800068d8" [color="#c50f1f"];
+        "0x800068d8" -> "0x80006938" [color="#13a10e"];
+        "0x800068d8" -> "0x800068f0" [color="#c50f1f"];
+        "0x800068f0" -> "0x80006938" [color="#13a10e"];
+        "0x800068f0" -> "0x80006900" [color="#c50f1f"];
+        "0x80006900" -> "0x8000691c" [color="#13a10e"];
+        "0x80006900" -> "0x80006910" [color="#c50f1f"];
+        "0x80006910" -> "0x80006938" [color="#13a10e"];
+        "0x80006910" -> "0x8000691c" [color="#c50f1f"];
+        "0x8000691c" -> "0x80006858" [color="#13a10e"];
+        "0x8000691c" -> "0x80006924" [color="#c50f1f"];
+        "0x80006924" -> "0x800068d8" [color="#0037da"];
+        "0x80006938" -> "0x800068a8" [color="#13a10e"];
+        "0x80006938" -> "0x80006944" [color="#c50f1f"];
+        "0x80006944" -> "0x8000685c" [color="#0037da"];
+}

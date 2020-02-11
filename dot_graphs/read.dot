@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80003958" [URL="sym.read/0x80003958", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x8000c3d8  CALL 0x8000c3e8  CALL 0x8000c470  \l  ; XREFS: CALL 0x8000c4f4  CALL 0x8000c574  CALL 0x8000c5f0  \l  ; XREFS: CALL 0x8000c6b0  CALL 0x8000c6dc  CALL 0x8000c734  \l  ; XREFS: CALL 0x8000c7d8  CALL 0x8000c884  CALL 0x8000c94c  \l  ; XREFS: DATA 0x8000d63c  CALL 0x8000d64c  \l48: ssize_t sym.read (int fildes, void *buf, size_t nbyte);\l; arg int fildes @ a0\l; arg int32_t arg4 @ a3\l0x80003958      sltiu v0, a0, 5                                        ; fildes\l0x8000395c      beqz v0, 0x80003980\l0x80003960      addiu v1, zero, 0x3c\l"]
+	"0x80003964" [URL="sym.read/0x80003964", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80003964      mul a3, a0, v1\l0x80003968      lui v0, 0x8001\l0x8000396c      addiu v0, v0, 0x73a8                                   ; 0x800173a8\l                                                                       ; obj.devtab ; obj.devtab\l0x80003970      addu a0, a3, v0                                        ; arg4\l0x80003974      lw t9, 0x18(a0)                                        ; fildes\l0x80003978      jr t9\l0x8000397c      nop\l"]
+	"0x80003980" [URL="sym.read/0x80003980", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.read @ 0x8000395c\l0x80003980      jr ra\l0x80003984      addiu v0, zero, -1\l"]
+        "0x80003958" -> "0x80003980" [color="#13a10e"];
+        "0x80003958" -> "0x80003964" [color="#c50f1f"];
+}

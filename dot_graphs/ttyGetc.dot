@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80004ae4" [URL="sym.ttyGetc/0x80004ae4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; UNKNOWN XREFS from obj.devtab @ +0xd8, +0x114\l52: sym.ttyGetc (int32_t arg2, int32_t arg3);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x80004ae4      addiu sp, sp, -0x20\l0x80004ae8      lui v0, 0x8000\l0x80004aec      addiu a2, zero, 1                                      ; arg3\l0x80004af0      sw ra, (var_4h)\l0x80004af4      addiu v0, v0, 0x471c                                   ; 0x8000471c\l                                                                       ; sym.ttyRead ; sym.ttyRead\l0x80004af8      jalr v0\l0x80004afc      addiu a1, sp, 0x10                                     ; arg2\l0x80004b00      addiu v1, zero, 1\l0x80004b04      bne v0, v1, 0x80004b10\l0x80004b08      lw ra, (var_4h)\l"]
+	"0x80004b0c" [URL="sym.ttyGetc/0x80004b0c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004b0c      lbu v0, (var_10h)\l"]
+	"0x80004b10" [URL="sym.ttyGetc/0x80004b10", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.ttyGetc @ 0x80004b04\l0x80004b10      jr ra\l0x80004b14      addiu sp, sp, 0x20\l"]
+        "0x80004ae4" -> "0x80004b10" [color="#13a10e"];
+        "0x80004ae4" -> "0x80004b0c" [color="#c50f1f"];
+        "0x80004b0c" -> "0x80004b10" [color="#0037da"];
+}

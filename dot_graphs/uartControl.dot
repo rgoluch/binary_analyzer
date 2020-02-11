@@ -1,0 +1,8 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80004ce0" [URL="sym.uartControl/0x80004ce0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; UNKNOWN XREF from obj.devtab @ +0x2c\l60: sym.uartControl (int32_t arg1, int32_t arg2);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x80004ce0      addiu a1, a1, -0x10                                    ; arg2\l0x80004ce4      lw v1, 4(a0)                                           ; arg1\l0x80004ce8      sltiu a0, a1, 7                                        ; arg2\l0x80004cec      beqz a0, 0x80004e0c\l0x80004cf0      addiu v0, zero, -1\l"]
+	"0x80004cf4" [URL="sym.uartControl/0x80004cf4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004cf4      lui v0, 0x8001\l0x80004cf8      addiu v0, v0, 0x3214\l0x80004cfc      sll a1, a1, 2                                          ; arg2\l0x80004d00      addu a1, v0, a1                                        ; arg2\l0x80004d04      lw a0, (a1)                                            ; arg2\l0x80004d08      lui v0, 0x8002\l0x80004d0c      addiu v0, v0, 0xb5c                                    ; 0x80020b5c\l                                                                       ; obj.uarttab ; obj.uarttab\l0x80004d10      mtlo v0\l0x80004d14      jr a0\l0x80004d18      addiu v0, zero, 0x83c\l"]
+        "0x80004ce0" -> "0x80004cf4" [color="#c50f1f"];
+}

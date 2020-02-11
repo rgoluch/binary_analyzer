@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80004e14" [URL="sym.uartGetc/0x80004e14", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; UNKNOWN XREF from obj.devtab @ +0x24\l60: sym.uartGetc (int32_t arg1, int32_t arg2, int32_t arg3);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x80004e14      addiu sp, sp, -0x20\l0x80004e18      lui v0, 0x8000\l0x80004e1c      addiu a2, zero, 1                                      ; arg3\l0x80004e20      sw ra, (var_4h)\l0x80004e24      addiu v0, v0, 0x537c                                   ; 0x8000537c\l                                                                       ; sym.uartRead ; sym.uartRead\l0x80004e28      jalr v0\l0x80004e2c      addiu a1, sp, 0x10                                     ; arg2\l0x80004e30      addiu a0, zero, 1                                      ; arg1\l0x80004e34      bne v0, a0, 0x80004e40\l0x80004e38      addiu v1, zero, -1\l"]
+	"0x80004e3c" [URL="sym.uartGetc/0x80004e3c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80004e3c      lbu v1, (var_10h)\l"]
+	"0x80004e40" [URL="sym.uartGetc/0x80004e40", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.uartGetc @ 0x80004e34\l0x80004e40      lw ra, (var_4h)\l0x80004e44      move v0, v1\l0x80004e48      jr ra\l0x80004e4c      addiu sp, sp, 0x20\l"]
+        "0x80004e14" -> "0x80004e40" [color="#13a10e"];
+        "0x80004e14" -> "0x80004e3c" [color="#c50f1f"];
+        "0x80004e3c" -> "0x80004e40" [color="#0037da"];
+}

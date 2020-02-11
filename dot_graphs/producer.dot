@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80008e98" [URL="sym.producer/0x80008e98", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.test_mailbox @ 0x800093f8\l88: sym.producer (int32_t arg_0h);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_ch @ sp+0x14\l; var int32_t var_8h @ sp+0x18\l; var int32_t var_4h @ sp+0x1c\l; arg int32_t arg_0h @ sp+0x20\l0x80008e98      addiu sp, sp, -0x20\l0x80008e9c      sw s1, (var_ch)\l0x80008ea0      lui s1, 0x8000\l0x80008ea4      sw s2, (var_8h)\l0x80008ea8      sw s0, (var_10h)\l0x80008eac      sw ra, (var_4h)\l0x80008eb0      move s0, zero\l0x80008eb4      addiu s1, s1, 0x6008                                   ; 0x80006008\l                                                                       ; sym.mailboxSend ; sym.mailboxSend\l0x80008eb8      addiu s2, zero, 4\l"]
+	"0x80008ebc" [URL="sym.producer/0x80008ebc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.producer @ 0x80008ecc\l0x80008ebc      move a1, s0\l0x80008ec0      addiu s0, s0, 1\l0x80008ec4      jalr s1\l0x80008ec8      sw a0, (arg_0h)\l0x80008ecc      bne s0, s2, 0x80008ebc\l0x80008ed0      lw a0, (arg_0h)\l"]
+	"0x80008ed4" [URL="sym.producer/0x80008ed4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80008ed4      lw ra, (var_4h)\l0x80008ed8      lw s2, (var_8h)\l0x80008edc      lw s1, (var_ch)\l0x80008ee0      lw s0, (var_10h)\l0x80008ee4      addiu v0, zero, 1\l0x80008ee8      jr ra\l0x80008eec      addiu sp, sp, 0x20\l"]
+        "0x80008e98" -> "0x80008ebc" [color="#0037da"];
+        "0x80008ebc" -> "0x80008ebc" [color="#13a10e"];
+        "0x80008ebc" -> "0x80008ed4" [color="#c50f1f"];
+}

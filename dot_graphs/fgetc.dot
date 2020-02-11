@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x80011904" [URL="sym.fgetc/0x80011904", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x8000cff0  CALL 0x8000cff8  DATA 0x8000e718  \l  ; XREFS: DATA 0x80011980  CALL 0x80011998  DATA 0x80011b34  \l  ; XREFS: CALL 0x80011b38  \l64: int sym.fgetc (FILE *stream);\l; var int32_t var_4h @ sp+0x14\l; arg FILE *stream @ a0\l0x80011904      addiu sp, sp, -0x18\l0x80011908      lui v0, 0x8000\l0x8001190c      addiu v0, v0, 0x38c0                                   ; 0x800038c0\l                                                                       ; sym.getc ; sym.getc\l0x80011910      sw ra, (var_4h)\l0x80011914      jalr v0\l0x80011918      nop\l0x8001191c      addiu a0, v0, 2                                        ; stream\l0x80011920      sltiu a0, a0, 2                                        ; stream\l0x80011924      bnez a0, 0x8001193c\l0x80011928      nop\l"]
+	"0x8001192c" [URL="sym.fgetc/0x8001192c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8001192c      andi v0, v0, 0xff\l"]
+	"0x80011930" [URL="sym.fgetc/0x80011930", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.fgetc @ 0x8001193c\l0x80011930      lw ra, (var_4h)\l0x80011934      jr ra\l0x80011938      addiu sp, sp, 0x18\l"]
+	"0x8001193c" [URL="sym.fgetc/0x8001193c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.fgetc @ 0x80011924\l0x8001193c      b 0x80011930\l0x80011940      addiu v0, zero, -2\l"]
+        "0x80011904" -> "0x8001193c" [color="#13a10e"];
+        "0x80011904" -> "0x8001192c" [color="#c50f1f"];
+        "0x8001192c" -> "0x80011930" [color="#0037da"];
+        "0x8001193c" -> "0x80011930" [color="#0037da"];
+}

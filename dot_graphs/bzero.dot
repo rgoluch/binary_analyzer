@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x8001134c" [URL="sym.bzero/0x8001134c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: DATA 0x800041e8  CALL 0x800041ec  DATA 0x80004ab0  \l  ; XREFS: CALL 0x80004ab4  DATA 0x80004b3c  CALL 0x80004b40  \l  ; XREFS: DATA 0x800089d4  CALL 0x800089d8  DATA 0x8000c8f0  \l  ; XREFS: CALL 0x8000c8f8  DATA 0x8000f808  CALL 0x8000f810  \l20: void sym.bzero (void *s, size_t n);\l0x8001134c      lui t9, 0x8001\l0x80011350      move a2, a1\l0x80011354      addiu t9, t9, 0x1c40                                   ; 0x80011c40 ; \"%\\x10\\x80\" ; sym.memset\l0x80011358      jr t9\l0x8001135c      move a1, zero\l"]
+}
