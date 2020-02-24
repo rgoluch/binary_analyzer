@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  com.ensoftcorp.atlas.core;bundle-version="3.5.0",
  org.eclipse.core.resources,
- com.ensoftcorp.atlas.ui
+ com.ensoftcorp.atlas.ui,
+ com.se421.paths
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.kcsl.x86
 Bundle-ActivationPolicy: lazy
