@@ -33,7 +33,9 @@ public class Importer {
 
 	protected static final String resultsPath = "/Users/RyanGoluch/Desktop/My_Results.csv";
 	
-	protected static final String headers = "Function Name,numPaths (NonLinear),additions (NonLinear),numPaths (Linear),additions (Linear)\n";
+	protected static final String functionPath = "/Users/RyanGoluch/Desktop/source_function_list.txt";
+	
+	protected static final String headers = "Function Name,numPaths (Linear),additions (Linear)\n";
 	
 	private static ArrayList<Node> function_nodes = new ArrayList<Node>();
 	
@@ -49,13 +51,14 @@ public class Importer {
 		for(File dot : dirList) {
 			if (dot.exists()) {
 				count++;
-//				System.out.println("Count: " +count+" Function: "+dot.getName());
+				System.out.println("Count: " +count+" Function: "+dot.getName());
 				Node functionName = Graph.U.createNode();
 				functionName.putAttr(XCSG.name, "sym_"+dot.getName().replace(".dot", ""));
 				functionName.tag(XCSG.Function);
 				functionName.tag("binary_function");
 				function_nodes.add(functionName);
 				Scanner s = new Scanner(dot);
+//				System.out.println(functionName.getAttr(XCSG.name).toString());
 
 				//
 				
@@ -141,10 +144,21 @@ public class Importer {
 	public static void export_counts() throws IOException {
 
 			File results = new File(resultsPath);
+			File source = new File(functionPath);
 			BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(results));
+			BufferedWriter functionWriter = new BufferedWriter(new FileWriter(source));
 			resultsWriter.write(headers);
 			DFSPathCounter nonLinearCounter = new DFSPathCounter();
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
+			
+			
+			ArrayList<String> skips = new ArrayList<String>();
+			skips.add("test_libString");
+			skips.add("sym_copyhandler");
+			skips.add("sym_strcmp");
+			skips.add("sym_loc");
+			skips.add("sym_memzero");
+			
 			
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.
@@ -152,8 +166,11 @@ public class Importer {
 		 	Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
 		 			//app.nodes(XCSG.Function).nodesTaggedWithAll("my_function");
 			for(Node function : functions.eval().nodes()) {
+				String name = function.getAttr(XCSG.name).toString();
 				
-				if(function.getAttr(XCSG.name).toString().contains("test_libString")) {
+				functionWriter.write(name.toString() + "\n");
+				
+				if(skips.contains(name)) {
 					continue;
 				}
 				
@@ -165,17 +182,10 @@ public class Importer {
 					LoopIdentification l = new LoopIdentification(c.eval(), c.roots().eval().nodes().one());
 				}
 				
-//				CountingResult nonLinear = nonLinearCounter.countPaths(c);
 				CountingResult linear = linearCounter.countPaths(c);
 				
 				// function name
 				resultsWriter.write(function.getAttr(XCSG.name) + ",");
-				
-				// number of paths according to nonLinear algorithm
-//				resultsWriter.write(nonLinear.getPaths() + ",");
-				
-				// number of additions by nonLinear algorithm
-//				resultsWriter.write(nonLinear.getAdditions() + ",");
 				
 				// number of paths according to linear algorithm
 				resultsWriter.write(linear.getPaths() + ",");
@@ -185,8 +195,10 @@ public class Importer {
 				
 				// flushing the buffer
 				resultsWriter.flush();
+				functionWriter.flush();
 			}
 			
 			resultsWriter.close();
+			functionWriter.close();
 	}
 }

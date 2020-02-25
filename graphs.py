@@ -19,8 +19,10 @@ with open("functions.txt", "r") as f:
 ext = "dot"
 
 for z in functions: 
+    #print(z)
     r2.cmd("s "+str(z))
     s = str(z).split('.')
+    print(s)
     if len(s) == 1:
         temp = os.path.join("", s[0].replace("\n", "") + "." + ext)
     else:
