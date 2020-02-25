@@ -17,13 +17,17 @@ import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
+import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
-//import com.se421.paths.algorithms.PathCounter.CountingResult;
+import com.ensoftcorp.atlas.ui.viewer.graph.DisplayUtil;
+import com.ensoftcorp.open.commons.algorithms.LoopIdentification;
+import com.ensoftcorp.open.commons.ui.utilities.DisplayUtils;
+//import com.kcsl.paths.counting.TopDownDFMultiplicitiesPathCounter.*;
+//import com.kcsl.paths.algorithms.PathCounter.CountingResult;
 import com.se421.paths.algorithms.counting.DFSPathCounter;
 import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
-import com.kcsl.paths.*;
-import com.kcsl.paths.counting.TopDownDFMultiplicitiesPathCounter;
-import com.kcsl.paths.algorithms.PathCounter.*;
+import com.se421.paths.algorithms.*;
+import com.se421.paths.algorithms.PathCounter.CountingResult;
 
 public class Importer {
 
@@ -53,6 +57,8 @@ public class Importer {
 				function_nodes.add(functionName);
 				Scanner s = new Scanner(dot);
 
+				//
+				
 				while(s.hasNextLine()) {
 					String data = s.nextLine();
 					if(data.contains("[URL")) {
@@ -133,58 +139,54 @@ public class Importer {
 	}
 	
 	public static void export_counts() throws IOException {
-				
-//		try {
+
 			File results = new File(resultsPath);
 			BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(results));
 			resultsWriter.write(headers);
-			TopDownDFMultiplicitiesPathCounter nonLinearCounter = new TopDownDFMultiplicitiesPathCounter();
-//			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
+			DFSPathCounter nonLinearCounter = new DFSPathCounter();
+			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
 			
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.
 //			Q app = SetDefinitions.app();
-//		 	Q functions = Common.universe().nodes(XCSG.Function).nodes("my_function");
+		 	Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
 		 			//app.nodes(XCSG.Function).nodesTaggedWithAll("my_function");
-			for(Node function : function_nodes) {
+			for(Node function : functions.eval().nodes()) {
 				
-				if(function.getAttr(XCSG.name).toString().equals("sym_test_libCtype") || function.getAttr(XCSG.name).toString().equals("sym_fputs")) {
+				if(function.getAttr(XCSG.name).toString().contains("test_libString")) {
 					continue;
 				}
 				
-				Q temp = my_function(function.getAttr(XCSG.name).toString());
+				Q temp = Common.toQ(function);
 				Q c = my_cfg(temp);
+//				DisplayUtil.displayGraph(c.eval());
 				System.out.println(function.getAttr(XCSG.name));
-				CountingResult nonLinear = nonLinearCounter.countPaths(c);
-//				CountingResult linear = linearCounter.countPaths(c);
+				if (c.eval().nodes().size() > 1) {
+					LoopIdentification l = new LoopIdentification(c.eval(), c.roots().eval().nodes().one());
+				}
+				
+//				CountingResult nonLinear = nonLinearCounter.countPaths(c);
+				CountingResult linear = linearCounter.countPaths(c);
 				
 				// function name
 				resultsWriter.write(function.getAttr(XCSG.name) + ",");
 				
 				// number of paths according to nonLinear algorithm
-				resultsWriter.write(nonLinear.getPaths() + ",");
+//				resultsWriter.write(nonLinear.getPaths() + ",");
 				
 				// number of additions by nonLinear algorithm
-				resultsWriter.write(nonLinear.getAdditions() + ",");
+//				resultsWriter.write(nonLinear.getAdditions() + ",");
 				
-//				// number of paths according to linear algorithm
-//				resultsWriter.write(linear.getPaths() + ",");
-//				
-//				// number of additions by linear algorithm
-//				resultsWriter.write(linear.getAdditions() + "\n");
-//				
+				// number of paths according to linear algorithm
+				resultsWriter.write(linear.getPaths() + ",");
+				
+				// number of additions by linear algorithm
+				resultsWriter.write(linear.getAdditions() + "\n");
+				
 				// flushing the buffer
 				resultsWriter.flush();
 			}
 			
 			resultsWriter.close();
-//			
-//		} catch(FileNotFoundException e) {
-//			Log.error(e.getMessage(), e);
-//		} catch(IOException e) {
-//			Log.error(e.getMessage(), e);
-//		} finally {
-//			System.out.println("Executed export paths");
-//		}
 	}
 }
