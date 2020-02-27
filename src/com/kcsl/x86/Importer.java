@@ -39,6 +39,31 @@ public class Importer {
 	
 	private static ArrayList<Node> function_nodes = new ArrayList<Node>();
 	
+	
+	public static void check_difference() throws IOException {
+		Q functions = Common.universe().nodesTaggedWithAll(XCSG.Language.C, XCSG.Function);
+		String filePath = "/Users/RyanGoluch/Desktop/source_functions.txt";
+		File source = new File(filePath);
+		BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(source));
+		
+		for(Node f : functions.eval().nodes()) {
+			String name = f.getAttr(XCSG.name).toString();
+			String binary = "sym_"+name;
+			
+			//get the functions that are in source and not in binary
+			Q binary_function = Query.universe().selectNode(XCSG.name, binary);
+			if(binary_function.eval().nodes().size() == 0) {
+				System.out.println(name);
+				resultsWriter.write(name+"\n");
+				resultsWriter.flush();
+			}
+		}
+		
+		resultsWriter.close();
+		
+	}
+	
+	
 	public static void main() throws FileNotFoundException {
 		// HashMap of Node for further access
 		Map<String,Node> nodeMap = new HashMap<String,Node>();
@@ -50,17 +75,15 @@ public class Importer {
 		int count = 0; 
 		for(File dot : dirList) {
 			if (dot.exists()) {
-				count++;
-				System.out.println("Count: " +count+" Function: "+dot.getName());
+//				count++;
+//				System.out.println("Count: " +count+" Function: "+dot.getName());
 				Node functionName = Graph.U.createNode();
 				functionName.putAttr(XCSG.name, "sym_"+dot.getName().replace(".dot", ""));
 				functionName.tag(XCSG.Function);
 				functionName.tag("binary_function");
+				
 				function_nodes.add(functionName);
 				Scanner s = new Scanner(dot);
-//				System.out.println(functionName.getAttr(XCSG.name).toString());
-
-				//
 				
 				while(s.hasNextLine()) {
 					String data = s.nextLine();
@@ -81,14 +104,12 @@ public class Importer {
 					}
 					else if(data.contains("->")) {
 						data = data.replaceAll("\\s+", "");
-//						System.out.println(data);
 						//Extract the addresses of the from and to nodes in DOT file
 						String from = data.split("->")[0];
 						from = from.replaceAll("\"", "");
 						String temp = data.split("->")[1];
 						String to = temp.split("\\[color")[0];
 						to = to.replaceAll("\"", "");
-//						System.out.print(to);
 						
 						//Create the Atlas nodes and add necessary tags
 						Node fromNode = nodeMap.get(from);
@@ -148,7 +169,7 @@ public class Importer {
 			BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(results));
 			BufferedWriter functionWriter = new BufferedWriter(new FileWriter(source));
 			resultsWriter.write(headers);
-			DFSPathCounter nonLinearCounter = new DFSPathCounter();
+//			DFSPathCounter nonLinearCounter = new DFSPathCounter();
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
 			
 			
@@ -159,7 +180,7 @@ public class Importer {
 			skips.add("sym_loc");
 			skips.add("sym_memzero");
 			
-			
+			int count = 0;
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.
 //			Q app = SetDefinitions.app();
@@ -178,20 +199,30 @@ public class Importer {
 				Q c = my_cfg(temp);
 //				DisplayUtil.displayGraph(c.eval());
 				System.out.println(function.getAttr(XCSG.name));
-				if (c.eval().nodes().size() > 1) {
+			
+				if (c.eval().nodes().size() == 1) {
+					// function name
+					resultsWriter.write(function.getAttr(XCSG.name) + ",");
+					
+					// number of paths according to linear algorithm
+					resultsWriter.write("1" + ",");
+					
+					// number of additions by linear algorithm
+					resultsWriter.write("0" + "\n");
+				}else {
 					LoopIdentification l = new LoopIdentification(c.eval(), c.roots().eval().nodes().one());
+					CountingResult linear = linearCounter.countPaths(c);
+					
+					// function name
+					resultsWriter.write(function.getAttr(XCSG.name) + ",");
+					
+					// number of paths according to linear algorithm
+					resultsWriter.write(linear.getPaths() + ",");
+					
+					// number of additions by linear algorithm
+					resultsWriter.write(linear.getAdditions() + "\n");
 				}
 				
-				CountingResult linear = linearCounter.countPaths(c);
-				
-				// function name
-				resultsWriter.write(function.getAttr(XCSG.name) + ",");
-				
-				// number of paths according to linear algorithm
-				resultsWriter.write(linear.getPaths() + ",");
-				
-				// number of additions by linear algorithm
-				resultsWriter.write(linear.getAdditions() + "\n");
 				
 				// flushing the buffer
 				resultsWriter.flush();
