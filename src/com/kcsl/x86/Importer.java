@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,30 +20,31 @@ import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
-import com.ensoftcorp.atlas.ui.viewer.graph.DisplayUtil;
 import com.ensoftcorp.open.commons.algorithms.LoopIdentification;
-import com.ensoftcorp.open.commons.ui.utilities.DisplayUtils;
-//import com.kcsl.paths.counting.TopDownDFMultiplicitiesPathCounter.*;
-//import com.kcsl.paths.algorithms.PathCounter.CountingResult;
-import com.se421.paths.algorithms.counting.DFSPathCounter;
-import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
-import com.se421.paths.algorithms.*;
 import com.se421.paths.algorithms.PathCounter.CountingResult;
+import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
 
 public class Importer {
 
 	protected static final String resultsPath = "/Users/RyanGoluch/Desktop/My_Results.csv";
 	
-	protected static final String functionPath = "/Users/RyanGoluch/Desktop/source_function_list.txt";
+	protected static final String functionPath = "/Users/RyanGoluch/Desktop/source_function_list.csv";
+	
+	protected static final String binaryPath = "/Users/RyanGoluch/Desktop/binary_function_list.csv";
 	
 	protected static final String headers = "Function Name,numPaths (Linear),additions (Linear)\n";
 	
 	private static ArrayList<Node> function_nodes = new ArrayList<Node>();
 	
 	
+	/**
+	 * TODO
+	 * @throws IOException
+	 */
+	
 	public static void check_difference() throws IOException {
 		Q functions = Common.universe().nodesTaggedWithAll(XCSG.Language.C, XCSG.Function);
-		String filePath = "/Users/RyanGoluch/Desktop/source_functions.txt";
+		String filePath = "/Users/RyanGoluch/Desktop/source_functions.csv";
 		File source = new File(filePath);
 		BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(source));
 		
@@ -64,6 +66,56 @@ public class Importer {
 	}
 	
 	
+	/**
+	 * TODO
+	 * @throws IOException
+	 */
+	
+	public static void source_functions() throws IOException {
+		Q functions = Common.universe().nodesTaggedWithAll(XCSG.Language.C, XCSG.Function);
+		File source = new File(functionPath);
+		BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(source));
+		
+//		resultsWriter.write("# of Functions: " + functions.eval().nodes().size() + "\n");
+//		resultsWriter.flush();
+		
+		for (Node f : functions.eval().nodes()) {
+			String name = f.getAttr(XCSG.name).toString();
+			resultsWriter.write(name+"\n");
+			resultsWriter.flush();
+		}
+		resultsWriter.close();
+	}
+	
+	
+	/**
+	 * TODO
+	 * @throws IOException
+	 */
+	
+	public static void binary_functions() throws IOException {
+		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
+		File binary = new File(binaryPath);
+		BufferedWriter binaryWriter = new BufferedWriter(new FileWriter(binary));
+		
+//		binaryWriter.write("# of Functions: " + functions.eval().nodes().size() + "\n");
+//		binaryWriter.flush();
+		
+		for (Node f : functions.eval().nodes()) {
+			String name = f.getAttr(XCSG.name).toString();
+			name = name.split("sym_")[1];
+			binaryWriter.write(name+"\n");
+			binaryWriter.flush();
+		}
+		binaryWriter.close();
+	}
+	
+	
+	/**
+	 * TODO
+	 * @throws FileNotFoundException
+	 */
+	
 	public static void main() throws FileNotFoundException {
 		// HashMap of Node for further access
 		Map<String,Node> nodeMap = new HashMap<String,Node>();
@@ -71,9 +123,16 @@ public class Importer {
 		//read in and parse .dot files from dot_graphs dir
 		String path = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/dot_graphs";
 		File dir = new File(path);
-		File[] dirList = dir.listFiles();
+		File[] dirList = dir.listFiles(new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.endsWith(".dot");
+			}
+		});
 		int count = 0; 
 		for(File dot : dirList) {
+			
+			//check to make sure that this condition is needed
 			if (dot.exists()) {
 //				count++;
 //				System.out.println("Count: " +count+" Function: "+dot.getName());
@@ -90,6 +149,9 @@ public class Importer {
 					if(data.contains("[URL")) {
 						//Create control flow nodes with labels
 						Node n = Graph.U.createNode(); 
+						n.tag(XCSG.ControlFlow_Node);
+						n.tag("my_node");
+						
 						String addr = data.subSequence(2, 12).toString();
 						String label = data.split("label=")[1];
 						label = label.replace("\"", "");
@@ -113,15 +175,11 @@ public class Importer {
 						
 						//Create the Atlas nodes and add necessary tags
 						Node fromNode = nodeMap.get(from);
-						fromNode.tag(XCSG.ControlFlow_Node);
-						fromNode.tag("my_node");
 						
 						//Handling exit nodes for test files in test directory
 						if(nodeMap.get(to) == null) {
 							Node exitNode = Graph.U.createNode();
 							exitNode.putAttr(XCSG.name, to);
-							exitNode.tag(XCSG.ControlFlow_Node);
-							exitNode.tag("my_node");
 							
 							Edge x = Graph.U.createEdge(fromNode, exitNode);
 							x.tag(XCSG.ControlFlow_Edge);
@@ -152,11 +210,25 @@ public class Importer {
 		//tag it as XCSG.Contains
 	}
 	
+	
+	/**
+	 * TODO
+	 * @param name
+	 * @return
+	 */
+	
 	public static Q my_function(String name) {
 		Q f = Query.universe().nodes(XCSG.Function);
 		Q found = f.selectNode(XCSG.name, name);
 		return found;
 	}
+	
+	
+	/**
+	 * TODO
+	 * @param f
+	 * @return
+	 */
 	
 	public static Q my_cfg(Q f) {
 		return f.contained().nodes(XCSG.ControlFlow_Node).induce(Query.universe().edges(XCSG.ControlFlow_Edge));
@@ -174,11 +246,12 @@ public class Importer {
 			
 			
 			ArrayList<String> skips = new ArrayList<String>();
-			skips.add("test_libString");
-			skips.add("sym_copyhandler");
-			skips.add("sym_strcmp");
-			skips.add("sym_loc");
-			skips.add("sym_memzero");
+//			skips.add("test_libString");
+//			skips.add("sym_copyhandler");
+//			skips.add("sym_strcmp");
+//			skips.add("sym_loc");
+//			skips.add("sym_memzero");
+//			skips.add()
 			
 			int count = 0;
 			// We will now generate the results for all the functions in the graph database.
@@ -191,9 +264,9 @@ public class Importer {
 				
 				functionWriter.write(name.toString() + "\n");
 				
-				if(skips.contains(name)) {
-					continue;
-				}
+//				if(skips.contains(name)) {
+//					continue;
+//				}
 				
 				Q temp = Common.toQ(function);
 				Q c = my_cfg(temp);
