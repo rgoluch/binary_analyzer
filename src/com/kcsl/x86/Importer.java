@@ -35,7 +35,7 @@ public class Importer {
 	protected static final String headers = "Function Name,numPaths (Linear),additions (Linear)\n";
 	
 	private static ArrayList<Node> function_nodes = new ArrayList<Node>();
-	
+
 	
 	/**
 	 * TODO
@@ -60,9 +60,7 @@ public class Importer {
 				resultsWriter.flush();
 			}
 		}
-		
 		resultsWriter.close();
-		
 	}
 	
 	
