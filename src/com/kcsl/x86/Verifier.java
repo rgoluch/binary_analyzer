@@ -10,11 +10,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import com.kcsl.x86.Importer.*;
+import static com.kcsl.x86.Importer.*;
 
 import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
+import com.ensoftcorp.atlas.core.db.graph.GraphElement;
 import com.ensoftcorp.atlas.core.db.graph.Node;
+import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
@@ -29,11 +31,17 @@ public class Verifier {
 	 * TODO
 	 */
 	
-	public static void count_exits(String name) {
-		Q function = Importer.my_function(name);
-		Q cfg = Importer.my_cfg(function);
+	public static long count_exits(String name) {
+		Q function = my_function(name);
+		Q cfg = my_cfg(function);
+//		ArrayList<Node> leaves = cfg.eval().leaves();
 		
-		
+//		long incoming = 0; 
+//		for(Node n : leaves) {
+//			incoming += Common.toQ(n).edges(XCSG.ControlFlow_Edge).eval().size();
+//		}
+//		
+		return cfg.eval().leaves().size();
 	}
 	
 	
@@ -42,8 +50,36 @@ public class Verifier {
 	 */
 	
 	public static void count_loops(String name) {
-		Q function = Importer.my_function(name);
-		Q cfg = Importer.my_cfg(function);
+		Q function = my_function(name);
+		Q cfg = my_cfg(function);
+	}
+	
+	
+	/**
+	 * Determines the number of conditional statements in binary based
+	 * on the number of outgoing edges from each control flow node. 
+	 * If the number of outgoing edges is > 1, then you know you have a 
+	 * branching condition. 
+	 * 
+	 * @param name
+	 * 		Name of the function that you want to count the conditionals of
+	 * @return
+	 * 		The number of conditional statements in the given binary CFG
+	 */
+	
+	public static long count_conditionals(String name) {
+		Q function = my_function(name);
+		Q cfg = my_cfg(function);
+		
+		long count = 0;
+		
+		for (Node n : cfg.eval().nodes()) {
+			if(n.out().size() > 1) {
+				count +=1;
+			}
+		}
+		
+		return count;
 	}
 	
 	
@@ -51,9 +87,11 @@ public class Verifier {
 	 * TODO
 	 */
 	
-	public static void count_conditionals(String name) {
-		Q function = Importer.my_function(name);
-		Q cfg = Importer.my_cfg(function);
+	public static void verify_all_counts(String name){
+//		Q function = my_function(name);
+//		Q cfg = my_cfg(function);
+		
+		long exits = count_exits(name);
 	}
 	
 	
@@ -61,8 +99,7 @@ public class Verifier {
 	 * TODO
 	 */
 	
-	public static void verify_all(String name){
-		Q function = Importer.my_function(name);
-		Q cfg = Importer.my_cfg(function);
+	public static void verify_all_graphs() {
+		
 	}
 }
