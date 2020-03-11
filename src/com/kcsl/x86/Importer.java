@@ -178,10 +178,10 @@ public class Importer {
 						if(nodeMap.get(to) == null) {
 							Node exitNode = Graph.U.createNode();
 							exitNode.putAttr(XCSG.name, to);
-							
 							Edge x = Graph.U.createEdge(fromNode, exitNode);
 							x.tag(XCSG.ControlFlow_Edge);
 							x.tag("my_edge");
+							
 						}else {
 							Node toNode = nodeMap.get(to);
 							toNode.tag(XCSG.ControlFlow_Node);
@@ -190,6 +190,13 @@ public class Importer {
 							Edge e = Graph.U.createEdge(fromNode, toNode);
 							e.tag(XCSG.ControlFlow_Edge);
 							e.tag("my_edge");
+							
+							if(from.contains(to)) {
+								fromNode.tag(XCSG.ControlFlowLoopCondition);
+								fromNode.tag(XCSG.controlFlowRoot);
+								Query.universe().roots()
+								
+							}
 						}
 					}
 					
@@ -269,7 +276,7 @@ public class Importer {
 				Q temp = Common.toQ(function);
 				Q c = my_cfg(temp);
 //				DisplayUtil.displayGraph(c.eval());
-				System.out.println(function.getAttr(XCSG.name));
+				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.eval().nodes().size());
 			
 				if (c.eval().nodes().size() == 1) {
 					// function name

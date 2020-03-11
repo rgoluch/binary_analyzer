@@ -28,20 +28,29 @@ import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
 public class Verifier {
 	
 	/**
-	 * TODO
+	 * Determines the number of function exits that exist in
+	 * the disassembled binary based on the number of nodes
+	 * that have an out degree of 0. If the number of outgoing
+	 * edges is 0, then you know you have a leaf of the CFG.
+	 * 
+	 * @param name
+	 * 		Name of the function that you want to count the exits of
+	 * @return
+	 * 		The number of exit points in the function
 	 */
 	
 	public static long count_exits(String name) {
 		Q function = my_function(name);
 		Q cfg = my_cfg(function);
-//		ArrayList<Node> leaves = cfg.eval().leaves();
+		AtlasSet<Node> leaves = cfg.eval().nodes();
 		
-//		long incoming = 0; 
-//		for(Node n : leaves) {
-//			incoming += Common.toQ(n).edges(XCSG.ControlFlow_Edge).eval().size();
-//		}
-//		
-		return cfg.eval().leaves().size();
+		long incoming = 0; 
+		for(Node n : leaves) {
+			if(n.out().size() == 0) {
+				incoming += 1;
+			}
+		}
+		return incoming;
 	}
 	
 	
@@ -52,6 +61,8 @@ public class Verifier {
 	public static void count_loops(String name) {
 		Q function = my_function(name);
 		Q cfg = my_cfg(function);
+		
+		
 	}
 	
 	
