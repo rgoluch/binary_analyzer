@@ -19,7 +19,10 @@ import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
+import com.ensoftcorp.atlas.core.script.CommonQueries;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
+import com.ensoftcorp.atlas.ui.viewer.graph.DisplayUtil;
+import com.ensoftcorp.atlas.ui.viewer.graph.SaveUtil;
 import com.ensoftcorp.open.commons.algorithms.LoopIdentification;
 import com.se421.paths.algorithms.PathCounter.CountingResult;
 import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
@@ -27,6 +30,8 @@ import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
 public class Importer {
 
 	protected static final String resultsPath = "/Users/RyanGoluch/Desktop/My_Results.csv";
+	
+	protected static final String graphPath = "/Users/RyanGoluch/Desktop/";
 	
 	protected static final String functionPath = "/Users/RyanGoluch/Desktop/source_function_list.csv";
 	
@@ -192,9 +197,9 @@ public class Importer {
 							e.tag("my_edge");
 							
 							if(from.contains(to)) {
-								fromNode.tag(XCSG.ControlFlowLoopCondition);
-								fromNode.tag(XCSG.controlFlowRoot);
-								Query.universe().roots()
+								fromNode.tag("self_loop");
+//								fromNode.tag(XCSG.Loop);
+//								Query.universe().roots()
 								
 							}
 						}
@@ -264,6 +269,8 @@ public class Importer {
 //			Q app = SetDefinitions.app();
 		 	Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
 		 			//app.nodes(XCSG.Function).nodesTaggedWithAll("my_function");
+		 	int i = 0;
+		 	
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
 				
@@ -274,11 +281,11 @@ public class Importer {
 //				}
 				
 				Q temp = Common.toQ(function);
-				Q c = my_cfg(temp);
-//				DisplayUtil.displayGraph(c.eval());
-				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.eval().nodes().size());
+				Graph c = my_cfg(temp).eval();
+				DisplayUtil.displayGraph(c);
+				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
 			
-				if (c.eval().nodes().size() == 1) {
+				if (c.nodes().size() == 1) {
 					// function name
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
 					
@@ -288,17 +295,30 @@ public class Importer {
 					// number of additions by linear algorithm
 					resultsWriter.write("0" + "\n");
 				}else {
-					LoopIdentification l = new LoopIdentification(c.eval(), c.roots().eval().nodes().one());
-					CountingResult linear = linearCounter.countPaths(c);
+					Q r = Common.toQ(c).roots();
+					if(CommonQueries.isEmpty(r)) {
+						r = Common.toQ(c).nodes("self_loop");
+//						DisplayUtil.displayGraph(c);
+					}
 					
-					// function name
-					resultsWriter.write(function.getAttr(XCSG.name) + ",");
+					if(CommonQueries.isEmpty(r)) {
+						SaveUtil.saveGraph(new File(graphPath+"cfg_"+i+".png"), c);
+						i++;
+					}
+					else {
+						LoopIdentification l = new LoopIdentification(c, r.eval().nodes().one());
+						CountingResult linear = linearCounter.countPaths(Common.toQ(c));
+						
+						// function name
+						resultsWriter.write(function.getAttr(XCSG.name) + ",");
+						
+						// number of paths according to linear algorithm
+						resultsWriter.write(linear.getPaths() + ",");
+						
+						// number of additions by linear algorithm
+						resultsWriter.write(linear.getAdditions() + "\n");
+					}
 					
-					// number of paths according to linear algorithm
-					resultsWriter.write(linear.getPaths() + ",");
-					
-					// number of additions by linear algorithm
-					resultsWriter.write(linear.getAdditions() + "\n");
 				}
 				
 				
