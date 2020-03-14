@@ -235,23 +235,32 @@ public class Importer {
 	
 	
 	/**
-	 * TODO
+	 * Creates the control flow graph of the given function from
+	 * the disassembled binary
 	 * @param f
+	 * 		Variable that holds what is returned from my_function. 
+	 * 		Should be a function within the disassembled binary. 
 	 * @return
+	 * 		A CFG for the given binary function 
 	 */
 	
 	public static Q my_cfg(Q f) {
 		return f.contained().nodes(XCSG.ControlFlow_Node).induce(Query.universe().edges(XCSG.ControlFlow_Edge));
 	}
 	
+	
+	/**
+	 * 
+	 * @throws IOException
+	 */
+	
 	public static void export_counts() throws IOException {
 
 			File results = new File(resultsPath);
-			File source = new File(functionPath);
+//			File source = new File(functionPath);
 			BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(results));
-			BufferedWriter functionWriter = new BufferedWriter(new FileWriter(source));
+//			BufferedWriter functionWriter = new BufferedWriter(new FileWriter(source));
 			resultsWriter.write(headers);
-//			DFSPathCounter nonLinearCounter = new DFSPathCounter();
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
 			
 			
@@ -274,7 +283,7 @@ public class Importer {
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
 				
-				functionWriter.write(name.toString() + "\n");
+//				functionWriter.write(name.toString() + "\n");
 				
 //				if(skips.contains(name)) {
 //					continue;
@@ -282,10 +291,12 @@ public class Importer {
 				
 				Q temp = Common.toQ(function);
 				Graph c = my_cfg(temp).eval();
-				DisplayUtil.displayGraph(c);
+//				DisplayUtil.displayGraph(c);
 				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
 			
-				if (c.nodes().size() == 1) {
+				long check = c.nodes().tagged("my_node").size();
+				
+				if (c.nodes().tagged("my_node").size() == 1) {
 					// function name
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
 					
@@ -294,6 +305,7 @@ public class Importer {
 					
 					// number of additions by linear algorithm
 					resultsWriter.write("0" + "\n");
+					
 				}else {
 					Q r = Common.toQ(c).roots();
 					if(CommonQueries.isEmpty(r)) {
@@ -324,10 +336,10 @@ public class Importer {
 				
 				// flushing the buffer
 				resultsWriter.flush();
-				functionWriter.flush();
+//				functionWriter.flush();
 			}
 			
 			resultsWriter.close();
-			functionWriter.close();
+//			functionWriter.close();
 	}
 }
