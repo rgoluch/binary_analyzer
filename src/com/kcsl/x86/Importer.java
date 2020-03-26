@@ -33,6 +33,8 @@ public class Importer {
 	
 	protected static final String graphPath = "/Users/RyanGoluch/Desktop/";
 	
+	protected static final String selfLoopPath = "/Users/RyanGoluch/Desktop/self_loop_list.csv";
+	
 	protected static final String functionPath = "/Users/RyanGoluch/Desktop/source_function_list.csv";
 	
 	protected static final String binaryPath = "/Users/RyanGoluch/Desktop/binary_function_list.csv";
@@ -134,7 +136,7 @@ public class Importer {
 		});
 		int count = 0; 
 		for(File dot : dirList) {
-			
+			ArrayList<Node> indexedNodes = new ArrayList<Node>();
 			//check to make sure that this condition is needed
 			if (dot.exists()) {
 //				count++;
@@ -178,6 +180,7 @@ public class Importer {
 						
 						//Create the Atlas nodes and add necessary tags
 						Node fromNode = nodeMap.get(from);
+						indexedNodes.add(fromNode);
 						
 						//Handling exit nodes for test files in test directory
 						if(nodeMap.get(to) == null) {
@@ -196,8 +199,15 @@ public class Importer {
 							e.tag(XCSG.ControlFlow_Edge);
 							e.tag("my_edge");
 							
+							//Handles the identification of loop edges 
+							if(indexedNodes.contains(toNode)) {
+								e.tag(XCSG.ControlFlowBackEdge);
+							}
+					
 							if(from.contains(to)) {
 								fromNode.tag("self_loop");
+								e.tag("self_loop_edge");
+								count +=1;
 //								fromNode.tag(XCSG.Loop);
 //								Query.universe().roots()
 								
@@ -211,7 +221,7 @@ public class Importer {
 			
 		}
 		
-		
+		System.out.println(count);
 		//create a new node
 		//XCSG.name, name of function (differentiate from source)
 		//tag as XCSG.Function
@@ -220,6 +230,14 @@ public class Importer {
 		//tag it as XCSG.Contains
 	}
 	
+	
+	/**
+	 * TODO
+	 */
+	
+//	public static void ReImport() {
+//		private
+//	}
 	
 	/**
 	 * TODO
@@ -257,20 +275,11 @@ public class Importer {
 	public static void export_counts() throws IOException {
 
 			File results = new File(resultsPath);
-//			File source = new File(functionPath);
+			File selfLoop = new File(selfLoopPath);
 			BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(results));
-//			BufferedWriter functionWriter = new BufferedWriter(new FileWriter(source));
+			BufferedWriter functionWriter = new BufferedWriter(new FileWriter(selfLoop));
 			resultsWriter.write(headers);
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
-			
-			
-			ArrayList<String> skips = new ArrayList<String>();
-//			skips.add("test_libString");
-//			skips.add("sym_copyhandler");
-//			skips.add("sym_strcmp");
-//			skips.add("sym_loc");
-//			skips.add("sym_memzero");
-//			skips.add()
 			
 			int count = 0;
 			// We will now generate the results for all the functions in the graph database.
@@ -283,18 +292,17 @@ public class Importer {
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
 				
-//				functionWriter.write(name.toString() + "\n");
-				
-//				if(skips.contains(name)) {
-//					continue;
-//				}
-				
 				Q temp = Common.toQ(function);
 				Graph c = my_cfg(temp).eval();
 //				DisplayUtil.displayGraph(c);
 				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
 			
 				long check = c.nodes().tagged("my_node").size();
+				
+				if(c.nodes().tagged("self_loop").size() > 0) {
+					functionWriter.write(name.toString() + "\n");
+					continue;
+				}
 				
 				if (c.nodes().tagged("my_node").size() == 1) {
 					// function name
@@ -336,10 +344,10 @@ public class Importer {
 				
 				// flushing the buffer
 				resultsWriter.flush();
-//				functionWriter.flush();
+				functionWriter.flush();
 			}
 			
 			resultsWriter.close();
-//			functionWriter.close();
+			functionWriter.close();
 	}
 }
