@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ import java.util.Scanner;
 import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
+import com.ensoftcorp.atlas.core.db.list.AtlasList;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
@@ -200,16 +202,14 @@ public class Importer {
 							e.tag("my_edge");
 							
 							//Handles the identification of loop edges 
-							if(indexedNodes.contains(toNode)) {
-								e.tag(XCSG.ControlFlowBackEdge);
-							}
+//							if(indexedNodes.contains(toNode)) {
+//								e.tag(XCSG.ControlFlowBackEdge);
+//							}
 					
 							if(from.contains(to)) {
 								fromNode.tag("self_loop");
 								e.tag("self_loop_edge");
 								count +=1;
-//								fromNode.tag(XCSG.Loop);
-//								Query.universe().roots()
 								
 							}
 						}
@@ -327,6 +327,17 @@ public class Importer {
 					}
 					else {
 						LoopIdentification l = new LoopIdentification(c, r.eval().nodes().one());
+						Collection<Node> loopNodes = l.getInnermostLoopHeaders().values();
+						for (Node n : loopNodes) {
+							n.tag(XCSG.Loop);
+						}
+						
+						for (Edge e : c.edges()) {
+							if (e.to().taggedWith(XCSG.Loop)) {
+								e.tag(XCSG.ControlFlowBackEdge);
+							}
+						}
+						
 						CountingResult linear = linearCounter.countPaths(Common.toQ(c));
 						
 						// function name
