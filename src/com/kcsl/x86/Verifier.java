@@ -2,36 +2,35 @@ package com.kcsl.x86;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 import static com.kcsl.x86.Importer.*;
-
-import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
-import com.ensoftcorp.atlas.core.db.graph.GraphElement;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
-import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
-import com.ensoftcorp.open.commons.algorithms.LoopIdentification;
-import com.se421.paths.algorithms.PathCounter.CountingResult;
-import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
+
+
+/**
+ * 
+ * @author RyanGoluch
+ *
+ */
 
 public class Verifier {
+	
+	private static long exits;
+	private static long conditionals;
+	private static long loops;
 	
 	/**
 	 * Determines the number of function exits that exist in
 	 * the disassembled binary based on the number of nodes
 	 * that have an out degree of 0. If the number of outgoing
 	 * edges is 0, then you know you have a leaf of the CFG.
+	 * Adds an additional tag to exit nodes for improved CFG rendering.
 	 * 
 	 * @param name
 	 * 		Name of the function that you want to count the exits of
@@ -56,14 +55,29 @@ public class Verifier {
 	
 	
 	/**
-	 * TODO
+	 * Determines the number of loops that exist in the disassembled
+	 * binary. Calls the loop_tagging function from Importer.java first
+	 * in order to ensure that all loops are tagged and then can count the loops.
+	 * 
+	 * @param name
+	 * 		Name of the function that you want to count loops in
+	 * @return
+	 * 		The number of loops found in the given function 
 	 */
 	
-	public static void count_loops(String name) {
+	public static long count_loops(String name) {
 		Q function = my_function(name);
-		Q cfg = my_cfg(function);
+		Graph cfg = my_cfg(function).eval();
+		loop_tagging(cfg, name);
 		
+		long loopCount = 0;
+		for (Node n : cfg.nodes()) {
+			if(n.taggedWith(XCSG.ControlFlowLoopCondition)) {
+				loopCount++;
+			}
+		}
 		
+		return loopCount;
 	}
 	
 	
@@ -71,7 +85,8 @@ public class Verifier {
 	 * Determines the number of conditional statements in binary based
 	 * on the number of outgoing edges from each control flow node. 
 	 * If the number of outgoing edges is > 1, then you know you have a 
-	 * branching condition. 
+	 * branching condition. Adds an additional tag to the branch nodes for 
+	 * improved CFG rendering. 
 	 * 
 	 * @param name
 	 * 		Name of the function that you want to count the conditionals of
@@ -86,7 +101,7 @@ public class Verifier {
 		long count = 0;
 		
 		for (Node n : cfg.eval().nodes()) {
-			if(n.out().size() > 1) {
+			if(n.out().size() > 1 && !n.taggedWith(XCSG.Loop) && !n.taggedWith(XCSG.ControlFlowLoopCondition)) {
 				n.tag(XCSG.ControlFlowIfCondition);
 				count +=1;
 			}
@@ -97,22 +112,65 @@ public class Verifier {
 	
 	
 	/**
-	 * TODO
+	 * Counts all of the exits, conditionals, and loops in a given function. 
+	 * Then writes those numbers to a CSV on the desktop. 
+	 * 
+	 * @param name
+	 * 		Name of the function to find the counts of
+	 * @throws IOException 
+	 * 		IOException thrown if the output file path is invalid
 	 */
 	
-	public static void verify_all_counts(String name){
-//		Q function = my_function(name);
-//		Q cfg = my_cfg(function);
+	public static void verify_all_counts(String name) throws IOException{
+
+		exits = count_exits(name);
+		loops = count_loops(name);
+		conditionals = count_conditionals(name);
 		
-		long exits = count_exits(name);
+		String verifierPath = "/Users/RyanGoluch/Desktop/count_verifier.csv";
+		File verifierFile = new File(verifierPath);
+		BufferedWriter verifierWriter = new BufferedWriter(new FileWriter(verifierFile));
+		
+		verifierWriter.write("Exit_Count, Conditional_Count, Loop_Count\n");
+		verifierWriter.write(exits + "," + conditionals + "," + loops);
+		verifierWriter.flush();
+		
+		verifierWriter.close();
 	}
 	
 	
 	/**
-	 * TODO
+	 * Counts the exit nodes, conditionals, and loops in all of the functions
+	 * that are loaded into Atlas from the disassembled binary and writes the 
+	 * results to a CSV on the desktop
+	 * 
+	 * @throws IOException
+	 * 		IOException thrown if the output file path is invalid
 	 */
 	
-	public static void verify_all_graphs() {
+	public static void verify_all_graphs() throws IOException {
+	 	
+		String allCountsPath = "/Users/RyanGoluch/Desktop/all_function_counts.csv";
+		File countsFile = new File(allCountsPath);
+		BufferedWriter countsWriter = new BufferedWriter(new FileWriter(countsFile)); 
 		
+		countsWriter.write("Function Name, # Exit Nodes, # Conditionals, # Loops\n");
+		countsWriter.flush();
+		
+		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
+		
+		for(Node function : functions.eval().nodes()) {
+			String name = function.getAttr(XCSG.name).toString();
+			
+			exits = count_exits(name);
+			loops = count_loops(name);
+			conditionals = count_conditionals(name);
+			
+			countsWriter.write(name +",");
+			countsWriter.write(exits + ", " + conditionals + "," + loops + "\n");
+			countsWriter.flush();
+		}
+		
+		countsWriter.close();
 	}
 }

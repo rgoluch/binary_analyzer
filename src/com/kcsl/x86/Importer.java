@@ -7,30 +7,36 @@ import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
+//import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 //import org.radare.r2pipe.R2Pipe;
 //import com.kcsl.paths;
-import java.util.Set;
+//import java.util.Set;
 
 import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
-import com.ensoftcorp.atlas.core.db.list.AtlasList;
-import com.ensoftcorp.atlas.core.db.set.AtlasHashSet;
+//import com.ensoftcorp.atlas.core.db.list.AtlasList;
+//import com.ensoftcorp.atlas.core.db.set.AtlasHashSet;
 import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.script.CommonQueries;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
-import com.ensoftcorp.atlas.ui.viewer.graph.DisplayUtil;
+//import com.ensoftcorp.atlas.ui.viewer.graph.DisplayUtil;
 import com.ensoftcorp.atlas.ui.viewer.graph.SaveUtil;
 import com.ensoftcorp.open.commons.algorithms.LoopIdentification;
 import com.se421.paths.algorithms.PathCounter.CountingResult;
 import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
+
+/**
+ * 
+ * @author RyanGoluch
+ *
+ */
 
 public class Importer {
 
@@ -270,7 +276,13 @@ public class Importer {
 	}
 	
 	
-	public static void loopTagging(Graph g, String name) {
+	/**
+	 * TODO
+	 * @param g
+	 * @param name
+	 */
+	
+	public static void loop_tagging(Graph g, String name) {
 		
 		Q r = Common.toQ(g).roots();
 		if(CommonQueries.isEmpty(r)) {
@@ -297,13 +309,6 @@ public class Importer {
 				}
 			}
 			
-//			for (Node n : c.nodes()) {
-//				if (n.in().size() >= n.out().size() && n.out().size() > 0) {
-//					n.tag(XCSG.ControlFlowLoopCondition);
-//					System.out.println(n.in());
-//				}
-//			}
-			
 			for (Edge e : g.edges()) {
 				if (e.from().taggedWith(XCSG.Loop) && e.to().taggedWith(XCSG.ControlFlowLoopCondition)) {
 					e.tag(XCSG.ControlFlowBackEdge);
@@ -314,7 +319,7 @@ public class Importer {
 	
 	
 	/**
-	 * 
+	 * TODO
 	 * @throws IOException
 	 */
 	
@@ -327,13 +332,11 @@ public class Importer {
 			resultsWriter.write(headers);
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
 			
-			int count = 0;
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.
 //			Q app = SetDefinitions.app();
 		 	Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
 		 			//app.nodes(XCSG.Function).nodesTaggedWithAll("my_function");
-		 	int i = 0;
 		 	
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
@@ -360,7 +363,7 @@ public class Importer {
 					
 				}else {
 						
-					loopTagging(c, name);
+					loop_tagging(c, name);
 				
 					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
 					
