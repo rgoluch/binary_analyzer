@@ -48,6 +48,7 @@ public class Verifier {
 		for(Node n : leaves) {
 			if(n.out().size() == 0) {
 				incoming += 1;
+				n.tag(XCSG.controlFlowExitPoint);
 			}
 		}
 		return incoming;
@@ -86,6 +87,7 @@ public class Verifier {
 		
 		for (Node n : cfg.eval().nodes()) {
 			if(n.out().size() > 1) {
+				n.tag(XCSG.ControlFlowIfCondition);
 				count +=1;
 			}
 		}

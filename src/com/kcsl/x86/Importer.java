@@ -270,6 +270,49 @@ public class Importer {
 	}
 	
 	
+	public static void loopTagging(Graph g, String name) {
+		
+		Q r = Common.toQ(g).roots();
+		if(CommonQueries.isEmpty(r)) {
+			r = Common.toQ(g).nodes("self_loop");
+//			DisplayUtil.displayGraph(c);
+		}
+		
+		if(CommonQueries.isEmpty(r)) {
+			SaveUtil.saveGraph(new File(graphPath+"cfg_"+name+".png"), g);
+		}
+		else {
+			LoopIdentification l = new LoopIdentification(g, r.eval().nodes().one());
+			Map<Node,Node> loopNodes = l.getInnermostLoopHeaders();
+			for (Node n : loopNodes.keySet()) {
+				n.tag(XCSG.Loop);
+			}
+		
+			for (Node n : g.nodes()) {
+				AtlasSet<Edge> outEdges = n.out();
+				for (Edge e : outEdges) {
+					if (e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop)) {
+						e.from().tag(XCSG.ControlFlowLoopCondition);
+					}
+				}
+			}
+			
+//			for (Node n : c.nodes()) {
+//				if (n.in().size() >= n.out().size() && n.out().size() > 0) {
+//					n.tag(XCSG.ControlFlowLoopCondition);
+//					System.out.println(n.in());
+//				}
+//			}
+			
+			for (Edge e : g.edges()) {
+				if (e.from().taggedWith(XCSG.Loop) && e.to().taggedWith(XCSG.ControlFlowLoopCondition)) {
+					e.tag(XCSG.ControlFlowBackEdge);
+				}
+			}
+		}
+	}
+	
+	
 	/**
 	 * 
 	 * @throws IOException
@@ -298,9 +341,7 @@ public class Importer {
 				Q temp = Common.toQ(function);
 				Graph c = my_cfg(temp).eval();
 //				DisplayUtil.displayGraph(c);
-				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
-			
-				long check = c.nodes().tagged("my_node").size();
+//				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
 				
 				if(c.nodes().tagged("self_loop").size() > 0) {
 					functionWriter.write(name.toString() + "\n");
@@ -318,51 +359,19 @@ public class Importer {
 					resultsWriter.write("0" + "\n");
 					
 				}else {
-					Q r = Common.toQ(c).roots();
-					if(CommonQueries.isEmpty(r)) {
-						r = Common.toQ(c).nodes("self_loop");
-//						DisplayUtil.displayGraph(c);
-					}
-					
-					if(CommonQueries.isEmpty(r)) {
-						SaveUtil.saveGraph(new File(graphPath+"cfg_"+i+".png"), c);
-						i++;
-					}
-					else {
-						LoopIdentification l = new LoopIdentification(c, r.eval().nodes().one());
-						Map<Node,Node> loopNodes = l.getInnermostLoopHeaders();
-						AtlasSet<Edge> hashEdges = l.getLoopbacks();
-						AtlasSet<Node> enterNodes = l.getReentryNodes();
 						
-//						System.out.println("Keys: "+loopNodes.);
+					loopTagging(c, name);
 				
-//						File loopEntries = new File(graphPath+"/loop_entries.txt");
-//						BufferedWriter loops = new BufferedWriter(new FileWriter(loopEntries));
-//						loops.write(loopNodes.keySet().toString());
-//						loops.flush();
-//						loops.close();
-//						for (Node n : loopNodes.keySet()) {
-//							n.tag(XCSG.Loop);
-////							System.out.println(n.getAttr(XCSG.name));
-//						}
-//						
-						for (Edge e : c.edges()) {
-							if (e.to().taggedWith(XCSG.Loop) && e.from().taggedWith(XCSG.Loop)) {
-								e.tag(XCSG.ControlFlowBackEdge);
-							}
-						}
-						
-						CountingResult linear = linearCounter.countPaths(Common.toQ(c));
-						
-						// function name
-						resultsWriter.write(function.getAttr(XCSG.name) + ",");
-						
-						// number of paths according to linear algorithm
-						resultsWriter.write(linear.getPaths() + ",");
-						
-						// number of additions by linear algorithm
-						resultsWriter.write(linear.getAdditions() + "\n");
-					}
+					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
+					
+					// function name
+					resultsWriter.write(function.getAttr(XCSG.name) + ",");
+					
+					// number of paths according to linear algorithm
+					resultsWriter.write(linear.getPaths() + ",");
+					
+					// number of additions by linear algorithm
+					resultsWriter.write(linear.getAdditions() + "\n");
 					
 				}
 				
