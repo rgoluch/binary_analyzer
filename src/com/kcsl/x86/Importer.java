@@ -13,11 +13,14 @@ import java.util.Map;
 import java.util.Scanner;
 //import org.radare.r2pipe.R2Pipe;
 //import com.kcsl.paths;
+import java.util.Set;
 
 import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.db.list.AtlasList;
+import com.ensoftcorp.atlas.core.db.set.AtlasHashSet;
+import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
@@ -327,13 +330,24 @@ public class Importer {
 					}
 					else {
 						LoopIdentification l = new LoopIdentification(c, r.eval().nodes().one());
-						Collection<Node> loopNodes = l.getInnermostLoopHeaders().values();
-						for (Node n : loopNodes) {
-							n.tag(XCSG.Loop);
-						}
+						Map<Node,Node> loopNodes = l.getInnermostLoopHeaders();
+						AtlasSet<Edge> hashEdges = l.getLoopbacks();
+						AtlasSet<Node> enterNodes = l.getReentryNodes();
 						
+//						System.out.println("Keys: "+loopNodes.);
+				
+//						File loopEntries = new File(graphPath+"/loop_entries.txt");
+//						BufferedWriter loops = new BufferedWriter(new FileWriter(loopEntries));
+//						loops.write(loopNodes.keySet().toString());
+//						loops.flush();
+//						loops.close();
+//						for (Node n : loopNodes.keySet()) {
+//							n.tag(XCSG.Loop);
+////							System.out.println(n.getAttr(XCSG.name));
+//						}
+//						
 						for (Edge e : c.edges()) {
-							if (e.to().taggedWith(XCSG.Loop)) {
+							if (e.to().taggedWith(XCSG.Loop) && e.from().taggedWith(XCSG.Loop)) {
 								e.tag(XCSG.ControlFlowBackEdge);
 							}
 						}
