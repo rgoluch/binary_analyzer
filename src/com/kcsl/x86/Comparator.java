@@ -85,6 +85,10 @@ public class Comparator {
 	
 	public static void export_src_comparisons(String name) {
 		
+		HashMap<String, Long> c = new HashMap<String, Long>();
+		c = compare_loops(name);
+		
+		
 	}
 	
 	
