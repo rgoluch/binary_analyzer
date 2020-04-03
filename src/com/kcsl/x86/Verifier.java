@@ -45,7 +45,7 @@ public class Verifier {
 		
 		long incoming = 0; 
 		for(Node n : leaves) {
-			if(n.out().size() == 0) {
+			if(n.out().size() == 0 || n.taggedWith(XCSG.controlFlowExitPoint)) {
 				incoming += 1;
 				n.tag(XCSG.controlFlowExitPoint);
 			}

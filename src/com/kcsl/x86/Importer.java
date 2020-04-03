@@ -50,7 +50,7 @@ public class Importer {
 	
 	protected static final String binaryPath = "/Users/RyanGoluch/Desktop/binary_function_list.csv";
 	
-	protected static final String headers = "Function Name,numPaths (Linear),additions (Linear)\n";
+	protected static final String headers = "Function Name,numPaths (Bin),additions (Bin),numPaths (Src),additions (Src)\n";
 	
 	private static ArrayList<Node> function_nodes = new ArrayList<Node>();
 
@@ -344,7 +344,7 @@ public class Importer {
 				Q temp = Common.toQ(function);
 				Graph c = my_cfg(temp).eval();
 //				DisplayUtil.displayGraph(c);
-//				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
+				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
 				
 				if(c.nodes().tagged("self_loop").size() > 0) {
 					functionWriter.write(name.toString() + "\n");
@@ -362,20 +362,21 @@ public class Importer {
 					resultsWriter.write("0" + "\n");
 					
 				}else {
-						
+					String srcName = name.replace("sym_", "");
+					Q srcFunction = my_function(srcName);
+					Q srcCFG = my_cfg(srcFunction);
+					
 					loop_tagging(c, name);
-				
 					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
 					
 					// function name
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
-					
-					// number of paths according to linear algorithm
 					resultsWriter.write(linear.getPaths() + ",");
+					resultsWriter.write(linear.getAdditions() + ",");
 					
-					// number of additions by linear algorithm
+					linear = linearCounter.countPaths(srcCFG);
+					resultsWriter.write(linear.getPaths() + ",");
 					resultsWriter.write(linear.getAdditions() + "\n");
-					
 				}
 				
 				
