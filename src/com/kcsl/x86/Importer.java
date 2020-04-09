@@ -50,7 +50,7 @@ public class Importer {
 	
 	protected static final String binaryPath = "/Users/RyanGoluch/Desktop/binary_function_list.csv";
 	
-	protected static final String headers = "Function Name,numPaths (Linear),additions (Linear)\n";
+	protected static final String headers = "Function Name,numPaths (Bin),additions (Bin),numPaths (Src),additions (Src)\n";
 	
 	private static ArrayList<Node> function_nodes = new ArrayList<Node>();
 
@@ -217,7 +217,10 @@ public class Importer {
 					
 							if(from.contains(to)) {
 								fromNode.tag("self_loop");
+								fromNode.tag(XCSG.Loop);
+								fromNode.tag(XCSG.ControlFlowLoopCondition);
 								e.tag("self_loop_edge");
+								e.tag(XCSG.ControlFlowBackEdge);
 								count +=1;
 								
 							}
@@ -291,21 +294,28 @@ public class Importer {
 		}
 		
 		if(CommonQueries.isEmpty(r)) {
-			SaveUtil.saveGraph(new File(graphPath+"cfg_"+name+".png"), g);
+//			SaveUtil.saveGraph(new File(graphPath+"cfg_"+name+".png"), g);
 		}
 		else {
 			LoopIdentification l = new LoopIdentification(g, r.eval().nodes().one());
 			Map<Node,Node> loopNodes = l.getInnermostLoopHeaders();
+			for (Node n : loopNodes.values()) {
+				n.tag(XCSG.Loop);
+			}
+			
 			for (Node n : loopNodes.keySet()) {
 				n.tag(XCSG.Loop);
 			}
 		
 			for (Node n : g.nodes()) {
 				AtlasSet<Edge> outEdges = n.out();
+				AtlasSet<Edge> inEdges = n.in();
 				for (Edge e : outEdges) {
-					if (e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop)) {
-						e.from().tag(XCSG.ControlFlowLoopCondition);
-					}
+//					for (Edge i : inEdges) {
+						if (e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop) && !n.taggedWith(XCSG.Loop)) {
+							e.to().tag(XCSG.ControlFlowLoopCondition);
+						}
+//					}
 				}
 			}
 			
@@ -344,9 +354,15 @@ public class Importer {
 				Q temp = Common.toQ(function);
 				Graph c = my_cfg(temp).eval();
 //				DisplayUtil.displayGraph(c);
-//				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
+				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
 				
 				if(c.nodes().tagged("self_loop").size() > 0) {
+					// function name
+//					resultsWriter.write(function.getAttr(XCSG.name) + ",");
+//					resultsWriter.write(1 + ",");
+//					resultsWriter.write("self loop" + "\n");
+//					resultsWriter.flush();
+//					continue;
 					functionWriter.write(name.toString() + "\n");
 					continue;
 				}
@@ -358,24 +374,34 @@ public class Importer {
 					// number of paths according to linear algorithm
 					resultsWriter.write("1" + ",");
 					
-					// number of additions by linear algorithm
-					resultsWriter.write("0" + "\n");
+//					if (c.nodes().tagged("self_loop").size() > 0) {
+//						resultsWriter.write("self loop" + "\n");
+//					}else {
+						// number of additions by linear algorithm
+						resultsWriter.write("0" + "\n");
+//					}
+					
 					
 				}else {
-						
+					String srcName = name.replace("sym_", "");
+					Q srcFunction = my_function(srcName);
+					Q srcCFG = my_cfg(srcFunction);
+					
+					if (CommonQueries.isEmpty(srcCFG)) {
+						continue;
+					}
+					
 					loop_tagging(c, name);
-				
 					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
 					
 					// function name
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
-					
-					// number of paths according to linear algorithm
 					resultsWriter.write(linear.getPaths() + ",");
+					resultsWriter.write(linear.getAdditions() + ",");
 					
-					// number of additions by linear algorithm
+					linear = linearCounter.countPaths(srcCFG);
+					resultsWriter.write(linear.getPaths() + ",");
 					resultsWriter.write(linear.getAdditions() + "\n");
-					
 				}
 				
 				

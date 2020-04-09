@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
+
 import static com.kcsl.x86.Importer.*;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
@@ -42,12 +44,19 @@ public class Verifier {
 		Q function = my_function(name);
 		Q cfg = my_cfg(function);
 		AtlasSet<Node> leaves = cfg.eval().nodes();
-		
+
 		long incoming = 0; 
 		for(Node n : leaves) {
-			if(n.out().size() == 0) {
+			if(n.out().size() == 0 || n.taggedWith(XCSG.controlFlowExitPoint)) {
 				incoming += 1;
+//				Iterable<String> t = n.explicitTagsI();
+//				for (String s : t) {
+//					n.untag(s);
+//				}
 				n.tag(XCSG.controlFlowExitPoint);
+//				n.tag("my_node");
+//				n.tag(XCSG.ControlFlow_Node);
+				
 			}
 		}
 		return incoming;
@@ -101,7 +110,7 @@ public class Verifier {
 		long count = 0;
 		
 		for (Node n : cfg.eval().nodes()) {
-			if(n.out().size() > 1 && !n.taggedWith(XCSG.Loop) && !n.taggedWith(XCSG.ControlFlowLoopCondition)) {
+			if(n.out().size() == 2 && !n.taggedWith(XCSG.ControlFlowLoopCondition)) {
 				n.tag(XCSG.ControlFlowIfCondition);
 				count +=1;
 			}

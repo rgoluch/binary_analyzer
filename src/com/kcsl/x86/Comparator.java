@@ -3,9 +3,15 @@ package com.kcsl.x86;
 import static com.kcsl.x86.Importer.*;
 import static com.kcsl.x86.Verifier.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 
+import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.query.Q;
+import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
 
@@ -17,15 +23,6 @@ import com.ensoftcorp.atlas.core.xcsg.XCSG;
 
 public class Comparator {
 	
-	public Comparator(long bin, long src) {
-		long binaryCount = bin;
-		long srcCount = src;
-	}
-	
-	public Comparator() {
-		long binaryCount = 0;
-		long srcCount = 0;
-	}
 	/**
 	 * 
 	 * @param name
@@ -64,6 +61,13 @@ public class Comparator {
 		return counts;
 	}
 	
+	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	
 	public static HashMap<String, Long> compare_exits(String name) {
 		String src_name = name.replace("sym_", "");
 		
@@ -81,19 +85,65 @@ public class Comparator {
 	/**
 	 * 
 	 * @param name
+	 * @throws IOException 
 	 */
 	
-	public static void export_src_comparisons(String name) {
+	public static void export_src_comparisons(String name) throws IOException {
+		
+		String exportPath = "/Users/RyanGoluch/Desktop/"+name+"_comparisons.csv";
+		File f = new File(exportPath);
+		BufferedWriter b = new BufferedWriter(new FileWriter(f));
+		
+		b.write("Function Name, # of Loops (Bin), # of Loops (Src), # of Conditionals (Bin), # of Conditionals (Src), # of Exits (Bin), # of Exits (Src)\n");
+		b.write(name+",");
+		
+		HashMap<String, Long> c = new HashMap<String, Long>();
+		c = compare_loops(name);
+		b.write(c.get("bin") + "," + c.get("src") + ",");
+		
+		c = compare_conditionals(name);
+		b.write(c.get("bin") + "," + c.get("src") + ",");
+		
+		c = compare_exits(name);
+		b.write(c.get("bin") + "," + c.get("src") + ",");
+		
+		b.flush();
+		b.close();
 		
 	}
 	
 	
 	/**
+	 * @throws IOException 
 	 * 
 	 */
 	
-	public static void export_all_comparisons() {
+	public static void export_all_comparisons() throws IOException {
 		
+		String exportPath = "/Users/RyanGoluch/Desktop/all_comparisons.csv";
+		File f = new File(exportPath);
+		BufferedWriter b = new BufferedWriter(new FileWriter(f));
+		
+		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
+		b.write("Function Name, # of Loops (Bin), # of Loops (Src), # of Conditionals (Bin), # of Conditionals (Src), # of Exits (Bin), # of Exits (Src)\n");
+		b.flush();
+		
+		for(Node function : functions.eval().nodes()) {
+			String name = function.getAttr(XCSG.name).toString();
+			HashMap<String, Long> c = new HashMap<String, Long>();
+			b.write(name + ",");
+			
+			c = compare_loops(name);
+			b.write(c.get("bin") + "," + c.get("src") + ",");
+			
+			c = compare_conditionals(name);
+			b.write(c.get("bin") + "," + c.get("src") + ",");
+			
+			c = compare_exits(name);
+			b.write(c.get("bin") + "," + c.get("src") + "\n");
+			b.flush();
+		}
+		b.close();
 	}
 	
 }
