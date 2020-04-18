@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Collection;
 
 import static com.kcsl.x86.Importer.*;
+
+import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.db.set.AtlasSet;
@@ -110,7 +112,8 @@ public class Verifier {
 		long count = 0;
 		
 		for (Node n : cfg.eval().nodes()) {
-			if(n.out().size() == 2 && !n.taggedWith(XCSG.ControlFlowLoopCondition)) {
+			AtlasSet<Edge> edges = n.out();
+			if(edges.size() == 2 && !n.taggedWith(XCSG.ControlFlowLoopCondition) && !edges.one().taggedWith(XCSG.ControlFlowBackEdge)) {
 				n.tag(XCSG.ControlFlowIfCondition);
 				count +=1;
 			}
