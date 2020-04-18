@@ -50,7 +50,7 @@ public class Importer {
 	
 	protected static final String binaryPath = "/Users/RyanGoluch/Desktop/binary_function_list.csv";
 	
-	protected static final String headers = "Function Name,numPaths (Bin),additions (Bin),numPaths (Src),additions (Src)\n";
+	protected static final String headers = "Function Name,numPaths (Bin),numPaths (src),additions (bin),additions (Src)\n";
 	
 	private static ArrayList<Node> function_nodes = new ArrayList<Node>();
 
@@ -368,22 +368,29 @@ public class Importer {
 				}
 				
 				if (c.nodes().tagged("my_node").size() == 1) {
+					String srcName = name.split("sym_")[1];
+					Q srcFunction = my_function(srcName);
+					Q srcCFG = my_cfg(srcFunction);
+					CountingResult src_linear = linearCounter.countPaths(srcCFG);
+					
 					// function name
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
 					
 					// number of paths according to linear algorithm
-					resultsWriter.write("1" + ",");
+					resultsWriter.write("1,");
+					resultsWriter.write(src_linear.getPaths() + ",");
 					
 //					if (c.nodes().tagged("self_loop").size() > 0) {
 //						resultsWriter.write("self loop" + "\n");
 //					}else {
 						// number of additions by linear algorithm
-						resultsWriter.write("0" + "\n");
+						resultsWriter.write("0,");
 //					}
-					
+					resultsWriter.write(src_linear.getAdditions() + "\n");
+						
 					
 				}else {
-					String srcName = name.replace("sym_", "");
+					String srcName = name.split("sym_")[1];
 					Q srcFunction = my_function(srcName);
 					Q srcCFG = my_cfg(srcFunction);
 					
@@ -393,15 +400,15 @@ public class Importer {
 					
 					loop_tagging(c, name);
 					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
+					CountingResult src_linear = linearCounter.countPaths(srcCFG);
 					
 					// function name
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
 					resultsWriter.write(linear.getPaths() + ",");
-					resultsWriter.write(linear.getAdditions() + ",");
+					resultsWriter.write(src_linear.getPaths() + ",");
 					
-					linear = linearCounter.countPaths(srcCFG);
-					resultsWriter.write(linear.getPaths() + ",");
-					resultsWriter.write(linear.getAdditions() + "\n");
+					resultsWriter.write(linear.getAdditions() + ",");
+					resultsWriter.write(src_linear.getAdditions() + "\n");
 				}
 				
 				
