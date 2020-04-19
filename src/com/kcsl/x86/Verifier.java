@@ -51,14 +51,7 @@ public class Verifier {
 		for(Node n : leaves) {
 			if(n.out().size() == 0 || n.taggedWith(XCSG.controlFlowExitPoint)) {
 				incoming += 1;
-//				Iterable<String> t = n.explicitTagsI();
-//				for (String s : t) {
-//					n.untag(s);
-//				}
 				n.tag(XCSG.controlFlowExitPoint);
-//				n.tag("my_node");
-//				n.tag(XCSG.ControlFlow_Node);
-				
 			}
 		}
 		return incoming;
@@ -108,7 +101,6 @@ public class Verifier {
 	public static long count_conditionals(String name) {
 		Q function = my_function(name);
 		Q cfg = my_cfg(function);
-		
 		long count = 0;
 		
 		for (Node n : cfg.eval().nodes()) {

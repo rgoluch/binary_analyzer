@@ -30,8 +30,8 @@ public class Comparator {
 	 */
 	
 	public static HashMap<String, Long> compare_loops(String name) {
-		String src_name = name.replace("sym_", "");
 		
+		String src_name = name.replace("sym_", "");
 		long bin_loops = count_loops(name);
 		long src_loops = count_loops(src_name);
 		
@@ -49,8 +49,8 @@ public class Comparator {
 	 */
 	
 	public static HashMap<String, Long> compare_conditionals(String name) {
-		String src_name = name.replace("sym_", "");
 		
+		String src_name = name.replace("sym_", "");
 		long bin_loops = count_conditionals(name);
 		long src_loops = count_conditionals(src_name);
 		
@@ -69,8 +69,8 @@ public class Comparator {
 	 */
 	
 	public static HashMap<String, Long> compare_exits(String name) {
-		String src_name = name.replace("sym_", "");
 		
+		String src_name = name.replace("sym_", "");
 		long bin_loops = count_exits(name);
 		long src_loops = count_exits(src_name);
 		

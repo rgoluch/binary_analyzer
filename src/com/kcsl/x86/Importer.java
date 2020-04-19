@@ -1,5 +1,8 @@
 package com.kcsl.x86;
 
+import static com.kcsl.x86.Importer.my_cfg;
+import static com.kcsl.x86.Importer.my_function;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,15 +43,13 @@ import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
 
 public class Importer {
 
-	protected static final String resultsPath = "/Users/RyanGoluch/Desktop/My_Results.csv";
+	protected static final String all_counts_path = "/Users/RyanGoluch/Desktop/all_graph_path_counts.csv";
+		
+	protected static final String selfLoopPath = "/Users/RyanGoluch/Desktop/self_loop_functions.csv";
 	
-	protected static final String graphPath = "/Users/RyanGoluch/Desktop/";
+	protected static final String srcFunctionPath = "/Users/RyanGoluch/Desktop/source_function_list.csv";
 	
-	protected static final String selfLoopPath = "/Users/RyanGoluch/Desktop/self_loop_list.csv";
-	
-	protected static final String functionPath = "/Users/RyanGoluch/Desktop/source_function_list.csv";
-	
-	protected static final String binaryPath = "/Users/RyanGoluch/Desktop/binary_function_list.csv";
+	protected static final String binaryFunctionPath = "/Users/RyanGoluch/Desktop/binary_function_list.csv";
 	
 	protected static final String headers = "Function Name,numPaths (Bin),numPaths (src),additions (bin),additions (Src)\n";
 	
@@ -56,11 +57,17 @@ public class Importer {
 
 	
 	/**
-	 * TODO
+	 * Method used to generate a CSV file of functions that may be in the 
+	 * source code but not in the binary. Method was initially used to verify
+	 * the function list that Radare was able to extract
+	 * 
 	 * @throws IOException
+	 * 		Throws an IO Exception if the source function list was not found
+	 * 
 	 */
 	
 	public static void check_difference() throws IOException {
+		
 		Q functions = Common.universe().nodesTaggedWithAll(XCSG.Language.C, XCSG.Function);
 		String filePath = "/Users/RyanGoluch/Desktop/source_functions.csv";
 		File source = new File(filePath);
@@ -73,6 +80,7 @@ public class Importer {
 			//get the functions that are in source and not in binary
 			Q binary_function = Query.universe().selectNode(XCSG.name, binary);
 			if(binary_function.eval().nodes().size() == 0) {
+				
 				System.out.println(name);
 				resultsWriter.write(name+"\n");
 				resultsWriter.flush();
@@ -83,17 +91,19 @@ public class Importer {
 	
 	
 	/**
-	 * TODO
+	 * Generates a list of the functions found in the source code after
+	 * loading the source code into Atlas.
+	 * 
 	 * @throws IOException
+	 * 		Throws IO Exception if it's unable to open the source file path
+	 * 
 	 */
 	
 	public static void source_functions() throws IOException {
-		Q functions = Common.universe().nodesTaggedWithAll(XCSG.Language.C, XCSG.Function);
-		File source = new File(functionPath);
-		BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(source));
 		
-//		resultsWriter.write("# of Functions: " + functions.eval().nodes().size() + "\n");
-//		resultsWriter.flush();
+		Q functions = Common.universe().nodesTaggedWithAll(XCSG.Language.C, XCSG.Function);
+		File source = new File(srcFunctionPath);
+		BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(source));
 		
 		for (Node f : functions.eval().nodes()) {
 			String name = f.getAttr(XCSG.name).toString();
@@ -105,17 +115,19 @@ public class Importer {
 	
 	
 	/**
-	 * TODO
+	 * Method generates a list of functions found in the disassembled binary
+	 * from Radare
+	 * 
 	 * @throws IOException
+	 * 		Throws IO Exception if unable to create the binary file
+	 * 
 	 */
 	
 	public static void binary_functions() throws IOException {
-		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
-		File binary = new File(binaryPath);
-		BufferedWriter binaryWriter = new BufferedWriter(new FileWriter(binary));
 		
-//		binaryWriter.write("# of Functions: " + functions.eval().nodes().size() + "\n");
-//		binaryWriter.flush();
+		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
+		File binary = new File(binaryFunctionPath);
+		BufferedWriter binaryWriter = new BufferedWriter(new FileWriter(binary));
 		
 		for (Node f : functions.eval().nodes()) {
 			String name = f.getAttr(XCSG.name).toString();
@@ -128,11 +140,16 @@ public class Importer {
 	
 	
 	/**
-	 * TODO
+	 * Main function to run to import the .dot graphs generated from Radare 
+	 * into Atlas. Generates the nodes with the appropriate labels and tags. 
+	 * 
 	 * @throws FileNotFoundException
+	 * 		Throws File Not Found Exception if not able to open one of the .dot files
+	 * 
 	 */
 	
 	public static void main() throws FileNotFoundException {
+		
 		// HashMap of Node for further access
 		Map<String,Node> nodeMap = new HashMap<String,Node>();
 		
@@ -145,13 +162,14 @@ public class Importer {
 				return name.endsWith(".dot");
 			}
 		});
-		int count = 0; 
+		
+		int count = 0;
+		boolean cmp = true;
 		for(File dot : dirList) {
 			ArrayList<Node> indexedNodes = new ArrayList<Node>();
+			
 			//check to make sure that this condition is needed
 			if (dot.exists()) {
-//				count++;
-//				System.out.println("Count: " +count+" Function: "+dot.getName());
 				Node functionName = Graph.U.createNode();
 				functionName.putAttr(XCSG.name, "sym_"+dot.getName().replace(".dot", ""));
 				functionName.tag(XCSG.Function);
@@ -161,8 +179,11 @@ public class Importer {
 				Scanner s = new Scanner(dot);
 				
 				while(s.hasNextLine()) {
+					
 					String data = s.nextLine();
+					
 					if(data.contains("[URL")) {
+						
 						//Create control flow nodes with labels
 						Node n = Graph.U.createNode(); 
 						n.tag(XCSG.ControlFlow_Node);
@@ -181,7 +202,9 @@ public class Importer {
 						nodeMap.put(addr, n);
 					}
 					else if(data.contains("->")) {
+						
 						data = data.replaceAll("\\s+", "");
+						
 						//Extract the addresses of the from and to nodes in DOT file
 						String from = data.split("->")[0];
 						from = from.replaceAll("\"", "");
@@ -191,10 +214,17 @@ public class Importer {
 						
 						//Create the Atlas nodes and add necessary tags
 						Node fromNode = nodeMap.get(from);
+						
+						if (functionName.getAttr(XCSG.name).equals("sym_strcmp") && cmp) {
+							fromNode.tag(XCSG.controlFlowRoot);
+							cmp = false;
+						}
+						
 						indexedNodes.add(fromNode);
 						
 						//Handling exit nodes for test files in test directory
 						if(nodeMap.get(to) == null) {
+							
 							Node exitNode = Graph.U.createNode();
 							exitNode.putAttr(XCSG.name, to);
 							Edge x = Graph.U.createEdge(fromNode, exitNode);
@@ -202,6 +232,7 @@ public class Importer {
 							x.tag("my_edge");
 							
 						}else {
+							
 							Node toNode = nodeMap.get(to);
 							toNode.tag(XCSG.ControlFlow_Node);
 							toNode.tag("my_node");
@@ -209,13 +240,9 @@ public class Importer {
 							Edge e = Graph.U.createEdge(fromNode, toNode);
 							e.tag(XCSG.ControlFlow_Edge);
 							e.tag("my_edge");
-							
-							//Handles the identification of loop edges 
-//							if(indexedNodes.contains(toNode)) {
-//								e.tag(XCSG.ControlFlowBackEdge);
-//							}
 					
 							if(from.contains(to)) {
+								
 								fromNode.tag("self_loop");
 								fromNode.tag(XCSG.Loop);
 								fromNode.tag(XCSG.ControlFlowLoopCondition);
@@ -252,12 +279,19 @@ public class Importer {
 //	}
 	
 	/**
-	 * TODO
+	 * Method to find the function node created in Atlas based on
+	 * the given function name
+	 * 
 	 * @param name
+	 * 		Name of the function to search for in Atlas
+	 * 
 	 * @return
+	 * 		The function node for the given function
+	 * 
 	 */
 	
 	public static Q my_function(String name) {
+		
 		Q f = Query.universe().nodes(XCSG.Function);
 		Q found = f.selectNode(XCSG.name, name);
 		return found;
@@ -267,11 +301,14 @@ public class Importer {
 	/**
 	 * Creates the control flow graph of the given function from
 	 * the disassembled binary
+	 * 
 	 * @param f
 	 * 		Variable that holds what is returned from my_function. 
 	 * 		Should be a function within the disassembled binary. 
+	 * 
 	 * @return
 	 * 		A CFG for the given binary function 
+	 * 
 	 */
 	
 	public static Q my_cfg(Q f) {
@@ -280,9 +317,14 @@ public class Importer {
 	
 	
 	/**
-	 * TODO
+	 * Method to go through the given Atlas graph and function name
+	 * and identify and properly tag the loop nodes as well as the 
+	 * loop back edge
+	 * 
 	 * @param g
+	 * 		The Atlas graph object to go through and identify
 	 * @param name
+	 * 		Name of the function graph being passed in
 	 */
 	
 	public static void loop_tagging(Graph g, String name) {
@@ -290,13 +332,17 @@ public class Importer {
 		Q r = Common.toQ(g).roots();
 		if(CommonQueries.isEmpty(r)) {
 			r = Common.toQ(g).nodes("self_loop");
-//			DisplayUtil.displayGraph(c);
+			//DisplayUtil.displayGraph(c);
 		}
 		
-		if(CommonQueries.isEmpty(r)) {
-//			SaveUtil.saveGraph(new File(graphPath+"cfg_"+name+".png"), g);
+		if(CommonQueries.isEmpty(r) && name.equals("sym_strcmp")) {
+//			Q function = my_function("sym_strcmp");
+//			Graph cfg = my_cfg(function).eval();
+//			System.out.println("STRCMP NODES: "+Common.toQ(cfg).eval().nodes().one());
+			SaveUtil.saveGraph(new File("/Users/RyanGoluch/Desktop/cfg_"+name+".png"), g);
 		}
 		else {
+
 			LoopIdentification l = new LoopIdentification(g, r.eval().nodes().one());
 			Map<Node,Node> loopNodes = l.getInnermostLoopHeaders();
 			for (Node n : loopNodes.values()) {
@@ -311,11 +357,9 @@ public class Importer {
 				AtlasSet<Edge> outEdges = n.out();
 				AtlasSet<Edge> inEdges = n.in();
 				for (Edge e : outEdges) {
-//					for (Edge i : inEdges) {
-						if (e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop) && !n.taggedWith(XCSG.Loop)) {
-							e.to().tag(XCSG.ControlFlowLoopCondition);
-						}
-//					}
+					if (e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop) && !n.taggedWith(XCSG.Loop)) {
+						e.to().tag(XCSG.ControlFlowLoopCondition);
+					}
 				}
 			}
 			
@@ -335,7 +379,7 @@ public class Importer {
 	
 	public static void export_counts() throws IOException {
 
-			File results = new File(resultsPath);
+			File results = new File(all_counts_path);
 			File selfLoop = new File(selfLoopPath);
 			BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(results));
 			BufferedWriter functionWriter = new BufferedWriter(new FileWriter(selfLoop));
@@ -344,25 +388,17 @@ public class Importer {
 			
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.
-//			Q app = SetDefinitions.app();
 		 	Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
-		 			//app.nodes(XCSG.Function).nodesTaggedWithAll("my_function");
 		 	
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
 				
 				Q temp = Common.toQ(function);
 				Graph c = my_cfg(temp).eval();
-//				DisplayUtil.displayGraph(c);
-				System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
+				//DisplayUtil.displayGraph(c);
+				//System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
 				
 				if(c.nodes().tagged("self_loop").size() > 0) {
-					// function name
-//					resultsWriter.write(function.getAttr(XCSG.name) + ",");
-//					resultsWriter.write(1 + ",");
-//					resultsWriter.write("self loop" + "\n");
-//					resultsWriter.flush();
-//					continue;
 					functionWriter.write(name.toString() + "\n");
 					continue;
 				}
@@ -379,13 +415,7 @@ public class Importer {
 					// number of paths according to linear algorithm
 					resultsWriter.write("1,");
 					resultsWriter.write(src_linear.getPaths() + ",");
-					
-//					if (c.nodes().tagged("self_loop").size() > 0) {
-//						resultsWriter.write("self loop" + "\n");
-//					}else {
-						// number of additions by linear algorithm
-						resultsWriter.write("0,");
-//					}
+					resultsWriter.write("0,");
 					resultsWriter.write(src_linear.getAdditions() + "\n");
 						
 					
@@ -406,7 +436,6 @@ public class Importer {
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
 					resultsWriter.write(linear.getPaths() + ",");
 					resultsWriter.write(src_linear.getPaths() + ",");
-					
 					resultsWriter.write(linear.getAdditions() + ",");
 					resultsWriter.write(src_linear.getAdditions() + "\n");
 				}
