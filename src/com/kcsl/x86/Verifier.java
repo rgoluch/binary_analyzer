@@ -40,6 +40,7 @@ public class Verifier {
 	 * 		Name of the function that you want to count the exits of
 	 * @return
 	 * 		The number of exit points in the function
+	 * 
 	 */
 	
 	public static long count_exits(String name) {
@@ -67,6 +68,7 @@ public class Verifier {
 	 * 		Name of the function that you want to count loops in
 	 * @return
 	 * 		The number of loops found in the given function 
+	 * 
 	 */
 	
 	public static long count_loops(String name) {
@@ -96,6 +98,7 @@ public class Verifier {
 	 * 		Name of the function that you want to count the conditionals of
 	 * @return
 	 * 		The number of conditional statements in the given binary CFG
+	 * 
 	 */
 	
 	public static long count_conditionals(String name) {
@@ -123,6 +126,7 @@ public class Verifier {
 	 * 		Name of the function to find the counts of
 	 * @throws IOException 
 	 * 		IOException thrown if the output file path is invalid
+	 * 
 	 */
 	
 	public static void verify_all_counts(String name) throws IOException{
@@ -150,6 +154,7 @@ public class Verifier {
 	 * 
 	 * @throws IOException
 	 * 		IOException thrown if the output file path is invalid
+	 * 
 	 */
 	
 	public static void verify_all_graphs() throws IOException {

@@ -336,9 +336,6 @@ public class Importer {
 		}
 		
 		if(CommonQueries.isEmpty(r) && name.equals("sym_strcmp")) {
-//			Q function = my_function("sym_strcmp");
-//			Graph cfg = my_cfg(function).eval();
-//			System.out.println("STRCMP NODES: "+Common.toQ(cfg).eval().nodes().one());
 			SaveUtil.saveGraph(new File("/Users/RyanGoluch/Desktop/cfg_"+name+".png"), g);
 		}
 		else {
@@ -355,7 +352,6 @@ public class Importer {
 		
 			for (Node n : g.nodes()) {
 				AtlasSet<Edge> outEdges = n.out();
-				AtlasSet<Edge> inEdges = n.in();
 				for (Edge e : outEdges) {
 					if (e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop) && !n.taggedWith(XCSG.Loop)) {
 						e.to().tag(XCSG.ControlFlowLoopCondition);
@@ -373,8 +369,12 @@ public class Importer {
 	
 	
 	/**
-	 * TODO
+	 * Method to count all the paths in each of the functions found in the binary
+	 * and the functions that are found in both the binary and the source code
+	 * 
 	 * @throws IOException
+	 * 		Throws IO Exception if unable to open or create the output files
+	 * 
 	 */
 	
 	public static void export_counts() throws IOException {
@@ -409,7 +409,6 @@ public class Importer {
 					Q srcCFG = my_cfg(srcFunction);
 					CountingResult src_linear = linearCounter.countPaths(srcCFG);
 					
-					// function name
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
 					
 					// number of paths according to linear algorithm
@@ -432,7 +431,6 @@ public class Importer {
 					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
 					CountingResult src_linear = linearCounter.countPaths(srcCFG);
 					
-					// function name
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
 					resultsWriter.write(linear.getPaths() + ",");
 					resultsWriter.write(src_linear.getPaths() + ",");

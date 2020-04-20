@@ -24,9 +24,15 @@ import com.ensoftcorp.atlas.core.xcsg.XCSG;
 public class Comparator {
 	
 	/**
+	 * Method to count the number of loops identified in a given function 
+	 * in both the disassembled binary and the source code.
 	 * 
 	 * @param name
+	 * 		Name of the function to count loops in 
 	 * @return 
+	 * 		Returns a HashMap of String, Long, with the binary and source
+	 * 		loop counts
+	 * 
 	 */
 	
 	public static HashMap<String, Long> compare_loops(String name) {
@@ -43,9 +49,15 @@ public class Comparator {
 	}
 	
 	/**
+	 * Method to count the number of conditionals in a given function 
+	 * in both the disassembled binary and the source code
 	 * 
 	 * @param name
+	 * 		Name of the function to count conditionals in
 	 * @return
+	 * 		Returns a HashMap of String,Long with the binary and source
+	 * 		conditional counts
+	 * 
 	 */
 	
 	public static HashMap<String, Long> compare_conditionals(String name) {
@@ -63,9 +75,15 @@ public class Comparator {
 	
 	
 	/**
+	 * Method to count the number of exit nodes in a given function
+	 * in both the disassembled binary and the source code
 	 * 
 	 * @param name
+	 * 		Name of the function to count conditionals in
 	 * @return
+	 * 		Returns a HashMap of String,Long with the binary and source
+	 * 		exit node counts
+	 * 
 	 */
 	
 	public static HashMap<String, Long> compare_exits(String name) {
@@ -83,9 +101,15 @@ public class Comparator {
 	
 	
 	/**
+	 * Method to export the comparisons of the number of loops, conditionals, and 
+	 * exit nodes in the disassembled binary and source code for a given function. 
+	 * Writes the output to the <function_name>_comparisons.csv
 	 * 
 	 * @param name
+	 * 		Name of the function to compare counts in 
 	 * @throws IOException 
+	 * 		Throws IO Exception if unable to open and write to the output file		
+	 * 
 	 */
 	
 	public static void export_src_comparisons(String name) throws IOException {
@@ -114,7 +138,13 @@ public class Comparator {
 	
 	
 	/**
+	 * Method to export all of the comparisons for the number of loops, conditionals, 
+	 * and exit nodes for all functions found in the disassembled binary and those functions
+	 * that are found in the source code. 
+	 * Writes the output to all_comparisons.csv
+	 * 
 	 * @throws IOException 
+	 * 		Throws IO Exception if unable to open and write to the output file
 	 * 
 	 */
 	
