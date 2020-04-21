@@ -66,6 +66,8 @@ public class Comparator {
 		long bin_loops = count_conditionals(name);
 		long src_loops = count_conditionals(src_name);
 		
+		System.out.println(src_name+": "+src_loops);
+		
 		HashMap<String, Long> counts = new HashMap<String, Long>();
 		counts.put("bin", bin_loops);
 		counts.put("src", src_loops);
@@ -158,21 +160,72 @@ public class Comparator {
 		b.write("Function Name, # of Loops (Bin), # of Loops (Src), # of Conditionals (Bin), # of Conditionals (Src), # of Exits (Bin), # of Exits (Src)\n");
 		b.flush();
 		
+		long bin_loops_gt_src = 0;
+		long bin_loops_lt_src = 0;
+		long bin_loops_eq_src = 0;
+		
+		long bin_cond_gt_src = 0;
+		long bin_cond_lt_src = 0;
+		long bin_cond_eq_src = 0;
+		
+		long bin_exit_gt_src = 0;
+		long bin_exit_lt_src = 0;
+		long bin_exit_eq_src = 0;
+	
 		for(Node function : functions.eval().nodes()) {
 			String name = function.getAttr(XCSG.name).toString();
+//			System.out.println(name);
 			HashMap<String, Long> c = new HashMap<String, Long>();
 			b.write(name + ",");
 			
 			c = compare_loops(name);
 			b.write(c.get("bin") + "," + c.get("src") + ",");
 			
+			if (c.get("bin") > c.get("src")) {
+				bin_loops_gt_src +=1;
+			}
+			if (c.get("bin") < c.get("src")) {
+				bin_loops_lt_src +=1;
+			}
+			if (c.get("bin") == c.get("src")){
+				bin_loops_eq_src +=1;
+			}
+			
+			
 			c = compare_conditionals(name);
 			b.write(c.get("bin") + "," + c.get("src") + ",");
 			
+			if (c.get("bin") > c.get("src")) {
+				bin_cond_gt_src +=1;
+			}
+			if (c.get("bin") < c.get("src")) {
+				bin_cond_lt_src +=1;
+			}
+			if (c.get("bin") == c.get("src")){
+				bin_cond_eq_src +=1;
+			}
+			
 			c = compare_exits(name);
 			b.write(c.get("bin") + "," + c.get("src") + "\n");
+			
+			if (c.get("bin") > c.get("src")) {
+				bin_exit_gt_src +=1;
+			}
+			if (c.get("bin") < c.get("src")) {
+				bin_exit_lt_src +=1;
+			}
+			if (c.get("bin") == c.get("src")){
+				bin_exit_eq_src +=1;
+			}
+			
 			b.flush();
 		}
+		
+		b.write("\nloops:\n bin > src , bin < src, bin == src\n"+bin_loops_gt_src+", "+bin_loops_lt_src+", "+bin_loops_eq_src +"\n");
+		b.write("conditionals:\n bin > src , bin < src, bin == src\n"+bin_cond_gt_src+", "+bin_cond_lt_src+", "+bin_cond_eq_src +"\n");
+		b.write("exits:\n bin > src , bin < src, bin == src\n"+bin_exit_gt_src+", "+bin_exit_lt_src+", "+bin_exit_eq_src +"\n");
+		b.flush();
+		
 		b.close();
 	}
 	

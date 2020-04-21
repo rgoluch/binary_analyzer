@@ -20,6 +20,7 @@ import java.util.Scanner;
 
 import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
+import com.ensoftcorp.atlas.core.db.graph.GraphElement;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 //import com.ensoftcorp.atlas.core.db.list.AtlasList;
 //import com.ensoftcorp.atlas.core.db.set.AtlasHashSet;
@@ -243,6 +244,17 @@ public class Importer {
 					
 							if(from.contains(to)) {
 								
+								Node root = Graph.U.createNode();
+								root.putAttr(XCSG.name, "root");
+								root.tag(XCSG.ControlFlow_Node);
+								root.putAttr(XCSG.controlFlowRoot, "root");
+								
+								Edge t = Graph.U.createEdge(functionName, root);
+								t.tag(XCSG.Contains);
+								
+								Edge root_to_loop = Graph.U.createEdge(root, fromNode);
+								root_to_loop.tag(XCSG.ControlFlow_Edge);
+								
 								fromNode.tag("self_loop");
 								fromNode.tag(XCSG.Loop);
 								fromNode.tag(XCSG.ControlFlowLoopCondition);
@@ -335,7 +347,16 @@ public class Importer {
 			//DisplayUtil.displayGraph(c);
 		}
 		
-		if(CommonQueries.isEmpty(r) && name.equals("sym_strcmp")) {
+		if(CommonQueries.isEmpty(r)) {
+//			Q srcFunction = my_function(name);
+//			Q srcCFG = my_cfg(srcFunction);
+//			AtlasSet<Node> n = srcCFG.eval().nodes();
+//			System.out.println(n.size());
+//			GraphElement x = srcCFG.eval().roots().one();
+//			System.out.println(x.getAttr(XCSG.name));
+//			
+//			
+//			System.out.println(name+" roots: "+Common.toQ(srcCFG);
 			SaveUtil.saveGraph(new File("/Users/RyanGoluch/Desktop/cfg_"+name+".png"), g);
 		}
 		else {
@@ -353,7 +374,7 @@ public class Importer {
 			for (Node n : g.nodes()) {
 				AtlasSet<Edge> outEdges = n.out();
 				for (Edge e : outEdges) {
-					if (e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop) && !n.taggedWith(XCSG.Loop)) {
+					if (((e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop)) || e.from().taggedWith(XCSG.DoWhileLoop)) && !n.taggedWith(XCSG.Loop) && !e.to().taggedWith(XCSG.ControlFlowIfCondition)) {
 						e.to().tag(XCSG.ControlFlowLoopCondition);
 					}
 				}
@@ -389,12 +410,17 @@ public class Importer {
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.
 		 	Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
-		 	
+		 	long bin_greater_than_src = 0; 
+			long bin_less_than_src = 0;
+			long bin_equal_src = 0;
+			long other = 0;
+			
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
 				
 				Q temp = Common.toQ(function);
 				Graph c = my_cfg(temp).eval();
+				
 				//DisplayUtil.displayGraph(c);
 				//System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
 				
@@ -416,6 +442,7 @@ public class Importer {
 					resultsWriter.write(src_linear.getPaths() + ",");
 					resultsWriter.write("0,");
 					resultsWriter.write(src_linear.getAdditions() + "\n");
+					other +=1;
 						
 					
 				}else {
@@ -431,9 +458,24 @@ public class Importer {
 					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
 					CountingResult src_linear = linearCounter.countPaths(srcCFG);
 					
+					long bin = linear.getPaths();
+					long src = src_linear.getPaths();
+					
+					if (bin > src) {
+						bin_greater_than_src +=1;
+					}
+					
+					if (bin < src) {
+						bin_less_than_src +=1;
+					}
+					
+					if (bin == src){
+						bin_equal_src +=1;
+					}
+					
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
-					resultsWriter.write(linear.getPaths() + ",");
-					resultsWriter.write(src_linear.getPaths() + ",");
+					resultsWriter.write(bin + ",");
+					resultsWriter.write(src + ",");
 					resultsWriter.write(linear.getAdditions() + ",");
 					resultsWriter.write(src_linear.getAdditions() + "\n");
 				}
@@ -443,6 +485,9 @@ public class Importer {
 				resultsWriter.flush();
 				functionWriter.flush();
 			}
+			
+			resultsWriter.write("\nbin # > src , bin # < src, bin == src, bin.size == 1 node\n"+bin_greater_than_src+", "+bin_less_than_src+", "+bin_equal_src +","+other);
+			resultsWriter.flush();
 			
 			resultsWriter.close();
 			functionWriter.close();

@@ -78,7 +78,7 @@ public class Verifier {
 		
 		long loopCount = 0;
 		for (Node n : cfg.nodes()) {
-			if(n.taggedWith(XCSG.ControlFlowLoopCondition)) {
+			if(n.taggedWith(XCSG.ControlFlowLoopCondition) || n.taggedWith(XCSG.DoWhileLoop) && !n.taggedWith(XCSG.ControlFlowIfCondition)) {
 				loopCount++;
 			}
 		}
@@ -108,7 +108,8 @@ public class Verifier {
 		
 		for (Node n : cfg.eval().nodes()) {
 			AtlasSet<Edge> edges = n.out();
-			if(edges.size() == 2 && !n.taggedWith(XCSG.ControlFlowLoopCondition) && !edges.one().taggedWith(XCSG.ControlFlowBackEdge)) {
+			if((edges.size() == 2 || n.taggedWith(XCSG.ControlFlowIfCondition)) && !n.taggedWith(XCSG.ControlFlowLoopCondition)) {
+//				 && !edges.one().taggedWith(XCSG.ControlFlowBackEdge)
 				n.tag(XCSG.ControlFlowIfCondition);
 				count +=1;
 			}
@@ -165,9 +166,8 @@ public class Verifier {
 		
 		countsWriter.write("Function Name, # Exit Nodes, # Conditionals, # Loops\n");
 		countsWriter.flush();
-		
 		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
-		
+	
 		for(Node function : functions.eval().nodes()) {
 			String name = function.getAttr(XCSG.name).toString();
 			
