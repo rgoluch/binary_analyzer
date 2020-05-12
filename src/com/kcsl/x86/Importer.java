@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 //import org.radare.r2pipe.R2Pipe;
-//import com.kcsl.paths;
+import com.kcsl.paths.counting.*;
 //import java.util.Set;
 
 import com.ensoftcorp.atlas.core.db.graph.Edge;
@@ -52,7 +52,7 @@ public class Importer {
 	
 	protected static final String binaryFunctionPath = "/Users/RyanGoluch/Desktop/binary_function_list.csv";
 	
-	protected static final String headers = "Function Name,numPaths (Bin),numPaths (src),additions (bin),additions (Src)\n";
+	protected static final String headers = "Function Name,numPaths (Bin),numPaths (src), additions (bin),additions (Src)\n";
 	
 	private static ArrayList<Node> function_nodes = new ArrayList<Node>();
 
@@ -405,7 +405,15 @@ public class Importer {
 			BufferedWriter resultsWriter = new BufferedWriter(new FileWriter(results));
 			BufferedWriter functionWriter = new BufferedWriter(new FileWriter(selfLoop));
 			resultsWriter.write(headers);
+			
+			
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
+//			MultiplicitiesPathCounter srcCounter = new MultiplicitiesPathCounter();
+
+//			BottomUpBFMultiplicitiesPathCounter srcCounter = new BottomUpBFMultiplicitiesPathCounter(true);
+//			BottomUpDFMultiplicitiesPathCounter srcCounter = new BottomUpDFMultiplicitiesPathCounter(true);
+//			TopDownBFMultiplicitiesPathCounter srcCounter = new TopDownBFMultiplicitiesPathCounter(true);
+			TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
 			
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.
@@ -441,6 +449,8 @@ public class Importer {
 					resultsWriter.write("1,");
 					resultsWriter.write(src_linear.getPaths() + ",");
 					resultsWriter.write("0,");
+//					resultsWriter.write(src_linear.getPaths() + ",");
+//					resultsWriter.write("0,");
 					resultsWriter.write(src_linear.getAdditions() + "\n");
 					other +=1;
 						
@@ -456,10 +466,10 @@ public class Importer {
 					
 					loop_tagging(c, name);
 					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
-					CountingResult src_linear = linearCounter.countPaths(srcCFG);
+					com.kcsl.paths.algorithms.PathCounter.CountingResult src_linear = srcCounter.countPaths(srcCFG);
 					
 					long bin = linear.getPaths();
-					long src = src_linear.getPaths();
+					long src = src_linear.getPaths().longValue();
 					
 					if (bin > src) {
 						bin_greater_than_src +=1;
@@ -476,6 +486,7 @@ public class Importer {
 					resultsWriter.write(function.getAttr(XCSG.name) + ",");
 					resultsWriter.write(bin + ",");
 					resultsWriter.write(src + ",");
+//					resultsWriter.write(sc_src.getPaths() + ",");
 					resultsWriter.write(linear.getAdditions() + ",");
 					resultsWriter.write(src_linear.getAdditions() + "\n");
 				}
