@@ -1,0 +1,19 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010887a" [URL="sym.ttyputc/0x0010887a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.ttyputc @ 0x1088bf\l  ; CALL XREF from sym.ttywrite @ 0x108a75\l178: sym.ttyputc (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_1ch @ ebp-0x1c\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; var int32_t var_28h @ esp+0x4\l0x0010887a      push ebp\l0x0010887b      mov ebp, esp\l0x0010887d      sub esp, 0x28\l0x00108880      mov eax, dword [arg_ch]\l0x00108883      mov byte [var_1ch], al\l0x00108886      mov eax, dword [arg_8h]\l0x00108889      mov eax, dword [eax + 4]\l0x0010888c      shl eax, 4\l0x0010888f      mov edx, eax\l0x00108891      shl edx, 4\l0x00108894      add eax, edx\l0x00108896      add eax, obj.ttytab                                    ; 0x123a80\l0x0010889b      mov dword [var_ch], eax\l0x0010889e      cmp byte [var_1ch], 0xa\l0x001088a2      jne 0x1088c4\l"]
+	"0x001088a4" [URL="sym.ttyputc/0x001088a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001088a4      mov eax, dword [var_ch]\l0x001088a7      mov al, byte [eax + 0x10c]\l0x001088ad      test al, al\l0x001088af      je 0x1088c4\l"]
+	"0x001088b1" [URL="sym.ttyputc/0x001088b1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001088b1      mov dword [var_28h], 0xd                               ; [0xd:4]=-1 ; 13\l0x001088b9      mov eax, dword [arg_8h]\l0x001088bc      mov dword [esp], eax\l0x001088bf      call sym.ttyputc\l"]
+	"0x001088c4" [URL="sym.ttyputc/0x001088c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttyputc @ 0x1088a2, 0x1088af\l0x001088c4      mov eax, dword [var_ch]\l0x001088c7      mov eax, dword [eax + 0xd4]\l0x001088cd      mov dword [esp], eax\l0x001088d0      call sym.wait                                          ; pid_t wait(int *wstatus)\l0x001088d5      mov eax, dword [var_ch]\l0x001088d8      mov eax, dword [eax + 0x90]\l0x001088de      lea ecx, [eax + 1]\l0x001088e1      mov edx, dword [var_ch]\l0x001088e4      mov dword [edx + 0x90], ecx\l0x001088ea      mov dl, byte [var_1ch]\l0x001088ed      mov byte [eax], dl\l0x001088ef      mov eax, dword [var_ch]\l0x001088f2      mov eax, dword [eax + 0x90]\l0x001088f8      mov edx, dword [var_ch]\l0x001088fb      add edx, 0xd4                                          ; 212\l0x00108901      cmp eax, edx\l0x00108903      jb 0x108917\l"]
+	"0x00108905" [URL="sym.ttyputc/0x00108905", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108905      mov eax, dword [var_ch]\l0x00108908      lea edx, [eax + 0x94]\l0x0010890e      mov eax, dword [var_ch]\l0x00108911      mov dword [eax + 0x90], edx\l"]
+	"0x00108917" [URL="sym.ttyputc/0x00108917", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyputc @ 0x108903\l0x00108917      mov eax, dword [arg_8h]\l0x0010891a      mov eax, dword [eax + 0x30]\l0x0010891d      mov dword [esp], eax\l0x00108920      call sym.ttykickout\l0x00108925      mov eax, 1\l0x0010892a      leave\l0x0010892b      ret\l"]
+        "0x0010887a" -> "0x001088c4" [color="#13a10e"];
+        "0x0010887a" -> "0x001088a4" [color="#c50f1f"];
+        "0x001088a4" -> "0x001088c4" [color="#13a10e"];
+        "0x001088a4" -> "0x001088b1" [color="#c50f1f"];
+        "0x001088b1" -> "0x001088c4" [color="#0037da"];
+        "0x001088c4" -> "0x00108917" [color="#13a10e"];
+        "0x001088c4" -> "0x00108905" [color="#c50f1f"];
+        "0x00108905" -> "0x00108917" [color="#0037da"];
+}

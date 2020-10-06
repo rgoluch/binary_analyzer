@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00103313" [URL="sym.pci_init/0x00103313", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.platinit @ 0x1039b9\l20: sym.pci_init ();\l0x00103313      push ebp\l0x00103314      mov ebp, esp\l0x00103316      call sym.__x86.get_pc_thunk.ax\l0x0010331b      add eax, 0x1dce5\l0x00103320      mov eax, 1\l0x00103325      pop ebp\l0x00103326      ret\l"]
+}

@@ -1,0 +1,30 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00108301" [URL="sym.echoch/0x00108301", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.ttyhandle_in @ 0x107e6e, 0x107fc6, 0x1080c9, 0x108129\l203: sym.echoch (int32_t arg_8h, int32_t arg_ch, int32_t arg_10h);\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l; var int32_t var_18h @ esp+0x4\l; var int32_t var_14h @ esp+0x8\l0x00108301      push ebp\l0x00108302      mov ebp, esp\l0x00108304      sub esp, 0x18\l0x00108307      mov eax, dword [arg_8h]\l0x0010830a      mov byte [var_ch], al\l0x0010830d      cmp byte [var_ch], 0xa\l0x00108311      je 0x108319\l"]
+	"0x00108313" [URL="sym.echoch/0x00108313", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108313      cmp byte [var_ch], 0xd\l0x00108317      jne 0x10835c\l"]
+	"0x00108319" [URL="sym.echoch/0x00108319", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.echoch @ 0x108311\l0x00108319      mov eax, dword [arg_ch]\l0x0010831c      mov al, byte [eax + 0xf8]\l0x00108322      test al, al\l0x00108324      je 0x10835c\l"]
+	"0x00108326" [URL="sym.echoch/0x00108326", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108326      mov eax, dword [arg_10h]\l0x00108329      mov dword [var_14h], eax\l0x0010832d      mov eax, dword [arg_ch]\l0x00108330      mov dword [var_18h], eax\l0x00108334      mov dword [esp], 0xd                                   ; [0xd:4]=-1 ; 13\l0x0010833b      call sym.eputc\l0x00108340      mov eax, dword [arg_10h]\l0x00108343      mov dword [var_14h], eax\l0x00108347      mov eax, dword [arg_ch]\l0x0010834a      mov dword [var_18h], eax\l0x0010834e      mov dword [esp], 0xa\l0x00108355      call sym.eputc\l0x0010835a      jmp 0x1083ca\l"]
+	"0x0010835c" [URL="sym.echoch/0x0010835c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.echoch @ 0x108317, 0x108324\l0x0010835c      cmp byte [var_ch], 0x1f\l0x00108360      jle 0x108368\l"]
+	"0x00108362" [URL="sym.echoch/0x00108362", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108362      cmp byte [var_ch], 0x7f\l0x00108366      jne 0x1083b0\l"]
+	"0x00108368" [URL="sym.echoch/0x00108368", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.echoch @ 0x108360\l0x00108368      mov eax, dword [arg_ch]\l0x0010836b      mov al, byte [eax + 0xf7]\l0x00108371      test al, al\l0x00108373      je 0x1083b0\l"]
+	"0x00108375" [URL="sym.echoch/0x00108375", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108375      mov eax, dword [arg_10h]\l0x00108378      mov dword [var_14h], eax\l0x0010837c      mov eax, dword [arg_ch]\l0x0010837f      mov dword [var_18h], eax\l0x00108383      mov dword [esp], 0x5e                                  ; '^'\l                                                                       ; [0x5e:4]=-1 ; 94\l0x0010838a      call sym.eputc\l0x0010838f      mov al, byte [var_ch]\l0x00108392      add eax, 0x40                                          ; 64\l0x00108395      movsx eax, al\l0x00108398      mov edx, dword [arg_10h]\l0x0010839b      mov dword [var_14h], edx\l0x0010839f      mov edx, dword [arg_ch]\l0x001083a2      mov dword [var_18h], edx\l0x001083a6      mov dword [esp], eax\l0x001083a9      call sym.eputc\l0x001083ae      jmp 0x1083ca\l"]
+	"0x001083b0" [URL="sym.echoch/0x001083b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.echoch @ 0x108366, 0x108373\l0x001083b0      movsx eax, byte [var_ch]\l0x001083b4      mov edx, dword [arg_10h]\l0x001083b7      mov dword [var_14h], edx\l0x001083bb      mov edx, dword [arg_ch]\l0x001083be      mov dword [var_18h], edx\l0x001083c2      mov dword [esp], eax\l0x001083c5      call sym.eputc\l"]
+	"0x001083ca" [URL="sym.echoch/0x001083ca", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.echoch @ 0x10835a, 0x1083ae\l0x001083ca      leave\l0x001083cb      ret\l"]
+        "0x00108301" -> "0x00108319" [color="#13a10e"];
+        "0x00108301" -> "0x00108313" [color="#c50f1f"];
+        "0x00108313" -> "0x0010835c" [color="#13a10e"];
+        "0x00108313" -> "0x00108319" [color="#c50f1f"];
+        "0x00108319" -> "0x0010835c" [color="#13a10e"];
+        "0x00108319" -> "0x00108326" [color="#c50f1f"];
+        "0x00108326" -> "0x001083ca" [color="#0037da"];
+        "0x0010835c" -> "0x00108368" [color="#13a10e"];
+        "0x0010835c" -> "0x00108362" [color="#c50f1f"];
+        "0x00108362" -> "0x001083b0" [color="#13a10e"];
+        "0x00108362" -> "0x00108368" [color="#c50f1f"];
+        "0x00108368" -> "0x001083b0" [color="#13a10e"];
+        "0x00108368" -> "0x00108375" [color="#c50f1f"];
+        "0x00108375" -> "0x001083ca" [color="#0037da"];
+        "0x001083b0" -> "0x001083ca" [color="#0037da"];
+}

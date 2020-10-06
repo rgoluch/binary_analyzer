@@ -1,0 +1,28 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001029d9" [URL="sym.kputc/0x001029d9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="156: sym.kputc (int32_t arg_8h);\l; var int32_t var_1ch @ ebp-0x1c\l; var int32_t var_14h @ ebp-0x14\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x001029d9      push ebp\l0x001029da      mov ebp, esp\l0x001029dc      push ebx\l0x001029dd      sub esp, 0x24\l0x001029e0      call sym.__x86.get_pc_thunk.bx\l0x001029e5      add ebx, 0x1e61b\l0x001029eb      mov eax, dword [arg_8h]\l0x001029ee      mov byte [var_1ch], al\l0x001029f1      call loc.disable\l0x001029f6      mov dword [var_ch], eax\l0x001029f9      mov eax, obj.devtab                                    ; 0x11f880\l0x001029ff      mov dword [var_10h], eax\l0x00102a02      mov eax, dword [var_10h]\l0x00102a05      mov eax, dword [eax + 0x30]\l0x00102a08      mov dword [var_14h], eax\l0x00102a0b      cmp dword [var_14h], 0\l0x00102a0f      jne 0x102a26\l"]
+	"0x00102a11" [URL="sym.kputc/0x00102a11", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00102a11      sub esp, 0xc\l0x00102a14      push dword [var_ch]\l0x00102a17      call loc.restore\l0x00102a1c      add esp, 0x10\l0x00102a1f      mov eax, 0xffffffff                                    ; -1\l0x00102a24      jmp 0x102a70\l"]
+	"0x00102a26" [URL="sym.kputc/0x00102a26", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.kputc @ 0x102a0f\l0x00102a26      nop\l"]
+	"0x00102a27" [URL="sym.kputc/0x00102a27", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.kputc @ 0x102a32\l0x00102a27      mov eax, dword [var_14h]\l0x00102a2a      mov eax, dword [eax + 0x14]\l0x00102a2d      and eax, 0x20                                          ; loc.EOI\l0x00102a30      test eax, eax\l0x00102a32      je 0x102a27\l"]
+	"0x00102a34" [URL="sym.kputc/0x00102a34", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00102a34      mov al, byte [var_1ch]\l0x00102a37      xor edx, edx\l0x00102a39      mov dl, al\l0x00102a3b      mov eax, dword [var_14h]\l0x00102a3e      mov dword [eax], edx\l0x00102a40      cmp byte [var_1ch], 0xa\l0x00102a44      jne 0x102a5d\l"]
+	"0x00102a46" [URL="sym.kputc/0x00102a46", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00102a46      nop\l"]
+	"0x00102a47" [URL="sym.kputc/0x00102a47", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.kputc @ 0x102a52\l0x00102a47      mov eax, dword [var_14h]\l0x00102a4a      mov eax, dword [eax + 0x14]\l0x00102a4d      and eax, 0x20                                          ; loc.EOI\l0x00102a50      test eax, eax\l0x00102a52      je 0x102a47\l"]
+	"0x00102a54" [URL="sym.kputc/0x00102a54", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00102a54      mov eax, dword [var_14h]\l0x00102a57      mov dword [eax], 0xd                                   ; [0xd:4]=-1 ; 13\l"]
+	"0x00102a5d" [URL="sym.kputc/0x00102a5d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.kputc @ 0x102a44\l0x00102a5d      sub esp, 0xc\l0x00102a60      push dword [var_ch]\l0x00102a63      call loc.restore\l0x00102a68      add esp, 0x10\l0x00102a6b      mov eax, 1\l"]
+	"0x00102a70" [URL="sym.kputc/0x00102a70", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.kputc @ 0x102a24\l0x00102a70      mov ebx, dword [var_4h]\l0x00102a73      leave\l0x00102a74      ret\l"]
+        "0x001029d9" -> "0x00102a26" [color="#13a10e"];
+        "0x001029d9" -> "0x00102a11" [color="#c50f1f"];
+        "0x00102a11" -> "0x00102a70" [color="#0037da"];
+        "0x00102a26" -> "0x00102a27" [color="#0037da"];
+        "0x00102a27" -> "0x00102a27" [color="#13a10e"];
+        "0x00102a27" -> "0x00102a34" [color="#c50f1f"];
+        "0x00102a34" -> "0x00102a5d" [color="#13a10e"];
+        "0x00102a34" -> "0x00102a46" [color="#c50f1f"];
+        "0x00102a46" -> "0x00102a47" [color="#0037da"];
+        "0x00102a47" -> "0x00102a47" [color="#13a10e"];
+        "0x00102a47" -> "0x00102a54" [color="#c50f1f"];
+        "0x00102a54" -> "0x00102a5d" [color="#0037da"];
+        "0x00102a5d" -> "0x00102a70" [color="#0037da"];
+}

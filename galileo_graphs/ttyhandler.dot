@@ -1,0 +1,39 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001085a3" [URL="sym.ttyhandler/0x001085a3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from loc.ttydispatch @ +0x7\l181: sym.ttyhandler (int32_t arg_8h);\l; var int32_t var_18h @ ebp-0x18\l; var int32_t var_14h @ ebp-0x14\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_9h @ ebp-0x9\l; arg int32_t arg_8h @ ebp+0x8\l; var int32_t var_28h @ esp+0x4\l; var int32_t var_20h @ esp+0xc\l0x001085a3      push ebp\l0x001085a4      mov ebp, esp\l0x001085a6      sub esp, 0x28\l0x001085a9      mov byte [var_9h], 0\l0x001085ad      mov eax, dword [arg_8h]\l0x001085b0      mov dword [var_10h], eax\l0x001085b3      mov eax, dword [var_10h]\l0x001085b6      mov eax, dword [eax + 0x30]\l0x001085b9      mov dword [var_14h], eax\l0x001085bc      mov eax, dword [var_10h]\l0x001085bf      mov eax, dword [eax + 4]\l0x001085c2      shl eax, 4\l0x001085c5      mov edx, eax\l0x001085c7      shl edx, 4\l0x001085ca      add eax, edx\l0x001085cc      add eax, obj.ttytab                                    ; 0x123a80\l0x001085d1      mov dword [var_18h], eax\l0x001085d4      mov eax, dword [var_14h]\l0x001085d7      mov eax, dword [eax + 8]\l0x001085da      mov byte [var_9h], al\l0x001085dd      mov al, byte [var_9h]\l0x001085e0      and eax, 0xff                                          ; 255\l0x001085e5      and eax, 1\l0x001085e8      test eax, eax\l0x001085ea      je 0x1085ee\l"]
+	"0x001085ec" [URL="sym.ttyhandler/0x001085ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001085ec      jmp case.0x108606.0\l"]
+	"0x001085ee" [URL="sym.ttyhandler/0x001085ee", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandler @ 0x1085ea\l0x001085ee      and byte [var_9h], 0xe                                 ; [0xe:1]=255 ; 14\l0x001085f2      mov al, byte [var_9h]\l0x001085f5      and eax, 0xff                                          ; 255\l0x001085fa      cmp eax, 0xc                                           ; 12\l0x001085fd      ja case.0x108606.0\l"]
+	"0x001085ff" [URL="sym.ttyhandler/0x001085ff", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001085ff      mov eax, dword [eax*4 + 0x11881c]\l;-- switch\l0x00108606      jmp eax                                                ; switch table (13 cases) at 0x11881c\l"]
+	"0x00108608" [URL="sym.ttyhandler/0x00108608", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandler @ 0x108606\l;-- case 4:                                                            ; from 0x108606\l0x00108608      mov dword [esp], 1\l0x0010860f      call sym.resched_cntl\l0x00108614      jmp 0x108628\l"]
+	"0x00108616" [URL="sym.ttyhandler/0x00108616", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandler @ 0x108633\l0x00108616      mov eax, dword [var_14h]\l0x00108619      mov dword [var_20h], eax\l0x0010861d      mov eax, dword [var_18h]\l0x00108620      mov dword [esp], eax\l0x00108623      call sym.ttyhandle_in\l"]
+	"0x00108628" [URL="sym.ttyhandler/0x00108628", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandler @ 0x108614\l0x00108628      mov eax, dword [var_14h]\l0x0010862b      mov eax, dword [eax + 0x14]\l0x0010862e      and eax, 1\l0x00108631      test eax, eax\l0x00108633      jne 0x108616\l"]
+	"0x00108635" [URL="sym.ttyhandler/0x00108635", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108635      mov dword [esp], 2\l0x0010863c      call sym.resched_cntl\l0x00108641      jmp case.0x108606.0\l"]
+	"0x00108643" [URL="sym.ttyhandler/0x00108643", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandler @ 0x108606\l;-- case 2:                                                            ; from 0x108606\l0x00108643      mov eax, dword [var_14h]\l0x00108646      mov dword [var_28h], eax\l0x0010864a      mov eax, dword [var_18h]\l0x0010864d      mov dword [esp], eax\l0x00108650      call sym.ttyhandle_out\l0x00108655      nop\l"]
+	"0x00108656" [URL="sym.ttyhandler/0x00108656", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttyhandler @ 0x1085ec, 0x1085fd, 0x108606, 0x108641\l;-- case 0...1:                                                        ; from 0x108606\l\l;-- case 3:                                                            ; from 0x108606\l\l;-- default:                                                           ; from 0x108606\l0x00108656      leave\l0x00108657      ret\l"]
+        "0x001085a3" -> "0x001085ee" [color="#13a10e"];
+        "0x001085a3" -> "0x001085ec" [color="#c50f1f"];
+        "0x001085ec" -> "0x00108656" [color="#0037da"];
+        "0x001085ee" -> "0x00108656" [color="#13a10e"];
+        "0x001085ee" -> "0x001085ff" [color="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108643" -> "0x00108643" [color2="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108608" -> "0x00108608" [color2="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108656" -> "0x00108656" [color2="#c50f1f"];
+        "0x00108608" -> "0x00108608" [color2="#c50f1f"];
+        "0x00108608" -> "0x00108628" [color="#0037da"];
+        "0x00108616" -> "0x00108628" [color="#0037da"];
+        "0x00108628" -> "0x00108616" [color="#13a10e"];
+        "0x00108628" -> "0x00108635" [color="#c50f1f"];
+        "0x00108635" -> "0x00108656" [color="#0037da"];
+        "0x00108643" -> "0x00108656" [color="#0037da"];
+}

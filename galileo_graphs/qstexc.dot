@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00107720" [URL="sym.qstexc/0x00107720", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.qs1 @ 0x107619, 0x1076c2\l79: sym.qstexc (int32_t arg_8h, int32_t arg_ch, int32_t arg_10h);\l; var int32_t var_14h @ ebp-0x14\l; var int32_t var_10h @ ebp-0x10\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l0x00107720      push ebp\l0x00107721      mov ebp, esp\l0x00107723      push edi\l0x00107724      push esi\l0x00107725      push ebx\l0x00107726      sub esp, 0x10\l0x00107729      mov eax, dword [obj.qses]                              ; [0x12102c:4]=0\l0x0010772e      mov dword [var_10h], eax\l0x00107731      mov edi, dword [arg_8h]\l0x00107734      mov ebx, dword [arg_ch]\l0x00107737      mov esi, dword [arg_10h]\l"]
+	"0x0010773a" [URL="sym.qstexc/0x0010773a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.qstexc @ 0x107765\l0x0010773a      mov al, byte [edi]\l0x0010773c      movsx eax, al\l0x0010773f      mov dword [var_14h], eax\l0x00107742      mov eax, edi\l0x00107744      lea edi, [eax + 1]\l0x00107747      mov dl, byte [esi]\l0x00107749      mov byte [eax], dl\l0x0010774b      mov eax, esi\l0x0010774d      lea esi, [eax + 1]\l0x00107750      mov dl, byte [ebx]\l0x00107752      mov byte [eax], dl\l0x00107754      mov eax, ebx\l0x00107756      lea ebx, [eax + 1]\l0x00107759      mov edx, dword [var_14h]\l0x0010775c      mov byte [eax], dl\l0x0010775e      dec dword [var_10h]\l0x00107761      cmp dword [var_10h], 0\l0x00107765      jne 0x10773a\l"]
+	"0x00107767" [URL="sym.qstexc/0x00107767", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00107767      add esp, 0x10\l0x0010776a      pop ebx\l0x0010776b      pop esi\l0x0010776c      pop edi\l0x0010776d      pop ebp\l0x0010776e      ret\l"]
+        "0x00107720" -> "0x0010773a" [color="#0037da"];
+        "0x0010773a" -> "0x0010773a" [color="#13a10e"];
+        "0x0010773a" -> "0x00107767" [color="#c50f1f"];
+}

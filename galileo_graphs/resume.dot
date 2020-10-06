@@ -1,0 +1,24 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00104b05" [URL="sym.resume/0x00104b05", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: CALL 0x001022ae  CALL 0x0010237f  CALL 0x00102b8c  \l  ; XREFS: CALL 0x00102be3  CALL 0x0010a367  CALL 0x0010ada1  \l  ; XREFS: CALL 0x0010aff6  CALL 0x00110bfc  CALL 0x00110c2f  \l  ; XREFS: CALL 0x00113f7d  \l191: sym.resume (int32_t arg_8h);\l; var int32_t var_12h @ ebp-0x12\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x00104b05      push ebp\l0x00104b06      mov ebp, esp\l0x00104b08      push ebx\l0x00104b09      sub esp, 0x14\l0x00104b0c      call sym.__x86.get_pc_thunk.bx\l0x00104b11      add ebx, 0x1c4ef\l0x00104b17      call loc.disable\l0x00104b1c      mov dword [var_ch], eax\l0x00104b1f      cmp dword [arg_8h], 0\l0x00104b23      js 0x104b47\l"]
+	"0x00104b25" [URL="sym.resume/0x00104b25", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104b25      cmp dword [arg_8h], 0x63\l0x00104b29      jg 0x104b47\l"]
+	"0x00104b2b" [URL="sym.resume/0x00104b2b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104b2b      mov ecx, obj.proctab                                   ; 0x1212e0\l0x00104b31      mov edx, dword [arg_8h]\l0x00104b34      mov eax, edx\l0x00104b36      shl eax, 3\l0x00104b39      sub eax, edx\l0x00104b3b      shl eax, 3\l0x00104b3e      add eax, ecx\l0x00104b40      mov eax, dword [eax]\l0x00104b42      test ax, ax\l0x00104b45      jne 0x104b5c\l"]
+	"0x00104b47" [URL="sym.resume/0x00104b47", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.resume @ 0x104b23, 0x104b29\l0x00104b47      sub esp, 0xc\l0x00104b4a      push dword [var_ch]\l0x00104b4d      call loc.restore\l0x00104b52      add esp, 0x10\l0x00104b55      mov eax, 0xffffffff                                    ; -1\l0x00104b5a      jmp 0x104bbf\l"]
+	"0x00104b5c" [URL="sym.resume/0x00104b5c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.resume @ 0x104b45\l0x00104b5c      mov edx, dword [arg_8h]\l0x00104b5f      mov eax, edx\l0x00104b61      shl eax, 3\l0x00104b64      sub eax, edx\l0x00104b66      shl eax, 3\l0x00104b69      mov edx, obj.proctab                                   ; 0x1212e0\l0x00104b6f      add eax, edx\l0x00104b71      mov dword [var_10h], eax\l0x00104b74      mov eax, dword [var_10h]\l0x00104b77      mov eax, dword [eax]\l0x00104b79      cmp ax, 5                                              ; 5\l0x00104b7d      je 0x104b94\l"]
+	"0x00104b7f" [URL="sym.resume/0x00104b7f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104b7f      sub esp, 0xc\l0x00104b82      push dword [var_ch]\l0x00104b85      call loc.restore\l0x00104b8a      add esp, 0x10\l0x00104b8d      mov eax, 0xffffffff                                    ; -1\l0x00104b92      jmp 0x104bbf\l"]
+	"0x00104b94" [URL="sym.resume/0x00104b94", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.resume @ 0x104b7d\l0x00104b94      mov eax, dword [var_10h]\l0x00104b97      mov ax, word [eax + 2]\l0x00104b9b      mov word [var_12h], ax\l0x00104b9f      sub esp, 0xc\l0x00104ba2      push dword [arg_8h]\l0x00104ba5      call sym.ready\l0x00104baa      add esp, 0x10\l0x00104bad      sub esp, 0xc\l0x00104bb0      push dword [var_ch]\l0x00104bb3      call loc.restore\l0x00104bb8      add esp, 0x10\l0x00104bbb      mov ax, word [var_12h]\l"]
+	"0x00104bbf" [URL="sym.resume/0x00104bbf", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.resume @ 0x104b5a, 0x104b92\l0x00104bbf      mov ebx, dword [var_4h]\l0x00104bc2      leave\l0x00104bc3      ret\l"]
+        "0x00104b05" -> "0x00104b47" [color="#13a10e"];
+        "0x00104b05" -> "0x00104b25" [color="#c50f1f"];
+        "0x00104b25" -> "0x00104b47" [color="#13a10e"];
+        "0x00104b25" -> "0x00104b2b" [color="#c50f1f"];
+        "0x00104b2b" -> "0x00104b5c" [color="#13a10e"];
+        "0x00104b2b" -> "0x00104b47" [color="#c50f1f"];
+        "0x00104b47" -> "0x00104bbf" [color="#0037da"];
+        "0x00104b5c" -> "0x00104b94" [color="#13a10e"];
+        "0x00104b5c" -> "0x00104b7f" [color="#c50f1f"];
+        "0x00104b7f" -> "0x00104bbf" [color="#0037da"];
+        "0x00104b94" -> "0x00104bbf" [color="#0037da"];
+}

@@ -1,0 +1,24 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010b718" [URL="sym.lflclose/0x0010b718", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="147: sym.lflclose (int32_t arg_8h);\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l0x0010b718      push ebp\l0x0010b719      mov ebp, esp\l0x0010b71b      sub esp, 0x28\l0x0010b71e      mov eax, dword [arg_8h]\l0x0010b721      mov edx, dword [eax + 4]\l0x0010b724      mov eax, edx\l0x0010b726      shl eax, 2\l0x0010b729      add eax, edx\l0x0010b72b      shl eax, 7\l0x0010b72e      add eax, obj.lfltab                                    ; 0x13e740\l0x0010b733      mov dword [var_ch], eax\l0x0010b736      mov eax, dword [var_ch]\l0x0010b739      mov eax, dword [eax + 8]\l0x0010b73c      mov dword [esp], eax\l0x0010b73f      call sym.wait                                          ; pid_t wait(int *wstatus)\l0x0010b744      mov eax, dword [var_ch]\l0x0010b747      mov al, byte [eax]\l0x0010b749      cmp al, 1                                              ; 1\l0x0010b74b      je 0x10b762\l"]
+	"0x0010b74d" [URL="sym.lflclose/0x0010b74d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010b74d      mov eax, dword [var_ch]\l0x0010b750      mov eax, dword [eax + 8]\l0x0010b753      mov dword [esp], eax\l0x0010b756      call sym.signal                                        ; void signal(int sig, void *func)\l0x0010b75b      mov eax, 0xffffffff                                    ; -1\l0x0010b760      jmp 0x10b7a9\l"]
+	"0x0010b762" [URL="sym.lflclose/0x0010b762", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lflclose @ 0x10b74b\l0x0010b762      mov al, byte [0x13f849]                                ; [0x13f849:1]=0\l0x0010b767      test al, al\l0x0010b769      jne 0x10b785\l"]
+	"0x0010b76b" [URL="sym.lflclose/0x0010b76b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010b76b      mov eax, dword [var_ch]\l0x0010b76e      mov al, byte [eax + 0x27d]\l0x0010b774      test al, al\l0x0010b776      jne 0x10b785\l"]
+	"0x0010b778" [URL="sym.lflclose/0x0010b778", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010b778      mov eax, dword [var_ch]\l0x0010b77b      mov al, byte [eax + 0x27c]\l0x0010b781      test al, al\l0x0010b783      je 0x10b790\l"]
+	"0x0010b785" [URL="sym.lflclose/0x0010b785", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.lflclose @ 0x10b769, 0x10b776\l0x0010b785      mov eax, dword [var_ch]\l0x0010b788      mov dword [esp], eax\l0x0010b78b      call sym.lfflush\l"]
+	"0x0010b790" [URL="sym.lflclose/0x0010b790", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lflclose @ 0x10b783\l0x0010b790      mov eax, dword [var_ch]\l0x0010b793      mov byte [eax], 0\l0x0010b796      mov eax, dword [var_ch]\l0x0010b799      mov eax, dword [eax + 8]\l0x0010b79c      mov dword [esp], eax\l0x0010b79f      call sym.signal                                        ; void signal(int sig, void *func)\l0x0010b7a4      mov eax, 1\l"]
+	"0x0010b7a9" [URL="sym.lflclose/0x0010b7a9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lflclose @ 0x10b760\l0x0010b7a9      leave\l0x0010b7aa      ret\l"]
+        "0x0010b718" -> "0x0010b762" [color="#13a10e"];
+        "0x0010b718" -> "0x0010b74d" [color="#c50f1f"];
+        "0x0010b74d" -> "0x0010b7a9" [color="#0037da"];
+        "0x0010b762" -> "0x0010b785" [color="#13a10e"];
+        "0x0010b762" -> "0x0010b76b" [color="#c50f1f"];
+        "0x0010b76b" -> "0x0010b785" [color="#13a10e"];
+        "0x0010b76b" -> "0x0010b778" [color="#c50f1f"];
+        "0x0010b778" -> "0x0010b790" [color="#13a10e"];
+        "0x0010b778" -> "0x0010b785" [color="#c50f1f"];
+        "0x0010b785" -> "0x0010b790" [color="#0037da"];
+        "0x0010b790" -> "0x0010b7a9" [color="#0037da"];
+}

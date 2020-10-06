@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001027e9" [URL="sym.ioerr/0x001027e9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="20: sym.ioerr ();\l0x001027e9      push ebp\l0x001027ea      mov ebp, esp\l0x001027ec      call sym.__x86.get_pc_thunk.ax\l0x001027f1      add eax, 0x1e80f\l0x001027f6      mov eax, 0xffffffff                                    ; -1\l0x001027fb      pop ebp\l0x001027fc      ret\l"]
+}

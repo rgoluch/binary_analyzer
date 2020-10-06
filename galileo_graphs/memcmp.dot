@@ -1,0 +1,20 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001073ba" [URL="sym.memcmp/0x001073ba", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: CALL 0x00104348  CALL 0x00104443  CALL 0x00109ad8  \l  ; XREFS: CALL 0x00109cd4  CALL 0x00109cf9  CALL 0x00109d3d  \l81: int sym.memcmp (const void *s1, const void *s2, size_t n);\l; var int32_t var_8h @ ebp-0x8\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l0x001073ba      push ebp\l0x001073bb      mov ebp, esp\l0x001073bd      sub esp, 0x10\l0x001073c0      mov eax, dword [arg_8h]\l0x001073c3      mov dword [var_4h], eax\l0x001073c6      mov eax, dword [arg_ch]\l0x001073c9      mov dword [var_8h], eax\l0x001073cc      jmp 0x1073fe\l"]
+	"0x001073ce" [URL="sym.memcmp/0x001073ce", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.memcmp @ 0x107402\l0x001073ce      mov eax, dword [var_4h]\l0x001073d1      mov dl, byte [eax]\l0x001073d3      mov eax, dword [var_8h]\l0x001073d6      mov al, byte [eax]\l0x001073d8      cmp dl, al\l0x001073da      je 0x1073f5\l"]
+	"0x001073dc" [URL="sym.memcmp/0x001073dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001073dc      mov eax, dword [var_4h]\l0x001073df      mov al, byte [eax]\l0x001073e1      xor edx, edx\l0x001073e3      mov dl, al\l0x001073e5      mov eax, dword [var_8h]\l0x001073e8      mov al, byte [eax]\l0x001073ea      and eax, 0xff                                          ; 255\l0x001073ef      sub edx, eax\l0x001073f1      mov eax, edx\l0x001073f3      jmp 0x107409\l"]
+	"0x001073f5" [URL="sym.memcmp/0x001073f5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.memcmp @ 0x1073da\l0x001073f5      dec dword [arg_10h]\l0x001073f8      inc dword [var_4h]\l0x001073fb      inc dword [var_8h]\l"]
+	"0x001073fe" [URL="sym.memcmp/0x001073fe", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.memcmp @ 0x1073cc\l0x001073fe      cmp dword [arg_10h], 0\l0x00107402      jg 0x1073ce\l"]
+	"0x00107404" [URL="sym.memcmp/0x00107404", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00107404      mov eax, 0\l"]
+	"0x00107409" [URL="sym.memcmp/0x00107409", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.memcmp @ 0x1073f3\l0x00107409      leave\l0x0010740a      ret\l"]
+        "0x001073ba" -> "0x001073fe" [color="#0037da"];
+        "0x001073ce" -> "0x001073f5" [color="#13a10e"];
+        "0x001073ce" -> "0x001073dc" [color="#c50f1f"];
+        "0x001073dc" -> "0x00107409" [color="#0037da"];
+        "0x001073f5" -> "0x001073fe" [color="#0037da"];
+        "0x001073fe" -> "0x001073ce" [color="#13a10e"];
+        "0x001073fe" -> "0x00107404" [color="#c50f1f"];
+        "0x00107404" -> "0x00107409" [color="#0037da"];
+}

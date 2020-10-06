@@ -1,0 +1,39 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010629b" [URL="sym._prtl2/0x0010629b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym._doprnt @ 0x105ede\l128: sym._prtl2 (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_27h @ ebp-0x27\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x0010629b      push ebp\l0x0010629c      mov ebp, esp\l0x0010629e      sub esp, 0x30\l0x001062a1      mov byte [var_27h], 0\l0x001062a5      mov dword [var_4h], 1\l0x001062ac      jmp 0x1062ce\l"]
+	"0x001062ae" [URL="sym._prtl2/0x001062ae", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl2 @ 0x1062d2\l0x001062ae      mov eax, dword [arg_8h]\l0x001062b1      and eax, 1\l0x001062b4      test eax, eax\l0x001062b6      jne 0x1062bc\l"]
+	"0x001062b8" [URL="sym._prtl2/0x001062b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001062b8      mov al, 0x30                                           ; '0' ; 48\l0x001062ba      jmp 0x1062be\l"]
+	"0x001062bc" [URL="sym._prtl2/0x001062bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl2 @ 0x1062b6\l0x001062bc      mov al, 0x31                                           ; '1' ; 49\l"]
+	"0x001062be" [URL="sym._prtl2/0x001062be", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl2 @ 0x1062ba\l0x001062be      lea ecx, [var_27h]\l0x001062c1      mov edx, dword [var_4h]\l0x001062c4      add edx, ecx\l0x001062c6      mov byte [edx], al\l0x001062c8      sar dword [arg_8h], 1\l0x001062cb      inc dword [var_4h]\l"]
+	"0x001062ce" [URL="sym._prtl2/0x001062ce", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl2 @ 0x1062ac\l0x001062ce      cmp dword [var_4h], 0x20\l0x001062d2      jle 0x1062ae\l"]
+	"0x001062d4" [URL="sym._prtl2/0x001062d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001062d4      mov dword [var_4h], 0x20                               ; loc.EOI\l0x001062db      jmp 0x1062e0\l"]
+	"0x001062dd" [URL="sym._prtl2/0x001062dd", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl2 @ 0x1062ec\l0x001062dd      dec dword [var_4h]\l"]
+	"0x001062e0" [URL="sym._prtl2/0x001062e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl2 @ 0x1062db\l0x001062e0      lea edx, [var_27h]\l0x001062e3      mov eax, dword [var_4h]\l0x001062e6      add eax, edx\l0x001062e8      mov al, byte [eax]\l0x001062ea      cmp al, 0x30                                           ; 48\l0x001062ec      je 0x1062dd\l"]
+	"0x001062ee" [URL="sym._prtl2/0x001062ee", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001062ee      cmp dword [var_4h], 0\l0x001062f2      jne 0x1062f9\l"]
+	"0x001062f4" [URL="sym._prtl2/0x001062f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001062f4      inc dword [var_4h]\l0x001062f7      jmp 0x106313\l"]
+	"0x001062f9" [URL="sym._prtl2/0x001062f9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl2 @ 0x1062f2\l0x001062f9      jmp 0x106313\l"]
+	"0x001062fb" [URL="sym._prtl2/0x001062fb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl2 @ 0x106317\l0x001062fb      mov eax, dword [arg_ch]\l0x001062fe      lea edx, [eax + 1]\l0x00106301      mov dword [arg_ch], edx\l0x00106304      mov edx, dword [var_4h]\l0x00106307      lea ecx, [edx - 1]\l0x0010630a      mov dword [var_4h], ecx\l0x0010630d      mov dl, byte [ebp + edx - 0x27]\l0x00106311      mov byte [eax], dl\l"]
+	"0x00106313" [URL="sym._prtl2/0x00106313", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._prtl2 @ 0x1062f7, 0x1062f9\l0x00106313      cmp dword [var_4h], 0\l0x00106317      jns 0x1062fb\l"]
+	"0x00106319" [URL="sym._prtl2/0x00106319", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00106319      leave\l0x0010631a      ret\l"]
+        "0x0010629b" -> "0x001062ce" [color="#0037da"];
+        "0x001062ae" -> "0x001062bc" [color="#13a10e"];
+        "0x001062ae" -> "0x001062b8" [color="#c50f1f"];
+        "0x001062b8" -> "0x001062be" [color="#0037da"];
+        "0x001062bc" -> "0x001062be" [color="#0037da"];
+        "0x001062be" -> "0x001062ce" [color="#0037da"];
+        "0x001062ce" -> "0x001062ae" [color="#13a10e"];
+        "0x001062ce" -> "0x001062d4" [color="#c50f1f"];
+        "0x001062d4" -> "0x001062e0" [color="#0037da"];
+        "0x001062dd" -> "0x001062e0" [color="#0037da"];
+        "0x001062e0" -> "0x001062dd" [color="#13a10e"];
+        "0x001062e0" -> "0x001062ee" [color="#c50f1f"];
+        "0x001062ee" -> "0x001062f9" [color="#13a10e"];
+        "0x001062ee" -> "0x001062f4" [color="#c50f1f"];
+        "0x001062f4" -> "0x00106313" [color="#0037da"];
+        "0x001062f9" -> "0x00106313" [color="#0037da"];
+        "0x001062fb" -> "0x00106313" [color="#0037da"];
+        "0x00106313" -> "0x001062fb" [color="#13a10e"];
+        "0x00106313" -> "0x00106319" [color="#c50f1f"];
+}

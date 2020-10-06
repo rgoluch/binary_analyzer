@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001072a8" [URL="sym.fputs/0x001072a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="67: int sym.fputs (const char *s, FILE *stream);\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; var int32_t var_28h @ esp+0x4\l0x001072a8      push ebp\l0x001072a9      mov ebp, esp\l0x001072ab      sub esp, 0x28\l0x001072ae      mov dword [var_ch], 0\l0x001072b5      jmp 0x1072cf\l"]
+	"0x001072b7" [URL="sym.fputs/0x001072b7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.fputs @ 0x1072e4\l0x001072b7      mov eax, dword [var_10h]\l0x001072ba      movsx eax, al\l0x001072bd      mov dword [var_28h], eax\l0x001072c1      mov eax, dword [arg_ch]\l0x001072c4      mov dword [esp], eax\l0x001072c7      call sym.putc                                          ; int putc(int c, FILE *stream)\l0x001072cc      mov dword [var_ch], eax\l"]
+	"0x001072cf" [URL="sym.fputs/0x001072cf", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.fputs @ 0x1072b5\l0x001072cf      mov eax, dword [arg_8h]\l0x001072d2      lea edx, [eax + 1]\l0x001072d5      mov dword [arg_8h], edx\l0x001072d8      mov al, byte [eax]\l0x001072da      movsx eax, al\l0x001072dd      mov dword [var_10h], eax\l0x001072e0      cmp dword [var_10h], 0\l0x001072e4      jne 0x1072b7\l"]
+	"0x001072e6" [URL="sym.fputs/0x001072e6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001072e6      mov eax, dword [var_ch]\l0x001072e9      leave\l0x001072ea      ret\l"]
+        "0x001072a8" -> "0x001072cf" [color="#0037da"];
+        "0x001072b7" -> "0x001072cf" [color="#0037da"];
+        "0x001072cf" -> "0x001072b7" [color="#13a10e"];
+        "0x001072cf" -> "0x001072e6" [color="#c50f1f"];
+}

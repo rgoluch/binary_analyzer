@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00101c8d" [URL="sym.getpid/0x00101c8d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: CALL 0x00100ad7  CALL 0x00101652  CALL 0x001056fd  \l  ; XREFS: CALL 0x0010a3c7  CALL 0x0010ae9a  CALL 0x0010b13b  \l23: int sym.getpid ();\l0x00101c8d      push ebp\l0x00101c8e      mov ebp, esp\l0x00101c90      call sym.__x86.get_pc_thunk.ax\l0x00101c95      add eax, 0x1f36b\l0x00101c9a      mov eax, obj.currpid                                   ; 0x1212c0\l0x00101ca0      mov eax, dword [eax]\l0x00101ca2      pop ebp\l0x00101ca3      ret\l"]
+}

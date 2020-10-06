@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00101aa0" [URL="sym.getlast/0x00101aa0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="88: sym.getlast (int32_t arg_8h);\l; var int32_t var_1ch @ ebp-0x1c\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l0x00101aa0      push ebp\l0x00101aa1      mov ebp, esp\l0x00101aa3      sub esp, 0x28\l0x00101aa6      call sym.__x86.get_pc_thunk.dx\l0x00101aab      add edx, 0x1f555\l0x00101ab1      mov eax, dword [arg_8h]\l0x00101ab4      mov word [var_1ch], ax\l0x00101ab8      movsx ecx, word [var_1ch]\l0x00101abc      mov eax, obj.queuetab                                  ; 0x1230e0\l0x00101ac2      mov eax, dword [eax + ecx*8 + 4]\l0x00101ac6      cmp ax, 0x63                                           ; 99\l0x00101aca      jle 0x101ad3\l"]
+	"0x00101acc" [URL="sym.getlast/0x00101acc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00101acc      mov eax, 0xffffffff                                    ; -1\l0x00101ad1      jmp 0x101af6\l"]
+	"0x00101ad3" [URL="sym.getlast/0x00101ad3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getlast @ 0x101aca\l0x00101ad3      movsx eax, word [var_1ch]\l0x00101ad7      inc eax\l0x00101ad8      mov dword [var_ch], eax\l0x00101adb      mov eax, obj.queuetab                                  ; 0x1230e0\l0x00101ae1      mov edx, dword [var_ch]\l0x00101ae4      mov ax, word [eax + edx*8 + 6]\l0x00101ae9      cwde\l0x00101aea      sub esp, 0xc\l0x00101aed      push eax\l0x00101aee      call sym.getitem\l0x00101af3      add esp, 0x10\l"]
+	"0x00101af6" [URL="sym.getlast/0x00101af6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getlast @ 0x101ad1\l0x00101af6      leave\l0x00101af7      ret\l"]
+        "0x00101aa0" -> "0x00101ad3" [color="#13a10e"];
+        "0x00101aa0" -> "0x00101acc" [color="#c50f1f"];
+        "0x00101acc" -> "0x00101af6" [color="#0037da"];
+        "0x00101ad3" -> "0x00101af6" [color="#0037da"];
+}

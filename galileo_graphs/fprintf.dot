@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00107248" [URL="sym.fprintf/0x00107248", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(85)\l52: int sym.fprintf (FILE *stream, const char *format,   ...);\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l; var int32_t var_28h @ esp+0x4\l; var int32_t var_24h @ esp+0x8\l; var int32_t var_20h @ esp+0xc\l0x00107248      push ebp\l0x00107249      mov ebp, esp\l0x0010724b      sub esp, 0x28\l0x0010724e      lea eax, [arg_10h]\l0x00107251      mov dword [var_ch], eax\l0x00107254      mov eax, dword [var_ch]\l0x00107257      mov edx, dword [arg_8h]\l0x0010725a      mov dword [var_20h], edx\l0x0010725e      mov dword [var_24h], sym.putc                          ; [0x1041a5:4]=0x53e58955 ; \"U\\x89\\xe5S\\x83\\xec$\\xe8\\xd1\\xc4\\xff\\xff\\x81\\xc3O\\xce\\x01\"\l0x00107266      mov dword [var_28h], eax\l0x0010726a      mov eax, dword [arg_ch]\l0x0010726d      mov dword [esp], eax\l0x00107270      call sym._fdoprnt\l0x00107275      mov eax, 0\l0x0010727a      leave\l0x0010727b      ret\l"]
+}

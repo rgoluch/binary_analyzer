@@ -1,0 +1,50 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001033d9" [URL="sym.find_pci_device/0x001033d9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.intel_cln_early_sb_probe @ 0x100de6\l  ; CALL XREF from sym.console_init @ 0x10396b\l  ; CALL XREF from sym.platinit @ 0x1039e5\l  ; CALL XREF from sym.quark_irq_routing @ 0x104257\l  ; CALL XREF from sym.ttyinit @ 0x1087e1\l241: sym.find_pci_device (int32_t arg_8h, int32_t arg_ch, int32_t arg_10h);\l; var int32_t var_1ch @ ebp-0x1c\l; var int32_t var_18h @ ebp-0x18\l; var int32_t var_14h @ ebp-0x14\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_8h @ ebp-0x8\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l0x001033d9      push ebp\l0x001033da      mov ebp, esp\l0x001033dc      sub esp, 0x20\l0x001033df      call sym.__x86.get_pc_thunk.ax\l0x001033e4      add eax, 0x1dc1c\l0x001033e9      mov dword [var_4h], 0\l0x001033f0      mov dword [var_8h], 0\l0x001033f7      jmp 0x1034b6\l"]
+	"0x001033fc" [URL="sym.find_pci_device/0x001033fc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x1034bd\l0x001033fc      mov dword [var_ch], 0\l0x00103403      jmp 0x1034a9\l"]
+	"0x00103408" [URL="sym.find_pci_device/0x00103408", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x1034ad\l0x00103408      mov dword [var_10h], 0\l0x0010340f      jmp 0x103499\l"]
+	"0x00103414" [URL="sym.find_pci_device/0x00103414", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x10349d\l0x00103414      push 0\l0x00103416      push dword [var_10h]\l0x00103419      push dword [var_ch]\l0x0010341c      push dword [var_8h]\l0x0010341f      push 0xe0000000\l0x00103424      call sym.regAddress_MMConfig\l0x00103429      add esp, 0x14\l0x0010342c      mov dword [var_14h], eax\l0x0010342f      mov eax, dword [var_14h]\l0x00103432      mov ax, word [eax]\l0x00103435      and eax, 0xffff\l0x0010343a      cmp dword [arg_ch], eax\l0x0010343d      jne 0x103477\l"]
+	"0x0010343f" [URL="sym.find_pci_device/0x0010343f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010343f      mov eax, dword [var_14h]\l0x00103442      mov ax, word [eax + 2]\l0x00103446      and eax, 0xffff\l0x0010344b      cmp dword [arg_8h], eax\l0x0010344e      jne 0x103477\l"]
+	"0x00103450" [URL="sym.find_pci_device/0x00103450", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00103450      mov eax, dword [var_4h]\l0x00103453      lea edx, [eax + 1]\l0x00103456      mov dword [var_4h], edx\l0x00103459      cmp dword [arg_10h], eax\l0x0010345c      jne 0x103477\l"]
+	"0x0010345e" [URL="sym.find_pci_device/0x0010345e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010345e      push dword [var_10h]\l0x00103461      push dword [var_ch]\l0x00103464      push dword [var_8h]\l0x00103467      call sym.encodePCIDevice\l0x0010346c      add esp, 0xc\l0x0010346f      mov dword [var_18h], eax\l0x00103472      mov eax, dword [var_18h]\l0x00103475      jmp 0x1034c8\l"]
+	"0x00103477" [URL="sym.find_pci_device/0x00103477", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.find_pci_device @ 0x10343d, 0x10344e, 0x10345c\l0x00103477      cmp dword [var_10h], 0\l0x0010347b      jne 0x103496\l"]
+	"0x0010347d" [URL="sym.find_pci_device/0x0010347d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010347d      mov eax, dword [var_14h]\l0x00103480      mov al, byte [eax + 0xe]\l0x00103483      and eax, 0xff                                          ; 255\l0x00103488      and eax, 0x80                                          ; 128\l0x0010348d      mov dword [var_1ch], eax\l0x00103490      cmp dword [var_1ch], 0\l0x00103494      je 0x1034a5\l"]
+	"0x00103496" [URL="sym.find_pci_device/0x00103496", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x10347b\l0x00103496      inc dword [var_10h]\l"]
+	"0x00103499" [URL="sym.find_pci_device/0x00103499", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x10340f\l0x00103499      cmp dword [var_10h], 7\l0x0010349d      jbe 0x103414\l"]
+	"0x001034a3" [URL="sym.find_pci_device/0x001034a3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001034a3      jmp 0x1034a6\l"]
+	"0x001034a5" [URL="sym.find_pci_device/0x001034a5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x103494\l0x001034a5      nop\l"]
+	"0x001034a6" [URL="sym.find_pci_device/0x001034a6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x1034a3\l0x001034a6      inc dword [var_ch]\l"]
+	"0x001034a9" [URL="sym.find_pci_device/0x001034a9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x103403\l0x001034a9      cmp dword [var_ch], 0x1f\l0x001034ad      jbe 0x103408\l"]
+	"0x001034b3" [URL="sym.find_pci_device/0x001034b3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001034b3      inc dword [var_8h]\l"]
+	"0x001034b6" [URL="sym.find_pci_device/0x001034b6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x1033f7\l0x001034b6      cmp dword [var_8h], 0xff\l0x001034bd      jbe 0x1033fc\l"]
+	"0x001034c3" [URL="sym.find_pci_device/0x001034c3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001034c3      mov eax, 0xffffffff                                    ; -1\l"]
+	"0x001034c8" [URL="sym.find_pci_device/0x001034c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.find_pci_device @ 0x103475\l0x001034c8      leave\l0x001034c9      ret\l"]
+        "0x001033d9" -> "0x001034b6" [color="#0037da"];
+        "0x001033fc" -> "0x001034a9" [color="#0037da"];
+        "0x00103408" -> "0x00103499" [color="#0037da"];
+        "0x00103414" -> "0x00103477" [color="#13a10e"];
+        "0x00103414" -> "0x0010343f" [color="#c50f1f"];
+        "0x0010343f" -> "0x00103477" [color="#13a10e"];
+        "0x0010343f" -> "0x00103450" [color="#c50f1f"];
+        "0x00103450" -> "0x00103477" [color="#13a10e"];
+        "0x00103450" -> "0x0010345e" [color="#c50f1f"];
+        "0x0010345e" -> "0x001034c8" [color="#0037da"];
+        "0x00103477" -> "0x00103496" [color="#13a10e"];
+        "0x00103477" -> "0x0010347d" [color="#c50f1f"];
+        "0x0010347d" -> "0x001034a5" [color="#13a10e"];
+        "0x0010347d" -> "0x00103496" [color="#c50f1f"];
+        "0x00103496" -> "0x00103499" [color="#0037da"];
+        "0x00103499" -> "0x00103414" [color="#13a10e"];
+        "0x00103499" -> "0x001034a3" [color="#c50f1f"];
+        "0x001034a3" -> "0x001034a6" [color="#0037da"];
+        "0x001034a5" -> "0x001034a6" [color="#0037da"];
+        "0x001034a6" -> "0x001034a9" [color="#0037da"];
+        "0x001034a9" -> "0x00103408" [color="#13a10e"];
+        "0x001034a9" -> "0x001034b3" [color="#c50f1f"];
+        "0x001034b3" -> "0x001034b6" [color="#0037da"];
+        "0x001034b6" -> "0x001033fc" [color="#13a10e"];
+        "0x001034b6" -> "0x001034c3" [color="#c50f1f"];
+        "0x001034c3" -> "0x001034c8" [color="#0037da"];
+}

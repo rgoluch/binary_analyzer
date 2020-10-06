@@ -1,0 +1,20 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00108fa6" [URL="sym.namcpy/0x00108fa6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.nammap @ 0x108e01, 0x108e58\l80: sym.namcpy (int32_t arg_8h, int32_t arg_ch, int32_t arg_10h);\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_8h @ ebp-0x8\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l0x00108fa6      push ebp\l0x00108fa7      mov ebp, esp\l0x00108fa9      sub esp, 0x10\l0x00108fac      mov eax, dword [arg_8h]\l0x00108faf      mov dword [var_4h], eax\l0x00108fb2      mov eax, dword [arg_ch]\l0x00108fb5      mov dword [var_8h], eax\l0x00108fb8      mov dword [var_ch], 0\l0x00108fbf      jmp 0x108fe7\l"]
+	"0x00108fc1" [URL="sym.namcpy/0x00108fc1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.namcpy @ 0x108fed\l0x00108fc1      mov eax, dword [var_4h]\l0x00108fc4      lea edx, [eax + 1]\l0x00108fc7      mov dword [var_4h], edx\l0x00108fca      mov edx, dword [var_8h]\l0x00108fcd      lea ecx, [edx + 1]\l0x00108fd0      mov dword [var_8h], ecx\l0x00108fd3      mov dl, byte [edx]\l0x00108fd5      mov byte [eax], dl\l0x00108fd7      mov al, byte [eax]\l0x00108fd9      test al, al\l0x00108fdb      jne 0x108fe4\l"]
+	"0x00108fdd" [URL="sym.namcpy/0x00108fdd", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108fdd      mov eax, 1\l0x00108fe2      jmp 0x108ff4\l"]
+	"0x00108fe4" [URL="sym.namcpy/0x00108fe4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.namcpy @ 0x108fdb\l0x00108fe4      inc dword [var_ch]\l"]
+	"0x00108fe7" [URL="sym.namcpy/0x00108fe7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.namcpy @ 0x108fbf\l0x00108fe7      mov eax, dword [var_ch]\l0x00108fea      cmp eax, dword [arg_10h]\l0x00108fed      jl 0x108fc1\l"]
+	"0x00108fef" [URL="sym.namcpy/0x00108fef", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108fef      mov eax, 0xffffffff                                    ; -1\l"]
+	"0x00108ff4" [URL="sym.namcpy/0x00108ff4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.namcpy @ 0x108fe2\l0x00108ff4      leave\l0x00108ff5      ret\l"]
+        "0x00108fa6" -> "0x00108fe7" [color="#0037da"];
+        "0x00108fc1" -> "0x00108fe4" [color="#13a10e"];
+        "0x00108fc1" -> "0x00108fdd" [color="#c50f1f"];
+        "0x00108fdd" -> "0x00108ff4" [color="#0037da"];
+        "0x00108fe4" -> "0x00108fe7" [color="#0037da"];
+        "0x00108fe7" -> "0x00108fc1" [color="#13a10e"];
+        "0x00108fe7" -> "0x00108fef" [color="#c50f1f"];
+        "0x00108fef" -> "0x00108ff4" [color="#0037da"];
+}

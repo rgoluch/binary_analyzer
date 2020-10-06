@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001020cf" [URL="sym.init/0x001020cf", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.sysinit @ 0x10251c\l134: sym.init (int32_t arg_8h);\l; var int32_t var_14h @ ebp-0x14\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x001020cf      push ebp\l0x001020d0      mov ebp, esp\l0x001020d2      push ebx\l0x001020d3      sub esp, 0x14\l0x001020d6      call sym.__x86.get_pc_thunk.bx\l0x001020db      add ebx, 0x1ef25\l0x001020e1      call loc.disable\l0x001020e6      mov dword [var_ch], eax\l0x001020e9      mov eax, dword [arg_8h]\l0x001020ec      shr eax, 0x1f\l0x001020ef      mov dl, al\l0x001020f1      cmp dword [arg_8h], 0x17\l0x001020f5      setg al\l0x001020f8      or eax, edx\l0x001020fa      test al, al\l0x001020fc      je 0x102113\l"]
+	"0x001020fe" [URL="sym.init/0x001020fe", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001020fe      sub esp, 0xc\l0x00102101      push dword [var_ch]\l0x00102104      call loc.restore\l0x00102109      add esp, 0x10\l0x0010210c      mov eax, 0xffffffff                                    ; -1\l0x00102111      jmp 0x102150\l"]
+	"0x00102113" [URL="sym.init/0x00102113", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.init @ 0x1020fc\l0x00102113      mov edx, dword [arg_8h]\l0x00102116      mov eax, edx\l0x00102118      shl eax, 4\l0x0010211b      sub eax, edx\l0x0010211d      shl eax, 2\l0x00102120      mov edx, obj.devtab                                    ; 0x11f880\l0x00102126      add eax, edx\l0x00102128      mov dword [var_10h], eax\l0x0010212b      mov eax, dword [var_10h]\l0x0010212e      mov eax, dword [eax + 0xc]\l0x00102131      sub esp, 0xc\l0x00102134      push dword [var_10h]\l0x00102137      call eax\l0x00102139      add esp, 0x10\l0x0010213c      mov dword [var_14h], eax\l0x0010213f      sub esp, 0xc\l0x00102142      push dword [var_ch]\l0x00102145      call loc.restore\l0x0010214a      add esp, 0x10\l0x0010214d      mov eax, dword [var_14h]\l"]
+	"0x00102150" [URL="sym.init/0x00102150", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.init @ 0x102111\l0x00102150      mov ebx, dword [var_4h]\l0x00102153      leave\l0x00102154      ret\l"]
+        "0x001020cf" -> "0x00102113" [color="#13a10e"];
+        "0x001020cf" -> "0x001020fe" [color="#c50f1f"];
+        "0x001020fe" -> "0x00102150" [color="#0037da"];
+        "0x00102113" -> "0x00102150" [color="#0037da"];
+}

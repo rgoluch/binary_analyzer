@@ -1,0 +1,20 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001019c4" [URL="sym.getdev/0x001019c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="134: sym.getdev (int32_t arg_8h);\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x001019c4      push ebp\l0x001019c5      mov ebp, esp\l0x001019c7      push ebx\l0x001019c8      sub esp, 0x14\l0x001019cb      call sym.__x86.get_pc_thunk.bx\l0x001019d0      add ebx, 0x1f630\l0x001019d6      call loc.disable\l0x001019db      mov dword [var_10h], eax\l0x001019de      mov dword [var_ch], 0\l0x001019e5      jmp 0x101a2c\l"]
+	"0x001019e7" [URL="sym.getdev/0x001019e7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getdev @ 0x101a30\l0x001019e7      mov ecx, obj.devtab                                    ; 0x11f880\l0x001019ed      mov edx, dword [var_ch]\l0x001019f0      mov eax, edx\l0x001019f2      shl eax, 4\l0x001019f5      sub eax, edx\l0x001019f7      shl eax, 2\l0x001019fa      add eax, ecx\l0x001019fc      add eax, 8\l0x001019ff      mov eax, dword [eax]\l0x00101a01      sub esp, 4\l0x00101a04      push 0x10                                              ; 16\l0x00101a06      push eax\l0x00101a07      push dword [arg_8h]\l0x00101a0a      call sym.strncmp                                       ; int strncmp(const char *s1, const char *s2, size_t n)\l0x00101a0f      add esp, 0x10\l0x00101a12      test eax, eax\l0x00101a14      je 0x101a29\l"]
+	"0x00101a16" [URL="sym.getdev/0x00101a16", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00101a16      sub esp, 0xc\l0x00101a19      push dword [var_10h]\l0x00101a1c      call loc.restore\l0x00101a21      add esp, 0x10\l0x00101a24      mov eax, dword [var_ch]\l0x00101a27      jmp 0x101a45\l"]
+	"0x00101a29" [URL="sym.getdev/0x00101a29", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getdev @ 0x101a14\l0x00101a29      inc dword [var_ch]\l"]
+	"0x00101a2c" [URL="sym.getdev/0x00101a2c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getdev @ 0x1019e5\l0x00101a2c      cmp dword [var_ch], 0x17\l0x00101a30      jle 0x1019e7\l"]
+	"0x00101a32" [URL="sym.getdev/0x00101a32", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00101a32      sub esp, 0xc\l0x00101a35      push dword [var_10h]\l0x00101a38      call loc.restore\l0x00101a3d      add esp, 0x10\l0x00101a40      mov eax, 0xffffffff                                    ; -1\l"]
+	"0x00101a45" [URL="sym.getdev/0x00101a45", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getdev @ 0x101a27\l0x00101a45      mov ebx, dword [var_4h]\l0x00101a48      leave\l0x00101a49      ret\l"]
+        "0x001019c4" -> "0x00101a2c" [color="#0037da"];
+        "0x001019e7" -> "0x00101a29" [color="#13a10e"];
+        "0x001019e7" -> "0x00101a16" [color="#c50f1f"];
+        "0x00101a16" -> "0x00101a45" [color="#0037da"];
+        "0x00101a29" -> "0x00101a2c" [color="#0037da"];
+        "0x00101a2c" -> "0x001019e7" [color="#13a10e"];
+        "0x00101a2c" -> "0x00101a32" [color="#c50f1f"];
+        "0x00101a32" -> "0x00101a45" [color="#0037da"];
+}

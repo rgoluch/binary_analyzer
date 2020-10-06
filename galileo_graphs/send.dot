@@ -1,0 +1,34 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00104f97" [URL="sym.send/0x00104f97", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: CALL 0x001028c7  CALL 0x0010aaa7  CALL 0x0010aae9  \l  ; XREFS: CALL 0x0010acf1  CALL 0x0010ddd6  CALL 0x0010fa38  \l  ; XREFS: CALL 0x00112a16  \l251: ssize_t sym.send (int socket, void *buffer, size_t length, int flags);\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x00104f97      push ebp\l0x00104f98      mov ebp, esp\l0x00104f9a      push ebx\l0x00104f9b      sub esp, 0x14\l0x00104f9e      call sym.__x86.get_pc_thunk.bx\l0x00104fa3      add ebx, 0x1c05d\l0x00104fa9      call loc.disable\l0x00104fae      mov dword [var_ch], eax\l0x00104fb1      cmp dword [arg_8h], 0\l0x00104fb5      js 0x104fd9\l"]
+	"0x00104fb7" [URL="sym.send/0x00104fb7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104fb7      cmp dword [arg_8h], 0x63\l0x00104fbb      jg 0x104fd9\l"]
+	"0x00104fbd" [URL="sym.send/0x00104fbd", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104fbd      mov ecx, obj.proctab                                   ; 0x1212e0\l0x00104fc3      mov edx, dword [arg_8h]\l0x00104fc6      mov eax, edx\l0x00104fc8      shl eax, 3\l0x00104fcb      sub eax, edx\l0x00104fcd      shl eax, 3\l0x00104fd0      add eax, ecx\l0x00104fd2      mov eax, dword [eax]\l0x00104fd4      test ax, ax\l0x00104fd7      jne 0x104ff1\l"]
+	"0x00104fd9" [URL="sym.send/0x00104fd9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.send @ 0x104fb5, 0x104fbb\l0x00104fd9      sub esp, 0xc\l0x00104fdc      push dword [var_ch]\l0x00104fdf      call loc.restore\l0x00104fe4      add esp, 0x10\l0x00104fe7      mov eax, 0xffffffff                                    ; -1\l0x00104fec      jmp 0x10508d\l"]
+	"0x00104ff1" [URL="sym.send/0x00104ff1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.send @ 0x104fd7\l0x00104ff1      mov edx, dword [arg_8h]\l0x00104ff4      mov eax, edx\l0x00104ff6      shl eax, 3\l0x00104ff9      sub eax, edx\l0x00104ffb      shl eax, 3\l0x00104ffe      mov edx, obj.proctab                                   ; 0x1212e0\l0x00105004      add eax, edx\l0x00105006      mov dword [var_10h], eax\l0x00105009      mov eax, dword [var_10h]\l0x0010500c      mov al, byte [eax + 0x2c]\l0x0010500f      test al, al\l0x00105011      je 0x105028\l"]
+	"0x00105013" [URL="sym.send/0x00105013", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00105013      sub esp, 0xc\l0x00105016      push dword [var_ch]\l0x00105019      call loc.restore\l0x0010501e      add esp, 0x10\l0x00105021      mov eax, 0xffffffff                                    ; -1\l0x00105026      jmp 0x10508d\l"]
+	"0x00105028" [URL="sym.send/0x00105028", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.send @ 0x105011\l0x00105028      mov eax, dword [var_10h]\l0x0010502b      mov edx, dword [arg_ch]\l0x0010502e      mov dword [eax + 0x28], edx\l0x00105031      mov eax, dword [var_10h]\l0x00105034      mov byte [eax + 0x2c], 1\l0x00105038      mov eax, dword [var_10h]\l0x0010503b      mov eax, dword [eax]\l0x0010503d      cmp ax, 3                                              ; 3\l0x00105041      jne 0x105053\l"]
+	"0x00105043" [URL="sym.send/0x00105043", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00105043      sub esp, 0xc\l0x00105046      push dword [arg_8h]\l0x00105049      call sym.ready\l0x0010504e      add esp, 0x10\l0x00105051      jmp 0x10507a\l"]
+	"0x00105053" [URL="sym.send/0x00105053", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.send @ 0x105041\l0x00105053      mov eax, dword [var_10h]\l0x00105056      mov eax, dword [eax]\l0x00105058      cmp ax, 7                                              ; 7\l0x0010505c      jne 0x10507a\l"]
+	"0x0010505e" [URL="sym.send/0x0010505e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010505e      sub esp, 0xc\l0x00105061      push dword [arg_8h]\l0x00105064      call sym.unsleep\l0x00105069      add esp, 0x10\l0x0010506c      sub esp, 0xc\l0x0010506f      push dword [arg_8h]\l0x00105072      call sym.ready\l0x00105077      add esp, 0x10\l"]
+	"0x0010507a" [URL="sym.send/0x0010507a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.send @ 0x105051, 0x10505c\l0x0010507a      sub esp, 0xc\l0x0010507d      push dword [var_ch]\l0x00105080      call loc.restore\l0x00105085      add esp, 0x10\l0x00105088      mov eax, 1\l"]
+	"0x0010508d" [URL="sym.send/0x0010508d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.send @ 0x104fec, 0x105026\l0x0010508d      mov ebx, dword [var_4h]\l0x00105090      leave\l0x00105091      ret\l"]
+        "0x00104f97" -> "0x00104fd9" [color="#13a10e"];
+        "0x00104f97" -> "0x00104fb7" [color="#c50f1f"];
+        "0x00104fb7" -> "0x00104fd9" [color="#13a10e"];
+        "0x00104fb7" -> "0x00104fbd" [color="#c50f1f"];
+        "0x00104fbd" -> "0x00104ff1" [color="#13a10e"];
+        "0x00104fbd" -> "0x00104fd9" [color="#c50f1f"];
+        "0x00104fd9" -> "0x0010508d" [color="#0037da"];
+        "0x00104ff1" -> "0x00105028" [color="#13a10e"];
+        "0x00104ff1" -> "0x00105013" [color="#c50f1f"];
+        "0x00105013" -> "0x0010508d" [color="#0037da"];
+        "0x00105028" -> "0x00105053" [color="#13a10e"];
+        "0x00105028" -> "0x00105043" [color="#c50f1f"];
+        "0x00105043" -> "0x0010507a" [color="#0037da"];
+        "0x00105053" -> "0x0010507a" [color="#13a10e"];
+        "0x00105053" -> "0x0010505e" [color="#c50f1f"];
+        "0x0010505e" -> "0x0010507a" [color="#0037da"];
+        "0x0010507a" -> "0x0010508d" [color="#0037da"];
+}

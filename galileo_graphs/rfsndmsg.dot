@@ -1,0 +1,28 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010d60a" [URL="sym.rfsndmsg/0x0010d60a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.rfscontrol @ +0xaf, +0xe3, +0x117, +0x14b\l296: sym.rfsndmsg (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_12ch @ ebp-0x12c\l; var int32_t var_120h @ ebp-0x120\l; var int32_t var_11eh @ ebp-0x11e\l; var int32_t var_98h @ ebp-0x98\l; var int32_t var_96h @ ebp-0x96\l; var int32_t var_94h @ ebp-0x94\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; var int32_t var_148h @ esp+0x4\l; var int32_t var_144h @ esp+0x8\l; var int32_t var_140h @ esp+0xc\l0x0010d60a      push ebp\l0x0010d60b      mov ebp, esp\l0x0010d60d      sub esp, 0x148\l0x0010d613      mov eax, dword [arg_8h]\l0x0010d616      mov word [var_12ch], ax\l0x0010d61d      mov eax, dword [var_12ch]\l0x0010d623      shr ax, 8\l0x0010d627      mov edx, eax\l0x0010d629      mov eax, dword [var_12ch]\l0x0010d62f      and eax, 0xffff\l0x0010d634      shl eax, 8\l0x0010d637      or eax, edx\l0x0010d639      mov word [var_98h], ax\l0x0010d640      mov word [var_96h], 0\l0x0010d649      mov dword [var_94h], 0\l0x0010d653      lea eax, [var_98h]\l0x0010d659      add eax, 8\l0x0010d65c      mov dword [var_ch], eax\l0x0010d65f      nop\l"]
+	"0x0010d660" [URL="sym.rfsndmsg/0x0010d660", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsndmsg @ 0x10d67a\l0x0010d660      mov eax, dword [var_ch]\l0x0010d663      lea edx, [eax + 1]\l0x0010d666      mov dword [var_ch], edx\l0x0010d669      mov edx, dword [arg_ch]\l0x0010d66c      lea ecx, [edx + 1]\l0x0010d66f      mov dword [arg_ch], ecx\l0x0010d672      mov dl, byte [edx]\l0x0010d674      mov byte [eax], dl\l0x0010d676      mov al, byte [eax]\l0x0010d678      test al, al\l0x0010d67a      jne 0x10d660\l"]
+	"0x0010d67c" [URL="sym.rfsndmsg/0x0010d67c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d67c      mov dword [var_140h], 0x88                             ; [0x88:4]=-1 ; 136\l0x0010d684      lea eax, [var_120h]\l0x0010d68a      mov dword [var_144h], eax\l0x0010d68e      mov dword [var_148h], 0x88                             ; [0x88:4]=-1 ; 136\l0x0010d696      lea eax, [var_98h]\l0x0010d69c      mov dword [esp], eax\l0x0010d69f      call sym.rfscomm\l0x0010d6a4      mov dword [var_10h], eax\l0x0010d6a7      cmp dword [var_10h], 0xffffffff\l0x0010d6ab      jne 0x10d6b4\l"]
+	"0x0010d6ad" [URL="sym.rfsndmsg/0x0010d6ad", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d6ad      mov eax, 0xffffffff                                    ; -1\l0x0010d6b2      jmp 0x10d730\l"]
+	"0x0010d6b4" [URL="sym.rfsndmsg/0x0010d6b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsndmsg @ 0x10d6ab\l0x0010d6b4      cmp dword [var_10h], 0xfffffffd\l0x0010d6b8      jne 0x10d6cd\l"]
+	"0x0010d6ba" [URL="sym.rfsndmsg/0x0010d6ba", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d6ba      mov dword [esp], 0x118e30                              ; [0x118e30:4]=0x656d6954 ; \"Timeout during remote file server access\\n\"\l0x0010d6c1      call sym.kprintf\l0x0010d6c6      mov eax, 0xffffffff                                    ; -1\l0x0010d6cb      jmp 0x10d730\l"]
+	"0x0010d6cd" [URL="sym.rfsndmsg/0x0010d6cd", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsndmsg @ 0x10d6b8\l0x0010d6cd      mov ax, word [var_11eh]\l0x0010d6d4      and eax, 0xffff\l0x0010d6d9      sar eax, 0x18\l0x0010d6dc      xor edx, edx\l0x0010d6de      mov dl, al\l0x0010d6e0      mov ax, word [var_11eh]\l0x0010d6e7      shr ax, 8\l0x0010d6eb      and eax, 0xffff\l0x0010d6f0      and eax, 0xff00\l0x0010d6f5      or edx, eax\l0x0010d6f7      mov ax, word [var_11eh]\l0x0010d6fe      and eax, 0xffff\l0x0010d703      shl eax, 8\l0x0010d706      and eax, 0xff0000\l0x0010d70b      or eax, edx\l0x0010d70d      mov edx, eax\l0x0010d70f      mov ax, word [var_11eh]\l0x0010d716      and eax, 0xffff\l0x0010d71b      shl eax, 0x18\l0x0010d71e      or eax, edx\l0x0010d720      test eax, eax\l0x0010d722      je 0x10d72b\l"]
+	"0x0010d724" [URL="sym.rfsndmsg/0x0010d724", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d724      mov eax, 0xffffffff                                    ; -1\l0x0010d729      jmp 0x10d730\l"]
+	"0x0010d72b" [URL="sym.rfsndmsg/0x0010d72b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsndmsg @ 0x10d722\l0x0010d72b      mov eax, 1\l"]
+	"0x0010d730" [URL="sym.rfsndmsg/0x0010d730", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.rfsndmsg @ 0x10d6b2, 0x10d6cb, 0x10d729\l0x0010d730      leave\l0x0010d731      ret\l"]
+        "0x0010d60a" -> "0x0010d660" [color="#0037da"];
+        "0x0010d660" -> "0x0010d660" [color="#13a10e"];
+        "0x0010d660" -> "0x0010d67c" [color="#c50f1f"];
+        "0x0010d67c" -> "0x0010d6b4" [color="#13a10e"];
+        "0x0010d67c" -> "0x0010d6ad" [color="#c50f1f"];
+        "0x0010d6ad" -> "0x0010d730" [color="#0037da"];
+        "0x0010d6b4" -> "0x0010d6cd" [color="#13a10e"];
+        "0x0010d6b4" -> "0x0010d6ba" [color="#c50f1f"];
+        "0x0010d6ba" -> "0x0010d730" [color="#0037da"];
+        "0x0010d6cd" -> "0x0010d72b" [color="#13a10e"];
+        "0x0010d6cd" -> "0x0010d724" [color="#c50f1f"];
+        "0x0010d724" -> "0x0010d730" [color="#0037da"];
+        "0x0010d72b" -> "0x0010d730" [color="#0037da"];
+}

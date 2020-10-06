@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010b1d7" [URL="sym.ramopen/0x0010b1d7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="10: sym.ramopen (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l0x0010b1d7      push ebp\l0x0010b1d8      mov ebp, esp\l0x0010b1da      mov eax, dword [arg_8h]\l0x0010b1dd      mov eax, dword [eax]\l0x0010b1df      pop ebp\l0x0010b1e0      ret\l"]
+}

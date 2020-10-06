@@ -1,0 +1,53 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010892c" [URL="sym.ttyread/0x0010892c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="271: sym.ttyread (int32_t arg_8h, int32_t arg_ch, int32_t arg_10h);\l; var int32_t var_1ch @ ebp-0x1c\l; var int32_t var_18h @ ebp-0x18\l; var int32_t var_14h @ ebp-0x14\l; var int32_t var_dh @ ebp-0xd\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l0x0010892c      push ebp\l0x0010892d      mov ebp, esp\l0x0010892f      push ebx\l0x00108930      sub esp, 0x34\l0x00108933      cmp dword [arg_10h], 0\l0x00108937      jns 0x108943\l"]
+	"0x00108939" [URL="sym.ttyread/0x00108939", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108939      mov eax, 0xffffffff                                    ; -1\l0x0010893e      jmp 0x108a35\l"]
+	"0x00108943" [URL="sym.ttyread/0x00108943", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyread @ 0x108937\l0x00108943      mov eax, dword [arg_8h]\l0x00108946      mov eax, dword [eax + 4]\l0x00108949      shl eax, 4\l0x0010894c      mov edx, eax\l0x0010894e      shl edx, 4\l0x00108951      add eax, edx\l0x00108953      add eax, obj.ttytab                                    ; 0x123a80\l0x00108958      mov dword [var_14h], eax\l0x0010895b      mov eax, dword [var_14h]\l0x0010895e      mov al, byte [eax + 0xf4]\l0x00108964      cmp al, 0x43                                           ; 67\l0x00108966      je 0x1089c7\l"]
+	"0x00108968" [URL="sym.ttyread/0x00108968", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108968      cmp dword [arg_10h], 0\l0x0010896c      jne 0x108998\l"]
+	"0x0010896e" [URL="sym.ttyread/0x0010896e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010896e      mov eax, dword [var_14h]\l0x00108971      mov eax, dword [eax + 0x88]\l0x00108977      mov dword [esp], eax\l0x0010897a      call sym.semcount\l0x0010897f      mov dword [var_18h], eax\l0x00108982      cmp dword [var_18h], 0\l0x00108986      jne 0x108992\l"]
+	"0x00108988" [URL="sym.ttyread/0x00108988", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108988      mov eax, 0\l0x0010898d      jmp 0x108a35\l"]
+	"0x00108992" [URL="sym.ttyread/0x00108992", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyread @ 0x108986\l0x00108992      mov eax, dword [var_18h]\l0x00108995      mov dword [arg_10h], eax\l"]
+	"0x00108998" [URL="sym.ttyread/0x00108998", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyread @ 0x10896c\l0x00108998      mov dword [var_ch], 0\l0x0010899f      jmp 0x1089ba\l"]
+	"0x001089a1" [URL="sym.ttyread/0x001089a1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyread @ 0x1089c0\l0x001089a1      mov ebx, dword [arg_ch]\l0x001089a4      lea eax, [ebx + 1]\l0x001089a7      mov dword [arg_ch], eax\l0x001089aa      mov eax, dword [arg_8h]\l0x001089ad      mov dword [esp], eax\l0x001089b0      call sym.ttygetc\l0x001089b5      mov byte [ebx], al\l0x001089b7      inc dword [var_ch]\l"]
+	"0x001089ba" [URL="sym.ttyread/0x001089ba", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyread @ 0x10899f\l0x001089ba      mov eax, dword [var_ch]\l0x001089bd      cmp eax, dword [arg_10h]\l0x001089c0      jl 0x1089a1\l"]
+	"0x001089c2" [URL="sym.ttyread/0x001089c2", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001089c2      mov eax, dword [var_ch]\l0x001089c5      jmp 0x108a35\l"]
+	"0x001089c7" [URL="sym.ttyread/0x001089c7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyread @ 0x108966\l0x001089c7      mov eax, dword [arg_8h]\l0x001089ca      mov dword [esp], eax\l0x001089cd      call sym.ttygetc\l0x001089d2      mov dword [var_1ch], eax\l0x001089d5      cmp dword [var_1ch], 0xfffffffe\l0x001089d9      jne 0x1089e2\l"]
+	"0x001089db" [URL="sym.ttyread/0x001089db", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001089db      mov eax, 0xfffffffe                                    ; 4294967294\l0x001089e0      jmp 0x108a35\l"]
+	"0x001089e2" [URL="sym.ttyread/0x001089e2", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyread @ 0x1089d9\l0x001089e2      mov eax, dword [var_1ch]\l0x001089e5      mov byte [var_dh], al\l0x001089e8      mov eax, dword [arg_ch]\l0x001089eb      lea edx, [eax + 1]\l0x001089ee      mov dword [arg_ch], edx\l0x001089f1      mov dl, byte [var_dh]\l0x001089f4      mov byte [eax], dl\l0x001089f6      mov dword [var_ch], 1\l0x001089fd      jmp 0x108a1e\l"]
+	"0x001089ff" [URL="sym.ttyread/0x001089ff", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyread @ 0x108a30\l0x001089ff      mov eax, dword [arg_8h]\l0x00108a02      mov dword [esp], eax\l0x00108a05      call sym.ttygetc\l0x00108a0a      mov byte [var_dh], al\l0x00108a0d      mov eax, dword [arg_ch]\l0x00108a10      lea edx, [eax + 1]\l0x00108a13      mov dword [arg_ch], edx\l0x00108a16      mov dl, byte [var_dh]\l0x00108a19      mov byte [eax], dl\l0x00108a1b      inc dword [var_ch]\l"]
+	"0x00108a1e" [URL="sym.ttyread/0x00108a1e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyread @ 0x1089fd\l0x00108a1e      mov eax, dword [var_ch]\l0x00108a21      cmp eax, dword [arg_10h]\l0x00108a24      jge 0x108a32\l"]
+	"0x00108a26" [URL="sym.ttyread/0x00108a26", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108a26      cmp byte [var_dh], 0xa\l0x00108a2a      je 0x108a32\l"]
+	"0x00108a2c" [URL="sym.ttyread/0x00108a2c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108a2c      cmp byte [var_dh], 0xd\l0x00108a30      jne 0x1089ff\l"]
+	"0x00108a32" [URL="sym.ttyread/0x00108a32", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttyread @ 0x108a24, 0x108a2a\l0x00108a32      mov eax, dword [var_ch]\l"]
+	"0x00108a35" [URL="sym.ttyread/0x00108a35", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttyread @ 0x10893e, 0x10898d, 0x1089c5, 0x1089e0\l0x00108a35      add esp, 0x34\l0x00108a38      pop ebx\l0x00108a39      pop ebp\l0x00108a3a      ret\l"]
+        "0x0010892c" -> "0x00108943" [color="#13a10e"];
+        "0x0010892c" -> "0x00108939" [color="#c50f1f"];
+        "0x00108939" -> "0x00108a35" [color="#0037da"];
+        "0x00108943" -> "0x001089c7" [color="#13a10e"];
+        "0x00108943" -> "0x00108968" [color="#c50f1f"];
+        "0x00108968" -> "0x00108998" [color="#13a10e"];
+        "0x00108968" -> "0x0010896e" [color="#c50f1f"];
+        "0x0010896e" -> "0x00108992" [color="#13a10e"];
+        "0x0010896e" -> "0x00108988" [color="#c50f1f"];
+        "0x00108988" -> "0x00108a35" [color="#0037da"];
+        "0x00108992" -> "0x00108998" [color="#0037da"];
+        "0x00108998" -> "0x001089ba" [color="#0037da"];
+        "0x001089a1" -> "0x001089ba" [color="#0037da"];
+        "0x001089ba" -> "0x001089a1" [color="#13a10e"];
+        "0x001089ba" -> "0x001089c2" [color="#c50f1f"];
+        "0x001089c2" -> "0x00108a35" [color="#0037da"];
+        "0x001089c7" -> "0x001089e2" [color="#13a10e"];
+        "0x001089c7" -> "0x001089db" [color="#c50f1f"];
+        "0x001089db" -> "0x00108a35" [color="#0037da"];
+        "0x001089e2" -> "0x00108a1e" [color="#0037da"];
+        "0x001089ff" -> "0x00108a1e" [color="#0037da"];
+        "0x00108a1e" -> "0x00108a32" [color="#13a10e"];
+        "0x00108a1e" -> "0x00108a26" [color="#c50f1f"];
+        "0x00108a26" -> "0x00108a32" [color="#13a10e"];
+        "0x00108a26" -> "0x00108a2c" [color="#c50f1f"];
+        "0x00108a2c" -> "0x001089ff" [color="#13a10e"];
+        "0x00108a2c" -> "0x00108a32" [color="#c50f1f"];
+        "0x00108a32" -> "0x00108a35" [color="#0037da"];
+}

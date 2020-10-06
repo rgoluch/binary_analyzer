@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00101a4a" [URL="sym.getfirst/0x00101a4a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.dequeue @ 0x104633\l  ; CALL XREF from sym.semdelete @ 0x104e68\l  ; CALL XREF from sym.semreset @ 0x104f58\l86: sym.getfirst (int32_t arg_8h);\l; var int32_t var_1ch @ ebp-0x1c\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l0x00101a4a      push ebp\l0x00101a4b      mov ebp, esp\l0x00101a4d      sub esp, 0x28\l0x00101a50      call sym.__x86.get_pc_thunk.dx\l0x00101a55      add edx, 0x1f5ab\l0x00101a5b      mov eax, dword [arg_8h]\l0x00101a5e      mov word [var_1ch], ax\l0x00101a62      movsx ecx, word [var_1ch]\l0x00101a66      mov eax, obj.queuetab                                  ; 0x1230e0\l0x00101a6c      mov eax, dword [eax + ecx*8 + 4]\l0x00101a70      cmp ax, 0x63                                           ; 99\l0x00101a74      jle 0x101a7d\l"]
+	"0x00101a76" [URL="sym.getfirst/0x00101a76", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00101a76      mov eax, 0xffffffff                                    ; -1\l0x00101a7b      jmp 0x101a9e\l"]
+	"0x00101a7d" [URL="sym.getfirst/0x00101a7d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getfirst @ 0x101a74\l0x00101a7d      movsx eax, word [var_1ch]\l0x00101a81      mov dword [var_ch], eax\l0x00101a84      mov eax, obj.queuetab                                  ; 0x1230e0\l0x00101a8a      mov edx, dword [var_ch]\l0x00101a8d      mov eax, dword [eax + edx*8 + 4]\l0x00101a91      cwde\l0x00101a92      sub esp, 0xc\l0x00101a95      push eax\l0x00101a96      call sym.getitem\l0x00101a9b      add esp, 0x10\l"]
+	"0x00101a9e" [URL="sym.getfirst/0x00101a9e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getfirst @ 0x101a7b\l0x00101a9e      leave\l0x00101a9f      ret\l"]
+        "0x00101a4a" -> "0x00101a7d" [color="#13a10e"];
+        "0x00101a4a" -> "0x00101a76" [color="#c50f1f"];
+        "0x00101a76" -> "0x00101a9e" [color="#0037da"];
+        "0x00101a7d" -> "0x00101a9e" [color="#0037da"];
+}

@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00100dc5" [URL="sym.intel_cln_early_sb_probe/0x00100dc5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.remove_irm_protections @ 0x100f2d\l95: sym.intel_cln_early_sb_probe ();\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l0x00100dc5      push ebp\l0x00100dc6      mov ebp, esp\l0x00100dc8      push ebx\l0x00100dc9      sub esp, 0x14\l0x00100dcc      call sym.__x86.get_pc_thunk.bx\l0x00100dd1      add ebx, 0x2022f\l0x00100dd7      sub esp, 4\l0x00100dda      push 0\l0x00100ddc      push 0x8086\l0x00100de1      push 0x958                                             ; 2392\l0x00100de6      call sym.find_pci_device\l0x00100deb      add esp, 0x10\l0x00100dee      mov dword [var_ch], eax\l0x00100df1      cmp dword [var_ch], 0\l0x00100df5      jns 0x100e1a\l"]
+	"0x00100df7" [URL="sym.intel_cln_early_sb_probe/0x00100df7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00100df7      sub esp, 4\l0x00100dfa      push 0x958                                             ; 2392\l0x00100dff      lea eax, [ebx - 0x9120]\l0x00100e05      push eax\l0x00100e06      lea eax, [ebx - 0x9170]\l0x00100e0c      push eax\l0x00100e0d      call sym.kprintf\l0x00100e12      add esp, 0x10\l0x00100e15      mov eax, dword [var_ch]\l0x00100e18      jmp 0x100e1f\l"]
+	"0x00100e1a" [URL="sym.intel_cln_early_sb_probe/0x00100e1a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.intel_cln_early_sb_probe @ 0x100df5\l0x00100e1a      mov eax, 0\l"]
+	"0x00100e1f" [URL="sym.intel_cln_early_sb_probe/0x00100e1f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.intel_cln_early_sb_probe @ 0x100e18\l0x00100e1f      mov ebx, dword [var_4h]\l0x00100e22      leave\l0x00100e23      ret\l"]
+        "0x00100dc5" -> "0x00100e1a" [color="#13a10e"];
+        "0x00100dc5" -> "0x00100df7" [color="#c50f1f"];
+        "0x00100df7" -> "0x00100e1f" [color="#0037da"];
+        "0x00100e1a" -> "0x00100e1f" [color="#0037da"];
+}

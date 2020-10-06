@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010010f" [URL="loc.outb/0x0010010f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: CALL 0x00101042  CALL 0x00101051  CALL 0x00101060  \l  ; XREFS: CALL 0x0010106f  CALL 0x0010107e  CALL 0x00101090  \l  ; XREFS: CALL 0x001010a2  CALL 0x001010b4  CALL 0x001010c6  \l  ; XREFS: CALL 0x001010d8  CALL 0x0010137e  CALL 0x001013a6  \l  ; XREFS: CALL 0x001042ff  \l10: loc.outb (int32_t arg_4h, int32_t arg_8h);\l; arg int32_t arg_4h @ esp+0x4\l; arg int32_t arg_8h @ esp+0x8\l0x0010010f      mov edx, dword [arg_4h]\l0x00100113      mov eax, dword [arg_8h]\l0x00100117      out dx, al\l0x00100118      ret\l"]
+}

@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00107783" [URL="sym.rand_r/0x00107783", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.rand @ 0x10777c\l62: sym.rand_r (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l0x00107783      push ebp\l0x00107784      mov ebp, esp\l0x00107786      mov eax, dword [arg_8h]\l0x00107789      mov ecx, dword [eax]\l0x0010778b      mov edx, ecx\l0x0010778d      shl edx, 2\l0x00107790      add edx, ecx\l0x00107792      mov eax, edx\l0x00107794      shl eax, 4\l0x00107797      sub eax, edx\l0x00107799      shl eax, 5\l0x0010779c      add eax, ecx\l0x0010779e      lea edx, [eax*8]\l0x001077a5      sub edx, eax\l0x001077a7      mov eax, edx\l0x001077a9      mov ecx, 0x7fffffff\l0x001077ae      mov edx, 0\l0x001077b3      div ecx\l0x001077b5      mov eax, dword [arg_8h]\l0x001077b8      mov dword [eax], edx\l0x001077ba      mov eax, dword [arg_8h]\l0x001077bd      mov eax, dword [eax]\l0x001077bf      pop ebp\l0x001077c0      ret\l"]
+}

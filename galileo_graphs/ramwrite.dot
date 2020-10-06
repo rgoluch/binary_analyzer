@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010b216" [URL="sym.ramwrite/0x0010b216", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="54: sym.ramwrite (int32_t arg_ch, int32_t arg_10h);\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l; var int32_t var_28h @ esp+0x4\l; var int32_t var_24h @ esp+0x8\l0x0010b216      push ebp\l0x0010b217      mov ebp, esp\l0x0010b219      sub esp, 0x28\l0x0010b21c      mov eax, dword [arg_10h]\l0x0010b21f      shl eax, 9\l0x0010b222      mov dword [var_ch], eax\l0x0010b225      mov eax, dword [var_ch]\l0x0010b228      lea edx, [eax + obj.Ram]                               ; 0x125740\l0x0010b22e      mov dword [var_24h], 0x200                             ; [0x200:4]=-1 ; 512\l0x0010b236      mov eax, dword [arg_ch]\l0x0010b239      mov dword [var_28h], eax\l0x0010b23d      mov dword [esp], edx\l0x0010b240      call sym.memcpy                                        ; void *memcpy(void *s1, const void *s2, size_t n)\l0x0010b245      mov eax, 1\l0x0010b24a      leave\l0x0010b24b      ret\l"]
+}

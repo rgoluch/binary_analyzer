@@ -1,0 +1,30 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001071d6" [URL="sym.fgets/0x001071d6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="114: char *sym.fgets (char *s, int size, FILE *stream);\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l0x001071d6      push ebp\l0x001071d7      mov ebp, esp\l0x001071d9      sub esp, 0x28\l0x001071dc      mov dword [var_ch], 0\l0x001071e3      mov eax, dword [arg_8h]\l0x001071e6      mov dword [var_10h], eax\l0x001071e9      jmp 0x107205\l"]
+	"0x001071eb" [URL="sym.fgets/0x001071eb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.fgets @ 0x107220\l0x001071eb      mov eax, dword [var_10h]\l0x001071ee      lea edx, [eax + 1]\l0x001071f1      mov dword [var_10h], edx\l0x001071f4      mov edx, dword [var_ch]\l0x001071f7      mov byte [eax], dl\l0x001071f9      cmp dword [var_ch], 0xa\l0x001071fd      je 0x107222\l"]
+	"0x001071ff" [URL="sym.fgets/0x001071ff", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001071ff      cmp dword [var_ch], 0xd\l0x00107203      je 0x107222\l"]
+	"0x00107205" [URL="sym.fgets/0x00107205", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.fgets @ 0x1071e9\l0x00107205      dec dword [arg_ch]\l0x00107208      cmp dword [arg_ch], 0\l0x0010720c      jle 0x107222\l"]
+	"0x0010720e" [URL="sym.fgets/0x0010720e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010720e      mov eax, dword [arg_10h]\l0x00107211      mov dword [esp], eax\l0x00107214      call sym.getc                                          ; int getc(FILE *stream)\l0x00107219      mov dword [var_ch], eax\l0x0010721c      cmp dword [var_ch], 0\l0x00107220      jns 0x1071eb\l"]
+	"0x00107222" [URL="sym.fgets/0x00107222", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.fgets @ 0x1071fd, 0x107203, 0x10720c\l0x00107222      cmp dword [var_ch], 0\l0x00107226      jns 0x107237\l"]
+	"0x00107228" [URL="sym.fgets/0x00107228", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00107228      mov eax, dword [var_10h]\l0x0010722b      cmp eax, dword [arg_8h]\l0x0010722e      jne 0x107237\l"]
+	"0x00107230" [URL="sym.fgets/0x00107230", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00107230      mov eax, 0\l0x00107235      jmp 0x107246\l"]
+	"0x00107237" [URL="sym.fgets/0x00107237", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.fgets @ 0x107226, 0x10722e\l0x00107237      mov eax, dword [var_10h]\l0x0010723a      lea edx, [eax + 1]\l0x0010723d      mov dword [var_10h], edx\l0x00107240      mov byte [eax], 0\l0x00107243      mov eax, dword [arg_8h]\l"]
+	"0x00107246" [URL="sym.fgets/0x00107246", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.fgets @ 0x107235\l0x00107246      leave\l0x00107247      ret\l"]
+        "0x001071d6" -> "0x00107205" [color="#0037da"];
+        "0x001071eb" -> "0x00107222" [color="#13a10e"];
+        "0x001071eb" -> "0x001071ff" [color="#c50f1f"];
+        "0x001071ff" -> "0x00107222" [color="#13a10e"];
+        "0x001071ff" -> "0x00107205" [color="#c50f1f"];
+        "0x00107205" -> "0x00107222" [color="#13a10e"];
+        "0x00107205" -> "0x0010720e" [color="#c50f1f"];
+        "0x0010720e" -> "0x001071eb" [color="#13a10e"];
+        "0x0010720e" -> "0x00107222" [color="#c50f1f"];
+        "0x00107222" -> "0x00107237" [color="#13a10e"];
+        "0x00107222" -> "0x00107228" [color="#c50f1f"];
+        "0x00107228" -> "0x00107237" [color="#13a10e"];
+        "0x00107228" -> "0x00107230" [color="#c50f1f"];
+        "0x00107230" -> "0x00107246" [color="#0037da"];
+        "0x00107237" -> "0x00107246" [color="#0037da"];
+}

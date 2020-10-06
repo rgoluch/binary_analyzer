@@ -1,0 +1,62 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010170a" [URL="sym.freemem/0x0010170a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.kill @ 0x10292a\l  ; CALL XREF from sym.mkbufpool @ 0x10311e\l405: sym.freemem (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_1ch @ ebp-0x1c\l; var int32_t var_18h @ ebp-0x18\l; var int32_t var_14h @ ebp-0x14\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x0010170a      push ebp\l0x0010170b      mov ebp, esp\l0x0010170d      push ebx\l0x0010170e      sub esp, 0x24\l0x00101711      call sym.__x86.get_pc_thunk.bx\l0x00101716      add ebx, 0x1f8ea\l0x0010171c      call loc.disable\l0x00101721      mov dword [var_1ch], eax\l0x00101724      cmp dword [arg_ch], 0\l0x00101728      je 0x101748\l"]
+	"0x0010172a" [URL="sym.freemem/0x0010172a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010172a      mov edx, dword [arg_8h]\l0x0010172d      mov eax, obj.minheap                                   ; 0x122df8\l0x00101733      mov eax, dword [eax]\l0x00101735      cmp edx, eax\l0x00101737      jb 0x101748\l"]
+	"0x00101739" [URL="sym.freemem/0x00101739", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00101739      mov edx, dword [arg_8h]\l0x0010173c      mov eax, obj.maxheap                                   ; 0x122dfc\l0x00101742      mov eax, dword [eax]\l0x00101744      cmp edx, eax\l0x00101746      jbe 0x101760\l"]
+	"0x00101748" [URL="sym.freemem/0x00101748", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.freemem @ 0x101728, 0x101737\l0x00101748      sub esp, 0xc\l0x0010174b      push dword [var_1ch]\l0x0010174e      call loc.restore\l0x00101753      add esp, 0x10\l0x00101756      mov eax, 0xffffffff                                    ; -1\l0x0010175b      jmp 0x10189a\l"]
+	"0x00101760" [URL="sym.freemem/0x00101760", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x101746\l0x00101760      mov eax, dword [arg_ch]\l0x00101763      add eax, 7\l0x00101766      and eax, 0xfffffff8                                    ; 4294967288\l0x00101769      mov dword [arg_ch], eax\l0x0010176c      mov eax, dword [arg_8h]\l0x0010176f      mov dword [var_14h], eax\l0x00101772      mov eax, obj.memlist                                   ; 0x122d90\l0x00101778      mov dword [var_10h], eax\l0x0010177b      mov eax, obj.memlist                                   ; 0x122d90\l0x00101781      mov eax, dword [eax]\l0x00101783      mov dword [var_ch], eax\l0x00101786      jmp 0x101796\l"]
+	"0x00101788" [URL="sym.freemem/0x00101788", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x1017a2\l0x00101788      mov eax, dword [var_ch]\l0x0010178b      mov dword [var_10h], eax\l0x0010178e      mov eax, dword [var_ch]\l0x00101791      mov eax, dword [eax]\l0x00101793      mov dword [var_ch], eax\l"]
+	"0x00101796" [URL="sym.freemem/0x00101796", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x101786\l0x00101796      cmp dword [var_ch], 0\l0x0010179a      je 0x1017a4\l"]
+	"0x0010179c" [URL="sym.freemem/0x0010179c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010179c      mov eax, dword [var_ch]\l0x0010179f      cmp eax, dword [var_14h]\l0x001017a2      jb 0x101788\l"]
+	"0x001017a4" [URL="sym.freemem/0x001017a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x10179a\l0x001017a4      mov eax, obj.memlist                                   ; 0x122d90\l0x001017aa      cmp dword [var_10h], eax\l0x001017ad      jne 0x1017b8\l"]
+	"0x001017af" [URL="sym.freemem/0x001017af", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001017af      mov dword [var_18h], 0\l0x001017b6      jmp 0x1017c6\l"]
+	"0x001017b8" [URL="sym.freemem/0x001017b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x1017ad\l0x001017b8      mov eax, dword [var_10h]\l0x001017bb      mov edx, dword [eax + 4]\l0x001017be      mov eax, dword [var_10h]\l0x001017c1      add eax, edx\l0x001017c3      mov dword [var_18h], eax\l"]
+	"0x001017c6" [URL="sym.freemem/0x001017c6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x1017b6\l0x001017c6      mov eax, obj.memlist                                   ; 0x122d90\l0x001017cc      cmp dword [var_10h], eax\l0x001017cf      je 0x1017d9\l"]
+	"0x001017d1" [URL="sym.freemem/0x001017d1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001017d1      mov eax, dword [var_14h]\l0x001017d4      cmp dword [var_18h], eax\l0x001017d7      ja 0x1017ee\l"]
+	"0x001017d9" [URL="sym.freemem/0x001017d9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x1017cf\l0x001017d9      cmp dword [var_ch], 0\l0x001017dd      je 0x101806\l"]
+	"0x001017df" [URL="sym.freemem/0x001017df", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001017df      mov edx, dword [var_14h]\l0x001017e2      mov eax, dword [arg_ch]\l0x001017e5      add edx, eax\l0x001017e7      mov eax, dword [var_ch]\l0x001017ea      cmp edx, eax\l0x001017ec      jbe 0x101806\l"]
+	"0x001017ee" [URL="sym.freemem/0x001017ee", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x1017d7\l0x001017ee      sub esp, 0xc\l0x001017f1      push dword [var_1ch]\l0x001017f4      call loc.restore\l0x001017f9      add esp, 0x10\l0x001017fc      mov eax, 0xffffffff                                    ; -1\l0x00101801      jmp 0x10189a\l"]
+	"0x00101806" [URL="sym.freemem/0x00101806", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.freemem @ 0x1017dd, 0x1017ec\l0x00101806      mov eax, obj.memlist                                   ; 0x122d90\l0x0010180c      mov edx, dword [eax + 4]\l0x0010180f      mov eax, dword [arg_ch]\l0x00101812      add edx, eax\l0x00101814      mov eax, obj.memlist                                   ; 0x122d90\l0x0010181a      mov dword [eax + 4], edx\l0x0010181d      mov eax, dword [var_14h]\l0x00101820      cmp dword [var_18h], eax\l0x00101823      jne 0x10183e\l"]
+	"0x00101825" [URL="sym.freemem/0x00101825", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00101825      mov eax, dword [var_10h]\l0x00101828      mov edx, dword [eax + 4]\l0x0010182b      mov eax, dword [arg_ch]\l0x0010182e      add edx, eax\l0x00101830      mov eax, dword [var_10h]\l0x00101833      mov dword [eax + 4], edx\l0x00101836      mov eax, dword [var_10h]\l0x00101839      mov dword [var_14h], eax\l0x0010183c      jmp 0x101857\l"]
+	"0x0010183e" [URL="sym.freemem/0x0010183e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x101823\l0x0010183e      mov eax, dword [var_14h]\l0x00101841      mov edx, dword [var_ch]\l0x00101844      mov dword [eax], edx\l0x00101846      mov eax, dword [var_14h]\l0x00101849      mov edx, dword [arg_ch]\l0x0010184c      mov dword [eax + 4], edx\l0x0010184f      mov eax, dword [var_10h]\l0x00101852      mov edx, dword [var_14h]\l0x00101855      mov dword [eax], edx\l"]
+	"0x00101857" [URL="sym.freemem/0x00101857", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x10183c\l0x00101857      mov eax, dword [var_14h]\l0x0010185a      mov edx, dword [eax + 4]\l0x0010185d      mov eax, dword [var_14h]\l0x00101860      add edx, eax\l0x00101862      mov eax, dword [var_ch]\l0x00101865      cmp edx, eax\l0x00101867      jne 0x101887\l"]
+	"0x00101869" [URL="sym.freemem/0x00101869", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00101869      mov eax, dword [var_14h]\l0x0010186c      mov edx, dword [eax + 4]\l0x0010186f      mov eax, dword [var_ch]\l0x00101872      mov eax, dword [eax + 4]\l0x00101875      add edx, eax\l0x00101877      mov eax, dword [var_14h]\l0x0010187a      mov dword [eax + 4], edx\l0x0010187d      mov eax, dword [var_ch]\l0x00101880      mov edx, dword [eax]\l0x00101882      mov eax, dword [var_14h]\l0x00101885      mov dword [eax], edx\l"]
+	"0x00101887" [URL="sym.freemem/0x00101887", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x101867\l0x00101887      sub esp, 0xc\l0x0010188a      push dword [var_1ch]\l0x0010188d      call loc.restore\l0x00101892      add esp, 0x10\l0x00101895      mov eax, 1\l"]
+	"0x0010189a" [URL="sym.freemem/0x0010189a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.freemem @ 0x10175b, 0x101801\l0x0010189a      mov ebx, dword [var_4h]\l0x0010189d      leave\l0x0010189e      ret\l"]
+        "0x0010170a" -> "0x00101748" [color="#13a10e"];
+        "0x0010170a" -> "0x0010172a" [color="#c50f1f"];
+        "0x0010172a" -> "0x00101748" [color="#13a10e"];
+        "0x0010172a" -> "0x00101739" [color="#c50f1f"];
+        "0x00101739" -> "0x00101760" [color="#13a10e"];
+        "0x00101739" -> "0x00101748" [color="#c50f1f"];
+        "0x00101748" -> "0x0010189a" [color="#0037da"];
+        "0x00101760" -> "0x00101796" [color="#0037da"];
+        "0x00101788" -> "0x00101796" [color="#0037da"];
+        "0x00101796" -> "0x001017a4" [color="#13a10e"];
+        "0x00101796" -> "0x0010179c" [color="#c50f1f"];
+        "0x0010179c" -> "0x00101788" [color="#13a10e"];
+        "0x0010179c" -> "0x001017a4" [color="#c50f1f"];
+        "0x001017a4" -> "0x001017b8" [color="#13a10e"];
+        "0x001017a4" -> "0x001017af" [color="#c50f1f"];
+        "0x001017af" -> "0x001017c6" [color="#0037da"];
+        "0x001017b8" -> "0x001017c6" [color="#0037da"];
+        "0x001017c6" -> "0x001017d9" [color="#13a10e"];
+        "0x001017c6" -> "0x001017d1" [color="#c50f1f"];
+        "0x001017d1" -> "0x001017ee" [color="#13a10e"];
+        "0x001017d1" -> "0x001017d9" [color="#c50f1f"];
+        "0x001017d9" -> "0x00101806" [color="#13a10e"];
+        "0x001017d9" -> "0x001017df" [color="#c50f1f"];
+        "0x001017df" -> "0x00101806" [color="#13a10e"];
+        "0x001017df" -> "0x001017ee" [color="#c50f1f"];
+        "0x001017ee" -> "0x0010189a" [color="#0037da"];
+        "0x00101806" -> "0x0010183e" [color="#13a10e"];
+        "0x00101806" -> "0x00101825" [color="#c50f1f"];
+        "0x00101825" -> "0x00101857" [color="#0037da"];
+        "0x0010183e" -> "0x00101857" [color="#0037da"];
+        "0x00101857" -> "0x00101887" [color="#13a10e"];
+        "0x00101857" -> "0x00101869" [color="#c50f1f"];
+        "0x00101869" -> "0x00101887" [color="#0037da"];
+        "0x00101887" -> "0x0010189a" [color="#0037da"];
+}

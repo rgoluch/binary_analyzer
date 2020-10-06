@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00101e49" [URL="sym.getticks/0x00101e49", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.net_init @ 0x110b3b\l32: sym.getticks ();\l; var int32_t var_8h @ ebp-0x8\l; var int32_t var_4h @ ebp-0x4\l0x00101e49      push ebp\l0x00101e4a      mov ebp, esp\l0x00101e4c      sub esp, 0x10\l0x00101e4f      call sym.__x86.get_pc_thunk.ax\l0x00101e54      add eax, 0x1f1ac\l0x00101e59      rdtsc\l0x00101e5b      mov dword [var_8h], eax\l0x00101e5e      mov dword [var_4h], edx\l0x00101e61      mov eax, dword [var_8h]\l0x00101e64      mov edx, dword [var_4h]\l0x00101e67      leave\l0x00101e68      ret\l"]
+}

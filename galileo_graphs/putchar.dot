@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001074b0" [URL="sym.putchar/0x001074b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="51: int sym.putchar (int c);\l; arg int32_t arg_8h @ ebp+0x8\l; var int32_t var_18h @ esp+0x4\l0x001074b0      push ebp\l0x001074b1      mov ebp, esp\l0x001074b3      sub esp, 0x18\l0x001074b6      mov eax, dword [obj.currpid]                           ; [0x1212c0:4]=0\l0x001074bb      shl eax, 3\l0x001074be      lea edx, [eax*8]\l0x001074c5      sub edx, eax\l0x001074c7      lea eax, [edx + 0x121302]\l0x001074cd      mov ax, word [eax + 0xe]\l0x001074d1      cwde\l0x001074d2      mov dword [var_18h], eax\l0x001074d6      mov eax, dword [arg_8h]\l0x001074d9      mov dword [esp], eax\l0x001074dc      call sym.fputc                                         ; int fputc(int c, FILE *stream)\l0x001074e1      leave\l0x001074e2      ret\l"]
+}

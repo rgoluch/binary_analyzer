@@ -1,0 +1,56 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00108428" [URL="sym.ttyhandle_out/0x00108428", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.ttyhandler @ 0x108650\l379: sym.ttyhandle_out (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_15h @ ebp-0x15\l; var int32_t var_14h @ ebp-0x14\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; var int32_t var_28h @ esp+0x4\l0x00108428      push ebp\l0x00108429      mov ebp, esp\l0x0010842b      sub esp, 0x28\l0x0010842e      mov byte [var_15h], 0\l0x00108432      mov eax, dword [arg_8h]\l0x00108435      mov al, byte [eax + 0x109]\l0x0010843b      test al, al\l0x0010843d      je 0x108444\l"]
+	"0x0010843f" [URL="sym.ttyhandle_out/0x0010843f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010843f      jmp 0x1085a1\l"]
+	"0x00108444" [URL="sym.ttyhandle_out/0x00108444", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x10843d\l0x00108444      mov eax, dword [arg_8h]\l0x00108447      mov edx, dword [eax + 0xd8]\l0x0010844d      mov eax, dword [arg_8h]\l0x00108450      mov eax, dword [eax + 0xdc]\l0x00108456      cmp edx, eax\l0x00108458      jne 0x108491\l"]
+	"0x0010845a" [URL="sym.ttyhandle_out/0x0010845a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010845a      mov eax, dword [arg_8h]\l0x0010845d      mov eax, dword [eax + 0xd4]\l0x00108463      mov dword [esp], eax\l0x00108466      call sym.semcount\l0x0010846b      cmp eax, 0x3f                                          ; 63\l0x0010846e      jle 0x108491\l"]
+	"0x00108470" [URL="sym.ttyhandle_out/0x00108470", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108470      mov eax, dword [arg_ch]\l0x00108473      mov eax, dword [eax + 4]\l0x00108476      mov byte [var_15h], al\l0x00108479      mov al, byte [var_15h]\l0x0010847c      and eax, 0xff                                          ; 255\l0x00108481      and eax, 0xfffffffd                                    ; 4294967293\l0x00108484      mov edx, eax\l0x00108486      mov eax, dword [arg_ch]\l0x00108489      mov dword [eax + 4], edx\l0x0010848c      jmp 0x1085a1\l"]
+	"0x00108491" [URL="sym.ttyhandle_out/0x00108491", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttyhandle_out @ 0x108458, 0x10846e\l0x00108491      mov dword [var_14h], 0x10                              ; 16\l0x00108498      jmp 0x1084e4\l"]
+	"0x0010849a" [URL="sym.ttyhandle_out/0x0010849a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x1084fe\l0x0010849a      mov eax, dword [arg_8h]\l0x0010849d      mov eax, dword [eax + 0xd8]\l0x001084a3      lea ecx, [eax + 1]\l0x001084a6      mov edx, dword [arg_8h]\l0x001084a9      mov dword [edx + 0xd8], ecx\l0x001084af      mov al, byte [eax]\l0x001084b1      movsx edx, al\l0x001084b4      mov eax, dword [arg_ch]\l0x001084b7      mov dword [eax], edx\l0x001084b9      mov eax, dword [arg_8h]\l0x001084bc      mov eax, dword [eax + 0xd8]\l0x001084c2      mov edx, dword [arg_8h]\l0x001084c5      add edx, 0xf4                                          ; 244\l0x001084cb      cmp eax, edx\l0x001084cd      jb 0x1084e1\l"]
+	"0x001084cf" [URL="sym.ttyhandle_out/0x001084cf", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001084cf      mov eax, dword [arg_8h]\l0x001084d2      lea edx, [eax + 0xe0]\l0x001084d8      mov eax, dword [arg_8h]\l0x001084db      mov dword [eax + 0xd8], edx\l"]
+	"0x001084e1" [URL="sym.ttyhandle_out/0x001084e1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x1084cd\l0x001084e1      dec dword [var_14h]\l"]
+	"0x001084e4" [URL="sym.ttyhandle_out/0x001084e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x108498\l0x001084e4      cmp dword [var_14h], 0\l0x001084e8      jle 0x108500\l"]
+	"0x001084ea" [URL="sym.ttyhandle_out/0x001084ea", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001084ea      mov eax, dword [arg_8h]\l0x001084ed      mov edx, dword [eax + 0xd8]\l0x001084f3      mov eax, dword [arg_8h]\l0x001084f6      mov eax, dword [eax + 0xdc]\l0x001084fc      cmp edx, eax\l0x001084fe      jne 0x10849a\l"]
+	"0x00108500" [URL="sym.ttyhandle_out/0x00108500", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x1084e8\l0x00108500      mov dword [var_ch], 0\l0x00108507      mov eax, dword [arg_8h]\l0x0010850a      mov eax, dword [eax + 0xd4]\l0x00108510      mov dword [esp], eax\l0x00108513      call sym.semcount\l0x00108518      mov edx, 0x40                                          ; '@' ; 64\l0x0010851d      sub edx, eax\l0x0010851f      mov eax, edx\l0x00108521      mov dword [var_10h], eax\l0x00108524      jmp 0x108576\l"]
+	"0x00108526" [URL="sym.ttyhandle_out/0x00108526", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x108580\l0x00108526      mov eax, dword [arg_8h]\l0x00108529      mov eax, dword [eax + 0x8c]\l0x0010852f      lea ecx, [eax + 1]\l0x00108532      mov edx, dword [arg_8h]\l0x00108535      mov dword [edx + 0x8c], ecx\l0x0010853b      mov al, byte [eax]\l0x0010853d      movsx edx, al\l0x00108540      mov eax, dword [arg_ch]\l0x00108543      mov dword [eax], edx\l0x00108545      mov eax, dword [arg_8h]\l0x00108548      mov eax, dword [eax + 0x8c]\l0x0010854e      mov edx, dword [arg_8h]\l0x00108551      add edx, 0xd4                                          ; 212\l0x00108557      cmp eax, edx\l0x00108559      jb 0x10856d\l"]
+	"0x0010855b" [URL="sym.ttyhandle_out/0x0010855b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010855b      mov eax, dword [arg_8h]\l0x0010855e      lea edx, [eax + 0x94]\l0x00108564      mov eax, dword [arg_8h]\l0x00108567      mov dword [eax + 0x8c], edx\l"]
+	"0x0010856d" [URL="sym.ttyhandle_out/0x0010856d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x108559\l0x0010856d      dec dword [var_10h]\l0x00108570      dec dword [var_14h]\l0x00108573      inc dword [var_ch]\l"]
+	"0x00108576" [URL="sym.ttyhandle_out/0x00108576", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x108524\l0x00108576      cmp dword [var_14h], 0\l0x0010857a      jle 0x108582\l"]
+	"0x0010857c" [URL="sym.ttyhandle_out/0x0010857c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010857c      cmp dword [var_10h], 0\l0x00108580      jg 0x108526\l"]
+	"0x00108582" [URL="sym.ttyhandle_out/0x00108582", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x10857a\l0x00108582      cmp dword [var_ch], 0\l0x00108586      jle 0x1085a0\l"]
+	"0x00108588" [URL="sym.ttyhandle_out/0x00108588", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108588      mov eax, dword [arg_8h]\l0x0010858b      mov eax, dword [eax + 0xd4]\l0x00108591      mov edx, dword [var_ch]\l0x00108594      mov dword [var_28h], edx\l0x00108598      mov dword [esp], eax\l0x0010859b      call sym.signaln\l"]
+	"0x001085a0" [URL="sym.ttyhandle_out/0x001085a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyhandle_out @ 0x108586\l0x001085a0      nop\l"]
+	"0x001085a1" [URL="sym.ttyhandle_out/0x001085a1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttyhandle_out @ 0x10843f, 0x10848c\l0x001085a1      leave\l0x001085a2      ret\l"]
+        "0x00108428" -> "0x00108444" [color="#13a10e"];
+        "0x00108428" -> "0x0010843f" [color="#c50f1f"];
+        "0x0010843f" -> "0x001085a1" [color="#0037da"];
+        "0x00108444" -> "0x00108491" [color="#13a10e"];
+        "0x00108444" -> "0x0010845a" [color="#c50f1f"];
+        "0x0010845a" -> "0x00108491" [color="#13a10e"];
+        "0x0010845a" -> "0x00108470" [color="#c50f1f"];
+        "0x00108470" -> "0x001085a1" [color="#0037da"];
+        "0x00108491" -> "0x001084e4" [color="#0037da"];
+        "0x0010849a" -> "0x001084e1" [color="#13a10e"];
+        "0x0010849a" -> "0x001084cf" [color="#c50f1f"];
+        "0x001084cf" -> "0x001084e1" [color="#0037da"];
+        "0x001084e1" -> "0x001084e4" [color="#0037da"];
+        "0x001084e4" -> "0x00108500" [color="#13a10e"];
+        "0x001084e4" -> "0x001084ea" [color="#c50f1f"];
+        "0x001084ea" -> "0x0010849a" [color="#13a10e"];
+        "0x001084ea" -> "0x00108500" [color="#c50f1f"];
+        "0x00108500" -> "0x00108576" [color="#0037da"];
+        "0x00108526" -> "0x0010856d" [color="#13a10e"];
+        "0x00108526" -> "0x0010855b" [color="#c50f1f"];
+        "0x0010855b" -> "0x0010856d" [color="#0037da"];
+        "0x0010856d" -> "0x00108576" [color="#0037da"];
+        "0x00108576" -> "0x00108582" [color="#13a10e"];
+        "0x00108576" -> "0x0010857c" [color="#c50f1f"];
+        "0x0010857c" -> "0x00108526" [color="#13a10e"];
+        "0x0010857c" -> "0x00108582" [color="#c50f1f"];
+        "0x00108582" -> "0x001085a0" [color="#13a10e"];
+        "0x00108582" -> "0x00108588" [color="#c50f1f"];
+        "0x00108588" -> "0x001085a0" [color="#0037da"];
+        "0x001085a0" -> "0x001085a1" [color="#0037da"];
+}

@@ -1,0 +1,20 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00108b9d" [URL="sym.namlen/0x00108b9d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym.mount @ 0x108aa6, 0x108abc\l  ; CALL XREFS from sym.namrepl @ 0x108ef3, 0x108f0c\l54: sym.namlen (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x00108b9d      push ebp\l0x00108b9e      mov ebp, esp\l0x00108ba0      sub esp, 0x10\l0x00108ba3      mov dword [var_4h], 0\l0x00108baa      jmp 0x108bc4\l"]
+	"0x00108bac" [URL="sym.namlen/0x00108bac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.namlen @ 0x108bca\l0x00108bac      mov eax, dword [arg_8h]\l0x00108baf      lea edx, [eax + 1]\l0x00108bb2      mov dword [arg_8h], edx\l0x00108bb5      mov al, byte [eax]\l0x00108bb7      test al, al\l0x00108bb9      jne 0x108bc1\l"]
+	"0x00108bbb" [URL="sym.namlen/0x00108bbb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108bbb      mov eax, dword [var_4h]\l0x00108bbe      inc eax\l0x00108bbf      jmp 0x108bd1\l"]
+	"0x00108bc1" [URL="sym.namlen/0x00108bc1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.namlen @ 0x108bb9\l0x00108bc1      inc dword [var_4h]\l"]
+	"0x00108bc4" [URL="sym.namlen/0x00108bc4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.namlen @ 0x108baa\l0x00108bc4      mov eax, dword [var_4h]\l0x00108bc7      cmp eax, dword [arg_ch]\l0x00108bca      jl 0x108bac\l"]
+	"0x00108bcc" [URL="sym.namlen/0x00108bcc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00108bcc      mov eax, 0xffffffff                                    ; -1\l"]
+	"0x00108bd1" [URL="sym.namlen/0x00108bd1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.namlen @ 0x108bbf\l0x00108bd1      leave\l0x00108bd2      ret\l"]
+        "0x00108b9d" -> "0x00108bc4" [color="#0037da"];
+        "0x00108bac" -> "0x00108bc1" [color="#13a10e"];
+        "0x00108bac" -> "0x00108bbb" [color="#c50f1f"];
+        "0x00108bbb" -> "0x00108bd1" [color="#0037da"];
+        "0x00108bc1" -> "0x00108bc4" [color="#0037da"];
+        "0x00108bc4" -> "0x00108bac" [color="#13a10e"];
+        "0x00108bc4" -> "0x00108bcc" [color="#c50f1f"];
+        "0x00108bcc" -> "0x00108bd1" [color="#0037da"];
+}

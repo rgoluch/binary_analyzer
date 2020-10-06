@@ -1,0 +1,52 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010f876" [URL="sym.icmp_in/0x0010f876", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.ip_local @ 0x1104d8\l481: sym.icmp_in (int32_t arg_8h);\l; var int32_t var_28h @ ebp-0x28\l; var int32_t var_24h @ ebp-0x24\l; var int32_t var_20h @ ebp-0x20\l; var int32_t var_1ch @ ebp-0x1c\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l0x0010f876      push ebp\l0x0010f877      mov ebp, esp\l0x0010f879      push edi\l0x0010f87a      push esi\l0x0010f87b      push ebx\l0x0010f87c      sub esp, 0x1c\l0x0010f87f      call sym.__x86.get_pc_thunk.bx\l0x0010f884      add ebx, 0x1177c\l0x0010f88a      call loc.disable\l0x0010f88f      mov dword [var_1ch], eax\l0x0010f892      mov eax, dword [arg_8h]\l0x0010f895      mov al, byte [eax + 0x22]\l0x0010f898      test al, al\l0x0010f89a      je 0x10f8c7\l"]
+	"0x0010f89c" [URL="sym.icmp_in/0x0010f89c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010f89c      mov eax, dword [arg_8h]\l0x0010f89f      mov al, byte [eax + 0x22]\l0x0010f8a2      cmp al, 8                                              ; 8\l0x0010f8a4      je 0x10f8c7\l"]
+	"0x0010f8a6" [URL="sym.icmp_in/0x0010f8a6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010f8a6      sub esp, 0xc\l0x0010f8a9      push dword [arg_8h]\l0x0010f8ac      call sym.freebuf\l0x0010f8b1      add esp, 0x10\l0x0010f8b4      sub esp, 0xc\l0x0010f8b7      push dword [var_1ch]\l0x0010f8ba      call loc.restore\l0x0010f8bf      add esp, 0x10\l0x0010f8c2      jmp 0x10fa4f\l"]
+	"0x0010f8c7" [URL="sym.icmp_in/0x0010f8c7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.icmp_in @ 0x10f89a, 0x10f8a4\l0x0010f8c7      mov eax, dword [arg_8h]\l0x0010f8ca      mov al, byte [eax + 0x22]\l0x0010f8cd      cmp al, 8                                              ; 8\l0x0010f8cf      jne 0x10f94e\l"]
+	"0x0010f8d1" [URL="sym.icmp_in/0x0010f8d1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010f8d1      mov eax, dword [arg_8h]\l0x0010f8d4      mov ax, word [eax + 0x10]\l0x0010f8d8      and eax, 0xffff\l0x0010f8dd      lea edi, [eax - 0x1c]\l0x0010f8e0      mov eax, dword [arg_8h]\l0x0010f8e3      lea esi, [eax + 0x2a]\l0x0010f8e6      mov eax, dword [arg_8h]\l0x0010f8e9      mov ax, word [eax + 0x28]\l0x0010f8ed      xor ecx, ecx\l0x0010f8ef      mov cx, ax\l0x0010f8f2      mov eax, dword [arg_8h]\l0x0010f8f5      mov ax, word [eax + 0x26]\l0x0010f8f9      xor edx, edx\l0x0010f8fb      mov dx, ax\l0x0010f8fe      mov eax, dword [arg_8h]\l0x0010f901      mov eax, dword [eax + 0x1a]\l0x0010f904      sub esp, 8\l0x0010f907      push edi\l0x0010f908      push esi\l0x0010f909      push ecx\l0x0010f90a      push edx\l0x0010f90b      push 0\l0x0010f90d      push eax\l0x0010f90e      call sym.icmp_mkpkt\l0x0010f913      add esp, 0x20\l0x0010f916      mov dword [var_28h], eax\l0x0010f919      cmp dword [var_28h], 0xffffffff\l0x0010f91d      je 0x10f92d\l"]
+	"0x0010f91f" [URL="sym.icmp_in/0x0010f91f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010f91f      sub esp, 0xc\l0x0010f922      push dword [var_28h]\l0x0010f925      call sym.ip_enqueue\l0x0010f92a      add esp, 0x10\l"]
+	"0x0010f92d" [URL="sym.icmp_in/0x0010f92d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_in @ 0x10f91d\l0x0010f92d      sub esp, 0xc\l0x0010f930      push dword [arg_8h]\l0x0010f933      call sym.freebuf\l0x0010f938      add esp, 0x10\l0x0010f93b      sub esp, 0xc\l0x0010f93e      push dword [var_1ch]\l0x0010f941      call loc.restore\l0x0010f946      add esp, 0x10\l0x0010f949      jmp 0x10fa4f\l"]
+	"0x0010f94e" [URL="sym.icmp_in/0x0010f94e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_in @ 0x10f8cf\l0x0010f94e      mov eax, dword [arg_8h]\l0x0010f951      mov ax, word [eax + 0x26]\l0x0010f955      and eax, 0xffff\l0x0010f95a      mov dword [var_20h], eax\l0x0010f95d      cmp dword [var_20h], 0\l0x0010f961      js 0x10f969\l"]
+	"0x0010f963" [URL="sym.icmp_in/0x0010f963", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010f963      cmp dword [var_20h], 9\l0x0010f967      jle 0x10f98a\l"]
+	"0x0010f969" [URL="sym.icmp_in/0x0010f969", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_in @ 0x10f961\l0x0010f969      sub esp, 0xc\l0x0010f96c      push dword [arg_8h]\l0x0010f96f      call sym.freebuf\l0x0010f974      add esp, 0x10\l0x0010f977      sub esp, 0xc\l0x0010f97a      push dword [var_1ch]\l0x0010f97d      call loc.restore\l0x0010f982      add esp, 0x10\l0x0010f985      jmp 0x10fa4f\l"]
+	"0x0010f98a" [URL="sym.icmp_in/0x0010f98a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_in @ 0x10f967\l0x0010f98a      mov edx, dword [var_20h]\l0x0010f98d      mov eax, edx\l0x0010f98f      shl eax, 3\l0x0010f992      sub eax, edx\l0x0010f994      shl eax, 3\l0x0010f997      mov edx, obj.icmptab                                   ; 0x13ff60\l0x0010f99d      add eax, edx\l0x0010f99f      mov dword [var_24h], eax\l0x0010f9a2      mov eax, dword [var_24h]\l0x0010f9a5      mov eax, dword [eax]\l0x0010f9a7      test eax, eax\l0x0010f9a9      je 0x10f9bb\l"]
+	"0x0010f9ab" [URL="sym.icmp_in/0x0010f9ab", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010f9ab      mov eax, dword [arg_8h]\l0x0010f9ae      mov edx, dword [eax + 0x1a]\l0x0010f9b1      mov eax, dword [var_24h]\l0x0010f9b4      mov eax, dword [eax + 4]\l0x0010f9b7      cmp edx, eax\l0x0010f9b9      je 0x10f9d9\l"]
+	"0x0010f9bb" [URL="sym.icmp_in/0x0010f9bb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_in @ 0x10f9a9\l0x0010f9bb      sub esp, 0xc\l0x0010f9be      push dword [arg_8h]\l0x0010f9c1      call sym.freebuf\l0x0010f9c6      add esp, 0x10\l0x0010f9c9      sub esp, 0xc\l0x0010f9cc      push dword [var_1ch]\l0x0010f9cf      call loc.restore\l0x0010f9d4      add esp, 0x10\l0x0010f9d7      jmp 0x10fa4f\l"]
+	"0x0010f9d9" [URL="sym.icmp_in/0x0010f9d9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_in @ 0x10f9b9\l0x0010f9d9      mov eax, dword [var_24h]\l0x0010f9dc      mov eax, dword [eax + 0x10]\l0x0010f9df      lea edx, [eax + 1]\l0x0010f9e2      mov eax, dword [var_24h]\l0x0010f9e5      mov dword [eax + 0x10], edx\l0x0010f9e8      mov eax, dword [var_24h]\l0x0010f9eb      mov eax, dword [eax + 0xc]\l0x0010f9ee      lea ecx, [eax + 1]\l0x0010f9f1      mov edx, dword [var_24h]\l0x0010f9f4      mov dword [edx + 0xc], ecx\l0x0010f9f7      mov edx, dword [var_24h]\l0x0010f9fa      lea ecx, [eax + 4]\l0x0010f9fd      mov eax, dword [arg_8h]\l0x0010fa00      mov dword [edx + ecx*4 + 8], eax\l0x0010fa04      mov eax, dword [var_24h]\l0x0010fa07      mov eax, dword [eax + 0xc]\l0x0010fa0a      cmp eax, 7                                             ; 7\l0x0010fa0d      jle 0x10fa19\l"]
+	"0x0010fa0f" [URL="sym.icmp_in/0x0010fa0f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010fa0f      mov eax, dword [var_24h]\l0x0010fa12      mov dword [eax + 0xc], 0\l"]
+	"0x0010fa19" [URL="sym.icmp_in/0x0010fa19", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_in @ 0x10fa0d\l0x0010fa19      mov eax, dword [var_24h]\l0x0010fa1c      mov eax, dword [eax]\l0x0010fa1e      cmp eax, 2                                             ; 2\l0x0010fa21      jne 0x10fa40\l"]
+	"0x0010fa23" [URL="sym.icmp_in/0x0010fa23", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010fa23      mov eax, dword [var_24h]\l0x0010fa26      mov dword [eax], 1\l0x0010fa2c      mov eax, dword [var_24h]\l0x0010fa2f      mov eax, dword [eax + 0x14]\l0x0010fa32      sub esp, 8\l0x0010fa35      push 1                                                 ; 1\l0x0010fa37      push eax\l0x0010fa38      call sym.send                                          ; ssize_t send(int socket, void *buffer, size_t length, int flags)\l0x0010fa3d      add esp, 0x10\l"]
+	"0x0010fa40" [URL="sym.icmp_in/0x0010fa40", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_in @ 0x10fa21\l0x0010fa40      sub esp, 0xc\l0x0010fa43      push dword [var_1ch]\l0x0010fa46      call loc.restore\l0x0010fa4b      add esp, 0x10\l0x0010fa4e      nop\l"]
+	"0x0010fa4f" [URL="sym.icmp_in/0x0010fa4f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.icmp_in @ 0x10f8c2, 0x10f949, 0x10f985, 0x10f9d7\l0x0010fa4f      lea esp, [var_ch]\l0x0010fa52      pop ebx\l0x0010fa53      pop esi\l0x0010fa54      pop edi\l0x0010fa55      pop ebp\l0x0010fa56      ret\l"]
+        "0x0010f876" -> "0x0010f8c7" [color="#13a10e"];
+        "0x0010f876" -> "0x0010f89c" [color="#c50f1f"];
+        "0x0010f89c" -> "0x0010f8c7" [color="#13a10e"];
+        "0x0010f89c" -> "0x0010f8a6" [color="#c50f1f"];
+        "0x0010f8a6" -> "0x0010fa4f" [color="#0037da"];
+        "0x0010f8c7" -> "0x0010f94e" [color="#13a10e"];
+        "0x0010f8c7" -> "0x0010f8d1" [color="#c50f1f"];
+        "0x0010f8d1" -> "0x0010f92d" [color="#13a10e"];
+        "0x0010f8d1" -> "0x0010f91f" [color="#c50f1f"];
+        "0x0010f91f" -> "0x0010f92d" [color="#0037da"];
+        "0x0010f92d" -> "0x0010fa4f" [color="#0037da"];
+        "0x0010f94e" -> "0x0010f969" [color="#13a10e"];
+        "0x0010f94e" -> "0x0010f963" [color="#c50f1f"];
+        "0x0010f963" -> "0x0010f98a" [color="#13a10e"];
+        "0x0010f963" -> "0x0010f969" [color="#c50f1f"];
+        "0x0010f969" -> "0x0010fa4f" [color="#0037da"];
+        "0x0010f98a" -> "0x0010f9bb" [color="#13a10e"];
+        "0x0010f98a" -> "0x0010f9ab" [color="#c50f1f"];
+        "0x0010f9ab" -> "0x0010f9d9" [color="#13a10e"];
+        "0x0010f9ab" -> "0x0010f9bb" [color="#c50f1f"];
+        "0x0010f9bb" -> "0x0010fa4f" [color="#0037da"];
+        "0x0010f9d9" -> "0x0010fa19" [color="#13a10e"];
+        "0x0010f9d9" -> "0x0010fa0f" [color="#c50f1f"];
+        "0x0010fa0f" -> "0x0010fa19" [color="#0037da"];
+        "0x0010fa19" -> "0x0010fa40" [color="#13a10e"];
+        "0x0010fa19" -> "0x0010fa23" [color="#c50f1f"];
+        "0x0010fa23" -> "0x0010fa40" [color="#0037da"];
+        "0x0010fa40" -> "0x0010fa4f" [color="#0037da"];
+}

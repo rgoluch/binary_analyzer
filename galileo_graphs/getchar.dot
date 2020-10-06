@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010737d" [URL="sym.getchar/0x0010737d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="44: int sym.getchar ();\l0x0010737d      push ebp\l0x0010737e      mov ebp, esp\l0x00107380      sub esp, 0x18\l0x00107383      mov eax, dword [obj.currpid]                           ; [0x1212c0:4]=0\l0x00107388      shl eax, 3\l0x0010738b      lea edx, [eax*8]\l0x00107392      sub edx, eax\l0x00107394      lea eax, [edx + 0x121300]\l0x0010739a      mov ax, word [eax + 0xe]\l0x0010739e      cwde\l0x0010739f      mov dword [esp], eax\l0x001073a2      call sym.fgetc                                         ; int fgetc(FILE *stream)\l0x001073a7      leave\l0x001073a8      ret\l"]
+}

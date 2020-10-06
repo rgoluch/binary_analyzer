@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010ccdb" [URL="sym.rflseek/0x0010ccdb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="104: sym.rflseek (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x0010ccdb      push ebp\l0x0010ccdc      mov ebp, esp\l0x0010ccde      sub esp, 0x28\l0x0010cce1      mov eax, dword [0x13fe10]                              ; [0x13fe10:4]=0\l0x0010cce6      mov dword [esp], eax\l0x0010cce9      call sym.wait                                          ; pid_t wait(int *wstatus)\l0x0010ccee      mov eax, dword [arg_8h]\l0x0010ccf1      mov edx, dword [eax + 4]\l0x0010ccf4      mov eax, edx\l0x0010ccf6      shl eax, 3\l0x0010ccf9      add eax, edx\l0x0010ccfb      shl eax, 4\l0x0010ccfe      add eax, obj.rfltab                                    ; 0x13f860\l0x0010cd03      mov dword [var_ch], eax\l0x0010cd06      mov eax, dword [var_ch]\l0x0010cd09      mov eax, dword [eax]\l0x0010cd0b      test eax, eax\l0x0010cd0d      jne 0x10cd23\l"]
+	"0x0010cd0f" [URL="sym.rflseek/0x0010cd0f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010cd0f      mov eax, dword [0x13fe10]                              ; [0x13fe10:4]=0\l0x0010cd14      mov dword [esp], eax\l0x0010cd17      call sym.signal                                        ; void signal(int sig, void *func)\l0x0010cd1c      mov eax, 0xffffffff                                    ; -1\l0x0010cd21      jmp 0x10cd41\l"]
+	"0x0010cd23" [URL="sym.rflseek/0x0010cd23", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rflseek @ 0x10cd0d\l0x0010cd23      mov eax, dword [var_ch]\l0x0010cd26      mov edx, dword [arg_ch]\l0x0010cd29      mov dword [eax + 0x88], edx\l0x0010cd2f      mov eax, dword [0x13fe10]                              ; [0x13fe10:4]=0\l0x0010cd34      mov dword [esp], eax\l0x0010cd37      call sym.signal                                        ; void signal(int sig, void *func)\l0x0010cd3c      mov eax, 1\l"]
+	"0x0010cd41" [URL="sym.rflseek/0x0010cd41", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rflseek @ 0x10cd21\l0x0010cd41      leave\l0x0010cd42      ret\l"]
+        "0x0010ccdb" -> "0x0010cd23" [color="#13a10e"];
+        "0x0010ccdb" -> "0x0010cd0f" [color="#c50f1f"];
+        "0x0010cd0f" -> "0x0010cd41" [color="#0037da"];
+        "0x0010cd23" -> "0x0010cd41" [color="#0037da"];
+}

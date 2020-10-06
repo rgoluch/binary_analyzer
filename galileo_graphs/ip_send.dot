@@ -1,0 +1,43 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00110315" [URL="sym.ip_send/0x00110315", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.icmp_send @ 0x10fd73\l  ; CALL XREF from sym.udp_send @ 0x1130f9\l  ; CALL XREF from sym.udp_sendto @ 0x1132b7\l386: sym.ip_send (int32_t arg_8h);\l; var int32_t var_18h @ ebp-0x18\l; var int32_t var_14h @ ebp-0x14\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x00110315      push ebp\l0x00110316      mov ebp, esp\l0x00110318      push ebx\l0x00110319      sub esp, 0x14\l0x0011031c      call sym.__x86.get_pc_thunk.bx\l0x00110321      add ebx, 0x10cdf\l0x00110327      call loc.disable\l0x0011032c      mov dword [var_10h], eax\l0x0011032f      mov eax, dword [arg_8h]\l0x00110332      mov eax, dword [eax + 0x1e]\l0x00110335      mov dword [var_14h], eax\l0x00110338      mov eax, dword [var_14h]\l0x0011033b      and eax, 0xff000000\l0x00110340      cmp eax, 0x7f000000\l0x00110345      jne 0x11036d\l"]
+	"0x00110347" [URL="sym.ip_send/0x00110347", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00110347      sub esp, 0xc\l0x0011034a      push dword [arg_8h]\l0x0011034d      call sym.ip_local\l0x00110352      add esp, 0x10\l0x00110355      sub esp, 0xc\l0x00110358      push dword [var_10h]\l0x0011035b      call loc.restore\l0x00110360      add esp, 0x10\l0x00110363      mov eax, 1\l0x00110368      jmp 0x110492\l"]
+	"0x0011036d" [URL="sym.ip_send/0x0011036d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ip_send @ 0x110345\l0x0011036d      mov eax, obj.NetData                                   ; 0x140200\l0x00110373      mov eax, dword [eax]\l0x00110375      cmp dword [var_14h], eax\l0x00110378      jne 0x1103a0\l"]
+	"0x0011037a" [URL="sym.ip_send/0x0011037a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0011037a      sub esp, 0xc\l0x0011037d      push dword [arg_8h]\l0x00110380      call sym.ip_local\l0x00110385      add esp, 0x10\l0x00110388      sub esp, 0xc\l0x0011038b      push dword [var_10h]\l0x0011038e      call loc.restore\l0x00110393      add esp, 0x10\l0x00110396      mov eax, 1\l0x0011039b      jmp 0x110492\l"]
+	"0x001103a0" [URL="sym.ip_send/0x001103a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ip_send @ 0x110378\l0x001103a0      cmp dword [var_14h], 0xffffffff\l0x001103a4      je 0x1103b4\l"]
+	"0x001103a6" [URL="sym.ip_send/0x001103a6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001103a6      mov eax, obj.NetData                                   ; 0x140200\l0x001103ac      mov eax, dword [eax + 4]\l0x001103af      cmp dword [var_14h], eax\l0x001103b2      jne 0x1103f6\l"]
+	"0x001103b4" [URL="sym.ip_send/0x001103b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ip_send @ 0x1103a4\l0x001103b4      mov eax, dword [arg_8h]\l0x001103b7      sub esp, 4\l0x001103ba      push 6                                                 ; 6\l0x001103bc      mov edx, obj.NetData                                   ; 0x140200\l0x001103c2      lea edx, [edx + 0x27]\l0x001103c5      push edx\l0x001103c6      push eax\l0x001103c7      call sym.memcpy                                        ; void *memcpy(void *s1, const void *s2, size_t n)\l0x001103cc      add esp, 0x10\l0x001103cf      sub esp, 0xc\l0x001103d2      push dword [arg_8h]\l0x001103d5      call sym.ip_out\l0x001103da      add esp, 0x10\l0x001103dd      mov dword [var_18h], eax\l0x001103e0      sub esp, 0xc\l0x001103e3      push dword [var_10h]\l0x001103e6      call loc.restore\l0x001103eb      add esp, 0x10\l0x001103ee      mov eax, dword [var_18h]\l0x001103f1      jmp 0x110492\l"]
+	"0x001103f6" [URL="sym.ip_send/0x001103f6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ip_send @ 0x1103b2\l0x001103f6      mov eax, obj.NetData                                   ; 0x140200\l0x001103fc      mov eax, dword [eax + 8]\l0x001103ff      and eax, dword [var_14h]\l0x00110402      mov edx, eax\l0x00110404      mov eax, obj.NetData                                   ; 0x140200\l0x0011040a      mov eax, dword [eax + 0xc]\l0x0011040d      cmp edx, eax\l0x0011040f      jne 0x110419\l"]
+	"0x00110411" [URL="sym.ip_send/0x00110411", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00110411      mov eax, dword [var_14h]\l0x00110414      mov dword [var_ch], eax\l0x00110417      jmp 0x110425\l"]
+	"0x00110419" [URL="sym.ip_send/0x00110419", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ip_send @ 0x11040f\l0x00110419      mov eax, obj.NetData                                   ; 0x140200\l0x0011041f      mov eax, dword [eax + 0x10]\l0x00110422      mov dword [var_ch], eax\l"]
+	"0x00110425" [URL="sym.ip_send/0x00110425", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ip_send @ 0x110417\l0x00110425      cmp dword [var_ch], 0\l0x00110429      jne 0x110440\l"]
+	"0x0011042b" [URL="sym.ip_send/0x0011042b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0011042b      sub esp, 0xc\l0x0011042e      push dword [arg_8h]\l0x00110431      call sym.freebuf\l0x00110436      add esp, 0x10\l0x00110439      mov eax, 0xffffffff                                    ; -1\l0x0011043e      jmp 0x110492\l"]
+	"0x00110440" [URL="sym.ip_send/0x00110440", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ip_send @ 0x110429\l0x00110440      mov eax, dword [arg_8h]\l0x00110443      sub esp, 8\l0x00110446      push eax\l0x00110447      push dword [var_ch]\l0x0011044a      call sym.arp_resolve\l0x0011044f      add esp, 0x10\l0x00110452      mov dword [var_18h], eax\l0x00110455      cmp dword [var_18h], 1\l0x00110459      je 0x110470\l"]
+	"0x0011045b" [URL="sym.ip_send/0x0011045b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0011045b      sub esp, 0xc\l0x0011045e      push dword [arg_8h]\l0x00110461      call sym.freebuf\l0x00110466      add esp, 0x10\l0x00110469      mov eax, 0xffffffff                                    ; -1\l0x0011046e      jmp 0x110492\l"]
+	"0x00110470" [URL="sym.ip_send/0x00110470", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ip_send @ 0x110459\l0x00110470      sub esp, 0xc\l0x00110473      push dword [arg_8h]\l0x00110476      call sym.ip_out\l0x0011047b      add esp, 0x10\l0x0011047e      mov dword [var_18h], eax\l0x00110481      sub esp, 0xc\l0x00110484      push dword [var_10h]\l0x00110487      call loc.restore\l0x0011048c      add esp, 0x10\l0x0011048f      mov eax, dword [var_18h]\l"]
+	"0x00110492" [URL="sym.ip_send/0x00110492", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ip_send @ 0x110368, 0x11039b, 0x1103f1, 0x11043e, 0x11046e\l0x00110492      mov ebx, dword [var_4h]\l0x00110495      leave\l0x00110496      ret\l"]
+        "0x00110315" -> "0x0011036d" [color="#13a10e"];
+        "0x00110315" -> "0x00110347" [color="#c50f1f"];
+        "0x00110347" -> "0x00110492" [color="#0037da"];
+        "0x0011036d" -> "0x001103a0" [color="#13a10e"];
+        "0x0011036d" -> "0x0011037a" [color="#c50f1f"];
+        "0x0011037a" -> "0x00110492" [color="#0037da"];
+        "0x001103a0" -> "0x001103b4" [color="#13a10e"];
+        "0x001103a0" -> "0x001103a6" [color="#c50f1f"];
+        "0x001103a6" -> "0x001103f6" [color="#13a10e"];
+        "0x001103a6" -> "0x001103b4" [color="#c50f1f"];
+        "0x001103b4" -> "0x00110492" [color="#0037da"];
+        "0x001103f6" -> "0x00110419" [color="#13a10e"];
+        "0x001103f6" -> "0x00110411" [color="#c50f1f"];
+        "0x00110411" -> "0x00110425" [color="#0037da"];
+        "0x00110419" -> "0x00110425" [color="#0037da"];
+        "0x00110425" -> "0x00110440" [color="#13a10e"];
+        "0x00110425" -> "0x0011042b" [color="#c50f1f"];
+        "0x0011042b" -> "0x00110492" [color="#0037da"];
+        "0x00110440" -> "0x00110470" [color="#13a10e"];
+        "0x00110440" -> "0x0011045b" [color="#c50f1f"];
+        "0x0011045b" -> "0x00110492" [color="#0037da"];
+        "0x00110470" -> "0x00110492" [color="#0037da"];
+}

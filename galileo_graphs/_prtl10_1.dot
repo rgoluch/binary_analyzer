@@ -1,0 +1,32 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00106f17" [URL="sym._prtl10_1/0x00106f17", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym._fdoprnt @ 0x106cab, 0x106ce6\l156: sym._prtl10_1 (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_fh @ ebp-0xf\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x00106f17      push ebp\l0x00106f18      mov ebp, esp\l0x00106f1a      sub esp, 0x10\l0x00106f1d      mov byte [var_fh], 0\l0x00106f21      mov dword [var_4h], 1\l0x00106f28      jmp 0x106f66\l"]
+	"0x00106f2a" [URL="sym._prtl10_1/0x00106f2a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl10_1 @ 0x106f6a\l0x00106f2a      mov eax, dword [arg_8h]\l0x00106f2d      mov ecx, 0xa\l0x00106f32      mov edx, eax\l0x00106f34      sar edx, 0x1f\l0x00106f37      idiv ecx\l0x00106f39      mov eax, edx\l0x00106f3b      add eax, 0x30                                          ; 48\l0x00106f3e      lea ecx, [var_fh]\l0x00106f41      mov edx, dword [var_4h]\l0x00106f44      add edx, ecx\l0x00106f46      mov byte [edx], al\l0x00106f48      mov ecx, dword [arg_8h]\l0x00106f4b      mov edx, 0x66666667                                    ; 'gfff'\l0x00106f50      mov eax, ecx\l0x00106f52      imul edx\l0x00106f54      sar edx, 2\l0x00106f57      mov eax, ecx\l0x00106f59      sar eax, 0x1f\l0x00106f5c      sub edx, eax\l0x00106f5e      mov eax, edx\l0x00106f60      mov dword [arg_8h], eax\l0x00106f63      inc dword [var_4h]\l"]
+	"0x00106f66" [URL="sym._prtl10_1/0x00106f66", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl10_1 @ 0x106f28\l0x00106f66      cmp dword [var_4h], 0xa\l0x00106f6a      jle 0x106f2a\l"]
+	"0x00106f6c" [URL="sym._prtl10_1/0x00106f6c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00106f6c      mov dword [var_4h], 0xa\l0x00106f73      jmp 0x106f78\l"]
+	"0x00106f75" [URL="sym._prtl10_1/0x00106f75", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl10_1 @ 0x106f84\l0x00106f75      dec dword [var_4h]\l"]
+	"0x00106f78" [URL="sym._prtl10_1/0x00106f78", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl10_1 @ 0x106f73\l0x00106f78      lea edx, [var_fh]\l0x00106f7b      mov eax, dword [var_4h]\l0x00106f7e      add eax, edx\l0x00106f80      mov al, byte [eax]\l0x00106f82      cmp al, 0x30                                           ; 48\l0x00106f84      je 0x106f75\l"]
+	"0x00106f86" [URL="sym._prtl10_1/0x00106f86", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00106f86      cmp dword [var_4h], 0\l0x00106f8a      jne 0x106f91\l"]
+	"0x00106f8c" [URL="sym._prtl10_1/0x00106f8c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00106f8c      inc dword [var_4h]\l0x00106f8f      jmp 0x106fab\l"]
+	"0x00106f91" [URL="sym._prtl10_1/0x00106f91", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl10_1 @ 0x106f8a\l0x00106f91      jmp 0x106fab\l"]
+	"0x00106f93" [URL="sym._prtl10_1/0x00106f93", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym._prtl10_1 @ 0x106faf\l0x00106f93      mov eax, dword [arg_ch]\l0x00106f96      lea edx, [eax + 1]\l0x00106f99      mov dword [arg_ch], edx\l0x00106f9c      mov edx, dword [var_4h]\l0x00106f9f      lea ecx, [edx - 1]\l0x00106fa2      mov dword [var_4h], ecx\l0x00106fa5      mov dl, byte [ebp + edx - 0xf]\l0x00106fa9      mov byte [eax], dl\l"]
+	"0x00106fab" [URL="sym._prtl10_1/0x00106fab", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym._prtl10_1 @ 0x106f8f, 0x106f91\l0x00106fab      cmp dword [var_4h], 0\l0x00106faf      jns 0x106f93\l"]
+	"0x00106fb1" [URL="sym._prtl10_1/0x00106fb1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00106fb1      leave\l0x00106fb2      ret\l"]
+        "0x00106f17" -> "0x00106f66" [color="#0037da"];
+        "0x00106f2a" -> "0x00106f66" [color="#0037da"];
+        "0x00106f66" -> "0x00106f2a" [color="#13a10e"];
+        "0x00106f66" -> "0x00106f6c" [color="#c50f1f"];
+        "0x00106f6c" -> "0x00106f78" [color="#0037da"];
+        "0x00106f75" -> "0x00106f78" [color="#0037da"];
+        "0x00106f78" -> "0x00106f75" [color="#13a10e"];
+        "0x00106f78" -> "0x00106f86" [color="#c50f1f"];
+        "0x00106f86" -> "0x00106f91" [color="#13a10e"];
+        "0x00106f86" -> "0x00106f8c" [color="#c50f1f"];
+        "0x00106f8c" -> "0x00106fab" [color="#0037da"];
+        "0x00106f91" -> "0x00106fab" [color="#0037da"];
+        "0x00106f93" -> "0x00106fab" [color="#0037da"];
+        "0x00106fab" -> "0x00106f93" [color="#13a10e"];
+        "0x00106fab" -> "0x00106fb1" [color="#c50f1f"];
+}

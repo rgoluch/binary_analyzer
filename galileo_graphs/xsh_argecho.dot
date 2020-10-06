@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00113fdc" [URL="sym.xsh_argecho/0x00113fdc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="126: sym.xsh_argecho (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x00113fdc      push ebp\l0x00113fdd      mov ebp, esp\l0x00113fdf      push ebx\l0x00113fe0      sub esp, 0x14\l0x00113fe3      call sym.__x86.get_pc_thunk.bx\l0x00113fe8      add ebx, 0xd018\l0x00113fee      sub esp, 8\l0x00113ff1      push dword [arg_8h]\l0x00113ff4      lea eax, [ebx - 0x7863]\l0x00113ffa      push eax\l0x00113ffb      call sym.printf                                        ; int printf(const char *format)\l0x00114000      add esp, 0x10\l0x00114003      mov dword [var_ch], 0\l0x0011400a      jmp 0x114036\l"]
+	"0x0011400c" [URL="sym.xsh_argecho/0x0011400c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.xsh_argecho @ 0x11403c\l0x0011400c      mov eax, dword [var_ch]\l0x0011400f      lea edx, [eax*4]\l0x00114016      mov eax, dword [arg_ch]\l0x00114019      add eax, edx\l0x0011401b      mov eax, dword [eax]\l0x0011401d      sub esp, 4\l0x00114020      push eax\l0x00114021      push dword [var_ch]\l0x00114024      lea eax, [ebx - 0x784a]\l0x0011402a      push eax\l0x0011402b      call sym.printf                                        ; int printf(const char *format)\l0x00114030      add esp, 0x10\l0x00114033      inc dword [var_ch]\l"]
+	"0x00114036" [URL="sym.xsh_argecho/0x00114036", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.xsh_argecho @ 0x11400a\l0x00114036      mov eax, dword [var_ch]\l0x00114039      cmp eax, dword [arg_8h]\l0x0011403c      jl 0x11400c\l"]
+	"0x0011403e" [URL="sym.xsh_argecho/0x0011403e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0011403e      sub esp, 0xc\l0x00114041      lea eax, [ebx - 0x783d]\l0x00114047      push eax\l0x00114048      call sym.printf                                        ; int printf(const char *format)\l0x0011404d      add esp, 0x10\l0x00114050      mov eax, 0\l0x00114055      mov ebx, dword [var_4h]\l0x00114058      leave\l0x00114059      ret\l"]
+        "0x00113fdc" -> "0x00114036" [color="#0037da"];
+        "0x0011400c" -> "0x00114036" [color="#0037da"];
+        "0x00114036" -> "0x0011400c" [color="#13a10e"];
+        "0x00114036" -> "0x0011403e" [color="#c50f1f"];
+}

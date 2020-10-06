@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010b192" [URL="sym.raminit/0x0010b192", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="69: sym.raminit ();\l; var int32_t var_18h @ esp+0x4\l; var int32_t var_14h @ esp+0x8\l0x0010b192      push ebp\l0x0010b193      mov ebp, esp\l0x0010b195      sub esp, 0x18\l0x0010b198      mov dword [var_14h], 8\l0x0010b1a0      mov dword [var_18h], 0x118b0d                          ; [0x118b0d:4]=0x65706f68 ; \"hopeless\"\l0x0010b1a8      mov dword [esp], obj.Ram                               ; [0x125740:4]=0\l0x0010b1af      call sym.memcpy                                        ; void *memcpy(void *s1, const void *s2, size_t n)\l0x0010b1b4      mov dword [var_14h], 0x18ff8                           ; [0x18ff8:4]=-1\l0x0010b1bc      mov dword [var_18h], obj.Ram                           ; [0x125740:4]=0\l0x0010b1c4      mov dword [esp], 0x125748                              ; [0x125748:4]=0\l0x0010b1cb      call sym.memcpy                                        ; void *memcpy(void *s1, const void *s2, size_t n)\l0x0010b1d0      mov eax, 1\l0x0010b1d5      leave\l0x0010b1d6      ret\l"]
+}

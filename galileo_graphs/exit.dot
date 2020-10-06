@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00101640" [URL="sym.exit/0x00101640", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="41: void sym.exit (int status);\l; var int32_t var_4h @ ebp-0x4\l0x00101640      push ebp\l0x00101641      mov ebp, esp\l0x00101643      push ebx\l0x00101644      sub esp, 4\l0x00101647      call sym.__x86.get_pc_thunk.bx\l0x0010164c      add ebx, 0x1f9b4\l0x00101652      call sym.getpid                                        ; int getpid(void)\l0x00101657      sub esp, 0xc\l0x0010165a      push eax\l0x0010165b      call sym.kill                                          ; int kill(pid_t pid, int sig)\l0x00101660      add esp, 0x10\l0x00101663      nop\l0x00101664      mov ebx, dword [var_4h]\l0x00101667      leave\l0x00101668      ret\l"]
+}

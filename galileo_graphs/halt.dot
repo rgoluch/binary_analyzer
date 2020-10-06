@@ -1,0 +1,7 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00117a47" [URL="loc.halt/0x00117a47", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CODE XREFS from entry0 @ 0x100034, 0x10003d\l  ; CALL XREF from loc.gdt1 @ +0x19\l  ; CALL XREF from sym.xdone @ 0x105951\l2: loc.halt ();\l0x00117a47      jmp loc.halt\l"]
+        "0x00117a47" -> "0x00117a47" [color="#0037da"];
+}

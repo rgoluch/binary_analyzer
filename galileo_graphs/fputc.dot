@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010727c" [URL="sym.fputc/0x0010727c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.putchar @ 0x1074dc\l44: int sym.fputc (int c, FILE *stream);\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; var int32_t var_18h @ esp+0x4\l0x0010727c      push ebp\l0x0010727d      mov ebp, esp\l0x0010727f      sub esp, 0x18\l0x00107282      mov eax, dword [arg_8h]\l0x00107285      movsx eax, al\l0x00107288      mov dword [var_18h], eax\l0x0010728c      mov eax, dword [arg_ch]\l0x0010728f      mov dword [esp], eax\l0x00107292      call sym.putc                                          ; int putc(int c, FILE *stream)\l0x00107297      cmp eax, 0xffffffff\l0x0010729a      jne 0x1072a3\l"]
+	"0x0010729c" [URL="sym.fputc/0x0010729c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010729c      mov eax, 0xfffffffe                                    ; 4294967294\l0x001072a1      jmp 0x1072a6\l"]
+	"0x001072a3" [URL="sym.fputc/0x001072a3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.fputc @ 0x10729a\l0x001072a3      mov eax, dword [arg_8h]\l"]
+	"0x001072a6" [URL="sym.fputc/0x001072a6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.fputc @ 0x1072a1\l0x001072a6      leave\l0x001072a7      ret\l"]
+        "0x0010727c" -> "0x001072a3" [color="#13a10e"];
+        "0x0010727c" -> "0x0010729c" [color="#c50f1f"];
+        "0x0010729c" -> "0x001072a6" [color="#0037da"];
+        "0x001072a3" -> "0x001072a6" [color="#0037da"];
+}

@@ -1,0 +1,38 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00104a67" [URL="sym.resched_cntl/0x00104a67", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: CALL 0x00104e53  CALL 0x00104e94  CALL 0x00104f38  \l  ; XREFS: CALL 0x00104f77  CALL 0x001051ca  CALL 0x00105214  \l  ; XREFS: CALL 0x00105820  CALL 0x00105893  CALL 0x0010860f  \l  ; XREFS: CALL 0x0010863c  CALL 0x0010ff45  CALL 0x0010ffb5  \l  ; XREFS: CALL 0x00113353  CALL 0x001133c3  \l158: sym.resched_cntl (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l0x00104a67      push ebp\l0x00104a68      mov ebp, esp\l0x00104a6a      push ebx\l0x00104a6b      sub esp, 4\l0x00104a6e      call sym.__x86.get_pc_thunk.ax\l0x00104a73      add eax, 0x1c58d\l0x00104a78      mov edx, dword [arg_8h]\l0x00104a7b      cmp edx, 1                                             ; 1\l0x00104a7e      je 0x104a87\l"]
+	"0x00104a80" [URL="sym.resched_cntl/0x00104a80", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104a80      cmp edx, 2                                             ; 2\l0x00104a83      je 0x104aaf\l"]
+	"0x00104a85" [URL="sym.resched_cntl/0x00104a85", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104a85      jmp 0x104afa\l"]
+	"0x00104a87" [URL="sym.resched_cntl/0x00104a87", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.resched_cntl @ 0x104a7e\l0x00104a87      mov edx, obj.Defer                                     ; 0x123a64\l0x00104a8d      mov edx, dword [edx]\l0x00104a8f      lea ebx, [edx + 1]\l0x00104a92      mov ecx, obj.Defer                                     ; 0x123a64\l0x00104a98      mov dword [ecx], ebx\l0x00104a9a      test edx, edx\l0x00104a9c      jne 0x104aa8\l"]
+	"0x00104a9e" [URL="sym.resched_cntl/0x00104a9e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104a9e      mov eax, obj.Defer                                     ; 0x123a64\l0x00104aa4      mov byte [eax + 4], 0\l"]
+	"0x00104aa8" [URL="sym.resched_cntl/0x00104aa8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.resched_cntl @ 0x104a9c\l0x00104aa8      mov eax, 1\l0x00104aad      jmp 0x104aff\l"]
+	"0x00104aaf" [URL="sym.resched_cntl/0x00104aaf", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.resched_cntl @ 0x104a83\l0x00104aaf      mov edx, obj.Defer                                     ; 0x123a64\l0x00104ab5      mov edx, dword [edx]\l0x00104ab7      test edx, edx\l0x00104ab9      jg 0x104ac2\l"]
+	"0x00104abb" [URL="sym.resched_cntl/0x00104abb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104abb      mov eax, 0xffffffff                                    ; -1\l0x00104ac0      jmp 0x104aff\l"]
+	"0x00104ac2" [URL="sym.resched_cntl/0x00104ac2", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.resched_cntl @ 0x104ab9\l0x00104ac2      mov edx, obj.Defer                                     ; 0x123a64\l0x00104ac8      mov edx, dword [edx]\l0x00104aca      lea ecx, [edx - 1]\l0x00104acd      mov edx, obj.Defer                                     ; 0x123a64\l0x00104ad3      mov dword [edx], ecx\l0x00104ad5      mov edx, obj.Defer                                     ; 0x123a64\l0x00104adb      mov edx, dword [edx]\l0x00104add      test edx, edx\l0x00104adf      jne 0x104af3\l"]
+	"0x00104ae1" [URL="sym.resched_cntl/0x00104ae1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104ae1      mov eax, obj.Defer                                     ; 0x123a64\l0x00104ae7      mov al, byte [eax + 4]\l0x00104aea      test al, al\l0x00104aec      je 0x104af3\l"]
+	"0x00104aee" [URL="sym.resched_cntl/0x00104aee", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104aee      call sym.resched\l"]
+	"0x00104af3" [URL="sym.resched_cntl/0x00104af3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.resched_cntl @ 0x104adf, 0x104aec\l0x00104af3      mov eax, 1\l0x00104af8      jmp 0x104aff\l"]
+	"0x00104afa" [URL="sym.resched_cntl/0x00104afa", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.resched_cntl @ 0x104a85\l0x00104afa      mov eax, 0xffffffff                                    ; -1\l"]
+	"0x00104aff" [URL="sym.resched_cntl/0x00104aff", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.resched_cntl @ 0x104aad, 0x104ac0, 0x104af8\l0x00104aff      add esp, 4\l0x00104b02      pop ebx\l0x00104b03      pop ebp\l0x00104b04      ret\l"]
+        "0x00104a67" -> "0x00104a87" [color="#13a10e"];
+        "0x00104a67" -> "0x00104a80" [color="#c50f1f"];
+        "0x00104a80" -> "0x00104aaf" [color="#13a10e"];
+        "0x00104a80" -> "0x00104a85" [color="#c50f1f"];
+        "0x00104a85" -> "0x00104afa" [color="#0037da"];
+        "0x00104a87" -> "0x00104aa8" [color="#13a10e"];
+        "0x00104a87" -> "0x00104a9e" [color="#c50f1f"];
+        "0x00104a9e" -> "0x00104aa8" [color="#0037da"];
+        "0x00104aa8" -> "0x00104aff" [color="#0037da"];
+        "0x00104aaf" -> "0x00104ac2" [color="#13a10e"];
+        "0x00104aaf" -> "0x00104abb" [color="#c50f1f"];
+        "0x00104abb" -> "0x00104aff" [color="#0037da"];
+        "0x00104ac2" -> "0x00104af3" [color="#13a10e"];
+        "0x00104ac2" -> "0x00104ae1" [color="#c50f1f"];
+        "0x00104ae1" -> "0x00104af3" [color="#13a10e"];
+        "0x00104ae1" -> "0x00104aee" [color="#c50f1f"];
+        "0x00104aee" -> "0x00104af3" [color="#0037da"];
+        "0x00104af3" -> "0x00104aff" [color="#0037da"];
+        "0x00104afa" -> "0x00104aff" [color="#0037da"];
+}

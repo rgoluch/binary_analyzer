@@ -1,0 +1,73 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010d4b6" [URL="sym.rfsgetmode/0x0010d4b6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.rfsopen @ 0x10d80e\l216: sym.rfsgetmode (int32_t arg_8h);\l; var int32_t var_5h @ ebp-0x5\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x0010d4b6      push ebp\l0x0010d4b7      mov ebp, esp\l0x0010d4b9      sub esp, 0x10\l0x0010d4bc      mov dword [var_4h], 0\l0x0010d4c3      jmp 0x10d563\l"]
+	"0x0010d4c8" [URL="sym.rfsgetmode/0x0010d4c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d575\l0x0010d4c8      movsx eax, byte [var_5h]\l0x0010d4cc      cmp eax, 0x6f                                          ; 111\l0x0010d4cf      je 0x10d51a\l"]
+	"0x0010d4d1" [URL="sym.rfsgetmode/0x0010d4d1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d4d1      cmp eax, 0x6f                                          ; 111\l0x0010d4d4      jg 0x10d4dd\l"]
+	"0x0010d4d6" [URL="sym.rfsgetmode/0x0010d4d6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d4d6      cmp eax, 0x6e                                          ; 110\l0x0010d4d9      je 0x10d53b\l"]
+	"0x0010d4db" [URL="sym.rfsgetmode/0x0010d4db", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d4db      jmp 0x10d55c\l"]
+	"0x0010d4dd" [URL="sym.rfsgetmode/0x0010d4dd", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d4d4\l0x0010d4dd      cmp eax, 0x72                                          ; 114\l0x0010d4e0      je 0x10d4e9\l"]
+	"0x0010d4e2" [URL="sym.rfsgetmode/0x0010d4e2", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d4e2      cmp eax, 0x77                                          ; 119\l0x0010d4e5      je 0x10d503\l"]
+	"0x0010d4e7" [URL="sym.rfsgetmode/0x0010d4e7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d4e7      jmp 0x10d55c\l"]
+	"0x0010d4e9" [URL="sym.rfsgetmode/0x0010d4e9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d4e0\l0x0010d4e9      mov eax, dword [var_4h]\l0x0010d4ec      and eax, 1\l0x0010d4ef      test eax, eax\l0x0010d4f1      je 0x10d4fd\l"]
+	"0x0010d4f3" [URL="sym.rfsgetmode/0x0010d4f3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d4f3      mov eax, 0xffffffff                                    ; -1\l0x0010d4f8      jmp 0x10d58c\l"]
+	"0x0010d4fd" [URL="sym.rfsgetmode/0x0010d4fd", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d4f1\l0x0010d4fd      or dword [var_4h], 1\l0x0010d501      jmp 0x10d563\l"]
+	"0x0010d503" [URL="sym.rfsgetmode/0x0010d503", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d4e5\l0x0010d503      mov eax, dword [var_4h]\l0x0010d506      and eax, 2\l0x0010d509      test eax, eax\l0x0010d50b      je 0x10d514\l"]
+	"0x0010d50d" [URL="sym.rfsgetmode/0x0010d50d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d50d      mov eax, 0xffffffff                                    ; -1\l0x0010d512      jmp 0x10d58c\l"]
+	"0x0010d514" [URL="sym.rfsgetmode/0x0010d514", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d50b\l0x0010d514      or dword [var_4h], 2\l0x0010d518      jmp 0x10d563\l"]
+	"0x0010d51a" [URL="sym.rfsgetmode/0x0010d51a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d4cf\l0x0010d51a      mov eax, dword [var_4h]\l0x0010d51d      and eax, 8\l0x0010d520      test eax, eax\l0x0010d522      jne 0x10d52e\l"]
+	"0x0010d524" [URL="sym.rfsgetmode/0x0010d524", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d524      mov eax, dword [var_4h]\l0x0010d527      and eax, 4\l0x0010d52a      test eax, eax\l0x0010d52c      je 0x10d535\l"]
+	"0x0010d52e" [URL="sym.rfsgetmode/0x0010d52e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d522\l0x0010d52e      mov eax, 0xffffffff                                    ; -1\l0x0010d533      jmp 0x10d58c\l"]
+	"0x0010d535" [URL="sym.rfsgetmode/0x0010d535", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d52c\l0x0010d535      or dword [var_4h], 8\l0x0010d539      jmp 0x10d563\l"]
+	"0x0010d53b" [URL="sym.rfsgetmode/0x0010d53b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d4d9\l0x0010d53b      mov eax, dword [var_4h]\l0x0010d53e      and eax, 8\l0x0010d541      test eax, eax\l0x0010d543      jne 0x10d54f\l"]
+	"0x0010d545" [URL="sym.rfsgetmode/0x0010d545", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d545      mov eax, dword [var_4h]\l0x0010d548      and eax, 4\l0x0010d54b      test eax, eax\l0x0010d54d      je 0x10d556\l"]
+	"0x0010d54f" [URL="sym.rfsgetmode/0x0010d54f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d543\l0x0010d54f      mov eax, 0xffffffff                                    ; -1\l0x0010d554      jmp 0x10d58c\l"]
+	"0x0010d556" [URL="sym.rfsgetmode/0x0010d556", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d54d\l0x0010d556      or dword [var_4h], 4\l0x0010d55a      jmp 0x10d563\l"]
+	"0x0010d55c" [URL="sym.rfsgetmode/0x0010d55c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.rfsgetmode @ 0x10d4db, 0x10d4e7\l0x0010d55c      mov eax, 0xffffffff                                    ; -1\l0x0010d561      jmp 0x10d58c\l"]
+	"0x0010d563" [URL="sym.rfsgetmode/0x0010d563", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.rfsgetmode @ 0x10d4c3, 0x10d501, 0x10d518, 0x10d539, 0x10d55a\l0x0010d563      mov eax, dword [arg_8h]\l0x0010d566      lea edx, [eax + 1]\l0x0010d569      mov dword [arg_8h], edx\l0x0010d56c      mov al, byte [eax]\l0x0010d56e      mov byte [var_5h], al\l0x0010d571      cmp byte [var_5h], 0\l0x0010d575      jne 0x10d4c8\l"]
+	"0x0010d57b" [URL="sym.rfsgetmode/0x0010d57b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d57b      mov eax, dword [var_4h]\l0x0010d57e      and eax, 3\l0x0010d581      test eax, eax\l0x0010d583      jne 0x10d589\l"]
+	"0x0010d585" [URL="sym.rfsgetmode/0x0010d585", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010d585      or dword [var_4h], 3\l"]
+	"0x0010d589" [URL="sym.rfsgetmode/0x0010d589", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfsgetmode @ 0x10d583\l0x0010d589      mov eax, dword [var_4h]\l"]
+	"0x0010d58c" [URL="sym.rfsgetmode/0x0010d58c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.rfsgetmode @ 0x10d4f8, 0x10d512, 0x10d533, 0x10d554, 0x10d561\l0x0010d58c      leave\l0x0010d58d      ret\l"]
+        "0x0010d4b6" -> "0x0010d563" [color="#0037da"];
+        "0x0010d4c8" -> "0x0010d51a" [color="#13a10e"];
+        "0x0010d4c8" -> "0x0010d4d1" [color="#c50f1f"];
+        "0x0010d4d1" -> "0x0010d4dd" [color="#13a10e"];
+        "0x0010d4d1" -> "0x0010d4d6" [color="#c50f1f"];
+        "0x0010d4d6" -> "0x0010d53b" [color="#13a10e"];
+        "0x0010d4d6" -> "0x0010d4db" [color="#c50f1f"];
+        "0x0010d4db" -> "0x0010d55c" [color="#0037da"];
+        "0x0010d4dd" -> "0x0010d4e9" [color="#13a10e"];
+        "0x0010d4dd" -> "0x0010d4e2" [color="#c50f1f"];
+        "0x0010d4e2" -> "0x0010d503" [color="#13a10e"];
+        "0x0010d4e2" -> "0x0010d4e7" [color="#c50f1f"];
+        "0x0010d4e7" -> "0x0010d55c" [color="#0037da"];
+        "0x0010d4e9" -> "0x0010d4fd" [color="#13a10e"];
+        "0x0010d4e9" -> "0x0010d4f3" [color="#c50f1f"];
+        "0x0010d4f3" -> "0x0010d58c" [color="#0037da"];
+        "0x0010d4fd" -> "0x0010d563" [color="#0037da"];
+        "0x0010d503" -> "0x0010d514" [color="#13a10e"];
+        "0x0010d503" -> "0x0010d50d" [color="#c50f1f"];
+        "0x0010d50d" -> "0x0010d58c" [color="#0037da"];
+        "0x0010d514" -> "0x0010d563" [color="#0037da"];
+        "0x0010d51a" -> "0x0010d52e" [color="#13a10e"];
+        "0x0010d51a" -> "0x0010d524" [color="#c50f1f"];
+        "0x0010d524" -> "0x0010d535" [color="#13a10e"];
+        "0x0010d524" -> "0x0010d52e" [color="#c50f1f"];
+        "0x0010d52e" -> "0x0010d58c" [color="#0037da"];
+        "0x0010d535" -> "0x0010d563" [color="#0037da"];
+        "0x0010d53b" -> "0x0010d54f" [color="#13a10e"];
+        "0x0010d53b" -> "0x0010d545" [color="#c50f1f"];
+        "0x0010d545" -> "0x0010d556" [color="#13a10e"];
+        "0x0010d545" -> "0x0010d54f" [color="#c50f1f"];
+        "0x0010d54f" -> "0x0010d58c" [color="#0037da"];
+        "0x0010d556" -> "0x0010d563" [color="#0037da"];
+        "0x0010d55c" -> "0x0010d58c" [color="#0037da"];
+        "0x0010d563" -> "0x0010d4c8" [color="#13a10e"];
+        "0x0010d563" -> "0x0010d57b" [color="#c50f1f"];
+        "0x0010d57b" -> "0x0010d589" [color="#13a10e"];
+        "0x0010d57b" -> "0x0010d585" [color="#c50f1f"];
+        "0x0010d585" -> "0x0010d589" [color="#0037da"];
+        "0x0010d589" -> "0x0010d58c" [color="#0037da"];
+}

@@ -1,0 +1,26 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x001079e0" [URL="sym.strncmp/0x001079e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(25)\l94: int sym.strncmp (const char *s1, const char *s2, size_t n);\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l0x001079e0      push ebp\l0x001079e1      mov ebp, esp\l0x001079e3      jmp 0x1079fb\l"]
+	"0x001079e5" [URL="sym.strncmp/0x001079e5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncmp @ 0x107a16\l0x001079e5      mov eax, dword [arg_8h]\l0x001079e8      lea edx, [eax + 1]\l0x001079eb      mov dword [arg_8h], edx\l0x001079ee      mov al, byte [eax]\l0x001079f0      test al, al\l0x001079f2      jne 0x1079fb\l"]
+	"0x001079f4" [URL="sym.strncmp/0x001079f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001079f4      mov eax, 0\l0x001079f9      jmp 0x107a3c\l"]
+	"0x001079fb" [URL="sym.strncmp/0x001079fb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.strncmp @ 0x1079e3, 0x1079f2\l0x001079fb      dec dword [arg_10h]\l0x001079fe      cmp dword [arg_10h], 0\l0x00107a02      js 0x107a18\l"]
+	"0x00107a04" [URL="sym.strncmp/0x00107a04", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00107a04      mov eax, dword [arg_8h]\l0x00107a07      mov cl, byte [eax]\l0x00107a09      mov eax, dword [arg_ch]\l0x00107a0c      lea edx, [eax + 1]\l0x00107a0f      mov dword [arg_ch], edx\l0x00107a12      mov al, byte [eax]\l0x00107a14      cmp cl, al\l0x00107a16      je 0x1079e5\l"]
+	"0x00107a18" [URL="sym.strncmp/0x00107a18", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncmp @ 0x107a02\l0x00107a18      cmp dword [arg_10h], 0\l0x00107a1c      js 0x107a37\l"]
+	"0x00107a1e" [URL="sym.strncmp/0x00107a1e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00107a1e      mov eax, dword [arg_8h]\l0x00107a21      mov al, byte [eax]\l0x00107a23      movsx edx, al\l0x00107a26      dec dword [arg_ch]\l0x00107a29      mov eax, dword [arg_ch]\l0x00107a2c      mov al, byte [eax]\l0x00107a2e      movsx eax, al\l0x00107a31      sub edx, eax\l0x00107a33      mov eax, edx\l0x00107a35      jmp 0x107a3c\l"]
+	"0x00107a37" [URL="sym.strncmp/0x00107a37", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncmp @ 0x107a1c\l0x00107a37      mov eax, 0\l"]
+	"0x00107a3c" [URL="sym.strncmp/0x00107a3c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.strncmp @ 0x1079f9, 0x107a35\l0x00107a3c      pop ebp\l0x00107a3d      ret\l"]
+        "0x001079e0" -> "0x001079fb" [color="#0037da"];
+        "0x001079e5" -> "0x001079fb" [color="#13a10e"];
+        "0x001079e5" -> "0x001079f4" [color="#c50f1f"];
+        "0x001079f4" -> "0x00107a3c" [color="#0037da"];
+        "0x001079fb" -> "0x00107a18" [color="#13a10e"];
+        "0x001079fb" -> "0x00107a04" [color="#c50f1f"];
+        "0x00107a04" -> "0x001079e5" [color="#13a10e"];
+        "0x00107a04" -> "0x00107a18" [color="#c50f1f"];
+        "0x00107a18" -> "0x00107a37" [color="#13a10e"];
+        "0x00107a18" -> "0x00107a1e" [color="#c50f1f"];
+        "0x00107a1e" -> "0x00107a3c" [color="#0037da"];
+        "0x00107a37" -> "0x00107a3c" [color="#0037da"];
+}

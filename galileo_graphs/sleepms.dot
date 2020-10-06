@@ -1,0 +1,23 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010528c" [URL="sym.sleepms/0x0010528c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from main @ 0x102ba1\l  ; CALL XREF from sym.sleep @ 0x10527d\l182: sym.sleepms (int32_t arg_8h);\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x0010528c      push ebp\l0x0010528d      mov ebp, esp\l0x0010528f      push ebx\l0x00105290      sub esp, 0x14\l0x00105293      call sym.__x86.get_pc_thunk.bx\l0x00105298      add ebx, 0x1bd68\l0x0010529e      cmp dword [arg_8h], 0\l0x001052a2      jns 0x1052ae\l"]
+	"0x001052a4" [URL="sym.sleepms/0x001052a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001052a4      mov eax, 0xffffffff                                    ; -1\l0x001052a9      jmp 0x10533d\l"]
+	"0x001052ae" [URL="sym.sleepms/0x001052ae", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sleepms @ 0x1052a2\l0x001052ae      cmp dword [arg_8h], 0\l0x001052b2      jne 0x1052c0\l"]
+	"0x001052b4" [URL="sym.sleepms/0x001052b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001052b4      call sym.yield\l0x001052b9      mov eax, 1\l0x001052be      jmp 0x10533d\l"]
+	"0x001052c0" [URL="sym.sleepms/0x001052c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sleepms @ 0x1052b2\l0x001052c0      call loc.disable\l0x001052c5      mov dword [var_ch], eax\l0x001052c8      mov eax, obj.sleepq                                    ; 0x121134\l0x001052ce      mov ax, word [eax]\l0x001052d1      movsx edx, ax\l0x001052d4      mov eax, obj.currpid                                   ; 0x1212c0\l0x001052da      mov eax, dword [eax]\l0x001052dc      sub esp, 4\l0x001052df      push dword [arg_8h]\l0x001052e2      push edx\l0x001052e3      push eax\l0x001052e4      call sym.insertd\l0x001052e9      add esp, 0x10\l0x001052ec      cmp eax, 0xffffffff\l0x001052ef      jne 0x105306\l"]
+	"0x001052f1" [URL="sym.sleepms/0x001052f1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001052f1      sub esp, 0xc\l0x001052f4      push dword [var_ch]\l0x001052f7      call loc.restore\l0x001052fc      add esp, 0x10\l0x001052ff      mov eax, 0xffffffff                                    ; -1\l0x00105304      jmp 0x10533d\l"]
+	"0x00105306" [URL="sym.sleepms/0x00105306", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sleepms @ 0x1052ef\l0x00105306      mov eax, obj.currpid                                   ; 0x1212c0\l0x0010530c      mov edx, dword [eax]\l0x0010530e      mov ecx, obj.proctab                                   ; 0x1212e0\l0x00105314      mov eax, edx\l0x00105316      shl eax, 3\l0x00105319      sub eax, edx\l0x0010531b      shl eax, 3\l0x0010531e      add eax, ecx\l0x00105320      mov word [eax], 4\l0x00105325      call sym.resched\l0x0010532a      sub esp, 0xc\l0x0010532d      push dword [var_ch]\l0x00105330      call loc.restore\l0x00105335      add esp, 0x10\l0x00105338      mov eax, 1\l"]
+	"0x0010533d" [URL="sym.sleepms/0x0010533d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.sleepms @ 0x1052a9, 0x1052be, 0x105304\l0x0010533d      mov ebx, dword [var_4h]\l0x00105340      leave\l0x00105341      ret\l"]
+        "0x0010528c" -> "0x001052ae" [color="#13a10e"];
+        "0x0010528c" -> "0x001052a4" [color="#c50f1f"];
+        "0x001052a4" -> "0x0010533d" [color="#0037da"];
+        "0x001052ae" -> "0x001052c0" [color="#13a10e"];
+        "0x001052ae" -> "0x001052b4" [color="#c50f1f"];
+        "0x001052b4" -> "0x0010533d" [color="#0037da"];
+        "0x001052c0" -> "0x00105306" [color="#13a10e"];
+        "0x001052c0" -> "0x001052f1" [color="#c50f1f"];
+        "0x001052f1" -> "0x0010533d" [color="#0037da"];
+        "0x00105306" -> "0x0010533d" [color="#0037da"];
+}

@@ -1,0 +1,42 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00100024" [URL="entry0/0x00100024", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CODE XREF from section..text @ \l  ; DATA XREF from sym.xsh_memdump @ 0x1156ff\l  ; DATA XREF from sym.printMemUse @ 0x115b82\l  ;-- start:\l188: entry0 ();\l0x00100024      mov dword [obj.bootsign], eax                          ; [0x11fe80:4]=1\l0x00100029      mov dword [obj.bootinfo], ebx                          ; [0x11fe84:4]=1\l0x0010002f      cmp eax, 0x2badb002\l0x00100034      jne loc.halt\l"]
+	"0x0010003a" [URL="entry0/0x0010003a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010003a      test byte [ebx], 0x40\l0x0010003d      je loc.halt\l"]
+	"0x00100043" [URL="entry0/0x00100043", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00100043      mov ecx, dword [ebx + 0x30]\l0x00100046      mov edx, dword [ebx + 0x2c]\l0x00100049      and edx, 0xfffffffc                                    ; 4294967292\l0x0010004c      add edx, ecx\l0x0010004e      mov esp, 0\l"]
+	"0x00100053" [URL="entry0/0x00100053", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from entry0 @ 0x1000a9\l;-- mmap_search_start:\l0x00100053      cmp ecx, edx\l0x00100055      jae loc.mmap_search_done\l"]
+	"0x00100057" [URL="entry0/0x00100057", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00100057      mov eax, dword [ecx + 0x14]\l0x0010005a      cmp eax, 1                                             ; 1\l0x0010005d      jne loc.mmap_search_next_sgmt\l"]
+	"0x0010005f" [URL="entry0/0x0010005f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010005f      mov eax, dword [ecx + 4]\l0x00100062      mov ebx, dword [ecx + 0xc]\l0x00100065      add eax, ebx\l0x00100067      mov ebx, loc.end                                       ; loc._end\l                                                                       ; 0x141000\l0x0010006c      cmp eax, ebx\l0x0010006e      jle loc.mmap_search_next_sgmt\l"]
+	"0x00100070" [URL="entry0/0x00100070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00100070      mov eax, dword [ecx + 4]\l0x00100073      mov ebx, loc.end                                       ; loc._end\l                                                                       ; 0x141000\l0x00100078      sub ebx, eax\l0x0010007a      mov eax, dword [ecx + 0xc]\l0x0010007d      cmp ebx, 0\l0x00100080      jl loc.mmap_search_no_overlap\l"]
+	"0x00100082" [URL="entry0/0x00100082", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00100082      sub eax, ebx\l"]
+	"0x00100084" [URL="entry0/0x00100084", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from entry0 @ 0x100080\l;-- mmap_search_no_overlap:\l0x00100084      cmp eax, 0x2000\l0x00100089      jl loc.mmap_search_next_sgmt\l"]
+	"0x0010008b" [URL="entry0/0x0010008b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010008b      mov eax, dword [ecx + 4]\l0x0010008e      mov ebx, dword [ecx + 0xc]\l0x00100091      add eax, ebx\l0x00100093      cmp eax, esp\l0x00100095      jl loc.mmap_search_next_sgmt\l"]
+	"0x00100097" [URL="entry0/0x00100097", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00100097      mov esp, eax\l0x00100099      add esp, 7\l0x0010009c      and esp, 0xfffffff8\l0x0010009f      sub esp, 4\l"]
+	"0x001000a2" [URL="entry0/0x001000a2", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from entry0 @ 0x10005d, 0x10006e, 0x100089, 0x100095\l;-- mmap_search_next_sgmt:\l0x001000a2      mov eax, dword [ecx]\l0x001000a4      add ecx, eax\l0x001000a6      add ecx, 4\l0x001000a9      jmp loc.mmap_search_start\l"]
+	"0x001000ab" [URL="entry0/0x001000ab", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from entry0 @ 0x100055\l;-- mmap_search_done:\l0x001000ab      mov ebp, esp\l0x001000ad      push 0\l0x001000af      popfd\l0x001000b0      mov ebx, loc.ebss                                      ; 0x140428\l0x001000b5      mov ecx, obj.sb_pcidev                                 ; loc.bss\l                                                                       ; 0x121020\l0x001000ba      sub ebx, ecx\l0x001000bc      push ebx\l0x001000bd      push ecx\l0x001000be      call loc.sbzero\l0x001000c3      pop ecx\l0x001000c4      pop ebx\l0x001000c5      call sym.setsegs\l0x001000ca      lgdt [loc.gdtr]\l0x001000d1      ljmp 8\l"]
+	"0x00100158" [URL="entry0/0x00100158", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from entry0 @ 0x1000d1\l0x00100158      or al, 0xb0                                            ; 176\l0x0010015a      add ah, bh\l"]
+	"0x0010015c" [URL="entry0/0x0010015c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010015c      rep stosb byte es:[edi], al\l0x0010015e      pop edi\l0x0010015f      ret\l"]
+        "0x00100024" -> "0x00117a47" [color="#13a10e"];
+        "0x00100024" -> "0x0010003a" [color="#c50f1f"];
+        "0x0010003a" -> "0x00117a47" [color="#13a10e"];
+        "0x0010003a" -> "0x00100043" [color="#c50f1f"];
+        "0x00100043" -> "0x00100053" [color="#0037da"];
+        "0x00100053" -> "0x001000ab" [color="#13a10e"];
+        "0x00100053" -> "0x00100057" [color="#c50f1f"];
+        "0x00100057" -> "0x001000a2" [color="#13a10e"];
+        "0x00100057" -> "0x0010005f" [color="#c50f1f"];
+        "0x0010005f" -> "0x001000a2" [color="#13a10e"];
+        "0x0010005f" -> "0x00100070" [color="#c50f1f"];
+        "0x00100070" -> "0x00100084" [color="#13a10e"];
+        "0x00100070" -> "0x00100082" [color="#c50f1f"];
+        "0x00100082" -> "0x00100084" [color="#0037da"];
+        "0x00100084" -> "0x001000a2" [color="#13a10e"];
+        "0x00100084" -> "0x0010008b" [color="#c50f1f"];
+        "0x0010008b" -> "0x001000a2" [color="#13a10e"];
+        "0x0010008b" -> "0x00100097" [color="#c50f1f"];
+        "0x00100097" -> "0x001000a2" [color="#0037da"];
+        "0x001000a2" -> "0x00100053" [color="#0037da"];
+        "0x001000ab" -> "0x00100158" [color="#0037da"];
+        "0x00100158" -> "0x0010015c" [color="#0037da"];
+}

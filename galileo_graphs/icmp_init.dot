@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010f830" [URL="sym.icmp_init/0x0010f830", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.net_init @ 0x110b79\l70: sym.icmp_init ();\l; var int32_t var_8h @ ebp-0x8\l0x0010f830      push ebp\l0x0010f831      mov ebp, esp\l0x0010f833      push ebx\l0x0010f834      sub esp, 0x10\l0x0010f837      call sym.__x86.get_pc_thunk.dx\l0x0010f83c      add edx, 0x117c4\l0x0010f842      mov dword [var_8h], 0\l0x0010f849      jmp 0x10f869\l"]
+	"0x0010f84b" [URL="sym.icmp_init/0x0010f84b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_init @ 0x10f86d\l0x0010f84b      mov ebx, obj.icmptab                                   ; 0x13ff60\l0x0010f851      mov ecx, dword [var_8h]\l0x0010f854      mov eax, ecx\l0x0010f856      shl eax, 3\l0x0010f859      sub eax, ecx\l0x0010f85b      shl eax, 3\l0x0010f85e      add eax, ebx\l0x0010f860      mov dword [eax], 0\l0x0010f866      inc dword [var_8h]\l"]
+	"0x0010f869" [URL="sym.icmp_init/0x0010f869", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.icmp_init @ 0x10f849\l0x0010f869      cmp dword [var_8h], 9\l0x0010f86d      jle 0x10f84b\l"]
+	"0x0010f86f" [URL="sym.icmp_init/0x0010f86f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010f86f      nop\l0x0010f870      add esp, 0x10\l0x0010f873      pop ebx\l0x0010f874      pop ebp\l0x0010f875      ret\l"]
+        "0x0010f830" -> "0x0010f869" [color="#0037da"];
+        "0x0010f84b" -> "0x0010f869" [color="#0037da"];
+        "0x0010f869" -> "0x0010f84b" [color="#13a10e"];
+        "0x0010f869" -> "0x0010f86f" [color="#c50f1f"];
+}

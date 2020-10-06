@@ -1,0 +1,21 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010798a" [URL="sym.strncat/0x0010798a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="86: char *sym.strncat (char *s1, const char *s2, size_t n);\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l0x0010798a      push ebp\l0x0010798b      mov ebp, esp\l0x0010798d      sub esp, 0x10\l0x00107990      mov eax, dword [arg_8h]\l0x00107993      mov dword [var_4h], eax\l0x00107996      nop\l"]
+	"0x00107997" [URL="sym.strncat/0x00107997", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncat @ 0x1079a4\l0x00107997      mov eax, dword [arg_8h]\l0x0010799a      lea edx, [eax + 1]\l0x0010799d      mov dword [arg_8h], edx\l0x001079a0      mov al, byte [eax]\l0x001079a2      test al, al\l0x001079a4      jne 0x107997\l"]
+	"0x001079a6" [URL="sym.strncat/0x001079a6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001079a6      dec dword [arg_8h]\l0x001079a9      jmp 0x1079bf\l"]
+	"0x001079ab" [URL="sym.strncat/0x001079ab", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncat @ 0x1079d9\l0x001079ab      dec dword [arg_10h]\l0x001079ae      cmp dword [arg_10h], 0\l0x001079b2      jns 0x1079bf\l"]
+	"0x001079b4" [URL="sym.strncat/0x001079b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001079b4      dec dword [arg_8h]\l0x001079b7      mov eax, dword [arg_8h]\l0x001079ba      mov byte [eax], 0\l0x001079bd      jmp 0x1079db\l"]
+	"0x001079bf" [URL="sym.strncat/0x001079bf", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.strncat @ 0x1079a9, 0x1079b2\l0x001079bf      mov eax, dword [arg_8h]\l0x001079c2      lea edx, [eax + 1]\l0x001079c5      mov dword [arg_8h], edx\l0x001079c8      mov edx, dword [arg_ch]\l0x001079cb      lea ecx, [edx + 1]\l0x001079ce      mov dword [arg_ch], ecx\l0x001079d1      mov dl, byte [edx]\l0x001079d3      mov byte [eax], dl\l0x001079d5      mov al, byte [eax]\l0x001079d7      test al, al\l0x001079d9      jne 0x1079ab\l"]
+	"0x001079db" [URL="sym.strncat/0x001079db", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.strncat @ 0x1079bd\l0x001079db      mov eax, dword [var_4h]\l0x001079de      leave\l0x001079df      ret\l"]
+        "0x0010798a" -> "0x00107997" [color="#0037da"];
+        "0x00107997" -> "0x00107997" [color="#13a10e"];
+        "0x00107997" -> "0x001079a6" [color="#c50f1f"];
+        "0x001079a6" -> "0x001079bf" [color="#0037da"];
+        "0x001079ab" -> "0x001079bf" [color="#13a10e"];
+        "0x001079ab" -> "0x001079b4" [color="#c50f1f"];
+        "0x001079b4" -> "0x001079db" [color="#0037da"];
+        "0x001079bf" -> "0x001079ab" [color="#13a10e"];
+        "0x001079bf" -> "0x001079db" [color="#c50f1f"];
+}

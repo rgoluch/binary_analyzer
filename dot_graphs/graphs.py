@@ -1,12 +1,12 @@
 import r2pipe
 import os
 
-r2 = r2pipe.open("/Users/RyanGoluch/Desktop/Research/kothari_490/xinu.elf")
+r2 = r2pipe.open("/Users/RyanGoluch/Desktop/xinu_x86.elf")
 r2.cmd("aaaa")
 
 functions = []
 
-with open("functions.txt", "r") as f:
+with open("x86_functions.txt", "r") as f:
     x = f.readline()
     while x: 
         y = x.split(' ')

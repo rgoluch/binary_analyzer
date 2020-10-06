@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00101e69" [URL="sym.gettime/0x00101e69", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.xsh_date @ 0x11491b\l74: sym.gettime (int32_t arg_8h);\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x00101e69      push ebp\l0x00101e6a      mov ebp, esp\l0x00101e6c      push ebx\l0x00101e6d      sub esp, 0x14\l0x00101e70      call sym.__x86.get_pc_thunk.ax\l0x00101e75      add eax, 0x1f18b\l0x00101e7a      sub esp, 0xc\l0x00101e7d      lea edx, [var_10h]\l0x00101e80      push edx\l0x00101e81      mov ebx, eax\l0x00101e83      call sym.getutime\l0x00101e88      add esp, 0x10\l0x00101e8b      mov dword [var_ch], eax\l0x00101e8e      cmp dword [var_ch], 0xffffffff\l0x00101e92      jne 0x101e9b\l"]
+	"0x00101e94" [URL="sym.gettime/0x00101e94", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00101e94      mov eax, 0xffffffff                                    ; -1\l0x00101e99      jmp 0x101eae\l"]
+	"0x00101e9b" [URL="sym.gettime/0x00101e9b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.gettime @ 0x101e92\l0x00101e9b      mov eax, dword [var_10h]\l0x00101e9e      lea edx, [eax - 0x4650]\l0x00101ea4      mov eax, dword [arg_8h]\l0x00101ea7      mov dword [eax], edx\l0x00101ea9      mov eax, 1\l"]
+	"0x00101eae" [URL="sym.gettime/0x00101eae", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.gettime @ 0x101e99\l0x00101eae      mov ebx, dword [var_4h]\l0x00101eb1      leave\l0x00101eb2      ret\l"]
+        "0x00101e69" -> "0x00101e9b" [color="#13a10e"];
+        "0x00101e69" -> "0x00101e94" [color="#c50f1f"];
+        "0x00101e94" -> "0x00101eae" [color="#0037da"];
+        "0x00101e9b" -> "0x00101eae" [color="#0037da"];
+}

@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010c2f4" [URL="sym.lfsinit/0x0010c2f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="85: sym.lfsinit ();\l; var int32_t var_18h @ esp+0x4\l; var int32_t var_14h @ esp+0x8\l0x0010c2f4      push ebp\l0x0010c2f5      mov ebp, esp\l0x0010c2f7      sub esp, 0x18\l0x0010c2fa      mov dword [obj.Lf_data], 5                             ; [0x13f640:4]=0\l0x0010c304      mov dword [esp], 1\l0x0010c30b      call sym.semcreate\l0x0010c310      mov dword [0x13f644], eax                              ; [0x13f644:4]=0\l0x0010c315      mov dword [var_14h], 0x200                             ; [0x200:4]=-1 ; 512\l0x0010c31d      mov dword [var_18h], 0\l0x0010c325      mov dword [esp], 0x13f648                              ; [0x13f648:4]=0\l0x0010c32c      call sym.memset                                        ; void *memset(void *s, int c, size_t n)\l0x0010c331      mov byte [0x13f849], 0                                 ; [0x13f849:1]=0\l0x0010c338      mov al, byte [0x13f849]                                ; [0x13f849:1]=0\l0x0010c33d      mov byte [0x13f848], al                                ; [0x13f848:1]=0\l0x0010c342      mov eax, 1\l0x0010c347      leave\l0x0010c348      ret\l"]
+}

@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00107812" [URL="sym.sprntf/0x00107812", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.sprintf @ 0x1077ea\l43: sym.sprntf (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_5h @ ebp-0x5\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x00107812      push ebp\l0x00107813      mov ebp, esp\l0x00107815      sub esp, 0x10\l0x00107818      mov eax, dword [arg_8h]\l0x0010781b      mov dword [var_4h], eax\l0x0010781e      mov eax, dword [arg_ch]\l0x00107821      mov byte [var_5h], al\l0x00107824      mov eax, dword [var_4h]\l0x00107827      mov eax, dword [eax]\l0x00107829      lea ecx, [eax + 1]\l0x0010782c      mov edx, dword [var_4h]\l0x0010782f      mov dword [edx], ecx\l0x00107831      mov dl, byte [var_5h]\l0x00107834      mov byte [eax], dl\l0x00107836      mov al, byte [eax]\l0x00107838      movsx eax, al\l0x0010783b      leave\l0x0010783c      ret\l"]
+}

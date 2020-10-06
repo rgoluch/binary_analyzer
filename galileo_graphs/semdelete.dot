@@ -1,0 +1,28 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00104dd5" [URL="sym.semdelete/0x00104dd5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from sym._ptclear @ 0x103b01, 0x103b13\l223: sym.semdelete (int32_t arg_8h);\l; var int32_t var_10h @ ebp-0x10\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x00104dd5      push ebp\l0x00104dd6      mov ebp, esp\l0x00104dd8      push ebx\l0x00104dd9      sub esp, 0x14\l0x00104ddc      call sym.__x86.get_pc_thunk.bx\l0x00104de1      add ebx, 0x1c21f\l0x00104de7      call loc.disable\l0x00104dec      mov dword [var_ch], eax\l0x00104def      cmp dword [arg_8h], 0\l0x00104df3      js 0x104dfb\l"]
+	"0x00104df5" [URL="sym.semdelete/0x00104df5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104df5      cmp dword [arg_8h], 0x63\l0x00104df9      jle 0x104e13\l"]
+	"0x00104dfb" [URL="sym.semdelete/0x00104dfb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.semdelete @ 0x104df3\l0x00104dfb      sub esp, 0xc\l0x00104dfe      push dword [var_ch]\l0x00104e01      call loc.restore\l0x00104e06      add esp, 0x10\l0x00104e09      mov eax, 0xffffffff                                    ; -1\l0x00104e0e      jmp 0x104eaf\l"]
+	"0x00104e13" [URL="sym.semdelete/0x00104e13", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.semdelete @ 0x104df9\l0x00104e13      mov edx, dword [arg_8h]\l0x00104e16      mov eax, edx\l0x00104e18      add eax, eax\l0x00104e1a      add eax, edx\l0x00104e1c      shl eax, 2\l0x00104e1f      mov edx, obj.semtab                                    ; 0x1228e0\l0x00104e25      add eax, edx\l0x00104e27      mov dword [var_10h], eax\l0x00104e2a      mov eax, dword [var_10h]\l0x00104e2d      mov al, byte [eax]\l0x00104e2f      test al, al\l0x00104e31      jne 0x104e48\l"]
+	"0x00104e33" [URL="sym.semdelete/0x00104e33", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104e33      sub esp, 0xc\l0x00104e36      push dword [var_ch]\l0x00104e39      call loc.restore\l0x00104e3e      add esp, 0x10\l0x00104e41      mov eax, 0xffffffff                                    ; -1\l0x00104e46      jmp 0x104eaf\l"]
+	"0x00104e48" [URL="sym.semdelete/0x00104e48", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.semdelete @ 0x104e31\l0x00104e48      mov eax, dword [var_10h]\l0x00104e4b      mov byte [eax], 0\l0x00104e4e      sub esp, 0xc\l0x00104e51      push 1                                                 ; 1\l0x00104e53      call sym.resched_cntl\l0x00104e58      add esp, 0x10\l0x00104e5b      jmp 0x104e7c\l"]
+	"0x00104e5d" [URL="sym.semdelete/0x00104e5d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.semdelete @ 0x104e8d\l0x00104e5d      mov eax, dword [var_10h]\l0x00104e60      mov eax, dword [eax + 8]\l0x00104e63      cwde\l0x00104e64      sub esp, 0xc\l0x00104e67      push eax\l0x00104e68      call sym.getfirst\l0x00104e6d      add esp, 0x10\l0x00104e70      sub esp, 0xc\l0x00104e73      push eax\l0x00104e74      call sym.ready\l0x00104e79      add esp, 0x10\l"]
+	"0x00104e7c" [URL="sym.semdelete/0x00104e7c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.semdelete @ 0x104e5b\l0x00104e7c      mov eax, dword [var_10h]\l0x00104e7f      mov eax, dword [eax + 4]\l0x00104e82      lea ecx, [eax + 1]\l0x00104e85      mov edx, dword [var_10h]\l0x00104e88      mov dword [edx + 4], ecx\l0x00104e8b      test eax, eax\l0x00104e8d      js 0x104e5d\l"]
+	"0x00104e8f" [URL="sym.semdelete/0x00104e8f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00104e8f      sub esp, 0xc\l0x00104e92      push 2                                                 ; 2\l0x00104e94      call sym.resched_cntl\l0x00104e99      add esp, 0x10\l0x00104e9c      sub esp, 0xc\l0x00104e9f      push dword [var_ch]\l0x00104ea2      call loc.restore\l0x00104ea7      add esp, 0x10\l0x00104eaa      mov eax, 1\l"]
+	"0x00104eaf" [URL="sym.semdelete/0x00104eaf", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.semdelete @ 0x104e0e, 0x104e46\l0x00104eaf      mov ebx, dword [var_4h]\l0x00104eb2      leave\l0x00104eb3      ret\l"]
+        "0x00104dd5" -> "0x00104dfb" [color="#13a10e"];
+        "0x00104dd5" -> "0x00104df5" [color="#c50f1f"];
+        "0x00104df5" -> "0x00104e13" [color="#13a10e"];
+        "0x00104df5" -> "0x00104dfb" [color="#c50f1f"];
+        "0x00104dfb" -> "0x00104eaf" [color="#0037da"];
+        "0x00104e13" -> "0x00104e48" [color="#13a10e"];
+        "0x00104e13" -> "0x00104e33" [color="#c50f1f"];
+        "0x00104e33" -> "0x00104eaf" [color="#0037da"];
+        "0x00104e48" -> "0x00104e7c" [color="#0037da"];
+        "0x00104e5d" -> "0x00104e7c" [color="#0037da"];
+        "0x00104e7c" -> "0x00104e5d" [color="#13a10e"];
+        "0x00104e7c" -> "0x00104e8f" [color="#c50f1f"];
+        "0x00104e8f" -> "0x00104eaf" [color="#0037da"];
+}

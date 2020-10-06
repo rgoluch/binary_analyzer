@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00105993" [URL="sym.abs/0x00105993", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="17: sym.abs (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l0x00105993      push ebp\l0x00105994      mov ebp, esp\l0x00105996      cmp dword [arg_8h], 0\l0x0010599a      jns 0x10599f\l"]
+	"0x0010599c" [URL="sym.abs/0x0010599c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010599c      neg dword [arg_8h]\l"]
+	"0x0010599f" [URL="sym.abs/0x0010599f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.abs @ 0x10599a\l0x0010599f      mov eax, dword [arg_8h]\l0x001059a2      pop ebp\l0x001059a3      ret\l"]
+        "0x00105993" -> "0x0010599f" [color="#13a10e"];
+        "0x00105993" -> "0x0010599c" [color="#c50f1f"];
+        "0x0010599c" -> "0x0010599f" [color="#0037da"];
+}

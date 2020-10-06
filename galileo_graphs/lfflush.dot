@@ -1,0 +1,28 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010b34c" [URL="sym.lfflush/0x0010b34c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.lflclose @ 0x10b78b\l  ; CALL XREF from sym.lfsetup @ 0x10c0b7\l  ; CALL XREF from sym.lftruncate @ 0x10c72b\l191: sym.lfflush (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l; var int32_t var_18h @ esp+0x4\l; var int32_t var_14h @ esp+0x8\l0x0010b34c      push ebp\l0x0010b34d      mov ebp, esp\l0x0010b34f      sub esp, 0x18\l0x0010b352      mov eax, dword [arg_8h]\l0x0010b355      mov al, byte [eax]\l0x0010b357      test al, al\l0x0010b359      jne 0x10b365\l"]
+	"0x0010b35b" [URL="sym.lfflush/0x0010b35b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010b35b      mov eax, 0xffffffff                                    ; -1\l0x0010b360      jmp 0x10b409\l"]
+	"0x0010b365" [URL="sym.lfflush/0x0010b365", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfflush @ 0x10b359\l0x0010b365      mov al, byte [0x13f849]                                ; [0x13f849:1]=0\l0x0010b36a      test al, al\l0x0010b36c      je 0x10b392\l"]
+	"0x0010b36e" [URL="sym.lfflush/0x0010b36e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010b36e      mov eax, dword [obj.Lf_data]                           ; [0x13f640:4]=0\l0x0010b373      mov dword [var_14h], 0\l0x0010b37b      mov dword [var_18h], 0x13f648                          ; [0x13f648:4]=0\l0x0010b383      mov dword [esp], eax\l0x0010b386      call sym.write                                         ; ssize_t write(int fd, const char *ptr, size_t nbytes)\l0x0010b38b      mov byte [0x13f849], 0                                 ; [0x13f849:1]=0\l"]
+	"0x0010b392" [URL="sym.lfflush/0x0010b392", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfflush @ 0x10b36c\l0x0010b392      mov eax, dword [arg_8h]\l0x0010b395      mov al, byte [eax + 0x27d]\l0x0010b39b      test al, al\l0x0010b39d      je 0x10b3cc\l"]
+	"0x0010b39f" [URL="sym.lfflush/0x0010b39f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010b39f      mov eax, dword [arg_8h]\l0x0010b3a2      mov eax, dword [eax + 0x74]\l0x0010b3a5      mov edx, eax\l0x0010b3a7      mov eax, dword [arg_8h]\l0x0010b3aa      lea ecx, [eax + 0x78]\l0x0010b3ad      mov eax, dword [obj.Lf_data]                           ; [0x13f640:4]=0\l0x0010b3b2      mov dword [var_14h], edx\l0x0010b3b6      mov dword [var_18h], ecx\l0x0010b3ba      mov dword [esp], eax\l0x0010b3bd      call sym.write                                         ; ssize_t write(int fd, const char *ptr, size_t nbytes)\l0x0010b3c2      mov eax, dword [arg_8h]\l0x0010b3c5      mov byte [eax + 0x27d], 0\l"]
+	"0x0010b3cc" [URL="sym.lfflush/0x0010b3cc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfflush @ 0x10b39d\l0x0010b3cc      mov eax, dword [arg_8h]\l0x0010b3cf      mov al, byte [eax + 0x27c]\l0x0010b3d5      test al, al\l0x0010b3d7      je 0x10b404\l"]
+	"0x0010b3d9" [URL="sym.lfflush/0x0010b3d9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010b3d9      mov eax, dword [arg_8h]\l0x0010b3dc      lea ecx, [eax + 0x2c]\l0x0010b3df      mov eax, dword [arg_8h]\l0x0010b3e2      mov edx, dword [eax + 0x28]\l0x0010b3e5      mov eax, dword [obj.Lf_data]                           ; [0x13f640:4]=0\l0x0010b3ea      mov dword [var_14h], ecx\l0x0010b3ee      mov dword [var_18h], edx\l0x0010b3f2      mov dword [esp], eax\l0x0010b3f5      call sym.lfibput\l0x0010b3fa      mov eax, dword [arg_8h]\l0x0010b3fd      mov byte [eax + 0x27c], 0\l"]
+	"0x0010b404" [URL="sym.lfflush/0x0010b404", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfflush @ 0x10b3d7\l0x0010b404      mov eax, 1\l"]
+	"0x0010b409" [URL="sym.lfflush/0x0010b409", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfflush @ 0x10b360\l0x0010b409      leave\l0x0010b40a      ret\l"]
+        "0x0010b34c" -> "0x0010b365" [color="#13a10e"];
+        "0x0010b34c" -> "0x0010b35b" [color="#c50f1f"];
+        "0x0010b35b" -> "0x0010b409" [color="#0037da"];
+        "0x0010b365" -> "0x0010b392" [color="#13a10e"];
+        "0x0010b365" -> "0x0010b36e" [color="#c50f1f"];
+        "0x0010b36e" -> "0x0010b392" [color="#0037da"];
+        "0x0010b392" -> "0x0010b3cc" [color="#13a10e"];
+        "0x0010b392" -> "0x0010b39f" [color="#c50f1f"];
+        "0x0010b39f" -> "0x0010b3cc" [color="#0037da"];
+        "0x0010b3cc" -> "0x0010b404" [color="#13a10e"];
+        "0x0010b3cc" -> "0x0010b3d9" [color="#c50f1f"];
+        "0x0010b3d9" -> "0x0010b404" [color="#0037da"];
+        "0x0010b404" -> "0x0010b409" [color="#0037da"];
+}

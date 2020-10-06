@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010886a" [URL="sym.ttykickout/0x0010886a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.ttyhandle_in @ 0x107daa\l  ; CALL XREF from sym.eputc @ 0x108420\l  ; CALL XREF from sym.ttyinit @ 0x10885e\l  ; CALL XREF from sym.ttyputc @ 0x108920\l16: sym.ttykickout (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l0x0010886a      push ebp\l0x0010886b      mov ebp, esp\l0x0010886d      mov eax, dword [arg_8h]\l0x00108870      mov dword [eax + 4], 3\l0x00108877      nop\l0x00108878      pop ebp\l0x00108879      ret\l"]
+}

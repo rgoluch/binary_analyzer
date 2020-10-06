@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00101250" [URL="sym.ioapic_irq2vec/0x00101250", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.clkinit @ 0x1007e6\l80: sym.ioapic_irq2vec (int32_t arg_8h, int32_t arg_ch);\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x00101250      push ebp\l0x00101251      mov ebp, esp\l0x00101253      call sym.__x86.get_pc_thunk.ax\l0x00101258      add eax, 0x1fda8\l0x0010125d      mov eax, dword [arg_8h]\l0x00101260      add eax, 8\l0x00101263      add eax, eax\l0x00101265      lea edx, [eax + 1]\l0x00101268      mov eax, 0xfec00000\l0x0010126d      mov dword [eax], edx\l0x0010126f      mov eax, 0xfec00010\l0x00101274      mov dword [eax], 0\l0x0010127a      mov eax, dword [arg_8h]\l0x0010127d      add eax, 8\l0x00101280      lea edx, [eax + eax]\l0x00101283      mov eax, 0xfec00000\l0x00101288      mov dword [eax], edx\l0x0010128a      mov eax, dword [arg_ch]\l0x0010128d      or ah, 0xa0                                            ; loc.OCW2_2\l0x00101290      mov edx, eax\l0x00101292      mov eax, 0xfec00010\l0x00101297      mov dword [eax], edx\l0x00101299      mov eax, 1\l0x0010129e      pop ebp\l0x0010129f      ret\l"]
+}

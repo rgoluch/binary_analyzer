@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010595c" [URL="sym.yield/0x0010595c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.sleepms @ 0x1052b4\l55: sym.yield ();\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l0x0010595c      push ebp\l0x0010595d      mov ebp, esp\l0x0010595f      push ebx\l0x00105960      sub esp, 0x14\l0x00105963      call sym.__x86.get_pc_thunk.bx\l0x00105968      add ebx, 0x1b698\l0x0010596e      call loc.disable\l0x00105973      mov dword [var_ch], eax\l0x00105976      call sym.resched\l0x0010597b      sub esp, 0xc\l0x0010597e      push dword [var_ch]\l0x00105981      call loc.restore\l0x00105986      add esp, 0x10\l0x00105989      mov eax, 1\l0x0010598e      mov ebx, dword [var_4h]\l0x00105991      leave\l0x00105992      ret\l"]
+}

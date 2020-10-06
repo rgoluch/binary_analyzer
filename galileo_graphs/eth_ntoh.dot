@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00110d3f" [URL="sym.eth_ntoh/0x00110d3f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.netin @ 0x110c9b\l53: sym.eth_ntoh (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l0x00110d3f      push ebp\l0x00110d40      mov ebp, esp\l0x00110d42      call sym.__x86.get_pc_thunk.ax\l0x00110d47      add eax, 0x102b9\l0x00110d4c      mov eax, dword [arg_8h]\l0x00110d4f      mov ax, word [eax + 0xc]\l0x00110d53      shr ax, 8\l0x00110d57      mov edx, eax\l0x00110d59      mov eax, dword [arg_8h]\l0x00110d5c      mov ax, word [eax + 0xc]\l0x00110d60      and eax, 0xffff\l0x00110d65      shl eax, 8\l0x00110d68      or eax, edx\l0x00110d6a      mov edx, dword [arg_8h]\l0x00110d6d      mov word [edx + 0xc], ax\l0x00110d71      nop\l0x00110d72      pop ebp\l0x00110d73      ret\l"]
+}

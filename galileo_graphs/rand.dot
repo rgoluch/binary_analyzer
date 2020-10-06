@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0010776f" [URL="sym.rand/0x0010776f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="20: int sym.rand ();\l0x0010776f      push ebp\l0x00107770      mov ebp, esp\l0x00107772      sub esp, 0x18\l0x00107775      mov dword [esp], obj.rand_seed                         ; [0x11ff60:4]=1\l0x0010777c      call sym.rand_r\l0x00107781      leave\l0x00107782      ret\l"]
+}

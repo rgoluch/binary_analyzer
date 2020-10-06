@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00117a27" [URL="loc.disable/0x00117a27", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(66)\l9: loc.disable ();\l0x00117a27      pushfd\l0x00117a28      cli\l0x00117a29      pop eax\l0x00117a2a      and eax, 0x200                                         ; 512\l0x00117a2f      ret\l"]
+}

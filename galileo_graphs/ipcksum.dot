@@ -1,0 +1,18 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00110640" [URL="sym.ipcksum/0x00110640", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.ip_in @ 0x110188\l  ; CALL XREF from sym.ip_out @ 0x1105cb\l  ; CALL XREF from sym.pdump @ 0x1115da\l  ; CALL XREF from sym.pdumph @ 0x112096\l144: sym.ipcksum (int32_t arg_8h);\l; var int32_t var_eh @ ebp-0xe\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_8h @ ebp-0x8\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l0x00110640      push ebp\l0x00110641      mov ebp, esp\l0x00110643      sub esp, 0x10\l0x00110646      call sym.__x86.get_pc_thunk.ax\l0x0011064b      add eax, 0x109b5\l0x00110650      mov eax, dword [arg_8h]\l0x00110653      add eax, 0xe                                           ; 14\l0x00110656      mov dword [var_4h], eax\l0x00110659      mov dword [var_ch], 0\l0x00110660      mov dword [var_8h], 0\l0x00110667      jmp 0x11069f\l"]
+	"0x00110669" [URL="sym.ipcksum/0x00110669", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ipcksum @ 0x1106a3\l0x00110669      mov eax, dword [var_4h]\l0x0011066c      lea edx, [eax + 2]\l0x0011066f      mov dword [var_4h], edx\l0x00110672      mov ax, word [eax]\l0x00110675      mov word [var_eh], ax\l0x00110679      mov ax, word [var_eh]\l0x0011067d      shr ax, 8\l0x00110681      xor edx, edx\l0x00110683      mov dx, ax\l0x00110686      mov ax, word [var_eh]\l0x0011068a      and eax, 0xffff\l0x0011068f      shl eax, 8\l0x00110692      and eax, 0xffff\l0x00110697      or eax, edx\l0x00110699      add dword [var_ch], eax\l0x0011069c      inc dword [var_8h]\l"]
+	"0x0011069f" [URL="sym.ipcksum/0x0011069f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ipcksum @ 0x110667\l0x0011069f      cmp dword [var_8h], 9\l0x001106a3      jle 0x110669\l"]
+	"0x001106a5" [URL="sym.ipcksum/0x001106a5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001106a5      mov eax, dword [var_ch]\l0x001106a8      shr eax, 0x10\l0x001106ab      add dword [var_ch], eax\l0x001106ae      mov eax, dword [var_ch]\l0x001106b1      not eax\l0x001106b3      and eax, 0xffff\l0x001106b8      mov dword [var_ch], eax\l0x001106bb      cmp dword [var_ch], 0xffff\l0x001106c2      jne 0x1106cb\l"]
+	"0x001106c4" [URL="sym.ipcksum/0x001106c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001106c4      mov dword [var_ch], 0\l"]
+	"0x001106cb" [URL="sym.ipcksum/0x001106cb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ipcksum @ 0x1106c2\l0x001106cb      mov eax, dword [var_ch]\l0x001106ce      leave\l0x001106cf      ret\l"]
+        "0x00110640" -> "0x0011069f" [color="#0037da"];
+        "0x00110669" -> "0x0011069f" [color="#0037da"];
+        "0x0011069f" -> "0x00110669" [color="#13a10e"];
+        "0x0011069f" -> "0x001106a5" [color="#c50f1f"];
+        "0x001106a5" -> "0x001106cb" [color="#13a10e"];
+        "0x001106a5" -> "0x001106c4" [color="#c50f1f"];
+        "0x001106c4" -> "0x001106cb" [color="#0037da"];
+}

@@ -1,0 +1,69 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00109372" [URL="sym.eth_phy_reset/0x00109372", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.ethinit @ 0x109539\l360: sym.eth_phy_reset (int32_t arg_8h);\l; var int32_t var_eh @ ebp-0xe\l; var int32_t var_ch @ ebp-0xc\l; arg int32_t arg_8h @ ebp+0x8\l; var int32_t var_28h @ esp+0x4\l; var int32_t var_24h @ esp+0x8\l0x00109372      push ebp\l0x00109373      mov ebp, esp\l0x00109375      push ebx\l0x00109376      sub esp, 0x24\l0x00109379      mov dword [var_28h], 0\l0x00109381      mov eax, dword [arg_8h]\l0x00109384      mov dword [esp], eax\l0x00109387      call sym.eth_phy_read\l0x0010938c      mov word [var_eh], ax\l0x00109390      mov ax, word [var_eh]\l0x00109394      or eax, 0xffff8000\l0x00109399      and eax, 0xffff\l0x0010939e      mov dword [var_24h], eax\l0x001093a2      mov dword [var_28h], 0\l0x001093aa      mov eax, dword [arg_8h]\l0x001093ad      mov dword [esp], eax\l0x001093b0      call sym.eth_phy_write\l0x001093b5      mov dword [var_ch], 0\l0x001093bc      jmp 0x1093e1\l"]
+	"0x001093be" [URL="sym.eth_phy_reset/0x001093be", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x1093f7\l0x001093be      mov ebx, 0\l0x001093c3      jmp 0x1093c6\l"]
+	"0x001093c5" [URL="sym.eth_phy_reset/0x001093c5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x1093cc\l0x001093c5      inc ebx\l"]
+	"0x001093c6" [URL="sym.eth_phy_reset/0x001093c6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x1093c3\l0x001093c6      cmp ebx, 0x2faf07f\l0x001093cc      jle 0x1093c5\l"]
+	"0x001093ce" [URL="sym.eth_phy_reset/0x001093ce", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001093ce      inc dword [var_ch]\l0x001093d1      cmp dword [var_ch], 3\l0x001093d5      jbe 0x1093e1\l"]
+	"0x001093d7" [URL="sym.eth_phy_reset/0x001093d7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001093d7      mov eax, 0xffffffff                                    ; -1\l0x001093dc      jmp 0x1094d4\l"]
+	"0x001093e1" [URL="sym.eth_phy_reset/0x001093e1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.eth_phy_reset @ 0x1093bc, 0x1093d5\l0x001093e1      mov dword [var_28h], 0\l0x001093e9      mov eax, dword [arg_8h]\l0x001093ec      mov dword [esp], eax\l0x001093ef      call sym.eth_phy_read\l0x001093f4      test ax, ax\l0x001093f7      js 0x1093be\l"]
+	"0x001093f9" [URL="sym.eth_phy_reset/0x001093f9", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001093f9      mov dword [var_28h], 1\l0x00109401      mov eax, dword [arg_8h]\l0x00109404      mov dword [esp], eax\l0x00109407      call sym.eth_phy_read\l0x0010940c      mov word [var_eh], ax\l0x00109410      mov ax, word [var_eh]\l0x00109414      and eax, 0xffff\l0x00109419      and eax, 8\l0x0010941c      test eax, eax\l0x0010941e      je 0x10946b\l"]
+	"0x00109420" [URL="sym.eth_phy_reset/0x00109420", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00109420      mov dword [var_ch], 0\l0x00109427      jmp 0x10944c\l"]
+	"0x00109429" [URL="sym.eth_phy_reset/0x00109429", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x109469\l0x00109429      mov ebx, 0\l0x0010942e      jmp 0x109431\l"]
+	"0x00109430" [URL="sym.eth_phy_reset/0x00109430", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x109437\l0x00109430      inc ebx\l"]
+	"0x00109431" [URL="sym.eth_phy_reset/0x00109431", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x10942e\l0x00109431      cmp ebx, 0x2faf07f\l0x00109437      jle 0x109430\l"]
+	"0x00109439" [URL="sym.eth_phy_reset/0x00109439", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00109439      inc dword [var_ch]\l0x0010943c      cmp dword [var_ch], 3\l0x00109440      jbe 0x10944c\l"]
+	"0x00109442" [URL="sym.eth_phy_reset/0x00109442", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00109442      mov eax, 0xffffffff                                    ; -1\l0x00109447      jmp 0x1094d4\l"]
+	"0x0010944c" [URL="sym.eth_phy_reset/0x0010944c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.eth_phy_reset @ 0x109427, 0x109440\l0x0010944c      mov dword [var_28h], 1\l0x00109454      mov eax, dword [arg_8h]\l0x00109457      mov dword [esp], eax\l0x0010945a      call sym.eth_phy_read\l0x0010945f      and eax, 0xffff\l0x00109464      and eax, 0x20                                          ; loc.EOI\l0x00109467      test eax, eax\l0x00109469      je 0x109429\l"]
+	"0x0010946b" [URL="sym.eth_phy_reset/0x0010946b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x10941e\l0x0010946b      mov dword [var_ch], 0\l0x00109472      jmp 0x109494\l"]
+	"0x00109474" [URL="sym.eth_phy_reset/0x00109474", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x1094b1\l0x00109474      mov ebx, 0\l0x00109479      jmp 0x10947c\l"]
+	"0x0010947b" [URL="sym.eth_phy_reset/0x0010947b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x109482\l0x0010947b      inc ebx\l"]
+	"0x0010947c" [URL="sym.eth_phy_reset/0x0010947c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x109479\l0x0010947c      cmp ebx, 0x2faf07f\l0x00109482      jle 0x10947b\l"]
+	"0x00109484" [URL="sym.eth_phy_reset/0x00109484", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00109484      inc dword [var_ch]\l0x00109487      cmp dword [var_ch], 3\l0x0010948b      jbe 0x109494\l"]
+	"0x0010948d" [URL="sym.eth_phy_reset/0x0010948d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010948d      mov eax, 0xffffffff                                    ; -1\l0x00109492      jmp 0x1094d4\l"]
+	"0x00109494" [URL="sym.eth_phy_reset/0x00109494", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.eth_phy_reset @ 0x109472, 0x10948b\l0x00109494      mov dword [var_28h], 1\l0x0010949c      mov eax, dword [arg_8h]\l0x0010949f      mov dword [esp], eax\l0x001094a2      call sym.eth_phy_read\l0x001094a7      and eax, 0xffff\l0x001094ac      and eax, 4\l0x001094af      test eax, eax\l0x001094b1      je 0x109474\l"]
+	"0x001094b3" [URL="sym.eth_phy_reset/0x001094b3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001094b3      mov ebx, 0\l0x001094b8      jmp 0x1094bb\l"]
+	"0x001094ba" [URL="sym.eth_phy_reset/0x001094ba", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x1094c1\l0x001094ba      inc ebx\l"]
+	"0x001094bb" [URL="sym.eth_phy_reset/0x001094bb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.eth_phy_reset @ 0x1094b8\l0x001094bb      cmp ebx, 0x98967f\l0x001094c1      jle 0x1094ba\l"]
+	"0x001094c3" [URL="sym.eth_phy_reset/0x001094c3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x001094c3      mov dword [esp], 0x1188d0                              ; [0x1188d0:4]=0x6874450a ; \"\\nEthernet Link is Up\\n\"\l0x001094ca      call sym.kprintf\l0x001094cf      mov eax, 1\l"]
+	"0x001094d4" [URL="sym.eth_phy_reset/0x001094d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.eth_phy_reset @ 0x1093dc, 0x109447, 0x109492\l0x001094d4      add esp, 0x24\l0x001094d7      pop ebx\l0x001094d8      pop ebp\l0x001094d9      ret\l"]
+        "0x00109372" -> "0x001093e1" [color="#0037da"];
+        "0x001093be" -> "0x001093c6" [color="#0037da"];
+        "0x001093c5" -> "0x001093c6" [color="#0037da"];
+        "0x001093c6" -> "0x001093c5" [color="#13a10e"];
+        "0x001093c6" -> "0x001093ce" [color="#c50f1f"];
+        "0x001093ce" -> "0x001093e1" [color="#13a10e"];
+        "0x001093ce" -> "0x001093d7" [color="#c50f1f"];
+        "0x001093d7" -> "0x001094d4" [color="#0037da"];
+        "0x001093e1" -> "0x001093be" [color="#13a10e"];
+        "0x001093e1" -> "0x001093f9" [color="#c50f1f"];
+        "0x001093f9" -> "0x0010946b" [color="#13a10e"];
+        "0x001093f9" -> "0x00109420" [color="#c50f1f"];
+        "0x00109420" -> "0x0010944c" [color="#0037da"];
+        "0x00109429" -> "0x00109431" [color="#0037da"];
+        "0x00109430" -> "0x00109431" [color="#0037da"];
+        "0x00109431" -> "0x00109430" [color="#13a10e"];
+        "0x00109431" -> "0x00109439" [color="#c50f1f"];
+        "0x00109439" -> "0x0010944c" [color="#13a10e"];
+        "0x00109439" -> "0x00109442" [color="#c50f1f"];
+        "0x00109442" -> "0x001094d4" [color="#0037da"];
+        "0x0010944c" -> "0x00109429" [color="#13a10e"];
+        "0x0010944c" -> "0x0010946b" [color="#c50f1f"];
+        "0x0010946b" -> "0x00109494" [color="#0037da"];
+        "0x00109474" -> "0x0010947c" [color="#0037da"];
+        "0x0010947b" -> "0x0010947c" [color="#0037da"];
+        "0x0010947c" -> "0x0010947b" [color="#13a10e"];
+        "0x0010947c" -> "0x00109484" [color="#c50f1f"];
+        "0x00109484" -> "0x00109494" [color="#13a10e"];
+        "0x00109484" -> "0x0010948d" [color="#c50f1f"];
+        "0x0010948d" -> "0x001094d4" [color="#0037da"];
+        "0x00109494" -> "0x00109474" [color="#13a10e"];
+        "0x00109494" -> "0x001094b3" [color="#c50f1f"];
+        "0x001094b3" -> "0x001094bb" [color="#0037da"];
+        "0x001094ba" -> "0x001094bb" [color="#0037da"];
+        "0x001094bb" -> "0x001094ba" [color="#13a10e"];
+        "0x001094bb" -> "0x001094c3" [color="#c50f1f"];
+        "0x001094c3" -> "0x001094d4" [color="#0037da"];
+}
