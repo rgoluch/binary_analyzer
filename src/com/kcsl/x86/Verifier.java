@@ -4,8 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collection;
-
 import static com.kcsl.x86.Importer.*;
 
 import com.ensoftcorp.atlas.core.db.graph.Edge;

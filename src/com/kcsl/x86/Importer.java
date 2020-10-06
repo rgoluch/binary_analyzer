@@ -1,8 +1,5 @@
 package com.kcsl.x86;
 
-import static com.kcsl.x86.Importer.my_cfg;
-import static com.kcsl.x86.Importer.my_function;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,7 +17,7 @@ import com.kcsl.paths.counting.*;
 
 import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
-import com.ensoftcorp.atlas.core.db.graph.GraphElement;
+//import com.ensoftcorp.atlas.core.db.graph.GraphElement;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 //import com.ensoftcorp.atlas.core.db.list.AtlasList;
 //import com.ensoftcorp.atlas.core.db.set.AtlasHashSet;

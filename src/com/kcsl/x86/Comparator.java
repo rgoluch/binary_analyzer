@@ -1,6 +1,5 @@
 package com.kcsl.x86;
 
-import static com.kcsl.x86.Importer.*;
 import static com.kcsl.x86.Verifier.*;
 
 import java.io.BufferedWriter;
@@ -12,7 +11,6 @@ import java.util.HashMap;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
-import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
 
 /**
