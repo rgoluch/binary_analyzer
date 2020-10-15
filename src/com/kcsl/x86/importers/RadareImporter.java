@@ -17,9 +17,20 @@ import com.ensoftcorp.atlas.core.xcsg.XCSG;
 
 import static com.kcsl.x86.support.SupportMethods.*;
 
+/**
+ * 
+ * @author RyanGoluch
+ *
+ */
+
 public class RadareImporter {
 	
 	private static ArrayList<Node> function_nodes = new ArrayList<Node>();
+	
+	/**
+	 * 
+	 * @throws FileNotFoundException
+	 */
 	
 	public static void import_radare() throws FileNotFoundException {
 			
@@ -69,11 +80,13 @@ public class RadareImporter {
 							label = label.replace("\\l", "\n");
 							n.putAttr(XCSG.name, label);
 							
+							
 							//Map all control flow nodes to function container
 							Edge temp = Graph.U.createEdge(functionName, n);
 							temp.tag(XCSG.Contains);
 							nodeMap.put(addr, n);
 						}
+						
 						else if(data.contains("->")) {
 							
 							data = data.replaceAll("\\s+", "");
@@ -81,9 +94,15 @@ public class RadareImporter {
 							//Extract the addresses of the from and to nodes in DOT file
 							String from = data.split("->")[0];
 							from = from.replaceAll("\"", "");
+							
 							String temp = data.split("->")[1];
 							String to = temp.split("\\[color")[0];
 							to = to.replaceAll("\"", "");
+							
+							//Get the edge color to properly mark true and false edges later on
+							String color = temp.split("\\[color=")[1];
+							color = color.replaceAll("];", "");
+							color = color.replaceAll("\"", "");
 							
 							//Create the Atlas nodes and add necessary tags
 							Node fromNode = nodeMap.get(from);
@@ -113,6 +132,14 @@ public class RadareImporter {
 								Edge e = Graph.U.createEdge(fromNode, toNode);
 								e.tag(XCSG.ControlFlow_Edge);
 								e.tag("my_edge");
+								
+								//Mark true and false edges based on dot file edge color
+								if (color.contentEquals("#13a10e")) {
+									e.putAttr(XCSG.conditionValue, true);
+								}
+								else if (color.contentEquals("#c50f1f")) {
+									e.putAttr(XCSG.conditionValue, false);
+								}
 						
 								if(from.contains(to)) {
 									
@@ -149,8 +176,8 @@ public class RadareImporter {
 			
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
-				tag_binary_conditionals(name);
 				tag_binary_loops(name);
+				tag_binary_conditionals(name);
 			}
 			
 			

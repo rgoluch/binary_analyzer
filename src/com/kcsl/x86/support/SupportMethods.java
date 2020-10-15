@@ -3,6 +3,7 @@ package com.kcsl.x86.support;
 import static com.kcsl.x86.Importer.loop_tagging;
 import static com.kcsl.x86.Importer.my_cfg;
 import static com.kcsl.x86.Importer.my_function;
+import com.se421.paths.transforms.DAGTransform;
 
 import java.io.File;
 import java.util.Map;
@@ -12,13 +13,25 @@ import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.query.Q;
+import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.script.CommonQueries;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
 import com.ensoftcorp.atlas.ui.viewer.graph.SaveUtil;
 import com.ensoftcorp.open.commons.algorithms.LoopIdentification;
 
+/**
+ * 
+ * @author RyanGoluch
+ *
+ */
+
 public class SupportMethods {
+	
+	/**
+	 * 
+	 * @param name
+	 */
 	
 	public static void tag_binary_conditionals(String name) {
 		Q function = my_function(name);
@@ -29,11 +42,17 @@ public class SupportMethods {
 			if((edges.size() == 2 || n.taggedWith(XCSG.ControlFlowIfCondition)) && !n.taggedWith(XCSG.ControlFlowLoopCondition)) {
 //				 && !edges.one().taggedWith(XCSG.ControlFlowBackEdge)
 				n.tag(XCSG.ControlFlowIfCondition);
+				n.tag(XCSG.ControlFlowCondition);
 			}
 		}
 		
 	}
 	
+	
+	/**
+	 * 
+	 * @param name
+	 */
 	
 	public static void  tag_binary_loops(String name) {
 		Q function = my_function(name);
@@ -90,6 +109,7 @@ public class SupportMethods {
 				for (Edge e : outEdges) {
 					if (((e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop)) || e.from().taggedWith(XCSG.DoWhileLoop)) && !n.taggedWith(XCSG.Loop) && !e.to().taggedWith(XCSG.ControlFlowIfCondition)) {
 						e.to().tag(XCSG.ControlFlowLoopCondition);
+						e.to().tag(XCSG.ControlFlowCondition);
 					}
 				}
 			}
@@ -100,6 +120,56 @@ public class SupportMethods {
 				}
 			}
 		}
+	}
+	
+	
+	/**
+	 * 
+	 */
+	
+	public static void binaryCountExporter() {
+		
+	}
+	
+	
+	public static Q subGraphGenerator(String name) {
+		
+		Q f = my_function(name);	
+		Q c = my_cfg(f);
+//		DAGTransform d = new DAGTransform();
+		
+		
+		//Get all the nodes tagged with control flow conditions that would cause some form
+		//of branching in the graph
+		Q ifNodes = c.nodesTaggedWithAll(XCSG.ControlFlowIfCondition);		
+		Q loopNodes = c.nodesTaggedWithAll(XCSG.ControlFlowLoopCondition);
+		Q switchNodes = c.nodesTaggedWithAll(XCSG.ControlFlowSwitchCondition);
+		
+		//Find and generate the sub graph that is bounded above by if statements
+		Q if_and_loops = Query.universe().edges(XCSG.ControlFlow_Edge).between(ifNodes, loopNodes);
+		Q if_and_switch = Query.universe().edges(XCSG.ControlFlow_Edge).between(ifNodes, switchNodes);
+		Q if_and_if = Query.universe().edges(XCSG.ControlFlow_Edge).between(ifNodes, ifNodes);
+		
+		Q if_subgraph = if_and_loops.union(if_and_switch).union(if_and_if);
+		
+		//Find and generate the subgraph that is bounded above by loop conditions
+		Q loops_and_if = Query.universe().edges(XCSG.ControlFlow_Edge).between(loopNodes, ifNodes);
+		Q loops_and_switch = Query.universe().edges(XCSG.ControlFlow_Edge).between(loopNodes, switchNodes);
+		Q loops_and_loops = Query.universe().edges(XCSG.ControlFlow_Edge).between(loopNodes, loopNodes);
+		
+		Q loop_subgraph = loops_and_if.union(loops_and_switch).union(loops_and_loops);
+		
+		//Find and generate the subgraph that is bounded above by switch statements
+		Q switch_and_if = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, ifNodes);
+		Q switch_and_loop = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, ifNodes);
+		Q switch_and_switch = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, ifNodes);
+		
+		Q switch_subgraph = switch_and_if.union(switch_and_loop).union(switch_and_switch);
+		
+		Q subgraph = if_subgraph.union(loop_subgraph).union(switch_subgraph);
+//		Q dag = d.transform(subgraph);
+		return subgraph;
+//		return dag;
 	}
 	
 }
