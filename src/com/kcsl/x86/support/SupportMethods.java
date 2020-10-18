@@ -48,6 +48,25 @@ public class SupportMethods {
 		
 	}
 	
+	/**
+	 * 
+	 * @param name
+	 */
+	
+	public static void tag_binary_exits(String name) {
+		Q function = my_function(name);
+		Q cfg = my_cfg(function);
+		
+		for (Node n : cfg.eval().nodes()) {
+			AtlasSet<Edge> edges = n.out();
+			if(edges.size() == 0) {
+				n.tag(XCSG.controlFlowExitPoint);
+			}
+		}
+		
+	}
+	
+	
 	
 	/**
 	 * 
@@ -144,25 +163,26 @@ public class SupportMethods {
 		Q ifNodes = c.nodesTaggedWithAll(XCSG.ControlFlowIfCondition);		
 		Q loopNodes = c.nodesTaggedWithAll(XCSG.ControlFlowLoopCondition);
 		Q switchNodes = c.nodesTaggedWithAll(XCSG.ControlFlowSwitchCondition);
+		Q exitNodes = c.nodesTaggedWithAll(XCSG.controlFlowExitPoint);
 		
 		//Find and generate the sub graph that is bounded above by if statements
-		Q if_and_loops = Query.universe().edges(XCSG.ControlFlow_Edge).between(ifNodes, loopNodes);
-		Q if_and_switch = Query.universe().edges(XCSG.ControlFlow_Edge).between(ifNodes, switchNodes);
-		Q if_and_if = Query.universe().edges(XCSG.ControlFlow_Edge).between(ifNodes, ifNodes);
+		Q if_and_loops = Query.universe().edges(XCSG.ControlFlow_Edge).between(ifNodes, exitNodes);
+		Q if_and_switch = Query.universe().edges(XCSG.ControlFlow_Edge).between(ifNodes, exitNodes);
+		Q if_and_if = Query.universe().edges(XCSG.ControlFlow_Edge).between(ifNodes, exitNodes);
 		
 		Q if_subgraph = if_and_loops.union(if_and_switch).union(if_and_if);
 		
 		//Find and generate the subgraph that is bounded above by loop conditions
-		Q loops_and_if = Query.universe().edges(XCSG.ControlFlow_Edge).between(loopNodes, ifNodes);
-		Q loops_and_switch = Query.universe().edges(XCSG.ControlFlow_Edge).between(loopNodes, switchNodes);
-		Q loops_and_loops = Query.universe().edges(XCSG.ControlFlow_Edge).between(loopNodes, loopNodes);
+		Q loops_and_if = Query.universe().edges(XCSG.ControlFlow_Edge).between(loopNodes, exitNodes);
+		Q loops_and_switch = Query.universe().edges(XCSG.ControlFlow_Edge).between(loopNodes, exitNodes);
+		Q loops_and_loops = Query.universe().edges(XCSG.ControlFlow_Edge).between(loopNodes, exitNodes);
 		
 		Q loop_subgraph = loops_and_if.union(loops_and_switch).union(loops_and_loops);
 		
 		//Find and generate the subgraph that is bounded above by switch statements
-		Q switch_and_if = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, ifNodes);
-		Q switch_and_loop = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, ifNodes);
-		Q switch_and_switch = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, ifNodes);
+		Q switch_and_if = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, exitNodes);
+		Q switch_and_loop = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, exitNodes);
+		Q switch_and_switch = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, exitNodes);
 		
 		Q switch_subgraph = switch_and_if.union(switch_and_loop).union(switch_and_switch);
 		

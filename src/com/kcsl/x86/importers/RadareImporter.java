@@ -176,6 +176,7 @@ public class RadareImporter {
 			
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
+				tag_binary_exits(name);
 				tag_binary_loops(name);
 				tag_binary_conditionals(name);
 			}

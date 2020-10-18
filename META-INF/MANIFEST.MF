@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  com.ensoftcorp.atlas.ui,
  com.kcsl.paths;bundle-version="3.3.4",
- com.se421.paths_old
+ com.se421.paths
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.kcsl.x86
 Bundle-ActivationPolicy: lazy
