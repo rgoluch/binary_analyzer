@@ -58,6 +58,7 @@ public class RadareImporter {
 					functionName.putAttr(XCSG.name, "sym_"+dot.getName().replace(".dot", ""));
 					functionName.tag(XCSG.Function);
 					functionName.tag("binary_function");
+					functionName.tag("radare_function");
 					
 					function_nodes.add(functionName);
 					Scanner s = new Scanner(dot);
