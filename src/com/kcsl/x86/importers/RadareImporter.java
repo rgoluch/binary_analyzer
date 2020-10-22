@@ -140,19 +140,22 @@ public class RadareImporter {
 								else if (color.contentEquals("#c50f1f")) {
 									e.putAttr(XCSG.conditionValue, false);
 								}
+//								else if (color.contentEquals("#0037da")) {
+//									e.tag(XCSG.ControlFlowBackEdge);
+//								}
 						
 								if(from.contains(to)) {
 									
-									Node root = Graph.U.createNode();
-									root.putAttr(XCSG.name, "root");
-									root.tag(XCSG.ControlFlow_Node);
-									root.putAttr(XCSG.controlFlowRoot, "root");
-									
-									Edge t = Graph.U.createEdge(functionName, root);
-									t.tag(XCSG.Contains);
-									
-									Edge root_to_loop = Graph.U.createEdge(root, fromNode);
-									root_to_loop.tag(XCSG.ControlFlow_Edge);
+//									Node root = Graph.U.createNode();
+//									root.putAttr(XCSG.name, "root");
+//									root.tag(XCSG.ControlFlow_Node);
+//									root.putAttr(XCSG.controlFlowRoot, "root");
+//									
+//									Edge t = Graph.U.createEdge(functionName, root);
+//									t.tag(XCSG.Contains);
+//									
+//									Edge root_to_loop = Graph.U.createEdge(root, fromNode);
+//									root_to_loop.tag(XCSG.ControlFlow_Edge);
 									
 									fromNode.tag("self_loop");
 									fromNode.tag(XCSG.Loop);

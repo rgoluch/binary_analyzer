@@ -136,6 +136,7 @@ public class SupportMethods {
 			for (Edge e : g.edges()) {
 				if (e.from().taggedWith(XCSG.Loop) && e.to().taggedWith(XCSG.ControlFlowLoopCondition)) {
 					e.tag(XCSG.ControlFlowBackEdge);
+					e.from().tag("bin_loopback_tail");
 				}
 			}
 		}

@@ -41,13 +41,13 @@ import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
 
 public class Importer {
 
-	protected static final String all_counts_path = "/Users/RyanGoluch/Desktop/all_graph_path_counts.csv";
+	protected static final String all_counts_path = "/Users/RyanGoluch/Desktop/Masters_Work/all_graph_path_counts.csv";
 		
-	protected static final String selfLoopPath = "/Users/RyanGoluch/Desktop/self_loop_functions.csv";
+	protected static final String selfLoopPath = "/Users/RyanGoluch/Desktop/Masters_Work/self_loop_functions.csv";
 	
-	protected static final String srcFunctionPath = "/Users/RyanGoluch/Desktop/source_function_list.csv";
+	protected static final String srcFunctionPath = "/Users/RyanGoluch/Desktop/Masters_Work/source_function_list.csv";
 	
-	protected static final String binaryFunctionPath = "/Users/RyanGoluch/Desktop/binary_function_list.csv";
+	protected static final String binaryFunctionPath = "/Users/RyanGoluch/Desktop/Masters_Work/binary_function_list.csv";
 	
 	protected static final String headers = "Function Name,numPaths (Bin),numPaths (src), additions (bin),additions (Src)\n";
 	
@@ -405,12 +405,13 @@ public class Importer {
 			
 			
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
-//			MultiplicitiesPathCounter srcCounter = new MultiplicitiesPathCounter();
+//			TopDownDFMultiplicitiesPathCounter t = new TopDownDFMultiplicitiesPathCounter();
+			MultiplicitiesPathCounter srcCounter = new MultiplicitiesPathCounter();
 
 //			BottomUpBFMultiplicitiesPathCounter srcCounter = new BottomUpBFMultiplicitiesPathCounter(true);
 //			BottomUpDFMultiplicitiesPathCounter srcCounter = new BottomUpDFMultiplicitiesPathCounter(true);
 //			TopDownBFMultiplicitiesPathCounter srcCounter = new TopDownBFMultiplicitiesPathCounter(true);
-			TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
+//			TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
 			
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.
@@ -431,6 +432,10 @@ public class Importer {
 				
 				if(c.nodes().tagged("self_loop").size() > 0) {
 					functionWriter.write(name.toString() + "\n");
+					continue;
+				}
+				
+				if(name.contains("test_")) {
 					continue;
 				}
 				
@@ -463,10 +468,12 @@ public class Importer {
 					
 					loop_tagging(c, name);
 					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
-					com.kcsl.paths.algorithms.PathCounter.CountingResult src_linear = srcCounter.countPaths(srcCFG);
+					CountingResult src_linear = linearCounter.countPaths(srcCFG);
+//					com.kcsl.paths.algorithms.PathCounter.CountingResult src_linear = srcCounter.countPaths(srcCFG);
 					
 					long bin = linear.getPaths();
-					long src = src_linear.getPaths().longValue();
+					long src = src_linear.getPaths();
+//					.longValue()
 					
 					if (bin > src) {
 						bin_greater_than_src +=1;
