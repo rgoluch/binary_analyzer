@@ -406,12 +406,12 @@ public class Importer {
 			
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
 //			TopDownDFMultiplicitiesPathCounter t = new TopDownDFMultiplicitiesPathCounter();
-			MultiplicitiesPathCounter srcCounter = new MultiplicitiesPathCounter();
+//			MultiplicitiesPathCounter srcCounter = new MultiplicitiesPathCounter();
 
 //			BottomUpBFMultiplicitiesPathCounter srcCounter = new BottomUpBFMultiplicitiesPathCounter(true);
 //			BottomUpDFMultiplicitiesPathCounter srcCounter = new BottomUpDFMultiplicitiesPathCounter(true);
 //			TopDownBFMultiplicitiesPathCounter srcCounter = new TopDownBFMultiplicitiesPathCounter(true);
-//			TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
+			TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
 			
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.
@@ -423,6 +423,7 @@ public class Importer {
 			
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
+				System.out.println(name);
 				
 				Q temp = Common.toQ(function);
 				Graph c = my_cfg(temp).eval();
@@ -430,12 +431,12 @@ public class Importer {
 				//DisplayUtil.displayGraph(c);
 				//System.out.println(function.getAttr(XCSG.name) + " nodes: "+c.nodes().size());
 				
-				if(c.nodes().tagged("self_loop").size() > 0) {
+				if(c.nodes().tagged("self_loop_node").size() > 0) {
 					functionWriter.write(name.toString() + "\n");
-					continue;
+//					continue;
 				}
 				
-				if(name.contains("test_")) {
+				if(name.contains("test")) {
 					continue;
 				}
 				
@@ -468,12 +469,11 @@ public class Importer {
 					
 					loop_tagging(c, name);
 					CountingResult linear = linearCounter.countPaths(Common.toQ(c));
-					CountingResult src_linear = linearCounter.countPaths(srcCFG);
-//					com.kcsl.paths.algorithms.PathCounter.CountingResult src_linear = srcCounter.countPaths(srcCFG);
+//					CountingResult src_linear = linearCounter.countPaths(srcCFG);
+					com.kcsl.paths.algorithms.PathCounter.CountingResult src_linear = srcCounter.countPaths(srcCFG);
 					
 					long bin = linear.getPaths();
-					long src = src_linear.getPaths();
-//					.longValue()
+					long src = src_linear.getPaths().longValue();
 					
 					if (bin > src) {
 						bin_greater_than_src +=1;
