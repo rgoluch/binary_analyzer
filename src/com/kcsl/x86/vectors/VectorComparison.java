@@ -20,7 +20,7 @@ public class VectorComparison{
 		
 		Q binPCG = findSubGraph(functionName);
 		String srcName = functionName.substring(4);
-		Q srcPCG = findSrcSubGraph(srcName);
+		Q srcPCG = singleSrcReturn(srcName);
 		
 		
 //		ArrayList<VectorNode> binVector = new ArrayList<VectorNode>();
@@ -70,6 +70,9 @@ public class VectorComparison{
 		vectorsWriter.write("Function Name, Vector, Vector Size, Complete Match\n");
 		
 		int bin_gt_src = 0; 
+		int bin_lt_src = 0; 
+		int bin_eq_src = 0; 
+		int bin_id_src = 0;
 		
 		Comparator<VectorNode> comp = new Comparator<VectorNode>() {
 			@Override
@@ -107,9 +110,21 @@ public class VectorComparison{
 			if(bin.length > src.length) {
 				bin_gt_src++;
 			}
+			
+			if(bin.length < src.length) {
+				bin_lt_src++;
+			}
+			
+			if(bin.length == src.length) {
+				bin_eq_src++;
+			}
 		
 			Arrays.sort(bin, comp);
 			Arrays.sort(src, comp);
+			
+			if(bin.equals(src)) {
+				bin_id_src++;
+			}
 			
 			vectorsWriter.write(functionName+",");
 			
@@ -131,9 +146,11 @@ public class VectorComparison{
 			
 			vectorsWriter.flush();
 		}
-		System.out.println(bin_gt_src);
-		vectorsWriter.write("Binary > Src PCG Nodes:,"+bin_gt_src+"\n");
-//		vectorsWriter.write(bin_gt_src);
+		
+		vectorsWriter.write("\n");
+		vectorsWriter.write("Vector Counts:\n");
+		vectorsWriter.write("Bin Total > Src Total, Bin Total < Src Total, Bin Total == Src Total, Bin Matching Src\n");
+		vectorsWriter.write(bin_gt_src + "," + bin_lt_src + "," + bin_eq_src + "," + bin_id_src);		
 		vectorsWriter.flush();
 		
 		vectorsWriter.close();

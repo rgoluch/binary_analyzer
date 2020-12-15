@@ -17,6 +17,7 @@ import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
 
 import static com.kcsl.x86.support.SupportMethods.*;
+import static com.kcsl.x86.Importer.*;
 
 /**
  * 
@@ -234,5 +235,12 @@ public class RadareImporter {
 			//Node fn = Graph.U.createNode();
 			//create edge between fn and all other control flow nodes
 			//tag it as XCSG.Contains
+		}
+	
+		public static Q bcfg(String name) {
+			Q f = my_function(name);
+			Q c = my_cfg(f);
+			
+			return c;
 		}
 }

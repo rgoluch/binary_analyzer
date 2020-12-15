@@ -1,0 +1,19 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800079a4" [URL="dbg.testing_4/0x800079a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from dbg.xsh_memstat @ 0x80007d44, 0x80007d48\l  ;-- testing_4:\l68: dbg.testing_4 (int32_t arg1, int32_t arg2);\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x800079a4      addiu sp, sp, -0x18                                    ; int testing_4(int c1,int c2,int c3,int c4);\l0x800079a8      or a0, a0, a1                                          ; arg2\l0x800079ac      bnez a0, 0x800079c4\l0x800079b0      sw ra, (var_14h)\l"]
+	"0x800079b4" [URL="dbg.testing_4/0x800079b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800079b4      beqz a2, 0x800079dc\l0x800079b8      lw ra, (var_14h)\l"]
+	"0x800079bc" [URL="dbg.testing_4/0x800079bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800079bc      beqz a3, 0x800079e0\l0x800079c0      move v0, zero\l"]
+	"0x800079c4" [URL="dbg.testing_4/0x800079c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_4 @ 0x800079ac\l0x800079c4      lui a0, 0x8001\l0x800079c8      lui v0, 0x8001\l0x800079cc      addiu v0, v0, 0x143c                                   ; 0x8001143c\l                                                                       ; sym.printf ; sym.printf\l0x800079d0      jalr v0\l0x800079d4      addiu a0, a0, 0x3868                                   ; arg1 ; esilref: 'Short Circuiting...'\l0x800079d8      lw ra, (var_14h)\l"]
+	"0x800079dc" [URL="dbg.testing_4/0x800079dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_4 @ 0x800079b4\l0x800079dc      move v0, zero\l"]
+	"0x800079e0" [URL="dbg.testing_4/0x800079e0", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from dbg.testing_4 @ 0x800079bc\l0x800079e0      jr ra\l0x800079e4      addiu sp, sp, 0x18\l"]
+        "0x800079a4" -> "0x800079c4" [color="#13a10e"];
+        "0x800079a4" -> "0x800079b4" [color="#c50f1f"];
+        "0x800079b4" -> "0x800079dc" [color="#13a10e"];
+        "0x800079b4" -> "0x800079bc" [color="#c50f1f"];
+        "0x800079bc" -> "0x800079e0" [color="#13a10e"];
+        "0x800079bc" -> "0x800079c4" [color="#c50f1f"];
+        "0x800079c4" -> "0x800079dc" [color="#0037da"];
+        "0x800079dc" -> "0x800079e0" [color="#0037da"];
+}

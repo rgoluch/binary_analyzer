@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800079a4" [URL="dbg.testing_2_or/0x800079a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from dbg.xsh_memstat @ 0x80007d34, 0x80007d38\l  ;-- testing_2_or:\l60: dbg.testing_2_or (int32_t arg1, int32_t arg2);\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x800079a4      or a0, a0, a1                                          ; arg2 ; int testing_2_or(int c1,int c2);\l0x800079a8      beqz a0, 0x800079d8\l0x800079ac      lui a0, 0x8001\l"]
+	"0x800079b0" [URL="dbg.testing_2_or/0x800079b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800079b0      addiu sp, sp, -0x18\l0x800079b4      lui v0, 0x8001\l0x800079b8      sw ra, (var_14h)\l0x800079bc      addiu v0, v0, 0x142c                                   ; 0x8001142c\l                                                                       ; sym.printf ; sym.printf\l0x800079c0      jalr v0\l0x800079c4      addiu a0, a0, 0x3858                                   ; arg1 ; esilref: 'Short Circuiting...'\l0x800079c8      lw ra, (var_14h)\l0x800079cc      move v0, zero\l0x800079d0      jr ra\l0x800079d4      addiu sp, sp, 0x18\l"]
+	"0x800079d8" [URL="dbg.testing_2_or/0x800079d8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from dbg.testing_2_or @ 0x800079a8\l0x800079d8      jr ra\l0x800079dc      move v0, zero\l"]
+        "0x800079a4" -> "0x800079d8" [color="#13a10e"];
+        "0x800079a4" -> "0x800079b0" [color="#c50f1f"];
+}

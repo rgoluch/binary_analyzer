@@ -125,10 +125,12 @@ public class SubGraphGenerator {
 				AtlasSet<Edge> out = n.out().taggedWithAny(XCSG.ControlFlow_Edge);
 				
 				for (Edge edgeIn : in) {
+					
 					Node predecessor = edgeIn.from();
 					Node successor = null;
 					
 					for (Edge e : out) {
+						
 						boolean addEdge = false;
 						successor = e.to();
 						if (successor.taggedWith(XCSG.ControlFlowCondition) && predecessor.taggedWith(XCSG.ControlFlowCondition)) {
@@ -224,7 +226,6 @@ public class SubGraphGenerator {
 			}
 		}
 		
-//		return removeSubGraph;
 		return subgraph.nodes("bin_node").induce(Query.universe().edges("bin_induced_edge"));
 	}
 	
@@ -246,6 +247,49 @@ public class SubGraphGenerator {
 		}
 	}
 	
+	public static Q singleSrcReturn(String name) {
+		
+		Q f = my_function(name);
+		Q subgraph = my_cfg(f);
+		
+		Node functionNode = Graph.U.createNode();
+		functionNode.putAttr(XCSG.name, "dummy_"+name);
+		functionNode.tag(XCSG.Function);
+		
+		for (Node n : subgraph.eval().nodes()) {
+			Edge tempEdge = Graph.U.createEdge(functionNode, n);
+			tempEdge.tag(XCSG.Contains);
+		}
+
+		Node exit = Graph.U.createNode();
+		exit.putAttr(XCSG.name, "src exit");
+		exit.tag(XCSG.controlFlowExitPoint);
+		exit.tag(XCSG.ControlFlow_Node);
+		exit.tag("src_node");
+		exit.tag("src_exit");
+
+		Edge tempExit = Graph.U.createEdge(functionNode, exit);
+		tempExit.tag(XCSG.Contains);
+		
+		AtlasSet<Node> leaves = subgraph.eval().leaves();
+		System.out.println(leaves.size());
+
+		for(Node n : leaves) {
+			Edge temp = Graph.U.createEdge(n, exit);
+			temp.tag("src_induced_edge");
+			temp.tag(XCSG.ControlFlow_Edge);
+		}
+
+		Q x = my_function(functionNode.getAttr(XCSG.name).toString());
+		Q c = my_cfg(x);
+		//Need to make a new graph that contains the dummy return node and then return that
+		
+		Q r = findSrcSubGraph(c);
+		
+		return r;
+		
+	}
+	
 
 	/**
 	 * 
@@ -253,151 +297,117 @@ public class SubGraphGenerator {
 	 * @return
 	 */
 	
-	public static Q findSrcSubGraph(String name) {
-		Q subgraph = subGraphGenerator(name);
+	public static Q findSrcSubGraph(Q subgraph) {
 		
-//		Node exit = Graph.U.createNode();
-//		exit.putAttr(XCSG.name, "src exit");
-//		exit.tag(XCSG.controlFlowExitPoint);
-//		exit.tag(XCSG.ControlFlow_Node);
-//		exit.tag("src_node");
-//		
-//		Q f = Query.universe().nodes(XCSG.Function);
-//		Node found = f.selectNode(XCSG.name, name).eval().nodes().one();
-////		System.out.println(found.size());
-//		Edge tempExit = Graph.U.createEdge(found, exit);
-//		tempExit.tag(XCSG.Contains);
-//		
-//		AtlasSet<Node> leaves = subgraph.eval().leaves();
-//		System.out.println(leaves.size());
-//
-//		for(Node n : leaves) {
-//			Edge temp = Graph.U.createEdge(n, exit);
-//			temp.tag("src_induced_edge");
-//			temp.tag(XCSG.ControlFlow_Edge);
-//		}
+//		Q subgraph = subGraphGenerator(name);
 
 		for(Node n : subgraph.eval().nodes()) {
 			
 //			if (n.out().tagged(XCSG.ControlFlowBackEdge).size() > 0) {
 			
-			if (n.taggedWith(XCSG.ControlFlowCondition) || n.taggedWith(XCSG.Break) 
-					|| n.in().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge).size() >=2 || n.taggedWith(XCSG.controlFlowExitPoint)) {
+			if (n.taggedWith(XCSG.ControlFlowCondition) || n.taggedWith(XCSG.Break) || n.taggedWith("src_exit") || n.taggedWith(XCSG.DoWhileLoop)) {
+				
 				AtlasSet<Edge> outgoing = n.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge);
-
 				n.tag("src_node");
+				
 				for(Edge e : outgoing) {
 					Node goingTo = e.to();
-					AtlasSet<Edge> incoming = goingTo.in().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge);
-					if (!e.taggedWith("src_induced_edge")) {
-						if (goingTo.taggedWith(XCSG.ControlFlowCondition) || goingTo.taggedWith(XCSG.Break) || goingTo.taggedWith(XCSG.controlFlowExitPoint)
-								|| incoming.size() >=2 || goingTo.out().tagged(XCSG.ControlFlowBackEdge).size() > 0) {
+//					AtlasSet<Edge> incoming = goingTo.in().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge);
+//					if (!e.taggedWith("src_induced_edge")) {
+						if (goingTo.taggedWith(XCSG.ControlFlowCondition) || goingTo.taggedWith(XCSG.Break) || goingTo.taggedWith("src_exit")
+						|| goingTo.out().tagged(XCSG.ControlFlowBackEdge).size() > 0) {
 
 							e.tag("src_induced_edge");
 							goingTo.tag("src_node");
 						}
-					}else {
-						e.tag("remove_edge");
-						e.to().tag("remove_node");
-					}
+//					}
+//					else {
+//						e.tag("remove_edge");
+//						e.to().tag("remove_node");
+//					}
 				}
 			} else {
-				Edge in = n.in(XCSG.ControlFlow_Edge).one();
+				AtlasSet<Edge> in = n.in(XCSG.ControlFlow_Edge);
 				AtlasSet<Edge> out = n.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge);
-				Node predecessor = in.from();
-				Node successor = null;
-				
-				for (Edge e : out) {
-					successor = e.to();
-//					if (!e.taggedWith("src_induced_edge")) {
-					if (successor.taggedWith(XCSG.ControlFlowCondition) && e.taggedWith(XCSG.ControlFlowBackEdge)) {
-						n.tag("src_node");
-						e.tag("src_induced_edge");
-					}	
-					 else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.taggedWith(XCSG.ControlFlowCondition)) {
-							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-							inducedEdge.tag("src_induced_edge");
-							successor.tag("src_node");
 							
-							if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
-								inducedEdge.tag(XCSG.ControlFlowBackEdge);
-							}
-							
-							if(in.hasAttr(XCSG.conditionValue)) {
-								inducedEdge.putAttr(XCSG.conditionValue, in.getAttr(XCSG.conditionValue).toString());
-							}
+				for (Edge x : in) {
+					
+					Node predecessor = x.from();
+					Node successor = null;
+					
+					for (Edge e : out) {
+						
+						boolean addEdge = false;
+						boolean unTag = false;
+						successor = e.to();
+//						if (!e.taggedWith("src_induced_edge")) {
+						if (successor.taggedWith(XCSG.ControlFlowCondition) && e.taggedWith(XCSG.ControlFlowBackEdge)) {
+							n.tag("src_node");
+							e.tag("src_induced_edge");
+						}	
+						 else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.taggedWith(XCSG.ControlFlowCondition)) {
+							addEdge = true;
+							unTag = true;
 						}
 						else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.taggedWith(XCSG.Break)){
-							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-							inducedEdge.tag("src_induced_edge");
-							successor.tag("src_node");
-							
-							if(in.hasAttr(XCSG.conditionValue)) {
-								inducedEdge.putAttr(XCSG.conditionValue, in.getAttr(XCSG.conditionValue).toString());
-							}
-						}else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.taggedWith(XCSG.controlFlowExitPoint)) {
-							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-							inducedEdge.tag("src_induced_edge");
-							successor.tag("src_node");
-							
-							if(in.hasAttr(XCSG.conditionValue)) {
-								inducedEdge.putAttr(XCSG.conditionValue, in.getAttr(XCSG.conditionValue).toString());
-							}
+							addEdge = true;
+							unTag = true;							
+						}else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.taggedWith("src_exit")) {
+							addEdge = true;
+							unTag = true;
 						}
-//						else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.in().taggedWithAny(XCSG.ControlFlow_Edge).size() >=2) {
-//							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-//							inducedEdge.tag("src_induced_edge");
-//							successor.tag("src_node");
-//							
-//							if(in.hasAttr(XCSG.conditionValue)) {
-//								inducedEdge.putAttr(XCSG.conditionValue, in.getAttr(XCSG.conditionValue).toString());
-//							}
-//						}
 						else if (predecessor.taggedWith(XCSG.Break) && successor.taggedWith(XCSG.ControlFlowCondition)) {
-							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-							inducedEdge.tag("src_induced_edge");
-							successor.tag("src_node");
-						}else if (predecessor.taggedWith(XCSG.Break) && successor.taggedWith(XCSG.controlFlowExitPoint)){
-							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-							inducedEdge.tag("src_induced_edge");
-							successor.tag("src_node");
+							addEdge = true;
+							unTag = true;
+						}else if (predecessor.taggedWith(XCSG.Break) && successor.taggedWith("src_exit")){
+							addEdge = true;
+							unTag = true; 
 						}
-//						else if (predecessor.taggedWith(XCSG.Break) && successor.in().taggedWithAny(XCSG.ControlFlow_Edge).size() >=2) {
-//							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-//							inducedEdge.tag("src_induced_edge");
-//							successor.tag("src_node");
-//						}
-						else if (predecessor.in().taggedWithAny(XCSG.ControlFlow_Edge).size() >=2 && successor.taggedWith(XCSG.ControlFlowCondition)) {
-							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-							inducedEdge.tag("src_induced_edge");
-							successor.tag("src_node");
-							
-							if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
-								inducedEdge.tag(XCSG.ControlFlowBackEdge);
-							}
-							
+						else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.out(XCSG.ControlFlowBackEdge).size() > 0) {
+							addEdge = true;
+							unTag = true;
 						}
-//						else if (predecessor.in().taggedWithAny(XCSG.ControlFlow_Edge).size() >=2 && successor.in().taggedWithAny(XCSG.ControlFlow_Edge).size() >=2) {
-//							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-//							inducedEdge.tag("src_induced_edge");
-//							successor.tag("src_node");
-//						}
-//						else if (predecessor.in().taggedWithAny(XCSG.ControlFlow_Edge).size() >=2 && successor.taggedWith(XCSG.controlFlowExitPoint)) {
-//							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-//							inducedEdge.tag("src_induced_edge");
-//							successor.tag("src_node");
-//						}else if (predecessor.in().taggedWithAny(XCSG.ControlFlow_Edge).size() >=2 && successor.taggedWith(XCSG.Break)) {
-//							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
-//							inducedEdge.tag("src_induced_edge");
-//							successor.tag("src_node");
-//						}
-						else if (!n.taggedWith("src_node")){
+						else {
 							e.tag("remove_edge");
+							x.tag("remove_edge");
 							successor.tag("remove_node");
 							n.tag("remove_node");
 						}
-					
+						
+						if (addEdge) {
+							
+							Edge inducedEdge = Graph.U.createEdge(predecessor, successor);
+							inducedEdge.tag("src_induced_edge");
+							successor.tag("src_node");
+							
+							if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+								inducedEdge.tag(XCSG.ControlFlowBackEdge);
+							}
+							
+							if(x.hasAttr(XCSG.conditionValue)) {
+								inducedEdge.putAttr(XCSG.conditionValue, x.getAttr(XCSG.conditionValue).toString());
+							}
+							
+							if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+								inducedEdge.tag(XCSG.ControlFlowBackEdge);
+							}
+						}
+						
+//						if (unTag) {
+//							
+//							if (x.taggedWith("remove_edge")) {
+//								x.untag("remove_edge");
+//							}
+//							if (n.taggedWith("remove_node")) {
+//								n.untag("remove_node");
+//							}
+//						}
+						
+					}
 				}
+				
+				
+				
 			}
 			
 		}
@@ -416,39 +426,54 @@ public class SubGraphGenerator {
 			}
 		}
 		
+		ArrayList<Node> removeRoots = new ArrayList<Node>();
+		ArrayList<EdgeToAdd> edgesToAdd = new ArrayList<EdgeToAdd>();
+		
+		for(Edge e : subgraph.eval().edges().tagged("remove_edge")) {
+			if (e.from().taggedWith("src_node") && e.to().taggedWith("remove_node") && !removeRoots.contains(e.from())) {
+				removeRoots.add(e.from());
+			}
+		}
+		
 		
 
-		for (Node n : roots) {
+		for (Node n : removeRoots) {
 			
-//			Edge nextEdge = n.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge).one();
-			Node nextNode = n.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge).one().to();
-//					.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge).one().to();
-			while (!nextNode.taggedWith("src_node")) {
-				
-				AtlasSet<Edge> dagEdges = nextNode.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge);
-//				nextNode = nextNode.out("REDIRECTED_CONTROL_FLOW_BACK_EDGE").one().to();
-				if (dagEdges.size() != 0) {
-					nextNode = dagEdges.one().to();
-				}else if (nextNode.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge).size() > 0) {
-					nextNode = nextNode.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge).one().to();
+			for (Edge e : n.out("remove_edge")) {
+				Node nextNode = e.to();
+				while (!nextNode.taggedWith(XCSG.ControlFlowCondition) && !nextNode.taggedWith("src_exit") 
+						&& !nextNode.taggedWith("src_node") && nextNode.taggedWith("remove_node")) {
+					AtlasSet<Edge> dagEdges = nextNode.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge);
+					if (dagEdges.size() != 0) {
+						nextNode = dagEdges.one().to();
+					}
+					else if (nextNode.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge).size() > 0) {
+						nextNode = nextNode.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge).one().to();
+					}
 				}
-			}
-			if (nextNode.taggedWith("src_node")) {
-				Edge inducedEdge = Graph.U.createEdge(n.in(XCSG.ControlFlow_Edge).one().from(), nextNode);
-				inducedEdge.tag("src_induced_edge");
-				nextNode.tag("src_node");
 				
-				if (rootConditionEdges.containsKey(n)) {
-					Edge temp = rootConditionEdges.get(n);
-					inducedEdge.putAttr(XCSG.conditionValue, temp.getAttr(XCSG.conditionValue).toString());
+				if (nextNode.taggedWith("src_node")) {
+					if (n.out("src_induced_edge").size() < n.out().size()) {
+						nextNode.tag("src_node");
+						EdgeToAdd temp = new EdgeToAdd(n,nextNode);
+						if (!edgesToAdd.contains(temp)) {
+							edgesToAdd.add(temp);
+						}
+					}
 				}
 			}
 		}
 		
-		return subgraph.nodes("src_node").induce(Query.universe().edges(XCSG.conditionValue,"src_induced_edge"));
+		for (EdgeToAdd e : edgesToAdd) {
+			if(e.from.out("src_induced_edge").size() < e.from.out().size()) {
+				Edge temp = Graph.U.createEdge(e.from, e.to);
+				temp.tag("src_induced_edge");
+			}
+		}
+		
+		return subgraph.nodes("src_node").induce(Query.universe().edges("src_induced_edge"));
 //				subgraph.nodes("src_node").induce(Query.universe().edges("src_induced_edge"));
 //				subgraph.nodes(XCSG.ControlFlow_Node).induce(Query.universe().edges(XCSG.ControlFlow_Edge));
-//				
 	}
 	
 	
@@ -502,24 +527,37 @@ public class SubGraphGenerator {
 		File countsFile = new File(subgraphCountsPath);
 		BufferedWriter countsWriter = new BufferedWriter(new FileWriter(countsFile)); 
 		
-		countsWriter.write("Function Name, # If Nodes, # Loop Nodes, # Switch Nodes, # of Control Flow Nodes, Total Nodes in Subgraph\n");
+		countsWriter.write("Function Name, # If Nodes, # Loop Nodes, # Switch Nodes, # of Control Flow Nodes, Total Nodes in Subgraph, Induced Path Count, Original Path Count\n");
 		countsWriter.flush();
 		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
+		TopDownDFMultiplicitiesPathCounter t = new TopDownDFMultiplicitiesPathCounter();
 		
 		for(Node function : functions.eval().nodes()) {
 			String functionName = function.getAttr(XCSG.name).toString();
-			functionName = functionName.replace("sym_", "");
+			Graph binSubGraph = findSubGraph(functionName).eval();
 			
-			Graph subGraph = findSrcSubGraph(functionName).eval();
+			
+			if (functionName.contains("test") || binSubGraph.nodes().tagged("self_loop_node").size() > 0) {
+				continue;
+			}
+			
+			functionName = functionName.replace("sym_", "");
+			System.out.println(functionName);
+			
+			Graph subGraph = singleSrcReturn(functionName).eval();
+			Q srcFunction = my_function(functionName);
+			Q srcCFG = my_cfg(srcFunction);
 			
 			long ifNodes = subGraph.nodes().tagged(XCSG.ControlFlowIfCondition).size();
 			long loopNodes = subGraph.nodes().tagged(XCSG.ControlFlowLoopCondition).size();
 			long switchNodes = subGraph.nodes().tagged(XCSG.ControlFlowSwitchCondition).size();
 			long totalNodes = subGraph.nodes().size();
 			long cfgNodes = totalNodes - (ifNodes + loopNodes + switchNodes);
+			long induced = t.countPaths(Common.toQ(subGraph)).getPaths().longValue();
+			long original = t.countPaths(srcCFG).getPaths().longValue();
 			
 			countsWriter.write(functionName + ",");
-			countsWriter.write(ifNodes + "," + loopNodes + "," + switchNodes + "," + cfgNodes + "," + totalNodes + "\n");
+			countsWriter.write(ifNodes + "," + loopNodes + "," + switchNodes + "," + cfgNodes + "," + totalNodes + "," + induced + "," + original + "\n");
 			countsWriter.flush();
 		}
 		
@@ -585,7 +623,7 @@ public class SubGraphGenerator {
 			Graph srcCFG = my_cfg(srcF).eval();
 			
 			Graph binSubGraph = findSubGraph(functionName).eval();
-			Graph srcSubGraph = findSrcSubGraph(srcFunctionName).eval();
+			Graph srcSubGraph = singleSrcReturn(srcFunctionName).eval();
 			
 			
 			
@@ -660,8 +698,7 @@ public class SubGraphGenerator {
 		countsWriter.write("Bin Total > Src Total, Bin Total < Src Total, Bin Total == Src Total\n");
 		countsWriter.write(bin_total_gt_src + "," + bin_total_lt_src + "," + bin_total_eq_src);
 		countsWriter.flush();
-		
-//		binOnlyWriter.close();
+
 		oneNodeWriter.close();
 		mismatch.close();
 		countsWriter.close();
