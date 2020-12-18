@@ -37,4 +37,14 @@ public class VectorNode {
 		return "("+this.incoming+":"+this.outgoing+")";
 	}
 	
+	public boolean equals(VectorNode n) {
+		if (this.incoming == n.incoming) {
+			if (this.outgoing == n.outgoing) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 }

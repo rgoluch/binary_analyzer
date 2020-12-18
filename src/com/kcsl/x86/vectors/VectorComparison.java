@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import com.ensoftcorp.atlas.core.db.graph.Node;
+import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
@@ -29,7 +30,7 @@ public class VectorComparison{
 		VectorNode binVector[] = new VectorNode[(int)binPCG.eval().nodes().size()];
 		VectorNode srcVector[] = new VectorNode[(int)srcPCG.eval().nodes().size()];
 		
-		System.out.println("Binary Vector: ");
+//		System.out.println("Binary Vector: ");
 		int i = 0; 
 		for (Node n : binPCG.eval().nodes()) {
 			String name = n.getAttr(XCSG.name).toString();
@@ -39,22 +40,28 @@ public class VectorComparison{
 			
 			binVector[i] = temp;
 			i++;
-			System.out.println("["+incoming+","+outgoing+"]");
+//			System.out.println("["+incoming+","+outgoing+"]");
 		}
 		
-		System.out.println("Source Vector: ");
+//		System.out.println("Source Vector: ");
 		
 		i = 0;
-		for (Node n : srcPCG.eval().nodes()) {
-			String name = n.getAttr(XCSG.name).toString();
-			long incoming = n.in().taggedWithAll("src_induced_edge").size();
-			long outgoing = n.out().taggedWithAll("src_induced_edge").size();
-			VectorNode temp = new VectorNode(name, incoming, outgoing);
-			
-			srcVector[i] = temp; 
-			i++;
-			System.out.println("["+incoming+","+outgoing+"]");
-
+		AtlasSet<Node> srcNodes = srcPCG.eval().nodes();
+		for (Node n : srcNodes) {
+//			System.out.println(srcName);
+			if(srcNodes.size() > 1) {
+				String name = n.getAttr(XCSG.name).toString();
+				long incoming = n.in().tagged("src_induced_edge").size();
+				long outgoing = n.out().tagged("src_induced_edge").size();
+				VectorNode temp = new VectorNode(name, incoming, outgoing);
+				
+				srcVector[i] = temp; 
+				i++;
+//				System.out.println("["+incoming+","+outgoing+"]");
+			}
+			else {
+				srcVector = new VectorNode[0];
+			}
 		}
 		
 		VectorResult r = new VectorResult(binVector, srcVector);
@@ -68,6 +75,21 @@ public class VectorComparison{
 		File vectorsFile = new File(vectorsPath);
 		BufferedWriter vectorsWriter = new BufferedWriter(new FileWriter(vectorsFile));
 		vectorsWriter.write("Function Name, Vector, Vector Size, Complete Match\n");
+		
+		String vEqPath = "/Users/RyanGoluch/Desktop/Masters_Work/isomorphism_checking/vector_size_equal.csv";
+		File vEqFile = new File(vEqPath);
+		BufferedWriter vEqWriter = new BufferedWriter(new FileWriter(vEqFile));
+		vEqWriter.write("Function Name, Bin Vector Size, Src VectorSize\n");
+		
+		String vLtPath = "/Users/RyanGoluch/Desktop/Masters_Work/isomorphism_checking/vector_size_bin_lt_src.csv";
+		File vLtFile = new File(vLtPath);
+		BufferedWriter vLtWriter = new BufferedWriter(new FileWriter(vLtFile));
+		vLtWriter.write("Function Name, Bin Vector Size, Src Vector Size\n");
+		
+		String vGtPath = "/Users/RyanGoluch/Desktop/Masters_Work/isomorphism_checking/vector_size_bin_gt_src.csv";
+		File vGtFile = new File(vGtPath);
+		BufferedWriter vGtWriter = new BufferedWriter(new FileWriter(vGtFile));
+		vGtWriter.write("Function Name, Bin Vector Size, Src Vector Size\n");
 		
 		int bin_gt_src = 0; 
 		int bin_lt_src = 0; 
@@ -85,7 +107,9 @@ public class VectorComparison{
 				//incoming 1 == incoming 2, check the outgoing 
 				else if(o1.getIncoming() == o2.getIncoming()) {
 					if(o1.getOutgoing() < o2.getOutgoing()) {
-						return 1; 
+						return -1; 
+					}else {
+						return 1;
 					}
 				}
 				//return 0 if incoming 1 == incoming 2 and outgoing 1 == outgoing 2
@@ -97,7 +121,7 @@ public class VectorComparison{
 		for(Node function : functions.eval().nodes()) {
 
 			String functionName = function.getAttr(XCSG.name).toString();
-			System.out.println(functionName);
+//			System.out.println(functionName);
 
 			if(functionName.contains("setupStack") || functionName.contains("test")) {
 				continue;
@@ -107,25 +131,48 @@ public class VectorComparison{
 			VectorNode[] bin = toSort.getBinaryArray();
 			VectorNode[] src = toSort.getSrcArray();
 			
+			if (bin.length == 0 || src.length == 0) {
+				continue;
+			}
+			
 			if(bin.length > src.length) {
+				vGtWriter.write(functionName + "," + bin.length + "," + src.length +"\n");
+				vGtWriter.flush();
 				bin_gt_src++;
 			}
 			
 			if(bin.length < src.length) {
+				vLtWriter.write(functionName + "," + bin.length + "," + src.length +"\n");
+				vLtWriter.flush();
 				bin_lt_src++;
 			}
 			
-			if(bin.length == src.length) {
-				bin_eq_src++;
-			}
-		
 			Arrays.sort(bin, comp);
 			Arrays.sort(src, comp);
 			
-			if(bin.equals(src)) {
-				bin_id_src++;
+			if(bin.length == src.length) {
+				vEqWriter.write(functionName + "," + bin.length + "," + src.length +"\n");
+				vEqWriter.flush();
+				bin_eq_src++;
+				
+				boolean equal = false;
+				
+				for (int x = 0; x < bin.length; x++) {
+					if (bin[x].equals(src[x])) {
+						equal = true;
+					}else {
+						equal = false;
+						System.out.println(functionName);
+						break;
+					}
+				}
+				
+				if(equal) {
+					bin_id_src++;
+				}
+
 			}
-			
+					
 			vectorsWriter.write(functionName+",");
 			
 			vectorsWriter.write("[");
@@ -153,6 +200,9 @@ public class VectorComparison{
 		vectorsWriter.write(bin_gt_src + "," + bin_lt_src + "," + bin_eq_src + "," + bin_id_src);		
 		vectorsWriter.flush();
 		
+		vGtWriter.close();
+		vLtWriter.close();
+		vEqWriter.close();
 		vectorsWriter.close();
 	}
 	

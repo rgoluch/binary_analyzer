@@ -405,12 +405,6 @@ public class Importer {
 			
 			
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
-//			TopDownDFMultiplicitiesPathCounter t = new TopDownDFMultiplicitiesPathCounter();
-//			MultiplicitiesPathCounter srcCounter = new MultiplicitiesPathCounter();
-
-//			BottomUpBFMultiplicitiesPathCounter srcCounter = new BottomUpBFMultiplicitiesPathCounter(true);
-//			BottomUpDFMultiplicitiesPathCounter srcCounter = new BottomUpDFMultiplicitiesPathCounter(true);
-//			TopDownBFMultiplicitiesPathCounter srcCounter = new TopDownBFMultiplicitiesPathCounter(true);
 			TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
 			
 			// We will now generate the results for all the functions in the graph database.
@@ -433,7 +427,7 @@ public class Importer {
 				
 				if(c.nodes().tagged("self_loop_node").size() > 0) {
 					functionWriter.write(name.toString() + "\n");
-//					continue;
+					continue;
 				}
 				
 				if(name.contains("test")) {

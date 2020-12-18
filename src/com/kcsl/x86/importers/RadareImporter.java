@@ -62,6 +62,19 @@ public class RadareImporter {
 					functionName.tag("binary_function");
 					functionName.tag("radare_function");
 					
+					
+					//Creation of consolidated exit node
+					//Comment out lines 68-75 for original exit points
+					Node exit = Graph.U.createNode();
+					exit.putAttr(XCSG.name, "binary exit");
+					exit.tag("my_node");
+					exit.tag("bin_node");
+					exit.tag("single_exit");
+					exit.tag(XCSG.controlFlowExitPoint);
+					exit.tag(XCSG.ControlFlow_Node);
+					Edge functionExit = Graph.U.createEdge(functionName, exit);
+					functionExit.tag(XCSG.Contains);
+					
 					function_nodes.add(functionName);
 					Scanner s = new Scanner(dot);
 					
@@ -222,7 +235,10 @@ public class RadareImporter {
 			
 			for(Node function : functions.eval().nodes()) {
 				String name = function.getAttr(XCSG.name).toString();
-				tag_binary_exits(name);
+				//Toggle which line is commented out depending on if single return or original returns
+				//being used
+//				tag_binary_exits(name);
+				tag_binary_single_exits(name);
 				tag_binary_loops(name);
 				tag_binary_conditionals(name);
 			}
@@ -236,11 +252,5 @@ public class RadareImporter {
 			//create edge between fn and all other control flow nodes
 			//tag it as XCSG.Contains
 		}
-	
-		public static Q bcfg(String name) {
-			Q f = my_function(name);
-			Q c = my_cfg(f);
-			
-			return c;
-		}
+		
 }

@@ -67,6 +67,23 @@ public class SupportMethods {
 	}
 	
 	
+	public static void tag_binary_single_exits(String name) {
+		Q function = my_function(name);
+		Q cfg = my_cfg(function);
+		
+		Node exit = cfg.eval().nodes().tagged(XCSG.controlFlowExitPoint).getFirst();
+		
+		for (Node n : cfg.eval().nodes()) {
+			AtlasSet<Edge> edges = n.out();
+			if(edges.size() == 0 && !n.taggedWith("single_exit")) {
+				Edge temp = Graph.U.createEdge(n, exit);
+				temp.tag("my_edge");
+				temp.tag(XCSG.ControlFlow_Edge);
+			}
+		}
+	}
+	
+	
 	
 	/**
 	 * 
@@ -191,6 +208,14 @@ public class SupportMethods {
 //		Q dag = d.transform(subgraph);
 		return subgraph;
 //		return dag;
+	}
+	
+	
+	public static Q bcfg(String name) {
+		Q f = my_function(name);
+		Q c = my_cfg(f);
+		
+		return c;
 	}
 	
 }
