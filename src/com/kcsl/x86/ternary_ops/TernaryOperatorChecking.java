@@ -26,6 +26,9 @@ public class TernaryOperatorChecking {
 		for (Node n : cfNodes) {
 			
 			if (Common.toQ(n).contained().nodes(XCSG.TernaryCondition).eval().nodes().size() > 0) {
+//				System.out.println(n.getAttr(XCSG.name).toString());
+//				System.out.println(n.getAttr(XCSG.name).toString().split("?")[0]);
+//				System.out.println(n.getAttr(XCSG.name).toString().split("?")[1]);
 				terCount++;
 			}
 		}
@@ -36,7 +39,7 @@ public class TernaryOperatorChecking {
 	
 	public static void ternaryOpCounter() throws IOException {
 		
-		String topPath = "/Users/RyanGoluch/Desktop/Masters_Work/isomorphism_checking/sc_checking.csv";
+		String topPath = "/Users/RyanGoluch/Desktop/Masters_Work/isomorphism_checking/ternary_op_checking.csv";
 		File topFile = new File(topPath);
 		BufferedWriter topWriter = new BufferedWriter(new FileWriter(topFile));
 		topWriter.write("Function Name, # of Ternary Ops\n");

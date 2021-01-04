@@ -1,0 +1,18 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800067c8" [URL="dbg.testing_2_switch_default/0x800067c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from dbg.xsh_date @ 0x80006988, 0x8000698c\l  ;-- testing_2_switch_default:\l100: dbg.testing_2_switch_default (int32_t arg1);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg1 @ a0\l0x800067c8      addiu sp, sp, -0x18                                    ; void testing_2_switch_default(int x);\l0x800067cc      addiu v0, zero, 1\l0x800067d0      sw s0, (var_10h)\l0x800067d4      lui s0, 0x8001\l0x800067d8      sw ra, (var_14h)\l0x800067dc      beq a0, v0, 0x800067f8\l0x800067e0      addiu s0, s0, 0x1450                                   ; 0x80011450\l                                                                       ; sym.printf ; sym.printf\l"]
+	"0x800067e4" [URL="dbg.testing_2_switch_default/0x800067e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067e4      addiu v0, zero, 2\l0x800067e8      beq a0, v0, 0x80006808\l0x800067ec      lui a0, 0x8001\l"]
+	"0x800067f0" [URL="dbg.testing_2_switch_default/0x800067f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067f0      j 0x80006814\l0x800067f4      lw ra, (var_14h)\l"]
+	"0x800067f8" [URL="dbg.testing_2_switch_default/0x800067f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_2_switch_default @ 0x800067dc\l0x800067f8      lui a0, 0x8001\l0x800067fc      jalr s0\l0x80006800      addiu a0, a0, 0x3070                                   ; arg1 ; esilref: 'case 1'\l0x80006804      lui a0, 0x8001\l"]
+	"0x80006808" [URL="dbg.testing_2_switch_default/0x80006808", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_2_switch_default @ 0x800067e8\l0x80006808      jalr s0\l0x8000680c      addiu a0, a0, 0x3078                                   ; arg1 ; esilref: 'case 2'\l0x80006810      lw ra, (var_14h)\l"]
+	"0x80006814" [URL="dbg.testing_2_switch_default/0x80006814", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_2_switch_default @ 0x800067f0\l0x80006814      lui a0, 0x8001\l0x80006818      move t9, s0\l0x8000681c      lw s0, (var_10h)\l0x80006820      addiu a0, a0, 0x3080                                   ; arg1 ; esilref: 'default case'\l0x80006824      jr t9\l0x80006828      addiu sp, sp, 0x18\l"]
+        "0x800067c8" -> "0x800067f8" [color="#13a10e"];
+        "0x800067c8" -> "0x800067e4" [color="#c50f1f"];
+        "0x800067e4" -> "0x80006808" [color="#13a10e"];
+        "0x800067e4" -> "0x800067f0" [color="#c50f1f"];
+        "0x800067f0" -> "0x80006814" [color="#0037da"];
+        "0x800067f8" -> "0x80006808" [color="#0037da"];
+        "0x80006808" -> "0x80006814" [color="#0037da"];
+}
