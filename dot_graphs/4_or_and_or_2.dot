@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800067c8" [URL="dbg.testing_4_or_and_or/0x800067c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from dbg.xsh_date @ 0x8000695c, 0x80006960\l  ;-- testing_4_or_and_or:\l44: dbg.testing_4_or_and_or (int32_t arg1, int32_t arg2, int32_t arg3, int32_t arg4);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l; arg int32_t arg4 @ a3\l0x800067c8      or a0, a0, a1                                          ; arg2 ; void testing_4_or_and_or(int c1,int c2,int c3,int c4);\l0x800067cc      beqz a0, 0x800067ec\l0x800067d0      or a2, a2, a3                                          ; arg4\l"]
+	"0x800067d4" [URL="dbg.testing_4_or_and_or/0x800067d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067d4      beqz a2, 0x800067ec\l0x800067d8      lui a0, 0x8001\l"]
+	"0x800067dc" [URL="dbg.testing_4_or_and_or/0x800067dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067dc      lui t9, 0x8001\l0x800067e0      addiu t9, t9, 0x1424                                   ; 0x80011424\l                                                                       ; sym.printf ; sym.printf\l0x800067e4      jr t9\l0x800067e8      addiu a0, a0, 0x3044                                   ; arg1 ; esilref: 'Short Circuiting...'\l"]
+	"0x800067ec" [URL="dbg.testing_4_or_and_or/0x800067ec", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREFS from dbg.testing_4_or_and_or @ 0x800067cc, 0x800067d4\l0x800067ec      jr ra\l0x800067f0      nop\l"]
+        "0x800067c8" -> "0x800067ec" [color="#13a10e"];
+        "0x800067c8" -> "0x800067d4" [color="#c50f1f"];
+        "0x800067d4" -> "0x800067ec" [color="#13a10e"];
+        "0x800067d4" -> "0x800067dc" [color="#c50f1f"];
+}

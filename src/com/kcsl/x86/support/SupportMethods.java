@@ -126,7 +126,7 @@ public class SupportMethods {
 //			
 //			
 //			System.out.println(name+" roots: "+Common.toQ(srcCFG);
-			SaveUtil.saveGraph(new File("/Users/RyanGoluch/Desktop/cfg_"+name+".png"), g);
+//			SaveUtil.saveGraph(new File("/Users/RyanGoluch/Desktop/cfg_"+name+".png"), g);
 		}
 		else {
 

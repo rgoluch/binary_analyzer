@@ -2,6 +2,7 @@ package com.kcsl.x86.subgraphs;
 
 import static com.kcsl.x86.Importer.*;
 import static com.kcsl.x86.support.SupportMethods.*;
+import static com.kcsl.x86.short_circuit.ShortCircuitChecking.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -252,6 +253,8 @@ public class SubGraphGenerator {
 		Q f = my_function(name);
 		Q subgraph = my_cfg(f);
 		
+//		Q subgraph = scTransform(name);
+		
 		Node functionNode = Graph.U.createNode();
 		functionNode.putAttr(XCSG.name, "dummy_"+name);
 		functionNode.tag(XCSG.Function);
@@ -309,7 +312,7 @@ public class SubGraphGenerator {
 			
 //			if (n.out().tagged(XCSG.ControlFlowBackEdge).size() > 0) {
 			
-			if (n.taggedWith(XCSG.ControlFlowCondition)  || n.taggedWith("src_exit") || n.taggedWith(XCSG.DoWhileLoop)) {
+			if (n.taggedWith(XCSG.ControlFlowCondition)  || n.taggedWith(XCSG.controlFlowExitPoint) || n.taggedWith(XCSG.DoWhileLoop)) {
 //				|| n.taggedWith(XCSG.Break)
 				AtlasSet<Edge> outgoing = n.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge);
 				n.tag("src_node");
@@ -318,9 +321,10 @@ public class SubGraphGenerator {
 					Node goingTo = e.to();
 //					AtlasSet<Edge> incoming = goingTo.in().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge);
 //					if (!e.taggedWith("src_induced_edge")) {
-						if (goingTo.taggedWith(XCSG.ControlFlowCondition)  || goingTo.taggedWith("src_exit")
+						if (goingTo.taggedWith(XCSG.ControlFlowCondition)  || goingTo.taggedWith(XCSG.controlFlowExitPoint)
 						|| goingTo.out().tagged(XCSG.ControlFlowBackEdge).size() > 0) {
 //							|| goingTo.taggedWith(XCSG.Break)
+//							goingTo.taggedWith("src_exit")
 
 							e.tag("src_induced_edge");
 							goingTo.tag("src_node");
@@ -358,7 +362,8 @@ public class SubGraphGenerator {
 //							addEdge = true;
 //							unTag = true;							
 //						}
-						else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.taggedWith("src_exit")) {
+						else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.taggedWith(XCSG.controlFlowExitPoint)) {
+//							successor.taggedWith("src_exit")
 							addEdge = true;
 							unTag = true;
 						}
@@ -447,8 +452,9 @@ public class SubGraphGenerator {
 			
 			for (Edge e : n.out("remove_edge")) {
 				Node nextNode = e.to();
-				while (!nextNode.taggedWith(XCSG.ControlFlowCondition) && !nextNode.taggedWith("src_exit") 
+				while (!nextNode.taggedWith(XCSG.ControlFlowCondition) && !nextNode.taggedWith(XCSG.controlFlowExitPoint) 
 						&& !nextNode.taggedWith("src_node") && nextNode.taggedWith("remove_node")) {
+//					!nextNode.taggedWith("src_exit")
 					AtlasSet<Edge> dagEdges = nextNode.out().taggedWithAny(XCSG.ControlFlow_Edge, XCSG.ControlFlowBackEdge);
 					if (dagEdges.size() != 0) {
 						nextNode = dagEdges.one().to();

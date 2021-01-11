@@ -23,6 +23,9 @@ import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
+import com.kcsl.paths.counting.TopDownDFMultiplicitiesPathCounter;
+import com.se421.paths.algorithms.PathCounter.CountingResult;
+import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
 
 public class ShortCircuitChecking {
 	
@@ -30,6 +33,12 @@ public class ShortCircuitChecking {
 	protected static final String AND = "&&";
 	protected static final String LAST = "sc_end";
 
+	
+	/**
+	 * 
+	 * @param cfg
+	 * @return
+	 */
 	
 	public static scInfo scChecker(Q cfg) {
 		
@@ -51,56 +60,147 @@ public class ShortCircuitChecking {
 			}
 		}
 		
-		System.out.println(ordering.toString());
-//		System.out.println("Total # Nodes with SC Conditions: " + scCount);
-		
 		return scCount;
 	}
 	
 	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	
 	public static Q scTransform(String name) {
 		
+		//Get the original source CFG
 		Q f = my_function(name);	
 		Q c = my_cfg(f);
 		
+		
+		//Set up for new function node for returned CFG
 		Node functionNode = Graph.U.createNode();
 		functionNode.putAttr(XCSG.name, "sc_transform_"+name);
 		functionNode.tag(XCSG.Function);
 		functionNode.tag("sc_graph");
 
+		//Variables to hold nodes that potentially have complex conditions, the nodes with complex conditions,
+		//and the ordering of those complex conditions
 		AtlasSet<Node> conditions = c.eval().nodes().tagged(XCSG.ControlFlowCondition);
-		ArrayList<String> ordering = new ArrayList<String>();
 		ArrayList<Node> scNodes = new ArrayList<Node>();
 		
+		//Finding the complex conditions
 		for (Node n : conditions) {
 			AtlasSet<Node> toCheck = Common.toQ(n).contained().nodes(XCSG.LogicalOr, XCSG.LogicalAnd).eval().nodes();
 			if (toCheck.size() > 0) {
 				scNodes.add(n);
+				n.tag("sc_node");
 			}
 		}
 		
-		ArrayList<Node> taggedNodes = new ArrayList<Node>();
 		Node trueDest = null;
 		Node falseDest = null;
 		
+		//Tagging all non-complex condition nodes for creation in the final CFG
 		for (Node n : c.eval().nodes()) {
-			
 			if(!scNodes.contains(n)) {
 				n.tag("sc_graph");
 			}
 		}
 		
+		//Tagging all edges for creation in the final CFG
 		for (Edge e : c.eval().edges().tagged(XCSG.ControlFlow_Edge)) {
 			e.tag("sc_edge");
 		}
 		
 		
 		Map<Node,Node> addedToGraph = new HashMap<Node,Node>();
-//		System.out.println(c.eval().edges().tagged(XCSG.ControlFlow_Edge).size());
+		ArrayList<Node> scPredecessors = new ArrayList<Node>();
+		Map<Integer,Node> predMap = new HashMap<Integer,Node>();
+		ArrayList<predecessorNode> loopBackTails = new ArrayList<predecessorNode>();
+		Map<Node,Node> loopBackHeaderMap = new HashMap<Node,Node>();
+		ArrayList<predecessorNode> edgeCreated = new ArrayList<predecessorNode>(); 
+
+		ArrayList<Node> scHeaders = new ArrayList<Node>();
+
 		
+		//Create nodes for the new graph that will be returned 
 		for (Edge e : c.eval().edges().tagged(XCSG.ControlFlow_Edge)) {
 			
-			if (e.from().taggedWith("sc_graph") && e.to().taggedWith("sc_graph")) {
+			//Handling the case of the complex condition predecessor that needs to point to the new 
+			//simple condition
+			if (scNodes.contains(e.to()) && !e.from().taggedWith("sc_node")) {
+				Node tempSCPred = Graph.U.createNode();
+				String predName = e.from().getAttr(XCSG.name).toString();
+				
+				tempSCPred.putAttr(XCSG.name, predName);
+				tempSCPred.tag(XCSG.ControlFlow_Node);
+				tempSCPred.tag("sc_graph");
+				
+//				if (!e.taggedWith(XCSG.ControlFlowBackEdge)) {
+//					tempSCPred.tag("sc_pred");
+//
+//				}
+//				e.from().tag("sc_pred");
+				
+				Node checkingPred = addedToGraph.get(e.from());
+				
+				if (checkingPred != null && !e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					scPredecessors.add(checkingPred);
+					predMap.put(checkingPred.addressBits(), e.to());
+					
+					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred);
+					edgeCreated.add(p);
+				} 
+				else if (checkingPred != null && e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred);
+
+					loopBackTails.add(p);
+					loopBackHeaderMap.put(checkingPred, e.to());
+				}
+				else if (checkingPred == null) {
+					Edge eToPred = Graph.U.createEdge(functionNode, tempSCPred);
+					eToPred.tag(XCSG.Contains);
+					addedToGraph.put(e.from(), tempSCPred);
+					
+					if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+						predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), tempSCPred);
+						loopBackTails.add(p);
+						loopBackHeaderMap.put(tempSCPred, e.to());
+					}else {
+						scPredecessors.add(tempSCPred);
+						predMap.put(tempSCPred.addressBits(), e.to());
+						predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), tempSCPred);
+						edgeCreated.add(p);
+					}
+				}
+			}
+			
+			else if (scNodes.contains(e.from()) && e.to().taggedWith("sc_graph")) {
+				Node tempSingle = Graph.U.createNode();
+				String singleName = e.to().getAttr(XCSG.name).toString();
+				
+				tempSingle.putAttr(XCSG.name, singleName);
+				tempSingle.tag(XCSG.ControlFlow_Node);
+				tempSingle.tag("sc_graph");
+				
+				if (e.to().taggedWith(XCSG.ControlFlowCondition)) {
+					tempSingle.tag(XCSG.ControlFlowCondition);
+				}
+				
+				if (e.to().taggedWith(XCSG.controlFlowExitPoint)) {
+					tempSingle.tag(XCSG.controlFlowExitPoint);
+//					tempSingle.tag("src_exit");
+				}
+				
+				Node checkingSuccessor = addedToGraph.get(e.to());
+				if (checkingSuccessor == null) {
+					Edge eToSingle = Graph.U.createEdge(functionNode, tempSingle);
+					eToSingle.tag(XCSG.Contains);
+					addedToGraph.put(e.to(), tempSingle);
+				}
+			}
+			//Handling all other control flow nodes
+			else if (e.from().taggedWith("sc_graph") && e.to().taggedWith("sc_graph")) {
 				Node tempFrom = Graph.U.createNode();
 				Node tempTo = Graph.U.createNode();
 				
@@ -113,6 +213,16 @@ public class ShortCircuitChecking {
 				
 				if (e.from().taggedWith(XCSG.ControlFlowCondition)) {
 					tempFrom.tag(XCSG.ControlFlowCondition);
+				}
+				
+				if (e.from().taggedWith(XCSG.controlFlowExitPoint)) {
+					tempFrom.tag(XCSG.controlFlowExitPoint);
+//					tempFrom.tag("src_exit");
+				}
+				
+				if (e.to().taggedWith(XCSG.controlFlowExitPoint)) {
+					tempTo.tag(XCSG.controlFlowExitPoint);
+//					tempTo.tag("src_exit");
 				}
 				
 				tempTo.putAttr(XCSG.name, toName);
@@ -167,7 +277,11 @@ public class ShortCircuitChecking {
 					tempEdge.tag(XCSG.ControlFlow_Edge);
 				}
 				
-				if (e.to().hasAttr(XCSG.conditionValue)) {
+				if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					tempEdge.tag(XCSG.ControlFlowBackEdge);
+				}
+				
+				if (e.hasAttr(XCSG.conditionValue)) {
 					if (e.getAttr(XCSG.conditionValue).toString().contains("true")) {
 						tempEdge.putAttr(XCSG.conditionValue, "true");
 					}else {
@@ -175,11 +289,38 @@ public class ShortCircuitChecking {
 					}
 				}
 			}
+			
+			if (e.from().taggedWith("sc_node") && e.to().taggedWith("sc_node")) {
+				e.to().tag("nested_sc");
+			}
 		}
 		
+		//Move nested SC nodes to the beginning of the array to be processed first
+		//in order to have initial true and false destinations
+		for (int r = 0; r < scNodes.size(); r++) {
+			Node current = scNodes.get(r);
+//			int lastNonNested = 0;
+			for (int s = r + 1; s < scNodes.size(); s++) {
+				Node next = scNodes.get(s);
+				
+				if(!current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
+					Node temp = current; 
+//					lastNonNested = r;
+					scNodes.set(r, next);
+					scNodes.set(s, temp);
+					current = scNodes.get(r);
+				}
+//				else if (current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
+//					Node temp = scNodes.get(lastNonNested);
+////					lastNonNested = r;
+//					scNodes.set(r, next);
+//					scNodes.set(s, temp);
+//				}
+			}
+		}
 		
+		//Processing each node that could cause short circuiting
 		for (Node x : scNodes) {
-			
 			AtlasSet<Edge> outEdges = x.out().tagged(XCSG.ControlFlow_Edge);
 			Edge o1 = null;
 			Edge o2 = null;
@@ -192,257 +333,205 @@ public class ShortCircuitChecking {
 				}
 			}
 			
+			//Finding the true and false edge destinations depending on if there are 
+			//nested or non-nested complex conditionals
 			if (o1.getAttr(XCSG.conditionValue).toString().contains("true")) {
-				trueDest = addedToGraph.get(o1.to());
-				falseDest = addedToGraph.get(o2.to());
+				
+				if (o1.to().taggedWith("nested_sc") && !o2.to().taggedWith("nested_sc")) {
+					for (Node t : scHeaders) {
+						if (o1.to().getAttr(XCSG.name).toString().contains(t.getAttr(XCSG.name).toString())) {
+							trueDest = t;
+						}
+					}
+					falseDest = addedToGraph.get(o2.to());
+				}else if (o2.to().taggedWith("nested_sc") && !o1.to().taggedWith("nested_sc")) {
+					for (Node t : scHeaders) {
+						if (o2.to().getAttr(XCSG.name).toString().contains(t.getAttr(XCSG.name).toString())) {
+							falseDest = t;
+						}
+					}
+					trueDest = addedToGraph.get(o1.to());
+				}else if (o1.to().taggedWith("nested_sc") && o2.to().taggedWith("nested_sc")) {
+					for (Node t : scHeaders) {
+						if (o1.to().getAttr(XCSG.name).toString().contains(t.getAttr(XCSG.name).toString())) {
+							trueDest = t;
+						}
+						if (o2.to().getAttr(XCSG.name).toString().contains(t.getAttr(XCSG.name).toString())) {
+							falseDest = t;
+						}
+					}
+				}
+				else {
+					trueDest = addedToGraph.get(o1.to());
+					falseDest = addedToGraph.get(o2.to());
+				}
 			}else {
-				falseDest = addedToGraph.get(o1.to());
-				trueDest = addedToGraph.get(o2.to());
+				if (o1.to().taggedWith("nested_sc") && !o2.to().taggedWith("nested_sc")) {
+					for (Node t : scHeaders) {
+						if (o1.to().getAttr(XCSG.name).toString().contains(t.getAttr(XCSG.name).toString())) {
+							falseDest = t;
+						}
+					}
+					trueDest = addedToGraph.get(o2.to());
+				}else if (o2.to().taggedWith("nested_sc") && !o1.to().taggedWith("nested_sc")) {
+					for (Node t : scHeaders) {
+						if (o2.to().getAttr(XCSG.name).toString().contains(t.getAttr(XCSG.name).toString())) {
+							trueDest = t;
+						}
+					}
+					falseDest = addedToGraph.get(o1.to());
+				}else if (o1.to().taggedWith("nested_sc") && o2.to().taggedWith("nested_sc")) {
+					for (Node t : scHeaders) {
+						if (o1.to().getAttr(XCSG.name).toString().contains(t.getAttr(XCSG.name).toString())) {
+							falseDest = t;
+						}
+						if (o2.to().getAttr(XCSG.name).toString().contains(t.getAttr(XCSG.name).toString())) {
+							trueDest = t;
+						}
+					}
+				}
+				else {
+					falseDest = addedToGraph.get(o1.to());
+					trueDest = addedToGraph.get(o2.to());
+				}
 			}
 			
+			//Getting the order of the conditions in the original node
 			AtlasSet<Node> toCheck = Common.toQ(x).contained().nodes(XCSG.LogicalOr, XCSG.LogicalAnd).eval().nodes();
-
+			ArrayList<String> ordering = new ArrayList<String>();
 			for (Node q : toCheck) {
 				ordering.add(q.getAttr(XCSG.name).toString());
 			}
 
+			//Getting all information from original node for new nodes in final graph
 			scNode[] nodes = createScNodes(ordering, x);
 			ArrayList<Node> scNodesInGraph = new ArrayList<Node>();
-			
-			if (nodes.length > 2) {
+							
+			for(int j = 0; j < nodes.length; j++) {
 				
-				for(int j = 0; j < nodes.length; j++) {
-					Node temp1 = Graph.U.createNode();
-					temp1.putAttr(XCSG.name, nodes[j].getCondition());
-					temp1.tag(XCSG.ControlFlowCondition);
-					temp1.tag("sc_graph");
-					
-					scNodesInGraph.add(temp1);
-				
-					Edge e1 = Graph.U.createEdge(functionNode, temp1);
-					e1.tag(XCSG.Contains);
+				if (nodes[j] == null) {
+					System.out.println("Macro Condition: " + name);
+					return null;
 				}
 				
-				for (int m = 0; m < scNodesInGraph.size(); m++) {
-					scNode checking = nodes[m];
-					Node checkingNode = scNodesInGraph.get(m);
-			
-					if(checking.getOperator().contains(LAST)) {
-						checking.setTrueDest(checkingNode, trueDest);
-						checking.setFalseDest(checkingNode, falseDest);
-					}
+				if (trueDest == null || falseDest == null) {
+					System.out.println("null destination issue: " + name);
+					return null;
 				}
 				
-				for (int m = scNodesInGraph.size()-1; m >= 0; m--) {
-					scNode checking = nodes[m];
-					Node checkingNode = scNodesInGraph.get(m);
+				//Creation of new branch nodes for final graph
+				Node temp1 = Graph.U.createNode();
+				temp1.putAttr(XCSG.name, nodes[j].getCondition());
+				temp1.tag(XCSG.ControlFlowCondition);
+				temp1.tag("sc_graph");
+				scNodesInGraph.add(temp1);
+				
+				//If this is the first node, being created it needs to have all predecessor nodes pointing to it 
+				//and have any loopback edges coming to it for loops with complex conditions
+				if (j == 0) {					
+					temp1.tag("sc_header");
+					scHeaders.add(temp1);
 					
-					if(checking.getOperator().contains(AND)) {
-						checking.setTrueDest(checkingNode, scNodesInGraph.get(m+1));
-						checking.setFalseDest(checkingNode, nodes[m+1].getFalseDest());
-					}
-					if(checking.getOperator().contains(OR)) {
-						checking.setFalseDest(checkingNode, scNodesInGraph.get(m+1));
-						checking.setTrueDest(checkingNode, nodes[m+1].getTrueDest());
-					}
-				}
-			}
-			
-			else {
-				for (String s : ordering) {
-
-					String tempName1 = x.getAttr(XCSG.name).toString().split(s)[0];
-					String tempName2 = x.getAttr(XCSG.name).toString().split(s)[1];
-					
-					Node temp1 = Graph.U.createNode();
-					temp1.putAttr(XCSG.name, tempName1);
-					temp1.tag(XCSG.ControlFlowCondition);
-					temp1.tag("sc_graph");
-					
-					Node temp2 = Graph.U.createNode();
-					temp2.putAttr(XCSG.name, tempName2);
-					temp2.tag(XCSG.ControlFlowCondition);
-					temp2.tag("sc_graph");
-					
-					Edge e1 = Graph.U.createEdge(functionNode, temp1);
-					e1.tag(XCSG.Contains);
-					
-					Edge e2 = Graph.U.createEdge(functionNode, temp2);
-					e2.tag(XCSG.Contains);
-					
-					
-					if (s.contains("&&")) {
-						Edge tempTrue = Graph.U.createEdge(temp1, temp2);
-						tempTrue.tag(XCSG.ControlFlow_Edge);
-						tempTrue.putAttr(XCSG.conditionValue, "true");
-						tempTrue.tag("sc_edge");
+					for(predecessorNode p : edgeCreated) {
+						Node predSCNode = predMap.get(p.getAddedNode().addressBits());
 						
-						Edge tempFalse = Graph.U.createEdge(temp1, falseDest);
-						tempFalse.tag(XCSG.ControlFlow_Edge);
-						tempFalse.putAttr(XCSG.conditionValue, "false");
-						tempFalse.tag("sc_edge");
-						
-						Edge tempTrue2 = Graph.U.createEdge(temp2, trueDest);
-						tempTrue2.tag(XCSG.ControlFlow_Edge);
-						tempTrue2.putAttr(XCSG.conditionValue, "true");
-						tempTrue2.tag("sc_edge");
-						
-						Edge tempFalse2 = Graph.U.createEdge(temp2, falseDest);
-						tempFalse2.tag(XCSG.ControlFlow_Edge);
-						tempFalse2.putAttr(XCSG.conditionValue, "false");
-						tempFalse2.tag("sc_edge");
+						if (predSCNode.getAttr(XCSG.name).toString().contains(nodes[j].getCondition()) && p.getToAddr() == x.addressBits() && !p.getEdge()) {
+							Edge predEdge = Graph.U.createEdge(p.getAddedNode(), temp1);
+							predEdge.tag(XCSG.ControlFlow_Edge);
+							predEdge.tag("sc_edge");
+							predEdge.tag("sc_pred_edge");
+							p.toggleEdge();
+						}
 					}
 					
-					else if (s.contains("||")) {
-						Edge tempTrue = Graph.U.createEdge(temp1, temp2);
-						tempTrue.tag(XCSG.ControlFlow_Edge);
-						tempTrue.putAttr(XCSG.conditionValue, "false");
+					for (predecessorNode b : loopBackTails) {
+						Node l = loopBackHeaderMap.get(b.getAddedNode());
 						
-						Edge tempFalse = Graph.U.createEdge(temp1, trueDest);
-						tempFalse.tag(XCSG.ControlFlow_Edge);
-						tempFalse.putAttr(XCSG.conditionValue, "true");
-						
-						Edge tempTrue2 = Graph.U.createEdge(temp2, trueDest);
-						tempTrue2.tag(XCSG.ControlFlow_Edge);
-						tempTrue2.putAttr(XCSG.conditionValue, "true");
-						
-						Edge tempFalse2 = Graph.U.createEdge(temp2, falseDest);
-						tempFalse2.tag(XCSG.ControlFlow_Edge);
-						tempFalse2.putAttr(XCSG.conditionValue, "false");
+						if (l.getAttr(XCSG.name).toString().contains(nodes[j].getCondition()) && b.getToAddr() == x.addressBits() && !b.getEdge()) {
+							Edge backEdge = Graph.U.createEdge(b.getAddedNode(), temp1);
+							backEdge.tag(XCSG.ControlFlowBackEdge);
+							backEdge.tag("sc_back_edge");
+							backEdge.tag("sc_edge");
+							b.toggleEdge();
+						}
 					}
 				}
+				Edge e1 = Graph.U.createEdge(functionNode, temp1);
+				e1.tag(XCSG.Contains);
 			}
 			
 			
+			//Setting the destination nodes for the true and false edges of the nodes created
+			for (int m = 0; m < scNodesInGraph.size(); m++) {
+				scNode checking = nodes[m];
+				Node checkingNode = scNodesInGraph.get(m);
+		
+				if(checking.getOperator().contains(LAST)) {
+					checking.setTrueDest(checkingNode, trueDest);
+					checking.setFalseDest(checkingNode, falseDest);
+				}
+			}
 			
+			for (int m = scNodesInGraph.size()-1; m >= 0; m--) {
+				scNode checking = nodes[m];
+				Node checkingNode = scNodesInGraph.get(m);
+				
+				if(checking.getOperator().contains(AND)) {
+					checking.setTrueDest(checkingNode, scNodesInGraph.get(m+1));
+					checking.setFalseDest(checkingNode, falseDest);
+//					nodes[m+1].getFalseDest()
+				}
+				if(checking.getOperator().contains(OR)) {
+					checking.setFalseDest(checkingNode, scNodesInGraph.get(m+1));
+					checking.setTrueDest(checkingNode, nodes[m+1].getTrueDest());
+				}
+			}
 		}
 		
 
 		Q x = my_function(functionNode.getAttr(XCSG.name).toString());
 		Q sc_cfg = my_cfg(x);
-		
 		return sc_cfg.nodes("sc_graph").induce(Query.universe().edges("sc_edge"));
 	}
 	
 	
+	/**
+	 * 
+	 * @param ordering
+	 * @param x
+	 * @return
+	 */
+	
 	public static scNode[] createScNodes(ArrayList<String> ordering, Node x) {
-		
-//		ArrayList<String> updatedOrdering = new ArrayList<String>();
-//		Set<scNode> finalOrdering = new HashSet<scNode>();
-//		ArrayList<String> added = new ArrayList<String>();
+
 		scNode[] conditions = new scNode[ordering.size()+1];
 		int j = 0; 
+		int k = 0;
 		
 		String name = x.getAttr(XCSG.name).toString();
 		String[] parts = name.split(" ");
+		String updatedName[] = x.getAttr(XCSG.name).toString().split("&&|\\|\\|");
 		
-		for (int p = 0; p < parts.length-1; p++) {
+		for (int p = 0; p < parts.length - 1; p++) {
 			String toCheck = parts[p];
-			if(toCheck.contains(AND) || toCheck.contains(OR)) {
-				continue;
-			}else {
-				if (parts[p+1].contains(AND)) {
-					scNode tempSCNode = new scNode(toCheck, AND);
-					conditions[j] = tempSCNode;
-					j++;
-				}
-				if (parts[p+1].contains(OR)) {
-					scNode tempSCNode = new scNode(toCheck, OR);
-					conditions[j] = tempSCNode;
-					j++;
-				}
+			if (updatedName[k].contains(toCheck) && parts[p+1].contains(AND)) {					
+				scNode tempSCNode = new scNode(updatedName[k], AND, x.addressBits());
+				conditions[j] = tempSCNode;
+				j++;
+				k++;
 			}
+			else if (updatedName[k].contains(toCheck) && parts[p+1].contains(OR)) {					
+				scNode tempSCNode = new scNode(updatedName[k], OR, x.addressBits());
+				conditions[j] = tempSCNode;
+				j++;
+				k++;
+			}
+
 		}
 		
-		scNode temp = new scNode(parts[parts.length-1], LAST);
+		scNode temp = new scNode(updatedName[k], LAST, x.addressBits());
 		conditions[conditions.length-1] = temp;
-		
-		
-		
-		
-//		//working to isolate conditions
-//		for (String a : ordering) {
-////			String temp;
-////			String temp2; 
-//			String[] toIsolate;
-//			//get conditions and remove spaces for easier comparison amongst strings
-//			if (a.contains("||")) {
-////				temp = x.getAttr(XCSG.name).toString().split("\\|\\|")[0];
-////				temp = temp.replaceAll("\\s+", "");
-////
-////				temp2 = x.getAttr(XCSG.name).toString().split("\\|\\|")[1];
-////				temp2 = temp2.replaceAll("\\s+", "");
-////				updatedOrdering.add(temp);
-////				updatedOrdering.add(temp2);
-//				
-//				toIsolate = x.getAttr(XCSG.name).toString().split("\\|\\|");
-//				for (int y = 0; y < toIsolate.length; y++) {
-//					updatedOrdering.add(toIsolate[y]);
-//				}
-//				
-//			}else {
-////				temp = x.getAttr(XCSG.name).toString().split(a)[0];
-////				temp = temp.replaceAll("\\s+", "");
-////
-////				temp2 = x.getAttr(XCSG.name).toString().split(a)[1];
-////				temp2 = temp2.replaceAll("\\s+", "");
-////				updatedOrdering.add(temp);
-////				updatedOrdering.add(temp2);
-//				
-//				toIsolate = x.getAttr(XCSG.name).toString().split(a);
-//				for (int y = 0; y < toIsolate.length; y++) {
-//					updatedOrdering.add(toIsolate[y]);
-//				}
-//			}
-//		}
-//	
-//		//breaking up any other conditions
-//		for(int i = 0; i < updatedOrdering.size(); i++) {
-//			String b = updatedOrdering.get(i);
-//			while(b.contains("&&") || b.contains("||")) {
-//				if (b.contains("&&")) {
-//					String[] d = b.split("&&");
-//					b = d[0];
-//					
-//					scNode tempSCNode = new scNode(b, AND);
-//					conditions[j] = tempSCNode;
-//					j++;
-//					finalOrdering.add(tempSCNode);
-//					added.add(b);
-//					
-//					if (!updatedOrdering.contains(d[1]) && (d[1].contains(AND) || d[1].contains(OR))) {
-//						updatedOrdering.add(d[1]);
-//					}
-//				}
-//				
-//				if (b.contains("||")) {
-//					String[] d = b.split("\\|\\|");
-//					b = d[0];
-//					
-//					scNode tempSCNode = new scNode(b, OR);
-//					conditions[j] = tempSCNode;
-//					j++;
-//					finalOrdering.add(tempSCNode);
-//					added.add(b);
-//					
-//					updatedOrdering.set(i, b);
-//					if (!updatedOrdering.contains(d[1]) && (d[1].contains(AND) || d[1].contains(OR))) {
-//						updatedOrdering.add(d[1]);
-//					}
-//				}
-//			}
-//			
-//			if (!b.contains(AND) && !b.contains(OR) && !added.contains(b) && !b.contains("if (")) {
-//				scNode temp = new scNode(b, LAST);
-//				conditions[conditions.length-1] = temp;
-////				j++;
-//				finalOrdering.add(temp);
-//			}
-//		}
-		
-//		scNode[] conditions = new scNode[finalOrdering.size()];
-//		finalOrdering.toArray(conditions);
-		
+
 		return conditions;
 	}
 	
@@ -452,10 +541,12 @@ public class ShortCircuitChecking {
 		private String operator; 
 		private Node truDest; 
 		private Node falsDest; 
+		private int address; 
 		
-		public scNode(String c, String o) {
+		public scNode(String c, String o, int i) {
 			this.condition = c;
 			this.operator = o;
+			this.address = i;
 		}
 		
 		public String getCondition() {
@@ -485,7 +576,7 @@ public class ShortCircuitChecking {
 			
 			Edge tempTrue = Graph.U.createEdge(temp1, temp2);
 			tempTrue.tag(XCSG.ControlFlow_Edge);
-			tempTrue.putAttr(XCSG.conditionValue, "true");
+			tempTrue.putAttr(XCSG.conditionValue, "false");
 			tempTrue.tag("sc_edge");
 			tempTrue.tag("sc_edge_testing");
 		}
@@ -520,12 +611,46 @@ public class ShortCircuitChecking {
 		}
 	}
 	
+	private static class predecessorNode{
+		private int fromAddr;
+		private int toAddr;
+		private Node addedNode;
+		private boolean edgeAdded;
+		
+		public predecessorNode(int f, int t, Node n) {
+			this.fromAddr = f;
+			this.toAddr = t;
+			this.addedNode = n;
+			this.edgeAdded = false;
+		}
+		
+		public int getFromAddr() {
+			return this.fromAddr;
+		}
+		
+		public int getToAddr() {
+			return this.toAddr;
+		}
+		
+		public Node getAddedNode() {
+			return this.addedNode;
+		}
+		
+		public void toggleEdge() {
+			this.edgeAdded = true;
+		}
+		
+		public boolean getEdge() {
+			return this.edgeAdded;
+		}
+	}
+	
 	public static void scCounts() throws IOException {
 		
 		String scPath = "/Users/RyanGoluch/Desktop/Masters_Work/isomorphism_checking/sc_checking.csv";
 		File scFile = new File(scPath);
 		BufferedWriter scWriter = new BufferedWriter(new FileWriter(scFile));
-		scWriter.write("Function Name, Conditions, Ands, Ors\n");
+		scWriter.write("Function Name, Conditions, Ands, Ors, Original Path Count, Transform Path Count\n");
 		
 		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
 		int result = 0; 
@@ -534,20 +659,32 @@ public class ShortCircuitChecking {
 			String functionName = f.getAttr(XCSG.name).toString();
 			String srcName = functionName.substring(4);
 			
-			if (functionName.contains("test")) {
+			if (functionName.contains("test") || functionName.contains("_doscan")) {
 				continue;
 			}
+			
+			System.out.println(srcName);
 			
 			Q function = my_function(srcName);
 			Q c = my_cfg(function);
 			
 			scInfo x = scChecker(c);
-			
-			if (x != null) {
-				result++;
-				scWriter.write(srcName + "," + x.getConditions() + "," + x.getAnds() + "," +x.getOrs() + "\n");
-				scWriter.flush();
+			Q transformedGraph = scTransform(srcName);
+			if (transformedGraph != null) {
+				TopDownDFMultiplicitiesPathCounter transformCounter = new TopDownDFMultiplicitiesPathCounter(true);
+				TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
+				com.kcsl.paths.algorithms.PathCounter.CountingResult t = srcCounter.countPaths(c);
+
+				com.kcsl.paths.algorithms.PathCounter.CountingResult r = transformCounter.countPaths(transformedGraph);
+				
+				if (x != null) {
+					result++;
+					scWriter.write(srcName + "," + x.getConditions() + "," + x.getAnds() + "," + x.getOrs() + "," + 
+					t.getPaths() + "," + r.getPaths()+ "\n");
+					scWriter.flush();
+				}
 			}
+			
 		}
 		scWriter.close();
 		System.out.println("Number of Source Functions w/ SC: " + result);
