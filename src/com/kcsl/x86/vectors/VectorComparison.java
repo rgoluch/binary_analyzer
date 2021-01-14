@@ -123,7 +123,8 @@ public class VectorComparison{
 			String functionName = function.getAttr(XCSG.name).toString();
 //			System.out.println(functionName);
 
-			if(functionName.contains("setupStack") || functionName.contains("test")) {
+			if(functionName.contains("setupStack") || functionName.contains("test") || functionName.contains("lexan") 
+					|| functionName.contains("enqueue") || functionName.contains("insert")) {
 				continue;
 			}
 			

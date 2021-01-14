@@ -250,10 +250,14 @@ public class SubGraphGenerator {
 	
 	public static Q singleSrcReturn(String name) {
 		
-		Q f = my_function(name);
-		Q subgraph = my_cfg(f);
+//		Q f = my_function(name);
+//		Q subgraph = my_cfg(f);
 		
-//		Q subgraph = scTransform(name);
+		Q subgraph = scTransform(name);
+		
+//		if (subgraph == null) {
+//			return null;
+//		}
 		
 		Node functionNode = Graph.U.createNode();
 		functionNode.putAttr(XCSG.name, "dummy_"+name);

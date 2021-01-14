@@ -85,11 +85,11 @@ public class ShortCircuitChecking {
 
 		//Variables to hold nodes that potentially have complex conditions, the nodes with complex conditions,
 		//and the ordering of those complex conditions
-		AtlasSet<Node> conditions = c.eval().nodes().tagged(XCSG.ControlFlowCondition);
+		AtlasSet<Node> conditionNodes = c.eval().nodes().tagged(XCSG.ControlFlowCondition);
 		ArrayList<Node> scNodes = new ArrayList<Node>();
 		
 		//Finding the complex conditions
-		for (Node n : conditions) {
+		for (Node n : conditionNodes) {
 			AtlasSet<Node> toCheck = Common.toQ(n).contained().nodes(XCSG.LogicalOr, XCSG.LogicalAnd).eval().nodes();
 			if (toCheck.size() > 0) {
 				scNodes.add(n);
@@ -142,21 +142,24 @@ public class ShortCircuitChecking {
 //				}
 //				e.from().tag("sc_pred");
 				
+				//Check to make sure the from node hasn't already been created. 
+				//If it has, handle the special case of the edge being a loopback edge since that node is not a predecessor node
 				Node checkingPred = addedToGraph.get(e.from());
 				
+				//Case where node was created and is the predecessor
 				if (checkingPred != null && !e.taggedWith(XCSG.ControlFlowBackEdge)) {
 					scPredecessors.add(checkingPred);
 					predMap.put(checkingPred.addressBits(), e.to());
-					
 					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred);
 					edgeCreated.add(p);
 				} 
+				//Case where node was created and edge is a loopback edge
 				else if (checkingPred != null && e.taggedWith(XCSG.ControlFlowBackEdge)) {
 					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred);
-
 					loopBackTails.add(p);
 					loopBackHeaderMap.put(checkingPred, e.to());
 				}
+				//Case where node hasn't been created yet, still need to handle loopback edge and predecessor checks
 				else if (checkingPred == null) {
 					Edge eToPred = Graph.U.createEdge(functionNode, tempSCPred);
 					eToPred.tag(XCSG.Contains);
@@ -192,6 +195,7 @@ public class ShortCircuitChecking {
 //					tempSingle.tag("src_exit");
 				}
 				
+				//Check to make sure the node hasn't already been created so we don't make duplicated nodes
 				Node checkingSuccessor = addedToGraph.get(e.to());
 				if (checkingSuccessor == null) {
 					Edge eToSingle = Graph.U.createEdge(functionNode, tempSingle);
@@ -233,6 +237,7 @@ public class ShortCircuitChecking {
 					tempTo.tag(XCSG.ControlFlowCondition);
 				}
 				
+				//Check to make sure the node hasn't already been created so we don't make duplicated nodes
 				Node checkingResultFrom  = addedToGraph.get(e.from());
 				Node checkingResultTo = addedToGraph.get(e.to());
 				Edge tempEdge = null;
