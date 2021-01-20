@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x00100150" [URL="loc.sbzero/0x00100150", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from entry0 @ 0x1000be\l12: loc.sbzero (int32_t arg_4h, int32_t arg_8h);\l; arg int32_t arg_4h @ esp+0x8\l; arg int32_t arg_8h @ esp+0xc\l0x00100150      push edi\l0x00100151      mov edi, dword [arg_4h]\l0x00100155  ~   mov ecx, dword [arg_8h]\l; CODE XREF from entry0 @ 0x1000d1\l0x00100158      or al, 0xb0                                            ; 176\l0x0010015a      add ah, bh\l"]
-}

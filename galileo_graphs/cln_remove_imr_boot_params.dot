@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x00100ed5" [URL="sym.cln_remove_imr_boot_params/0x00100ed5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.remove_irm_protections @ 0x100fa0\l35: sym.cln_remove_imr_boot_params ();\l0x00100ed5      push ebp\l0x00100ed6      mov ebp, esp\l0x00100ed8      sub esp, 8\l0x00100edb      call sym.__x86.get_pc_thunk.ax\l0x00100ee0      add eax, 0x20120\l0x00100ee5      push 0x47                                              ; 'G' ; 71\l0x00100ee7      push 0x46                                              ; 'F' ; 70\l0x00100ee9      push 0x45                                              ; 'E' ; 69\l0x00100eeb      push 0x44                                              ; 'D' ; 68\l0x00100eed      call sym.cln_remove_imr\l0x00100ef2      add esp, 0x10\l0x00100ef5      nop\l0x00100ef6      leave\l0x00100ef7      ret\l"]
-}

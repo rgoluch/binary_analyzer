@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x001033c4" [URL="sym.encodedPCIDevToFunction/0x001033c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS: CALL 0x001034f9  CALL 0x00103561  CALL 0x001035cb  \l  ; XREFS: CALL 0x00103639  CALL 0x001036a6  CALL 0x0010370d  \l21: sym.encodedPCIDevToFunction (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l0x001033c4      push ebp\l0x001033c5      mov ebp, esp\l0x001033c7      call sym.__x86.get_pc_thunk.ax\l0x001033cc      add eax, 0x1dc34\l0x001033d1      mov eax, dword [arg_8h]\l0x001033d4      and eax, 7\l0x001033d7      pop ebp\l0x001033d8      ret\l"]
-}

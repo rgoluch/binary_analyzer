@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x0010592d" [URL="sym.xdone/0x0010592d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.kill @ 0x1028b4\l47: sym.xdone ();\l; var int32_t var_4h @ ebp-0x4\l0x0010592d      push ebp\l0x0010592e      mov ebp, esp\l0x00105930      push ebx\l0x00105931      sub esp, 4\l0x00105934      call sym.__x86.get_pc_thunk.bx\l0x00105939      add ebx, 0x1b6c7\l0x0010593f      sub esp, 0xc\l0x00105942      lea eax, [ebx - 0x8af4]\l0x00105948      push eax\l0x00105949      call sym.kprintf\l0x0010594e      add esp, 0x10\l0x00105951      call loc.halt\l0x00105956      nop\l0x00105957      mov ebx, dword [var_4h]\l0x0010595a      leave\l0x0010595b      ret\l"]
-}

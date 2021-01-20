@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x0010391c" [URL="sym.cpu_is_quark/0x0010391c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.platinit @ 0x1039c3\l46: sym.cpu_is_quark ();\l0x0010391c      push ebp\l0x0010391d      mov ebp, esp\l0x0010391f      push ebx\l0x00103920      sub esp, 4\l0x00103923      call sym.__x86.get_pc_thunk.ax\l0x00103928      add eax, 0x1d6d8\l0x0010392d      mov ebx, eax\l0x0010392f      call loc.cpuid\l0x00103934      and eax, 0xfffffff0                                    ; 4294967280\l0x00103937      cmp eax, 0x590                                         ; 1424\l0x0010393c      sete al\l0x0010393f      and eax, 0xff                                          ; 255\l0x00103944      add esp, 4\l0x00103947      pop ebx\l0x00103948      pop ebp\l0x00103949      ret\l"]
-}

@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x00110d0a" [URL="sym.eth_hton/0x00110d0a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.arp_resolve @ 0x10dc32\l  ; CALL XREF from sym.arp_in @ 0x10df98\l  ; CALL XREF from sym.ip_out @ 0x1105fc\l53: sym.eth_hton (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l0x00110d0a      push ebp\l0x00110d0b      mov ebp, esp\l0x00110d0d      call sym.__x86.get_pc_thunk.ax\l0x00110d12      add eax, 0x102ee\l0x00110d17      mov eax, dword [arg_8h]\l0x00110d1a      mov ax, word [eax + 0xc]\l0x00110d1e      shr ax, 8\l0x00110d22      mov edx, eax\l0x00110d24      mov eax, dword [arg_8h]\l0x00110d27      mov ax, word [eax + 0xc]\l0x00110d2b      and eax, 0xffff\l0x00110d30      shl eax, 8\l0x00110d33      or eax, edx\l0x00110d35      mov edx, dword [arg_8h]\l0x00110d38      mov word [edx + 0xc], ax\l0x00110d3c      nop\l0x00110d3d      pop ebp\l0x00110d3e      ret\l"]
-}

@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x00102bed" [URL="sym.markinit/0x00102bed", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="59: sym.markinit ();\l; var int32_t var_4h @ ebp-0x4\l0x00102bed      push ebp\l0x00102bee      mov ebp, esp\l0x00102bf0      push ebx\l0x00102bf1      sub esp, 4\l0x00102bf4      call sym.__x86.get_pc_thunk.bx\l0x00102bf9      add ebx, 0x1e407\l0x00102bff      mov eax, obj.nmarks                                    ; 0x122df0\l0x00102c05      mov dword [eax], 0\l0x00102c0b      sub esp, 0xc\l0x00102c0e      push 1                                                 ; 1\l0x00102c10      call sym.semcreate\l0x00102c15      add esp, 0x10\l0x00102c18      mov edx, eax\l0x00102c1a      mov eax, obj.mkmutex                                   ; 0x122df4\l0x00102c20      mov dword [eax], edx\l0x00102c22      nop\l0x00102c23      mov ebx, dword [var_4h]\l0x00102c26      leave\l0x00102c27      ret\l"]
-}

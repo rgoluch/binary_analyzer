@@ -1,9 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x00102533" [URL="sym.stop/0x00102533", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="59: sym.stop (int32_t arg_8h);\l; arg int32_t arg_8h @ ebp+0x8\l0x00102533      push ebp\l0x00102534      mov ebp, esp\l0x00102536      push ebx\l0x00102537      sub esp, 4\l0x0010253a      call sym.__x86.get_pc_thunk.bx\l0x0010253f      add ebx, 0x1eac1\l0x00102545      sub esp, 8\l0x00102548      push dword [arg_8h]\l0x0010254b      lea eax, [ebx - 0x8cec]\l0x00102551      push eax\l0x00102552      call sym.kprintf\l0x00102557      add esp, 0x10\l0x0010255a      sub esp, 0xc\l0x0010255d      lea eax, [ebx - 0x8ce8]\l0x00102563      push eax\l0x00102564      call sym.kprintf\l0x00102569      add esp, 0x10\l"]
-	"0x0010256c" [URL="sym.stop/0x0010256c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0010256c      jmp 0x10256c\l"]
-        "0x00102533" -> "0x0010256c" [color="#0037da"];
-        "0x0010256c" -> "0x0010256c" [color="#0037da"];
-}

@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x00107361" [URL="sym.ungetch/0x00107361", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; DATA XREF from sym.fscanf @ 0x107306\l28: sym.ungetch (int32_t arg_ch);\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_ch @ ebp+0xc\l0x00107361      push ebp\l0x00107362      mov ebp, esp\l0x00107364      sub esp, 0x10\l0x00107367      mov eax, dword [arg_ch]\l0x0010736a      mov dword [var_4h], eax\l0x0010736d      mov eax, dword [var_4h]\l0x00107370      mov dword [eax], 0xffffffff                            ; [0xffffffff:4]=-1 ; -1\l0x00107376      mov eax, dword [var_4h]\l0x00107379      mov eax, dword [eax]\l0x0010737b      leave\l0x0010737c      ret\l"]
-}

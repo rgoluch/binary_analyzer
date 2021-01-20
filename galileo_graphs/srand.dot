@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x001077c1" [URL="sym.srand/0x001077c1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="13: void sym.srand (int seed);\l; arg int32_t arg_8h @ ebp+0x8\l0x001077c1      push ebp\l0x001077c2      mov ebp, esp\l0x001077c4      mov eax, dword [arg_8h]\l0x001077c7      mov dword [obj.rand_seed], eax                         ; [0x11ff60:4]=1\l0x001077cc      pop ebp\l0x001077cd      ret\l"]
-}

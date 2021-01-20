@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x001001a8" [URL="loc.cpuid/0x001001a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.cpu_is_quark @ 0x10392f\l12: loc.cpuid ();\l0x001001a8      push ebx\l0x001001a9      mov eax, 1\l0x001001ae      xor ecx, ecx\l0x001001b0      cpuid\l0x001001b2      pop ebx\l0x001001b3      ret\l"]
-}

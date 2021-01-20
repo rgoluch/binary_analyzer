@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x00103367" [URL="sym.encodePCIDevice/0x00103367", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.find_pci_device @ 0x103467\l43: sym.encodePCIDevice (int32_t arg_8h, int32_t arg_ch, int32_t arg_10h);\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l; arg int32_t arg_10h @ ebp+0x10\l0x00103367      push ebp\l0x00103368      mov ebp, esp\l0x0010336a      sub esp, 0x10\l0x0010336d      call sym.__x86.get_pc_thunk.ax\l0x00103372      add eax, 0x1dc8e\l0x00103377      mov eax, dword [arg_8h]\l0x0010337a      shl eax, 0x10\l0x0010337d      mov edx, eax\l0x0010337f      mov eax, dword [arg_ch]\l0x00103382      shl eax, 3\l0x00103385      or eax, edx\l0x00103387      or eax, dword [arg_10h]\l0x0010338a      mov dword [var_4h], eax\l0x0010338d      mov eax, dword [var_4h]\l0x00103390      leave\l0x00103391      ret\l"]
-}

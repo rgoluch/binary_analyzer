@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x001001a0" [URL="loc.lidt/0x001001a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from sym.initevec @ 0x10102b\l8: loc.lidt ();\l0x001001a0      lidt [loc.idtr]\l0x001001a7      ret\l"]
-}

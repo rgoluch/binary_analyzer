@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x00102b09" [URL="sym.kprintf/0x00102b09", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(182)\l60: sym.kprintf (int32_t arg_8h, int32_t arg_ch);\l; var int32_t var_ch @ ebp-0xc\l; var int32_t var_4h @ ebp-0x4\l; arg int32_t arg_8h @ ebp+0x8\l; arg int32_t arg_ch @ ebp+0xc\l0x00102b09      push ebp\l0x00102b0a      mov ebp, esp\l0x00102b0c      push ebx\l0x00102b0d      sub esp, 0x14\l0x00102b10      call sym.__x86.get_pc_thunk.ax\l0x00102b15      add eax, 0x1e4eb\l0x00102b1a      lea edx, [arg_ch]\l0x00102b1d      mov dword [var_ch], edx\l0x00102b20      mov edx, dword [var_ch]\l0x00102b23      sub esp, 4\l0x00102b26      lea ecx, [eax - 0x1e627]\l0x00102b2c      push ecx\l0x00102b2d      push edx\l0x00102b2e      push dword [arg_8h]\l0x00102b31      mov ebx, eax\l0x00102b33      call sym._doprnt\l0x00102b38      add esp, 0x10\l0x00102b3b      mov eax, 1\l0x00102b40      mov ebx, dword [var_4h]\l0x00102b43      leave\l0x00102b44      ret\l"]
-}

@@ -1,6 +1,0 @@
-digraph code {
-	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
-	node [fillcolor=gray style=filled shape=box];
-	edge [arrowhead="normal"];
-	"0x00117a30" [URL="loc.restore/0x00117a30", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; XREFS(172)\l14: loc.restore (int32_t arg_4h);\l; arg int32_t arg_4h @ esp+0x8\l0x00117a30      cli\l0x00117a31      mov ax, word [arg_4h]\l0x00117a36      and eax, 0x200                                         ; 512\l0x00117a3b      push eax\l0x00117a3c      popfd\l0x00117a3d      ret\l"]
-}
