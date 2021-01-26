@@ -70,11 +70,16 @@ public class SwitchStatementChecking {
 		return cases;
 	}
 	
-	public static Q switchTransform(String name) {
+	public static Q switchTransform(String name, Q c) {
 		
 		//Get the original source CFG
-		Q f = my_function(name);	
-		Q c = my_cfg(f);
+//		Q f = my_function(name);	
+//		Q c = my_cfg(f);
+		
+		AtlasSet<Node> switchNodes = c.eval().nodes().tagged(XCSG.ControlFlowSwitchCondition);
+		if (switchNodes.size() == 0) {
+			return c;
+		}
 		
 		//Set up for new function node for returned CFG
 		Node functionNode = Graph.U.createNode();

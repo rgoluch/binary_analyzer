@@ -238,9 +238,13 @@ public class RadareImporter {
 				//Toggle which line is commented out depending on if single return or original returns
 				//being used
 //				tag_binary_exits(name);
-				tag_binary_single_exits(name);
-				tag_binary_loops(name);
-				tag_binary_conditionals(name);
+//				if (name.contains("strcmp")) {
+					tag_binary_single_exits(name);
+					tag_binary_branches(name);
+					tag_binary_loops(name);
+					tag_binary_ifs(name);
+//				}
+				
 			}
 			
 			

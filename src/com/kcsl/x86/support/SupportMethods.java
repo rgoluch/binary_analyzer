@@ -6,6 +6,7 @@ import static com.kcsl.x86.Importer.my_function;
 import com.se421.paths.transforms.DAGTransform;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.ensoftcorp.atlas.core.db.graph.Edge;
@@ -33,7 +34,7 @@ public class SupportMethods {
 	 * @param name
 	 */
 	
-	public static void tag_binary_conditionals(String name) {
+	public static void tag_binary_ifs(String name) {
 		Q function = my_function(name);
 		Q cfg = my_cfg(function);
 		
@@ -42,11 +43,28 @@ public class SupportMethods {
 			if((edges.size() == 2 || n.taggedWith(XCSG.ControlFlowIfCondition)) && !n.taggedWith(XCSG.ControlFlowLoopCondition)) {
 //				 && !edges.one().taggedWith(XCSG.ControlFlowBackEdge)
 				n.tag(XCSG.ControlFlowIfCondition);
+//				n.tag(XCSG.ControlFlowCondition);
+			}
+		}
+		
+	}
+	
+	public static void tag_binary_branches(String name) {
+		Q function = my_function(name);
+		Q cfg = my_cfg(function);
+		
+		for (Node n : cfg.eval().nodes()) {
+			AtlasSet<Edge> edges = n.out();
+			if(edges.size() == 2) {
+//				|| n.taggedWith(XCSG.ControlFlowIfCondition)) && !n.taggedWith(XCSG.ControlFlowLoopCondition)
+//				 && !edges.one().taggedWith(XCSG.ControlFlowBackEdge)
+//				n.tag(XCSG.ControlFlowIfCondition);
 				n.tag(XCSG.ControlFlowCondition);
 			}
 		}
 		
 	}
+	
 	
 	/**
 	 * 
@@ -131,7 +149,25 @@ public class SupportMethods {
 		else {
 
 			LoopIdentification l = new LoopIdentification(g, r.eval().nodes().one());
+			AtlasSet<Edge> back = l.getLoopbacks();
 			Map<Node,Node> loopNodes = l.getInnermostLoopHeaders();
+			ArrayList<Node> headers = new ArrayList<Node>();
+			
+			for (Node n : l.getInnermostLoopHeaders().values()) {
+				if (!headers.contains(n)) {
+					headers.add(n);
+				}
+			}
+			
+			for (Node n : headers) {
+				n.tag(XCSG.ControlFlowLoopCondition);
+			}
+			
+			for (Edge e : back) {
+				e.tag(XCSG.ControlFlowBackEdge);
+				e.from().tag("bin_loopback_tail");
+			}
+			
 			for (Node n : loopNodes.values()) {
 				n.tag(XCSG.Loop);
 			}
@@ -140,22 +176,28 @@ public class SupportMethods {
 				n.tag(XCSG.Loop);
 			}
 		
-			for (Node n : g.nodes()) {
-				AtlasSet<Edge> outEdges = n.out();
-				for (Edge e : outEdges) {
-					if (((e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop)) || e.from().taggedWith(XCSG.DoWhileLoop)) && !n.taggedWith(XCSG.Loop) && !e.to().taggedWith(XCSG.ControlFlowIfCondition)) {
-						e.to().tag(XCSG.ControlFlowLoopCondition);
-						e.to().tag(XCSG.ControlFlowCondition);
-					}
-				}
-			}
+//			for (Node n : g.nodes()) {
+//				AtlasSet<Edge> outEdges = n.out();
+//				for (Edge e : outEdges) {
+//					if (((e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop)) || e.from().taggedWith(XCSG.DoWhileLoop)) 
+//							&& !n.taggedWith(XCSG.Loop) && !e.to().taggedWith(XCSG.ControlFlowIfCondition)) {
+//						e.to().tag(XCSG.ControlFlowLoopCondition);
+////						e.to().tag(XCSG.ControlFlowCondition);
+//					}
+//				}
+//			}
 			
-			for (Edge e : g.edges()) {
-				if (e.from().taggedWith(XCSG.Loop) && e.to().taggedWith(XCSG.ControlFlowLoopCondition)) {
-					e.tag(XCSG.ControlFlowBackEdge);
-					e.from().tag("bin_loopback_tail");
-				}
-			}
+//			for (Edge e : g.edges()) {
+//				if ((e.from().taggedWith(XCSG.Loop) && e.to().taggedWith(XCSG.ControlFlowLoopCondition)) ||
+//						(e.from().taggedWith(XCSG.Loop) && e.to().taggedWith(XCSG.ControlFlowCondition) && e.from().out().size() == 1)){
+//					e.tag(XCSG.ControlFlowBackEdge);
+//					e.from().tag("bin_loopback_tail");
+//					
+//					if (!e.to().taggedWith(XCSG.ControlFlowLoopCondition)) {
+//						e.to().tag(XCSG.ControlFlowLoopCondition);
+//					}
+//				}
+//			}
 		}
 	}
 	

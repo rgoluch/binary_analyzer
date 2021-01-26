@@ -1,6 +1,7 @@
 package com.kcsl.x86.vectors;
 
 import static com.kcsl.x86.subgraphs.SubGraphGenerator.*;
+import static com.kcsl.x86.switch_transform.SwitchStatementChecking.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,7 +22,9 @@ public class VectorComparison{
 		
 		Q binPCG = findSubGraph(functionName);
 		String srcName = functionName.substring(4);
-		Q srcPCG = singleSrcReturn(srcName);
+		Q srcPCG_SC = singleSrcReturn(srcName);
+		Q srcPCG_switch = switchTransform(functionName, srcPCG_SC); 
+		Q srcPCG = findSrcSubGraph(srcPCG_switch);
 		
 		
 //		ArrayList<VectorNode> binVector = new ArrayList<VectorNode>();
@@ -108,12 +111,16 @@ public class VectorComparison{
 				else if(o1.getIncoming() == o2.getIncoming()) {
 					if(o1.getOutgoing() < o2.getOutgoing()) {
 						return -1; 
-					}else {
+					}
+					else if (o1.getOutgoing() > o2.getOutgoing()) {
 						return 1;
+					}
+					else {
+						return 0;
 					}
 				}
 				//return 0 if incoming 1 == incoming 2 and outgoing 1 == outgoing 2
-				return 0;
+				return 1;
 			}
 		};
 		
@@ -163,7 +170,7 @@ public class VectorComparison{
 						equal = true;
 					}else {
 						equal = false;
-						System.out.println(functionName);
+						System.out.println("Vector Mismatch: " + functionName);
 						break;
 					}
 				}

@@ -10,11 +10,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Stack;
 
 import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
+import com.ensoftcorp.atlas.core.db.notification.NotificationSet;
 import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.query.Q;
@@ -71,7 +73,9 @@ public class SubGraphGenerator {
 		Q switch_and_exits = Query.universe().edges(XCSG.ControlFlow_Edge).between(switchNodes, exitNodes);
 		
 		Q switch_subgraph = switch_and_if.union(switch_and_loop).union(switch_and_switch).union(switch_and_exits);		
-		Q subgraph = if_subgraph.union(loop_subgraph).union(switch_subgraph);
+		Q subgraph = if_subgraph.union(loop_subgraph).union(switch_subgraph);		
+		
+		ArrayList<Node> nodesAdded = new ArrayList<Node>();
 		
 		for(Node n : subgraph.eval().nodes()) {
 					
@@ -82,16 +86,11 @@ public class SubGraphGenerator {
 				for(Edge e : outgoing) {
 					
 					Node goingTo = e.to();
-					AtlasSet<Edge> incoming = goingTo.in().taggedWithAny(XCSG.ControlFlow_Edge);
-					AtlasSet<Edge> successorOut = goingTo.out().taggedWithAny(XCSG.ControlFlow_Edge);
-//					if (!e.taggedWith("bin_induced_edge")) {
-						if (goingTo.taggedWith(XCSG.ControlFlowCondition) || goingTo.taggedWith(XCSG.Break) || goingTo.taggedWith(XCSG.controlFlowExitPoint) || goingTo.taggedWith("bin_loopback_tail")) {
-							e.tag("bin_induced_edge");
-							e.to().tag("bin_node");
-						}
-//					}
-					
-					else {
+					if (goingTo.taggedWith(XCSG.ControlFlowCondition) || goingTo.taggedWith(XCSG.Break) || goingTo.taggedWith(XCSG.controlFlowExitPoint) || goingTo.taggedWith("bin_loopback_tail")) {
+						e.tag("bin_induced_edge");
+						e.to().tag("bin_node");
+					}
+					else if (!nodesAdded.contains(e.to())){
 						e.tag("remove_edge");
 						e.to().tag("remove_node");
 					}
@@ -142,6 +141,7 @@ public class SubGraphGenerator {
 							if (n.taggedWith("remove_node")) {
 								n.untag("remove_node");
 							}
+							nodesAdded.add(n);
 						}else if (predecessor.taggedWith(XCSG.ControlFlowCondition) && successor.taggedWith(XCSG.controlFlowExitPoint)) {
 							addEdge = true;
 						}
@@ -153,6 +153,8 @@ public class SubGraphGenerator {
 							if (n.taggedWith("remove_node")) {
 								n.untag("remove_node");
 							}
+							nodesAdded.add(n);
+
 						}
 						else {
 							e.tag("remove_edge");
@@ -175,31 +177,22 @@ public class SubGraphGenerator {
 			} 
 		}
 		
-		Q removeNodes = subgraph.nodesTaggedWithAll("remove_node");
-		Q removeSubGraph = subgraph.edgesTaggedWithAll("remove_edge").between(removeNodes, removeNodes);
-		
-		
 		ArrayList<Node> removeRoots = new ArrayList<Node>();
-		
 		for(Edge e : subgraph.eval().edges().tagged("remove_edge")) {
 			if (e.from().taggedWith("bin_node") && e.to().taggedWith("remove_node") && !removeRoots.contains(e.from())) {
 				removeRoots.add(e.from());
 			}
 		}
 		
-//		System.out.println(removeRoots.size());
 		ArrayList<EdgeToAdd> edgesToAdd = new ArrayList<EdgeToAdd>();
-		
 		for (Node n : removeRoots) {
 			
 			for (Edge e : n.out("remove_edge")) {
 				
-//				Edge edgeToCheck = n.out().tagged("remove_edge").one();
 				Node nextNode = e.to();
-				while (!nextNode.taggedWith(XCSG.ControlFlowCondition) && !nextNode.taggedWith(XCSG.controlFlowExitPoint)) {
+				while (!nextNode.taggedWith(XCSG.ControlFlowCondition) && !nextNode.taggedWith(XCSG.controlFlowExitPoint) && !nextNode.taggedWith("bin_loopback_tail")) {
 					
 					AtlasSet<Edge> dagEdges = nextNode.out().taggedWithAny(XCSG.ControlFlow_Edge);
-//					nextNode = nextNode.out("REDIRECTED_CONTROL_FLOW_BACK_EDGE").one().to();
 					if (dagEdges.size() != 0) {
 						nextNode = dagEdges.one().to();
 					}else if (nextNode.out().taggedWithAny(XCSG.ControlFlow_Edge).size() > 0) {
@@ -207,13 +200,12 @@ public class SubGraphGenerator {
 					}
 				}
 				
-				if (nextNode.taggedWith(XCSG.ControlFlowCondition) || nextNode.taggedWith(XCSG.controlFlowExitPoint)) {
+				if (nextNode.taggedWith(XCSG.ControlFlowCondition) || nextNode.taggedWith(XCSG.controlFlowExitPoint) || nextNode.taggedWith("bin_loopback_tail")) {
 					if (n.out("bin_induced_edge").size() < 2) {
 						nextNode.tag("bin_node");
 						EdgeToAdd temp = new EdgeToAdd(n,nextNode);
 						if (!edgesToAdd.contains(temp)) {
 							edgesToAdd.add(temp);
-
 						}
 					}
 				}
@@ -238,20 +230,12 @@ public class SubGraphGenerator {
 			this.from = from; 
 			this.to = to;
 		}
-		
-		public Node getFrom() {
-			return this.from;
-		}
-		
-		public Node getTo() {
-			return this.to;
-		}
 	}
 	
 	public static Q singleSrcReturn(String name) {
 		
-//		Q f = my_function(name);
-//		Q subgraph = my_cfg(f);
+		Q f = my_function(name);
+		Q originalCFG = my_cfg(f);
 		
 		Q subgraph = scTransform(name);
 		
@@ -260,14 +244,93 @@ public class SubGraphGenerator {
 //		}
 		
 		Node functionNode = Graph.U.createNode();
-		functionNode.putAttr(XCSG.name, "dummy_"+name);
+		functionNode.putAttr(XCSG.name, "single_src_return_"+name);
 		functionNode.tag(XCSG.Function);
 		functionNode.tag("consolidated_src");
 		
-		for (Node n : subgraph.eval().nodes()) {
-			Edge tempEdge = Graph.U.createEdge(functionNode, n);
-			tempEdge.tag(XCSG.Contains);
-			n.tag("consolidated_src");
+		ArrayList<Node> leaves = new ArrayList<Node>();
+		Map<Node, Node> recreatedNodes = new HashMap<Node, Node>();
+		
+		for (Edge e : subgraph.eval().edges()) {
+//			NotificationSet s = n.tags();
+			Iterable<String> i = e.from().tagsI();
+			Node tempFromNode = Graph.U.createNode();
+			tempFromNode.putAttr(XCSG.name, e.from().getAttr(XCSG.name).toString());
+			
+			for (String s : i) {
+				tempFromNode.tag(s);
+			}
+			
+			Iterable<String> iTo = e.to().tagsI();
+			Node tempToNode = Graph.U.createNode();
+			tempToNode.putAttr(XCSG.name, e.to().getAttr(XCSG.name).toString());
+			
+			for (String s : iTo) {
+				tempToNode.tag(s);
+			}
+			
+			Node checkFrom = recreatedNodes.get(e.from());
+			Node checkTo = recreatedNodes.get(e.to());
+			
+			if (checkFrom == null && checkTo == null) {
+				Edge cfgEdge = Graph.U.createEdge(tempFromNode, tempToNode);
+				cfgEdge.tag(XCSG.ControlFlow_Edge);
+				
+				if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					cfgEdge.tag(XCSG.ControlFlowBackEdge);
+				}
+				
+				Edge tempEdge = Graph.U.createEdge(functionNode, tempFromNode);
+				tempEdge.tag(XCSG.Contains);
+				tempFromNode.tag("consolidated_src");
+				
+				Edge tempToEdge = Graph.U.createEdge(functionNode, tempToNode);
+				tempToEdge.tag(XCSG.Contains);
+				tempToNode.tag("consolidated_src");
+				
+				recreatedNodes.put(e.from(), tempFromNode);
+				recreatedNodes.put(e.to(), tempToNode);
+			}
+			else if (checkFrom == null && checkTo != null) {
+				Edge cfgEdge = Graph.U.createEdge(tempFromNode, checkTo);
+				cfgEdge.tag(XCSG.ControlFlow_Edge);
+				
+				if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					cfgEdge.tag(XCSG.ControlFlowBackEdge);
+				}
+				
+				Edge tempEdge = Graph.U.createEdge(functionNode, tempFromNode);
+				tempEdge.tag(XCSG.Contains);
+				tempFromNode.tag("consolidated_src");
+				
+				recreatedNodes.put(e.from(), tempFromNode);
+			}
+			else if (checkFrom != null && checkTo == null) {
+				Edge cfgEdge = Graph.U.createEdge(checkFrom, tempToNode);
+				cfgEdge.tag(XCSG.ControlFlow_Edge);
+				
+				if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					cfgEdge.tag(XCSG.ControlFlowBackEdge);
+				}
+				
+				Edge tempToEdge = Graph.U.createEdge(functionNode, tempToNode);
+				tempToEdge.tag(XCSG.Contains);
+				tempToNode.tag("consolidated_src");
+				
+				recreatedNodes.put(e.to(), tempToNode);
+			}
+			else if (checkFrom != null && checkTo != null) {
+				Edge cfgEdge = Graph.U.createEdge(checkFrom, checkTo);
+				cfgEdge.tag(XCSG.ControlFlow_Edge);
+				
+				if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					cfgEdge.tag(XCSG.ControlFlowBackEdge);
+				}
+			}
+			
+			if (tempToNode.taggedWith(XCSG.controlFlowExitPoint)) {
+				leaves.add(tempToNode);
+			}
 		}
 
 		Node exit = Graph.U.createNode();
@@ -281,7 +344,7 @@ public class SubGraphGenerator {
 		Edge tempExit = Graph.U.createEdge(functionNode, exit);
 		tempExit.tag(XCSG.Contains);
 		
-		AtlasSet<Node> leaves = subgraph.eval().leaves();
+//		AtlasSet<Node> leaves = subgraph.eval().leaves();
 //		System.out.println(leaves.size());
 
 		for(Node n : leaves) {
@@ -295,9 +358,9 @@ public class SubGraphGenerator {
 		Q c = x.contained().nodes("consolidated_src").induce(Query.universe().edges(XCSG.ControlFlow_Edge));
 		//Need to make a new graph that contains the dummy return node and then return that
 		
-		Q r = findSrcSubGraph(c);
+//		Q r = findSrcSubGraph(c);
 		
-		return r;
+		return c;
 		
 	}
 	
