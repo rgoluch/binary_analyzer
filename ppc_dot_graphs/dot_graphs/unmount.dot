@@ -1,0 +1,39 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.unmount/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l292: sym.unmount (signed int arg1, signed int arg_1h, signed int arg_44h, signed int arg_ffbch, signed int arg_20h, signed int arg_24h);\l; arg signed int arg_1h @ r31+0x1\l; arg signed int arg_44h @ r31+0x44\l; arg signed int arg_ffbch @ r31+0xffbc\l; var int32_t var_10h @ r1+0x10\l; var int32_t var_14h @ r1+0x14\l; var int32_t var_18h @ r1+0x18\l; var int32_t var_1ch @ r1+0x1c\l; arg signed int arg_20h @ r1+0x20\l; arg signed int arg_24h @ r1+0x24\l; arg signed int arg1 @ r3\l0x08000034      stwu r1, -0x20(r1)                                     ; [01] -r-x section size 292 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x24(r1)\l0x08000040      stw r28, 0x10(r1)\l0x08000044      stw r29, 0x14(r1)\l0x08000048      stw r30, 0x18(r1)\l0x0800004c      stw r31, 0x1c(r1)\l0x08000050      or. r29, r3, r3                                        ; arg1\l0x08000054      beq 0x8000070\l"]
+	"0x08000058" [URL="sym.unmount/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000058      mr r3, r29                                             ; int32_t arg1\l0x0800005c      bl 0x800005c\l0x08000060      li r0, 0xffff\l0x08000064      cmplwi cr7, r3, 0x1f\l0x08000068      ble cr7, 0x8000078\l"]
+	"0x0800006c" [URL="sym.unmount/0x0800006c", fillcolor="white",color="#767676", fontname="Courier",label="0x0800006c      b 0x8000134\l"]
+	"0x08000070" [URL="sym.unmount/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.unmount @ 0x8000054\l0x08000070      lis r29, 0\l0x08000074      addi r29, r29, 0\l"]
+	"0x08000078" [URL="sym.unmount/0x08000078", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.unmount @ 0x8000068\l0x08000078      lis r9, 0\l0x0800007c      lwz r30, 0(r9)\l0x08000080      li r0, 0xffff\l0x08000084      cmpwi cr7, r30, 0\l0x08000088      ble cr7, 0x8000134\l"]
+	"0x0800008c" [URL="sym.unmount/0x0800008c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800008c      li r31, 0\l0x08000090      addi r28, r9, 0\l"]
+	"0x08000094" [URL="sym.unmount/0x08000094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.unmount @ 0x800012c\l0x08000094      slwi r4, r31, 2\l0x08000098      slwi r0, r31, 6\l0x0800009c      add r4, r4, r0\l0x080000a0      add r4, r4, r28\l0x080000a4      mr r3, r29                                             ; int32_t arg1\l0x080000a8      addi r4, r4, 4                                         ; int32_t arg_1h\l0x080000ac      bl 0x80000ac\l0x080000b0      cmpwi cr7, r3, 0\l0x080000b4      bne cr7, 0x8000124\l"]
+	"0x080000b8" [URL="sym.unmount/0x080000b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000b8      addi r9, r30, 0xffff\l0x080000bc      lis r11, 0\l0x080000c0      stw r9, 0(r11)\l0x080000c4      li r0, 1\l0x080000c8      cmpw cr7, r31, r9\l0x080000cc      bge cr7, 0x8000134\l"]
+	"0x080000d0" [URL="sym.unmount/0x080000d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000d0      addi r31, r31, 1\l0x080000d4      slwi r0, r31, 2\l0x080000d8      slwi r31, r31, 6\l0x080000dc      add r31, r0, r31\l0x080000e0      addi r9, r11, 0\l0x080000e4      add r31, r31, r9\l0x080000e8      addi r31, r31, 4\l0x080000ec      addi r9, r9, 4\l0x080000f0      slwi r0, r30, 2\l0x080000f4      slwi r30, r30, 6\l0x080000f8      add r30, r0, r30\l0x080000fc      add r30, r9, r30\l"]
+	"0x08000100" [URL="sym.unmount/0x08000100", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.unmount @ 0x8000118\l0x08000100      addi r3, r31, 0xffbc                                   ; int32_t arg1\l0x08000104      mr r4, r31                                             ; int32_t arg_1h\l0x08000108      li r5, 0x44                                            ; int32_t arg_44h\l0x0800010c      bl 0x800010c\l0x08000110      addi r31, r31, 0x44\l0x08000114      cmpw cr7, r31, r30\l0x08000118      bne cr7, 0x8000100\l"]
+	"0x0800011c" [URL="sym.unmount/0x0800011c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800011c      li r0, 1\l0x08000120      b 0x8000134\l"]
+	"0x08000124" [URL="sym.unmount/0x08000124", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.unmount @ 0x80000b4\l0x08000124      addi r31, r31, 1\l0x08000128      cmpw cr7, r31, r30\l0x0800012c      bne cr7, 0x8000094\l"]
+	"0x08000130" [URL="sym.unmount/0x08000130", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000130      li r0, 0xffff\l"]
+	"0x08000134" [URL="sym.unmount/0x08000134", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.unmount @ 0x800006c, 0x8000088, 0x80000cc, 0x8000120\l0x08000134      mr r3, r0\l0x08000138      lwz r0, 0x24(r1)\l0x0800013c      mtlr r0\l0x08000140      lwz r28, 0x10(r1)\l0x08000144      lwz r29, 0x14(r1)\l0x08000148      lwz r30, 0x18(r1)\l0x0800014c      lwz r31, 0x1c(r1)\l0x08000150      addi r1, r1, 0x20\l0x08000154      blr\l"]
+        "0x08000034" -> "0x08000070" [color="#13a10e"];
+        "0x08000034" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x08000078" [color="#13a10e"];
+        "0x08000058" -> "0x0800006c" [color="#c50f1f"];
+        "0x0800006c" -> "0x08000134" [color="#3a96dd"];
+        "0x08000070" -> "0x08000078" [color="#3a96dd"];
+        "0x08000078" -> "0x08000134" [color="#13a10e"];
+        "0x08000078" -> "0x0800008c" [color="#c50f1f"];
+        "0x0800008c" -> "0x08000094" [color="#3a96dd"];
+        "0x08000094" -> "0x08000124" [color="#13a10e"];
+        "0x08000094" -> "0x080000b8" [color="#c50f1f"];
+        "0x080000b8" -> "0x08000134" [color="#13a10e"];
+        "0x080000b8" -> "0x080000d0" [color="#c50f1f"];
+        "0x080000d0" -> "0x08000100" [color="#3a96dd"];
+        "0x08000100" -> "0x08000100" [color="#13a10e"];
+        "0x08000100" -> "0x0800011c" [color="#c50f1f"];
+        "0x0800011c" -> "0x08000134" [color="#3a96dd"];
+        "0x08000124" -> "0x08000094" [color="#13a10e"];
+        "0x08000124" -> "0x08000130" [color="#c50f1f"];
+        "0x08000130" -> "0x08000134" [color="#3a96dd"];
+}

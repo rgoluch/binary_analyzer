@@ -1,0 +1,31 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.arpfind/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l296: sym.arpfind (int32_t arg1);\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; var int32_t var_20h @ sp+0x20\l; var int32_t var_24h @ sp+0x24\l; arg int32_t arg1 @ a0\l0x08000034      addiu sp, sp, -0x28                                    ; [01] -r-x section size 296 named .text\l0x08000038      sw ra, (var_24h)\l0x0800003c      sw s3, (var_20h)\l0x08000040      sw s2, (var_1ch)\l0x08000044      sw s1, (var_18h)\l0x08000048      sw s0, (var_14h)\l0x0800004c      lui v0, 0\l0x08000050      lw v0, 0x60(v0)\l0x08000054      nop\l0x08000058      blez v0, 0x80000b4\l0x0800005c      move s2, a0\l"]
+	"0x08000060" [URL="sym.arpfind/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000060      lui s0, 0\l0x08000064      addiu s0, s0, 7\l0x08000068      move s1, zero\l0x0800006c      lui s3, 0\l"]
+	"0x08000070" [URL="sym.arpfind/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x80000ac\l0x08000070      move a0, s0\l0x08000074      move a1, s2\l0x08000078      jal 0\l0x0800007c      addiu a2, zero, 4\l0x08000080      beqz v0, 0x8000098\l0x08000084      nop\l"]
+	"0x08000088" [URL="sym.arpfind/0x08000088", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000088      lb v0, -7(s0)\l0x0800008c      nop\l0x08000090      bnez v0, 0x8000140\l0x08000094      move v0, s1\l"]
+	"0x08000098" [URL="sym.arpfind/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x8000080\l0x08000098      addiu s1, s1, 1\l0x0800009c      addiu v0, s3, 0\l0x080000a0      lw v0, 0x60(v0)\l0x080000a4      nop\l0x080000a8      slt v1, s1, v0\l0x080000ac      bnez v1, 0x8000070\l0x080000b0      addiu s0, s0, 0x10\l"]
+	"0x080000b4" [URL="sym.arpfind/0x080000b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x8000058\l0x080000b4      slti v1, v0, 6\l0x080000b8      beqz v1, 0x80000c8\l0x080000bc      addiu v0, v0, 1\l"]
+	"0x080000c0" [URL="sym.arpfind/0x080000c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000c0      lui v1, 0\l0x080000c4      sw v0, 0x60(v1)\l"]
+	"0x080000c8" [URL="sym.arpfind/0x080000c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x80000b8\l0x080000c8      lui v0, 0\l0x080000cc      lw s1, 0x64(v0)\l0x080000d0      nop\l0x080000d4      addiu v0, s1, 1\l0x080000d8      slti v1, v0, 6\l0x080000dc      beqz v1, 0x80000ec\l0x080000e0      lui v1, 0\l"]
+	"0x080000e4" [URL="sym.arpfind/0x080000e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000e4      j 0xc0\l0x080000e8      sw v0, 0x64(v1)\l"]
+	"0x080000ec" [URL="sym.arpfind/0x080000ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x80000dc\l0x080000ec      lui v0, 0\l0x080000f0      sw zero, 0x64(v0)\l0x080000f4      sll s0, s1, 4\l0x080000f8      lui v0, 0\l0x080000fc      addiu v0, v0, 0\l0x08000100      addu s0, v0, s0\l0x08000104      addiu v0, zero, 1\l0x08000108      sb v0, (s0)\l0x0800010c      addiu a0, s0, 7                                        ; arg1\l0x08000110      move a1, s2\l0x08000114      jal 0\l0x08000118      addiu a2, zero, 4\l0x0800011c      sb zero, 1(s0)\l0x08000120      sb zero, 2(s0)\l0x08000124      sb zero, 3(s0)\l0x08000128      sb zero, 4(s0)\l0x0800012c      sb zero, 5(s0)\l0x08000130      sb zero, 6(s0)\l0x08000134      addiu v0, zero, -1\l0x08000138      sw v0, 0xc(s0)\l0x0800013c      move v0, s1\l"]
+	"0x08000140" [URL="sym.arpfind/0x08000140", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x8000090\l0x08000140      lw ra, (var_24h)\l0x08000144      lw s3, (var_20h)\l0x08000148      lw s2, (var_1ch)\l0x0800014c      lw s1, (var_18h)\l0x08000150      lw s0, (var_14h)\l0x08000154      jr ra\l0x08000158      addiu sp, sp, 0x28\l"]
+        "0x08000034" -> "0x080000b4" [color="#13a10e"];
+        "0x08000034" -> "0x08000060" [color="#c50f1f"];
+        "0x08000060" -> "0x08000070" [color="#3a96dd"];
+        "0x08000070" -> "0x08000098" [color="#13a10e"];
+        "0x08000070" -> "0x08000088" [color="#c50f1f"];
+        "0x08000088" -> "0x08000140" [color="#13a10e"];
+        "0x08000088" -> "0x08000098" [color="#c50f1f"];
+        "0x08000098" -> "0x08000070" [color="#13a10e"];
+        "0x08000098" -> "0x080000b4" [color="#c50f1f"];
+        "0x080000b4" -> "0x080000c8" [color="#13a10e"];
+        "0x080000b4" -> "0x080000c0" [color="#c50f1f"];
+        "0x080000c0" -> "0x080000c8" [color="#3a96dd"];
+        "0x080000c8" -> "0x080000ec" [color="#13a10e"];
+        "0x080000c8" -> "0x080000e4" [color="#c50f1f"];
+        "0x080000ec" -> "0x08000140" [color="#3a96dd"];
+}

@@ -1,0 +1,48 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.freemem/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l296: sym.freemem (int32_t arg1, signed int arg2);\l; arg int32_t arg1 @ r3\l; arg signed int arg2 @ r4\l0x08000034      mr r9, r3                                              ; arg1 ; [01] -r-x section size 296 named .text\l0x08000038      li r3, 0xffff\l0x0800003c      cmpwi r4, 0                                            ; arg2\l0x08000040      beqlr\l0x08000044      lis r11, 0\l0x08000048      lwz r0, 0(r11)\l0x0800004c      cmplw cr7, r0, r9\l0x08000050      bltlr cr7\l0x08000054      lis r11, 0\l0x08000058      addi r0, r11, 0\l0x0800005c      cmplw cr7, r9, r0\l0x08000060      bltlr cr7\l0x08000064      lis r11, 0\l0x08000068      lwz r10, 0(r11)\l0x0800006c      cmpwi cr7, r10, 0\l0x08000070      beq cr7, 0x800009c\l"]
+	"0x08000074" [URL="sym.freemem/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000074      cmplw cr7, r9, r10\l0x08000078      bgt cr7, 0x8000084\l"]
+	"0x0800007c" [URL="sym.freemem/0x0800007c", fillcolor="white",color="#767676", fontname="Courier",label="0x0800007c      b 0x80000ac\l"]
+	"0x08000080" [URL="sym.freemem/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x8000094\l0x08000080      mr r10, r11\l"]
+	"0x08000084" [URL="sym.freemem/0x08000084", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x8000078\l0x08000084      lwz r11, 0(r10)\l0x08000088      cmpwi cr7, r11, 0\l0x0800008c      beq cr7, 0x80000b8\l"]
+	"0x08000090" [URL="sym.freemem/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000090      cmplw cr7, r9, r11\l0x08000094      bgt cr7, 0x8000080\l"]
+	"0x08000098" [URL="sym.freemem/0x08000098", fillcolor="white",color="#767676", fontname="Courier",label="0x08000098      b 0x80000b8\l"]
+	"0x0800009c" [URL="sym.freemem/0x0800009c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x8000070\l0x0800009c      mr r11, r10\l0x080000a0      lis r10, 0\l0x080000a4      addi r10, r10, 0\l0x080000a8      b 0x80000b8\l"]
+	"0x080000ac" [URL="sym.freemem/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x800007c\l0x080000ac      mr r11, r10\l0x080000b0      lis r10, 0\l0x080000b4      addi r10, r10, 0\l"]
+	"0x080000b8" [URL="sym.freemem/0x080000b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.freemem @ 0x800008c, 0x8000098, 0x80000a8\l0x080000b8      lwz r7, 4(r10)\l0x080000bc      add r0, r10, r7\l0x080000c0      cmplw cr7, r9, r0\l0x080000c4      bge cr7, 0x80000dc\l"]
+	"0x080000c8" [URL="sym.freemem/0x080000c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000c8      li r3, 0xffff\l0x080000cc      lis r8, 0\l0x080000d0      addi r8, r8, 0\l0x080000d4      cmpw cr7, r10, r8\l0x080000d8      bnelr cr7\l"]
+	"0x080000dc" [URL="sym.freemem/0x080000dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x80000c4\l0x080000dc      addi r8, r4, 3                                         ; arg2\l0x080000e0      rlwinm r8, r8, 0, 0, 0x1d\l0x080000e4      cmpwi cr7, r11, 0\l0x080000e8      beq cr7, 0x80000fc\l"]
+	"0x080000ec" [URL="sym.freemem/0x080000ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000ec      add r6, r9, r8\l0x080000f0      li r3, 0xffff\l0x080000f4      cmplw cr7, r11, r6\l0x080000f8      bltlr cr7\l"]
+	"0x080000fc" [URL="sym.freemem/0x080000fc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x80000e8\l0x080000fc      lis r6, 0\l0x08000100      addi r6, r6, 0\l0x08000104      cmpw cr7, r10, r6\l0x08000108      beq cr7, 0x8000120\l"]
+	"0x0800010c" [URL="sym.freemem/0x0800010c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800010c      cmpw cr7, r9, r0\l0x08000110      bne cr7, 0x8000120\l"]
+	"0x08000114" [URL="sym.freemem/0x08000114", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000114      add r8, r8, r7\l0x08000118      stw r8, 4(r10)\l0x0800011c      b 0x8000130\l"]
+	"0x08000120" [URL="sym.freemem/0x08000120", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.freemem @ 0x8000108, 0x8000110\l0x08000120      stw r8, 4(r9)\l0x08000124      stw r11, 0(r9)\l0x08000128      stw r9, 0(r10)\l0x0800012c      mr r10, r9\l"]
+	"0x08000130" [URL="sym.freemem/0x08000130", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.freemem @ 0x800011c\l0x08000130      lwz r0, 4(r10)\l0x08000134      add r9, r10, r0\l0x08000138      li r3, 1\l0x0800013c      cmpw cr7, r11, r9\l0x08000140      bnelr cr7\l0x08000144      lwz r9, 4(r11)\l0x08000148      add r0, r9, r0\l0x0800014c      stw r0, 4(r10)\l0x08000150      lwz r0, 0(r11)\l0x08000154      stw r0, 0(r10)\l0x08000158      blr\l"]
+        "0x08000034" -> "0x0800009c" [color="#13a10e"];
+        "0x08000034" -> "0x08000074" [color="#c50f1f"];
+        "0x08000074" -> "0x08000084" [color="#13a10e"];
+        "0x08000074" -> "0x0800007c" [color="#c50f1f"];
+        "0x0800007c" -> "0x080000ac" [color="#3a96dd"];
+        "0x08000080" -> "0x08000084" [color="#3a96dd"];
+        "0x08000084" -> "0x080000b8" [color="#13a10e"];
+        "0x08000084" -> "0x08000090" [color="#c50f1f"];
+        "0x08000090" -> "0x08000080" [color="#13a10e"];
+        "0x08000090" -> "0x08000098" [color="#c50f1f"];
+        "0x08000098" -> "0x080000b8" [color="#3a96dd"];
+        "0x0800009c" -> "0x080000b8" [color="#3a96dd"];
+        "0x080000ac" -> "0x080000b8" [color="#3a96dd"];
+        "0x080000b8" -> "0x080000dc" [color="#13a10e"];
+        "0x080000b8" -> "0x080000c8" [color="#c50f1f"];
+        "0x080000c8" -> "0x080000dc" [color="#3a96dd"];
+        "0x080000dc" -> "0x080000fc" [color="#13a10e"];
+        "0x080000dc" -> "0x080000ec" [color="#c50f1f"];
+        "0x080000ec" -> "0x080000fc" [color="#3a96dd"];
+        "0x080000fc" -> "0x08000120" [color="#13a10e"];
+        "0x080000fc" -> "0x0800010c" [color="#c50f1f"];
+        "0x0800010c" -> "0x08000120" [color="#13a10e"];
+        "0x0800010c" -> "0x08000114" [color="#c50f1f"];
+        "0x08000114" -> "0x08000130" [color="#3a96dd"];
+        "0x08000120" -> "0x08000130" [color="#3a96dd"];
+}

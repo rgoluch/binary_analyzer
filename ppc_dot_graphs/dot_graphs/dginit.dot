@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.dginit/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l48: sym.dginit (int32_t arg1);\l; arg int32_t arg1 @ r3\l0x08000034      lwz r0, 0x44(r3)                                       ; arg1 ; [01] -r-x section size 48 named .text\l0x08000038      slwi r0, r0, 5\l0x0800003c      lis r11, 0\l0x08000040      addi r11, r11, 0\l0x08000044      add r9, r0, r11\l0x08000048      stw r9, 0x40(r3)                                       ; arg1\l0x0800004c      lwz r10, 0(r3)                                         ; arg1\l0x08000050      stwx r10, r11, r0\l0x08000054      li r0, 0\l0x08000058      stw r0, 4(r9)\l0x0800005c      li r3, 1\l0x08000060      blr\l"]
+}

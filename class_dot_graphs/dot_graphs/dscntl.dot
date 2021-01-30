@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.dscntl/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l40: sym.dscntl ();\l; var int32_t var_14h @ sp+0x14\l0x08000034      bnez a1, 0x8000054                                     ; [01] -r-x section size 56 named .text\l0x08000038      nop\l"]
+	"0x0800003c" [URL="sym.dscntl/0x0800003c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800003c      addiu sp, sp, -0x18\l0x08000040      sw ra, (var_14h)\l0x08000044      jal 0\l0x08000048      nop\l0x0800004c      j 0x28\l0x08000050      nop\l"]
+	"0x08000054" [URL="sym.dscntl/0x08000054", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.dscntl @ 0x8000034\l0x08000054      jr ra\l0x08000058      addiu v0, zero, -1\l"]
+        "0x08000034" -> "0x08000054" [color="#13a10e"];
+        "0x08000034" -> "0x0800003c" [color="#c50f1f"];
+}

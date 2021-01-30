@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ttyopen/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l28: sym.ttyopen ();\l0x08000034      mr r9, r3                                              ; [01] -r-x section size 28 named .text\l0x08000038      lbz r0, 0(r4)\l0x0800003c      li r3, 0xffff\l0x08000040      cmpwi cr7, r0, 0\l0x08000044      bnelr cr7\l0x08000048      lwz r3, 0(r9)\l0x0800004c      blr\l"]
+}

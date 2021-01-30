@@ -1,0 +1,14 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.getnet/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l92: sym.getnet (int32_t arg2);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg2 @ a1\l0x08000034      addiu sp, sp, -0x18                                    ; [01] -r-x section size 92 named .text\l0x08000038      sw ra, (var_14h)\l0x0800003c      sw s0, (var_10h)\l0x08000040      lui v0, 0\l0x08000044      lb v0, 0x35(v0)\l0x08000048      nop\l0x0800004c      bnez v0, 0x8000068\l0x08000050      move s0, a0\l"]
+	"0x08000054" [URL="sym.getnet/0x08000054", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000054      jal 0\l0x08000058      nop\l0x0800005c      addiu v1, zero, -1\l0x08000060      beq v0, v1, 0x8000080\l0x08000064      nop\l"]
+	"0x08000068" [URL="sym.getnet/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getnet @ 0x800004c\l0x08000068      move a0, s0\l0x0800006c      lui a1, 0\l0x08000070      addiu a1, a1, 0x58                                     ; arg2\l0x08000074      jal 0\l0x08000078      addiu a2, zero, 4\l0x0800007c      addiu v0, zero, 1\l"]
+	"0x08000080" [URL="sym.getnet/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getnet @ 0x8000060\l0x08000080      lw ra, (var_14h)\l0x08000084      lw s0, (var_10h)\l0x08000088      jr ra\l0x0800008c      addiu sp, sp, 0x18\l"]
+        "0x08000034" -> "0x08000068" [color="#13a10e"];
+        "0x08000034" -> "0x08000054" [color="#c50f1f"];
+        "0x08000054" -> "0x08000080" [color="#13a10e"];
+        "0x08000054" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x08000080" [color="#3a96dd"];
+}

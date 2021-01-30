@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ckmode/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l24: sym.ckmode (int32_t arg3, int32_t arg4);\l; arg int32_t arg3 @ a2\l; arg int32_t arg4 @ a3\l0x08000034      move v0, zero                                          ; [01] -r-x section size 224 named .text\l0x08000038      addiu a2, zero, 0x6f                                   ; arg3\l0x0800003c      addiu a3, zero, 0x72                                   ; arg4\l0x08000040      addiu t1, zero, 0x77\l0x08000044      j 0x94\l0x08000048      addiu t0, zero, 0x6e\l"]
+}

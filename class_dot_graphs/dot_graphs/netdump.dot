@@ -1,0 +1,20 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.netdump/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l280: sym.netdump ();\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; var int32_t var_20h @ sp+0x20\l; var int32_t var_24h @ sp+0x24\l; var int32_t var_28h @ sp+0x28\l; var int32_t var_2ch @ sp+0x2c\l; var int32_t var_30h @ sp+0x30\l; var int32_t var_34h @ sp+0x34\l0x08000034      addiu sp, sp, -0x38                                    ; [01] -r-x section size 280 named .text\l0x08000038      sw ra, (var_34h)\l0x0800003c      sw s6, (var_30h)\l0x08000040      sw s5, (var_2ch)\l0x08000044      sw s4, (var_28h)\l0x08000048      sw s3, (var_24h)\l0x0800004c      sw s2, (var_20h)\l0x08000050      sw s1, (var_1ch)\l0x08000054      sw s0, (var_18h)\l0x08000058      lui v0, 0\l0x0800005c      addiu s0, v0, 0\l0x08000060      lui a0, 0\l0x08000064      lw a1, (v0)\l0x08000068      lw a2, 0x64(s0)\l0x0800006c      lw a3, 0x60(s0)\l0x08000070      jal 0\l0x08000074      addiu a0, a0, 0\l0x08000078      lb v0, 0x35(s0)\l0x0800007c      nop\l0x08000080      beqz v0, 0x8000090\l0x08000084      lui a1, 0\l"]
+	"0x08000088" [URL="sym.netdump/0x08000088", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000088      j 0x64\l0x0800008c      addiu a1, a1, 0\l"]
+	"0x08000090" [URL="sym.netdump/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.netdump @ 0x8000080\l0x08000090      lui a1, 0\l0x08000094      addiu a1, a1, 0\l0x08000098      lui a0, 0\l0x0800009c      jal 0\l0x080000a0      addiu a0, a0, 0\l0x080000a4      lui s0, 0\l0x080000a8      addiu s0, s0, 0\l0x080000ac      lui a0, 0\l0x080000b0      lw a1, 0x68(s0)\l0x080000b4      lw a2, 0x6c(s0)\l0x080000b8      lw a3, 0x70(s0)\l0x080000bc      jal 0\l0x080000c0      addiu a0, a0, 0\l0x080000c4      move s1, zero\l0x080000c8      lui s6, 0\l0x080000cc      addiu s6, s6, 0\l0x080000d0      addiu s2, zero, 4\l"]
+	"0x080000d4" [URL="sym.netdump/0x080000d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.netdump @ 0x8000118\l0x080000d4      lb v0, 4(s0)\l0x080000d8      nop\l0x080000dc      beqz v0, 0x8000114\l0x080000e0      nop\l"]
+	"0x080000e4" [URL="sym.netdump/0x080000e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000e4      lh s5, 6(s0)\l0x080000e8      lw s4, 8(s0)\l0x080000ec      lw s3, 0xc(s0)\l0x080000f0      jal 0\l0x080000f4      move a0, s3\l0x080000f8      sw s3, (var_10h)\l0x080000fc      sw v0, (var_14h)\l0x08000100      move a0, s6\l0x08000104      move a1, s1\l0x08000108      move a2, s5\l0x0800010c      jal 0\l0x08000110      move a3, s4\l"]
+	"0x08000114" [URL="sym.netdump/0x08000114", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.netdump @ 0x80000dc\l0x08000114      addiu s1, s1, 1\l0x08000118      bne s1, s2, 0x80000d4\l0x0800011c      addiu s0, s0, 0xc\l"]
+	"0x08000120" [URL="sym.netdump/0x08000120", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000120      addiu v0, zero, 1\l0x08000124      lw ra, (var_34h)\l0x08000128      lw s6, (var_30h)\l0x0800012c      lw s5, (var_2ch)\l0x08000130      lw s4, (var_28h)\l0x08000134      lw s3, (var_24h)\l0x08000138      lw s2, (var_20h)\l0x0800013c      lw s1, (var_1ch)\l0x08000140      lw s0, (var_18h)\l0x08000144      jr ra\l0x08000148      addiu sp, sp, 0x38\l"]
+        "0x08000034" -> "0x08000090" [color="#13a10e"];
+        "0x08000034" -> "0x08000088" [color="#c50f1f"];
+        "0x08000090" -> "0x080000d4" [color="#3a96dd"];
+        "0x080000d4" -> "0x08000114" [color="#13a10e"];
+        "0x080000d4" -> "0x080000e4" [color="#c50f1f"];
+        "0x080000e4" -> "0x08000114" [color="#3a96dd"];
+        "0x08000114" -> "0x080000d4" [color="#13a10e"];
+        "0x08000114" -> "0x08000120" [color="#c50f1f"];
+}

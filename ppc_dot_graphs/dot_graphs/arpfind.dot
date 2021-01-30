@@ -1,0 +1,32 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.arpfind/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l304: sym.arpfind (int32_t arg1, signed int arg_1h, signed int arg_20h, int32_t arg_24h);\l; arg signed int arg_1h @ r31+0x1\l; var int32_t var_10h @ r1+0x10\l; var int32_t var_14h @ r1+0x14\l; var int32_t var_18h @ r1+0x18\l; var int32_t var_1ch @ r1+0x1c\l; arg signed int arg_20h @ r1+0x20\l; arg int32_t arg_24h @ r1+0x24\l; arg int32_t arg1 @ r3\l0x08000034      stwu r1, -0x20(r1)                                     ; [01] -r-x section size 304 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x24(r1)\l0x08000040      stw r28, 0x10(r1)\l0x08000044      stw r29, 0x14(r1)\l0x08000048      stw r30, 0x18(r1)\l0x0800004c      stw r31, 0x1c(r1)\l0x08000050      mr r28, r3                                             ; arg1\l0x08000054      lis r9, 0\l0x08000058      lwz r9, 0x60(r9)\l0x0800005c      cmpwi cr7, r9, 0\l0x08000060      ble cr7, 0x80000b0\l"]
+	"0x08000064" [URL="sym.arpfind/0x08000064", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000064      li r31, 0\l0x08000068      lis r30, 0\l0x0800006c      addi r30, r30, 0\l"]
+	"0x08000070" [URL="sym.arpfind/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x80000ac\l0x08000070      slwi r29, r31, 4\l0x08000074      add r3, r29, r30\l0x08000078      addi r3, r3, 7                                         ; int32_t arg1\l0x0800007c      mr r4, r28                                             ; int32_t arg_1h\l0x08000080      li r5, 4                                               ; int32_t arg_20h\l0x08000084      crclr 6\l0x08000088      bl 0x8000088\l0x0800008c      cmpwi cr7, r3, 0\l0x08000090      beq cr7, 0x80000a0\l"]
+	"0x08000094" [URL="sym.arpfind/0x08000094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000094      lbzx r0, r30, r29\l0x08000098      cmpwi cr7, r0, 0\l0x0800009c      bne cr7, 0x8000140\l"]
+	"0x080000a0" [URL="sym.arpfind/0x080000a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x8000090\l0x080000a0      addi r31, r31, 1\l0x080000a4      lwz r9, 0x60(r30)\l0x080000a8      cmpw cr7, r9, r31\l0x080000ac      bgt cr7, 0x8000070\l"]
+	"0x080000b0" [URL="sym.arpfind/0x080000b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x8000060\l0x080000b0      cmpwi cr7, r9, 5\l0x080000b4      bgt cr7, 0x80000c4\l"]
+	"0x080000b8" [URL="sym.arpfind/0x080000b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000b8      addi r9, r9, 1\l0x080000bc      lis r11, 0\l0x080000c0      stw r9, 0x60(r11)\l"]
+	"0x080000c4" [URL="sym.arpfind/0x080000c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x80000b4\l0x080000c4      lis r9, 0\l0x080000c8      addi r9, r9, 0\l0x080000cc      lwz r31, 0x64(r9)\l0x080000d0      addi r0, r31, 1\l0x080000d4      stw r0, 0x64(r9)\l0x080000d8      cmpwi cr7, r0, 5\l0x080000dc      ble cr7, 0x80000f0\l"]
+	"0x080000e0" [URL="sym.arpfind/0x080000e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000e0      li r0, 0\l0x080000e4      lis r9, 0\l0x080000e8      addi r9, r9, 0\l0x080000ec      stw r0, 0x64(r9)\l"]
+	"0x080000f0" [URL="sym.arpfind/0x080000f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x80000dc\l0x080000f0      slwi r0, r31, 4\l0x080000f4      lis r9, 0\l0x080000f8      addi r9, r9, 0\l0x080000fc      add r30, r0, r9\l0x08000100      li r11, 1\l0x08000104      stbx r11, r9, r0\l0x08000108      addi r3, r30, 7                                        ; int32_t arg1\l0x0800010c      mr r4, r28                                             ; int32_t arg_1h\l0x08000110      li r5, 4                                               ; int32_t arg_20h\l0x08000114      crclr 6\l0x08000118      bl 0x8000118\l0x0800011c      li r0, 0\l0x08000120      stb r0, 1(r30)\l0x08000124      stb r0, 2(r30)\l0x08000128      stb r0, 3(r30)\l0x0800012c      stb r0, 4(r30)\l0x08000130      stb r0, 5(r30)\l0x08000134      stb r0, 6(r30)\l0x08000138      li r0, 0xffff\l0x0800013c      stw r0, 0xc(r30)\l"]
+	"0x08000140" [URL="sym.arpfind/0x08000140", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpfind @ 0x800009c\l0x08000140      mr r3, r31\l0x08000144      lwz r0, 0x24(r1)\l0x08000148      mtlr r0\l0x0800014c      lwz r28, 0x10(r1)\l0x08000150      lwz r29, 0x14(r1)\l0x08000154      lwz r30, 0x18(r1)\l0x08000158      lwz r31, 0x1c(r1)\l0x0800015c      addi r1, r1, 0x20\l0x08000160      blr\l"]
+        "0x08000034" -> "0x080000b0" [color="#13a10e"];
+        "0x08000034" -> "0x08000064" [color="#c50f1f"];
+        "0x08000064" -> "0x08000070" [color="#3a96dd"];
+        "0x08000070" -> "0x080000a0" [color="#13a10e"];
+        "0x08000070" -> "0x08000094" [color="#c50f1f"];
+        "0x08000094" -> "0x08000140" [color="#13a10e"];
+        "0x08000094" -> "0x080000a0" [color="#c50f1f"];
+        "0x080000a0" -> "0x08000070" [color="#13a10e"];
+        "0x080000a0" -> "0x080000b0" [color="#c50f1f"];
+        "0x080000b0" -> "0x080000c4" [color="#13a10e"];
+        "0x080000b0" -> "0x080000b8" [color="#c50f1f"];
+        "0x080000b8" -> "0x080000c4" [color="#3a96dd"];
+        "0x080000c4" -> "0x080000f0" [color="#13a10e"];
+        "0x080000c4" -> "0x080000e0" [color="#c50f1f"];
+        "0x080000e0" -> "0x080000f0" [color="#3a96dd"];
+        "0x080000f0" -> "0x08000140" [color="#3a96dd"];
+}

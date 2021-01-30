@@ -1,0 +1,54 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ttywrite/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l388: sym.ttywrite (int32_t arg1, signed int arg2, int32_t arg3, signed int arg_1h, signed int arg_20h, int32_t arg_24h);\l; arg signed int arg_1h @ r31+0x1\l; var int32_t var_ch @ r1+0xc\l; var int32_t var_10h @ r1+0x10\l; var int32_t var_14h @ r1+0x14\l; var int32_t var_18h @ r1+0x18\l; var int32_t var_1ch @ r1+0x1c\l; arg signed int arg_20h @ r1+0x20\l; arg int32_t arg_24h @ r1+0x24\l; arg int32_t arg1 @ r3\l; arg signed int arg2 @ r4\l; arg int32_t arg3 @ r5\l0x08000034      stwu r1, -0x20(r1)                                     ; [01] -r-x section size 388 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x24(r1)\l0x08000040      stw r27, 0xc(r1)\l0x08000044      stw r28, 0x10(r1)\l0x08000048      stw r29, 0x14(r1)\l0x0800004c      stw r30, 0x18(r1)\l0x08000050      stw r31, 0x1c(r1)\l0x08000054      mr r29, r3                                             ; arg1\l0x08000058      mr r27, r4                                             ; arg2\l0x0800005c      li r3, 0xffff\l0x08000060      or. r28, r5, r5                                        ; arg3\l0x08000064      blt 0x8000194\l"]
+	"0x08000068" [URL="sym.ttywrite/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      li r3, 1\l0x0800006c      beq 0x8000194\l"]
+	"0x08000070" [URL="sym.ttywrite/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000070      lwz r30, 0x44(r29)\l0x08000074      mulli r30, r30, 0x11c\l0x08000078      lis r9, 0\l0x0800007c      addi r0, r9, 0\l0x08000080      add r30, r30, r0\l0x08000084      lwz r3, 0xd4(r30)                                      ; int32_t arg1\l0x08000088      crclr 6\l0x0800008c      bl 0x800008c\l0x08000090      mr r4, r3\l0x08000094      lwz r9, 0x8c(r30)\l0x08000098      add r9, r30, r9\l0x0800009c      addi r9, r9, 0x94\l0x080000a0      addi r10, r30, 0xd4\l0x080000a4      mr r31, r27\l0x080000a8      li r8, 0xd\l0x080000ac      addi r0, r28, 1\l0x080000b0      mtctr r0\l0x080000b4      add r0, r27, r28\l0x080000b8      cmplw cr7, r27, r0\l0x080000bc      bgt cr7, 0x80000c8\l"]
+	"0x080000c0" [URL="sym.ttywrite/0x080000c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000c0      cmpwi cr7, r0, 0\l0x080000c4      bne cr7, 0x8000124\l"]
+	"0x080000c8" [URL="sym.ttywrite/0x080000c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttywrite @ 0x80000bc\l0x080000c8      li r0, 1\l0x080000cc      mtctr r0\l0x080000d0      b 0x8000124\l"]
+	"0x080000d4" [URL="sym.ttywrite/0x080000d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttywrite @ 0x8000130\l0x080000d4      lbz r11, 0(r31)\l0x080000d8      cmpwi cr7, r11, 0xa\l0x080000dc      bne cr7, 0x8000104\l"]
+	"0x080000e0" [URL="sym.ttywrite/0x080000e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000e0      lbz r11, 0x114(r30)\l0x080000e4      cmpwi cr7, r11, 0\l0x080000e8      beq cr7, 0x8000104\l"]
+	"0x080000ec" [URL="sym.ttywrite/0x080000ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000ec      stb r8, 0(r9)\l0x080000f0      addi r9, r9, 1\l0x080000f4      addi r0, r4, 0xfffe\l0x080000f8      cmplw cr7, r10, r9\l0x080000fc      bgt cr7, 0x8000104\l"]
+	"0x08000100" [URL="sym.ttywrite/0x08000100", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000100      addi r9, r30, 0x94\l"]
+	"0x08000104" [URL="sym.ttywrite/0x08000104", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttywrite @ 0x80000dc, 0x80000e8, 0x80000fc\l0x08000104      lbz r11, 0(r31)\l0x08000108      stb r11, 0(r9)\l0x0800010c      addi r9, r9, 1\l0x08000110      addi r31, r31, 1\l0x08000114      cmplw cr7, r10, r9\l0x08000118      bgt cr7, 0x8000120\l"]
+	"0x0800011c" [URL="sym.ttywrite/0x0800011c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800011c      addi r9, r30, 0x94\l"]
+	"0x08000120" [URL="sym.ttywrite/0x08000120", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttywrite @ 0x8000118\l0x08000120      mr r4, r0\l"]
+	"0x08000124" [URL="sym.ttywrite/0x08000124", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttywrite @ 0x80000c4, 0x80000d0\l0x08000124      addi r0, r4, 0xffff\l0x08000128      cmpwi cr7, r4, 1\l0x0800012c      ble cr7, 0x8000134\l"]
+	"0x08000130" [URL="sym.ttywrite/0x08000130", fillcolor="white",color="#767676", fontname="Courier",label="0x08000130      bdnz 0x80000d4\l"]
+	"0x08000134" [URL="sym.ttywrite/0x08000134", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttywrite @ 0x800012c\l0x08000134      addi r0, r30, 0x94\l0x08000138      subf r9, r0, r9\l0x0800013c      stw r9, 0x8c(r30)\l0x08000140      lwz r3, 0xd4(r30)                                      ; int32_t arg1\l0x08000144      crclr 6\l0x08000148      bl 0x8000148\l0x0800014c      lwz r9, 0x118(r30)\l0x08000150      li r0, 0x40\l0x08000154      stw r0, 8(r9)\l0x08000158      subf r31, r27, r31\l0x0800015c      li r3, 1\l0x08000160      subf. r28, r31, r28\l0x08000164      ble 0x8000194\l"]
+	"0x08000168" [URL="sym.ttywrite/0x08000168", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000168      add r27, r27, r31\l0x0800016c      addi r31, r27, 0xffff\l0x08000170      addi r28, r28, 0xffff\l0x08000174      add r30, r27, r28\l"]
+	"0x08000178" [URL="sym.ttywrite/0x08000178", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttywrite @ 0x800018c\l0x08000178      mr r3, r29                                             ; int32_t arg1\l0x0800017c      lbzu r4, 1(r31)                                        ; int32_t arg2\l0x08000180      crclr 6\l0x08000184      bl 0x8000184\l0x08000188      cmpw cr7, r31, r30\l0x0800018c      bne cr7, 0x8000178\l"]
+	"0x08000190" [URL="sym.ttywrite/0x08000190", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000190      li r3, 1\l"]
+	"0x08000194" [URL="sym.ttywrite/0x08000194", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttywrite @ 0x8000064, 0x800006c, 0x8000164\l0x08000194      lwz r0, 0x24(r1)\l0x08000198      mtlr r0\l0x0800019c      lwz r27, 0xc(r1)\l0x080001a0      lwz r28, 0x10(r1)\l0x080001a4      lwz r29, 0x14(r1)\l0x080001a8      lwz r30, 0x18(r1)\l0x080001ac      lwz r31, 0x1c(r1)\l0x080001b0      addi r1, r1, 0x20\l0x080001b4      blr\l"]
+        "0x08000034" -> "0x08000194" [color="#13a10e"];
+        "0x08000034" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x08000194" [color="#13a10e"];
+        "0x08000068" -> "0x08000070" [color="#c50f1f"];
+        "0x08000070" -> "0x080000c8" [color="#13a10e"];
+        "0x08000070" -> "0x080000c0" [color="#c50f1f"];
+        "0x080000c0" -> "0x08000124" [color="#13a10e"];
+        "0x080000c0" -> "0x080000c8" [color="#c50f1f"];
+        "0x080000c8" -> "0x08000124" [color="#3a96dd"];
+        "0x080000d4" -> "0x08000104" [color="#13a10e"];
+        "0x080000d4" -> "0x080000e0" [color="#c50f1f"];
+        "0x080000e0" -> "0x08000104" [color="#13a10e"];
+        "0x080000e0" -> "0x080000ec" [color="#c50f1f"];
+        "0x080000ec" -> "0x08000104" [color="#13a10e"];
+        "0x080000ec" -> "0x08000100" [color="#c50f1f"];
+        "0x08000100" -> "0x08000104" [color="#3a96dd"];
+        "0x08000104" -> "0x08000120" [color="#13a10e"];
+        "0x08000104" -> "0x0800011c" [color="#c50f1f"];
+        "0x0800011c" -> "0x08000120" [color="#3a96dd"];
+        "0x08000120" -> "0x08000124" [color="#3a96dd"];
+        "0x08000124" -> "0x08000134" [color="#13a10e"];
+        "0x08000124" -> "0x08000130" [color="#c50f1f"];
+        "0x08000130" -> "0x080000d4" [color="#13a10e"];
+        "0x08000130" -> "0x08000134" [color="#c50f1f"];
+        "0x08000134" -> "0x08000194" [color="#13a10e"];
+        "0x08000134" -> "0x08000168" [color="#c50f1f"];
+        "0x08000168" -> "0x08000178" [color="#3a96dd"];
+        "0x08000178" -> "0x08000178" [color="#13a10e"];
+        "0x08000178" -> "0x08000190" [color="#c50f1f"];
+        "0x08000190" -> "0x08000194" [color="#3a96dd"];
+}

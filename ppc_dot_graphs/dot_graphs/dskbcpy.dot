@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.dskbcpy/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l84: sym.dskbcpy (int32_t arg1, signed int arg_10h, int32_t arg_14h);\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg1 @ r3\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 84 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r31, 0xc(r1)\l0x08000044      mr r31, r3                                             ; arg1\l0x08000048      lis r9, 0\l0x0800004c      lwz r3, 0(r9)                                          ; int32_t arg1\l0x08000050      crclr 6\l0x08000054      bl 0x8000054\l0x08000058      li r9, 0\l0x0800005c      li r0, 0x200\l0x08000060      mtctr r0\l"]
+	"0x08000064" [URL="sym.dskbcpy/0x08000064", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dskbcpy @ 0x8000070\l0x08000064      lbzx r0, r31, r9\l0x08000068      stbx r0, r9, r3\l0x0800006c      addi r9, r9, 1\l0x08000070      bdnz 0x8000064\l"]
+	"0x08000074" [URL="sym.dskbcpy/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000074      lwz r0, 0x14(r1)\l0x08000078      mtlr r0\l0x0800007c      lwz r31, 0xc(r1)\l0x08000080      addi r1, r1, 0x10\l0x08000084      blr\l"]
+        "0x08000034" -> "0x08000064" [color="#3a96dd"];
+        "0x08000064" -> "0x08000064" [color="#13a10e"];
+        "0x08000064" -> "0x08000074" [color="#c50f1f"];
+}

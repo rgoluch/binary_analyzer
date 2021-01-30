@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.lfinit/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l48: sym.lfinit (int32_t arg1);\l; arg int32_t arg1 @ r3\l0x08000034      lwz r0, 0x44(r3)                                       ; arg1 ; [01] -r-x section size 48 named .text\l0x08000038      mulli r0, r0, 0x2a4\l0x0800003c      lis r9, 0\l0x08000040      addi r9, r9, 0\l0x08000044      add r11, r0, r9\l0x08000048      stw r11, 0x40(r3)                                      ; arg1\l0x0800004c      li r10, 0\l0x08000050      stw r10, 8(r11)\l0x08000054      lwz r11, 0(r3)                                         ; arg1\l0x08000058      stwx r11, r9, r0\l0x0800005c      li r3, 1\l0x08000060      blr\l"]
+}

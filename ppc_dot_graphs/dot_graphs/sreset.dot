@@ -1,0 +1,24 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.sreset/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l172: sym.sreset (int32_t arg1, signed int arg2, signed int arg_20h, int32_t arg_24h);\l; var int32_t var_14h @ r1+0x14\l; var int32_t var_18h @ r1+0x18\l; var int32_t var_1ch @ r1+0x1c\l; arg signed int arg_20h @ r1+0x20\l; arg int32_t arg_24h @ r1+0x24\l; arg int32_t arg1 @ r3\l; arg signed int arg2 @ r4\l0x08000034      stwu r1, -0x20(r1)                                     ; [01] -r-x section size 172 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x24(r1)\l0x08000040      stw r29, 0x14(r1)\l0x08000044      stw r30, 0x18(r1)\l0x08000048      stw r31, 0x1c(r1)\l0x0800004c      mr r29, r3                                             ; arg1\l0x08000050      mr r30, r4                                             ; arg2\l0x08000054      li r3, 0xffff\l0x08000058      cmplwi cr7, r29, 0x1d\l0x0800005c      bgt cr7, 0x80000c4\l"]
+	"0x08000060" [URL="sym.sreset/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000060      cmpwi cr7, r4, 0                                       ; arg2\l0x08000064      blt cr7, 0x80000c4\l"]
+	"0x08000068" [URL="sym.sreset/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      slwi r0, r29, 3\l0x0800006c      lis r9, 0\l0x08000070      addi r9, r9, 0\l0x08000074      lbzx r0, r9, r0\l0x08000078      cmpwi cr7, r0, 1\l0x0800007c      beq cr7, 0x80000c4\l"]
+	"0x08000080" [URL="sym.sreset/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000080      slwi r29, r29, 3\l0x08000084      lis r9, 0\l0x08000088      addi r0, r9, 0\l0x0800008c      add r29, r29, r0\l0x08000090      lha r31, 4(r29)\l0x08000094      b 0x80000a4\l"]
+	"0x08000098" [URL="sym.sreset/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sreset @ 0x80000b4\l0x08000098      li r4, 0                                               ; int32_t arg2\l0x0800009c      crclr 6\l0x080000a0      bl 0x80000a0\l"]
+	"0x080000a4" [URL="sym.sreset/0x080000a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sreset @ 0x8000094\l0x080000a4      mr r3, r31                                             ; int32_t arg1\l0x080000a8      crclr 6\l0x080000ac      bl 0x80000ac\l0x080000b0      cmpwi cr7, r3, 0xffff\l0x080000b4      bne cr7, 0x8000098\l"]
+	"0x080000b8" [URL="sym.sreset/0x080000b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000b8      sth r30, 2(r29)\l0x080000bc      bl 0x80000bc\l0x080000c0      li r3, 1\l"]
+	"0x080000c4" [URL="sym.sreset/0x080000c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.sreset @ 0x800005c, 0x8000064, 0x800007c\l0x080000c4      lwz r0, 0x24(r1)\l0x080000c8      mtlr r0\l0x080000cc      lwz r29, 0x14(r1)\l0x080000d0      lwz r30, 0x18(r1)\l0x080000d4      lwz r31, 0x1c(r1)\l0x080000d8      addi r1, r1, 0x20\l0x080000dc      blr\l"]
+        "0x08000034" -> "0x080000c4" [color="#13a10e"];
+        "0x08000034" -> "0x08000060" [color="#c50f1f"];
+        "0x08000060" -> "0x080000c4" [color="#13a10e"];
+        "0x08000060" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x080000c4" [color="#13a10e"];
+        "0x08000068" -> "0x08000080" [color="#c50f1f"];
+        "0x08000080" -> "0x080000a4" [color="#3a96dd"];
+        "0x08000098" -> "0x080000a4" [color="#3a96dd"];
+        "0x080000a4" -> "0x08000098" [color="#13a10e"];
+        "0x080000a4" -> "0x080000b8" [color="#c50f1f"];
+        "0x080000b8" -> "0x080000c4" [color="#3a96dd"];
+}

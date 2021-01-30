@@ -1,0 +1,12 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.sdelete/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l132: sym.sdelete (int32_t arg1);\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; arg int32_t arg1 @ a0\l0x08000034      sltiu v0, a0, 0x1e                                     ; arg1 ; [01] -r-x section size 216 named .text\l0x08000038      beqz v0, 0x80000e4\l0x0800003c      sll v1, a0, 3                                          ; arg1\l"]
+	"0x08000040" [URL="sym.sdelete/0x08000040", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000040      lui v0, 0\l0x08000044      addiu v0, v0, 0\l0x08000048      addu v0, v1, v0\l0x0800004c      lb v1, (v0)\l0x08000050      addiu v0, zero, 1\l0x08000054      beq v1, v0, 0x80000ec\l0x08000058      sll a0, a0, 3                                          ; arg1\l"]
+	"0x0800005c" [URL="sym.sdelete/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800005c      addiu sp, sp, -0x20\l0x08000060      sw ra, (var_1ch)\l0x08000064      sw s1, (var_18h)\l0x08000068      sw s0, (var_14h)\l0x0800006c      lui s0, 0\l0x08000070      addiu s0, s0, 0\l0x08000074      addu s0, s0, a0                                        ; arg1\l0x08000078      sb v0, (s0)\l0x0800007c      lh v0, 4(s0)\l0x08000080      nop\l0x08000084      sll v1, v0, 1\l0x08000088      sll v0, v0, 3\l0x0800008c      subu v0, v0, v1\l0x08000090      lui v1, 0\l0x08000094      addiu v1, v1, 0\l0x08000098      addu v0, v1, v0\l0x0800009c      lh v0, 2(v0)\l0x080000a0      nop\l0x080000a4      slti v0, v0, 0xa\l0x080000a8      beqz v0, 0x80000f4\l0x080000ac      addiu s1, zero, -1\l"]
+	"0x080000b0" [URL="sym.sdelete/0x080000b0", fillcolor="white",color="#767676", fontname="Courier",label="0x080000b0      j 0x8c\l0x080000b4      nop\l"]
+        "0x08000034" -> "0x08000040" [color="#c50f1f"];
+        "0x08000040" -> "0x0800005c" [color="#c50f1f"];
+        "0x0800005c" -> "0x080000b0" [color="#c50f1f"];
+}

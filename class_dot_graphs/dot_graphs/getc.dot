@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.getc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l76: int sym.getc (FILE *stream);\l; var int32_t var_14h @ sp+0x14\l; arg FILE *stream @ a0\l0x08000034      sltiu v0, a0, 0x15                                     ; stream ; [01] -r-x section size 92 named .text\l0x08000038      beqz v0, 0x8000078\l0x0800003c      nop\l"]
+	"0x08000040" [URL="sym.getc/0x08000040", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000040      addiu sp, sp, -0x18\l0x08000044      sw ra, (var_14h)\l0x08000048      sll v0, a0, 3                                          ; stream\l0x0800004c      sll a0, a0, 6                                          ; stream\l0x08000050      addu a0, v0, a0                                        ; stream\l0x08000054      lui v0, 0\l0x08000058      addiu v0, v0, 0\l0x0800005c      addu a0, v0, a0                                        ; stream\l0x08000060      lw v0, 0x20(a0)                                        ; stream\l0x08000064      nop\l0x08000068      jalr v0\l0x0800006c      nop\l0x08000070      j 0x4c\l0x08000074      nop\l"]
+	"0x08000078" [URL="sym.getc/0x08000078", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.getc @ 0x8000038\l0x08000078      jr ra\l0x0800007c      addiu v0, zero, -1\l"]
+        "0x08000034" -> "0x08000078" [color="#13a10e"];
+        "0x08000034" -> "0x08000040" [color="#c50f1f"];
+}

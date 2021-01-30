@@ -1,0 +1,26 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.pinit/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l200: sym.pinit (int32_t arg1, signed int arg_ffffh, signed int arg_10h, int32_t arg_14h);\l; arg signed int arg_ffffh @ r31+0xffff\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg1 @ r3\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 200 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r31, 0xc(r1)\l0x08000044      mr r31, r3                                             ; arg1\l0x08000048      slwi r3, r3, 3                                         ; int32_t arg1\l0x0800004c      crclr 6\l0x08000050      bl 0x8000050\l0x08000054      lis r9, 0\l0x08000058      stw r3, 0(r9)\l0x0800005c      cmpwi cr7, r3, 0xffff\l0x08000060      bne cr7, 0x8000074\l"]
+	"0x08000064" [URL="sym.pinit/0x08000064", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000064      lis r3, 0\l0x08000068      addi r3, r3, 0                                         ; int32_t arg1\l0x0800006c      crclr 6\l0x08000070      bl 0x8000070\l"]
+	"0x08000074" [URL="sym.pinit/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.pinit @ 0x8000060\l0x08000074      lis r9, 0\l0x08000078      addi r9, r9, 0\l0x0800007c      li r11, 1\l0x08000080      li r0, 0\l0x08000084      li r10, 0x14\l0x08000088      mtctr r10\l"]
+	"0x0800008c" [URL="sym.pinit/0x0800008c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.pinit @ 0x8000098\l0x0800008c      stb r11, 0(r9)\l0x08000090      stw r0, 0x10(r9)\l0x08000094      addi r9, r9, 0x1c\l0x08000098      bdnz 0x800008c\l"]
+	"0x0800009c" [URL="sym.pinit/0x0800009c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800009c      li r0, 0x13\l0x080000a0      lis r9, 0\l0x080000a4      stw r0, 0(r9)\l0x080000a8      lis r9, 0\l0x080000ac      lwz r10, 0(r9)\l0x080000b0      addic. r11, r31, 0xffff\l0x080000b4      ble 0x80000dc\l"]
+	"0x080000b8" [URL="sym.pinit/0x080000b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000b8      mr r9, r10\l0x080000bc      mtctr r11\l"]
+	"0x080000c0" [URL="sym.pinit/0x080000c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.pinit @ 0x80000cc\l0x080000c0      addi r9, r9, 8\l0x080000c4      stw r9, -4(r9)\l0x080000c8      addi r11, r11, 0xffff\l0x080000cc      bdnz 0x80000c0\l"]
+	"0x080000d0" [URL="sym.pinit/0x080000d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000d0      addi r31, r31, 0xffff\l0x080000d4      slwi r31, r31, 3\l0x080000d8      add r10, r10, r31\l"]
+	"0x080000dc" [URL="sym.pinit/0x080000dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.pinit @ 0x80000b4\l0x080000dc      li r0, 0\l0x080000e0      stw r0, 4(r10)\l0x080000e4      li r3, 1\l0x080000e8      lwz r0, 0x14(r1)\l0x080000ec      mtlr r0\l0x080000f0      lwz r31, 0xc(r1)\l0x080000f4      addi r1, r1, 0x10\l0x080000f8      blr\l"]
+        "0x08000034" -> "0x08000074" [color="#13a10e"];
+        "0x08000034" -> "0x08000064" [color="#c50f1f"];
+        "0x08000064" -> "0x08000074" [color="#3a96dd"];
+        "0x08000074" -> "0x0800008c" [color="#3a96dd"];
+        "0x0800008c" -> "0x0800008c" [color="#13a10e"];
+        "0x0800008c" -> "0x0800009c" [color="#c50f1f"];
+        "0x0800009c" -> "0x080000dc" [color="#13a10e"];
+        "0x0800009c" -> "0x080000b8" [color="#c50f1f"];
+        "0x080000b8" -> "0x080000c0" [color="#3a96dd"];
+        "0x080000c0" -> "0x080000c0" [color="#13a10e"];
+        "0x080000c0" -> "0x080000d0" [color="#c50f1f"];
+        "0x080000d0" -> "0x080000dc" [color="#3a96dd"];
+}

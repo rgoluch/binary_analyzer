@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.receive/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l96: sym.receive (int32_t arg_18h, int32_t arg_1ah, signed int arg_10h, int32_t arg_14h);\l; arg int32_t arg_18h @ r31+0x18\l; arg int32_t arg_1ah @ r31+0x1a\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 96 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r31, 0xc(r1)\l0x08000044      lis r9, 0\l0x08000048      lwz r0, 0(r9)\l0x0800004c      mulli r0, r0, 0x34\l0x08000050      lis r9, 0\l0x08000054      addi r9, r9, 0\l0x08000058      add r31, r0, r9\l0x0800005c      lbz r11, 0x1a(r31)\l0x08000060      cmpwi cr7, r11, 0\l0x08000064      bne cr7, 0x8000074\l"]
+	"0x08000068" [URL="sym.receive/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      li r11, 4\l0x0800006c      stbx r11, r9, r0\l0x08000070      bl 0x8000070\l"]
+	"0x08000074" [URL="sym.receive/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.receive @ 0x8000064\l0x08000074      lha r3, 0x18(r31)\l0x08000078      li r0, 0\l0x0800007c      stb r0, 0x1a(r31)\l0x08000080      lwz r0, 0x14(r1)\l0x08000084      mtlr r0\l0x08000088      lwz r31, 0xc(r1)\l0x0800008c      addi r1, r1, 0x10\l0x08000090      blr\l"]
+        "0x08000034" -> "0x08000074" [color="#13a10e"];
+        "0x08000034" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x08000074" [color="#3a96dd"];
+}

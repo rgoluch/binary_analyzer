@@ -1,0 +1,14 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.resume/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l108: sym.resume (int32_t arg1, int32_t arg2);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x08000034      addiu v0, a0, -1                                       ; arg1 ; [01] -r-x section size 124 named .text\l0x08000038      sltiu v0, v0, 9\l0x0800003c      beqz v0, 0x8000090\l0x08000040      sll v1, a0, 2                                          ; arg1\l"]
+	"0x08000044" [URL="sym.resume/0x08000044", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000044      sll a1, a0, 4                                          ; arg2\l0x08000048      subu v1, a1, v1                                        ; arg2\l0x0800004c      addu v1, v1, a0                                        ; arg1\l0x08000050      sll v1, v1, 2\l0x08000054      lui v0, 0\l0x08000058      addiu v0, v0, 0\l0x0800005c      addu v0, v0, v1\l0x08000060      lb a1, (v0)\l0x08000064      addiu v1, zero, 6\l0x08000068      bne a1, v1, 0x8000098\l0x0800006c      nop\l"]
+	"0x08000070" [URL="sym.resume/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000070      addiu sp, sp, -0x18\l0x08000074      sw ra, (var_14h)\l0x08000078      sw s0, (var_10h)\l0x0800007c      lh s0, 2(v0)\l0x08000080      jal 0\l0x08000084      addiu a1, zero, 1\l0x08000088      j 0x6c\l0x0800008c      move v0, s0\l"]
+	"0x08000090" [URL="sym.resume/0x08000090", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.resume @ 0x800003c\l0x08000090      jr ra\l0x08000094      addiu v0, zero, -1\l"]
+	"0x08000098" [URL="sym.resume/0x08000098", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.resume @ 0x8000068\l0x08000098      jr ra\l0x0800009c      addiu v0, zero, -1\l"]
+        "0x08000034" -> "0x08000090" [color="#13a10e"];
+        "0x08000034" -> "0x08000044" [color="#c50f1f"];
+        "0x08000044" -> "0x08000098" [color="#13a10e"];
+        "0x08000044" -> "0x08000070" [color="#c50f1f"];
+}

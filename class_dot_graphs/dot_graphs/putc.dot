@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.putc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l80: int sym.putc (int c, FILE *stream);\l; var int32_t var_14h @ sp+0x14\l; arg int c @ a0\l; arg FILE *stream @ a1\l0x08000034      sll a1, a1, 0x18                                       ; stream ; [01] -r-x section size 96 named .text\l0x08000038      sltiu v0, a0, 0x15                                     ; c\l0x0800003c      beqz v0, 0x800007c\l0x08000040      sra a1, a1, 0x18                                       ; stream\l"]
+	"0x08000044" [URL="sym.putc/0x08000044", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000044      addiu sp, sp, -0x18\l0x08000048      sw ra, (var_14h)\l0x0800004c      sll v0, a0, 3                                          ; c\l0x08000050      sll a0, a0, 6                                          ; c\l0x08000054      addu a0, v0, a0                                        ; c\l0x08000058      lui v0, 0\l0x0800005c      addiu v0, v0, 0\l0x08000060      addu a0, v0, a0                                        ; c\l0x08000064      lw v0, 0x24(a0)                                        ; c\l0x08000068      nop\l0x0800006c      jalr v0\l0x08000070      nop\l0x08000074      j 0x50\l0x08000078      nop\l"]
+	"0x0800007c" [URL="sym.putc/0x0800007c", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.putc @ 0x800003c\l0x0800007c      jr ra\l0x08000080      addiu v0, zero, -1\l"]
+        "0x08000034" -> "0x0800007c" [color="#13a10e"];
+        "0x08000034" -> "0x08000044" [color="#c50f1f"];
+}

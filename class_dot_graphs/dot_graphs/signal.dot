@@ -1,0 +1,18 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.signal/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l124: void sym.signal (int sig, void *func);\l; var int32_t var_14h @ sp+0x14\l; arg int sig @ a0\l0x08000034      sltiu v0, a0, 0x1e                                     ; sig ; [01] -r-x section size 140 named .text\l0x08000038      beqz v0, 0x8000098\l0x0800003c      sll a0, a0, 3                                          ; sig\l"]
+	"0x08000040" [URL="sym.signal/0x08000040", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000040      lui v0, 0\l0x08000044      addiu v0, v0, 0\l0x08000048      addu a0, v0, a0                                        ; sig\l0x0800004c      lb v1, (a0)                                            ; sig\l0x08000050      addiu v0, zero, 1\l0x08000054      beq v1, v0, 0x80000a0\l0x08000058      nop\l"]
+	"0x0800005c" [URL="sym.signal/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800005c      lh v0, 2(a0)\l0x08000060      nop\l0x08000064      addiu v1, v0, 1\l0x08000068      bgez v0, 0x80000a8\l0x0800006c      sh v1, 2(a0)                                           ; sig\l"]
+	"0x08000070" [URL="sym.signal/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000070      addiu sp, sp, -0x18\l0x08000074      sw ra, (var_14h)\l0x08000078      lh a0, 4(a0)\l0x0800007c      jal 0\l0x08000080      nop\l0x08000084      move a0, v0\l0x08000088      jal 0\l0x0800008c      addiu a1, zero, 1\l0x08000090      j 0x7c\l0x08000094      addiu v0, zero, 1\l"]
+	"0x08000098" [URL="sym.signal/0x08000098", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.signal @ 0x8000038\l0x08000098      jr ra\l0x0800009c      addiu v0, zero, -1\l"]
+	"0x080000a0" [URL="sym.signal/0x080000a0", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.signal @ 0x8000054\l0x080000a0      jr ra\l0x080000a4      addiu v0, zero, -1\l"]
+	"0x080000a8" [URL="sym.signal/0x080000a8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.signal @ 0x8000068\l0x080000a8      jr ra\l0x080000ac      addiu v0, zero, 1\l"]
+        "0x08000034" -> "0x08000098" [color="#13a10e"];
+        "0x08000034" -> "0x08000040" [color="#c50f1f"];
+        "0x08000040" -> "0x080000a0" [color="#13a10e"];
+        "0x08000040" -> "0x0800005c" [color="#c50f1f"];
+        "0x0800005c" -> "0x080000a8" [color="#13a10e"];
+        "0x0800005c" -> "0x08000070" [color="#c50f1f"];
+}

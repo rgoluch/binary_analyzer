@@ -1,0 +1,19 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ttyputc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l184: sym.ttyputc (int32_t arg1, int32_t arg2);\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x08000034      addiu sp, sp, -0x20                                    ; [01] -r-x section size 184 named .text\l0x08000038      sw ra, (var_1ch)\l0x0800003c      sw s1, (var_18h)\l0x08000040      sw s0, (var_14h)\l0x08000044      sll s1, a1, 0x18                                       ; arg2\l0x08000048      sra s1, s1, 0x18\l0x0800004c      lw v0, 0x44(a0)                                        ; arg1\l0x08000050      nop\l0x08000054      sll s0, v0, 3\l0x08000058      sll v1, v0, 6\l0x0800005c      addu s0, s0, v1\l0x08000060      subu v0, s0, v0\l0x08000064      sll v0, v0, 2\l0x08000068      lui s0, 0\l0x0800006c      addiu s0, s0, 0\l0x08000070      addu s0, s0, v0\l0x08000074      addiu v0, zero, 0xa\l0x08000078      bne s1, v0, 0x8000098\l0x0800007c      nop\l"]
+	"0x08000080" [URL="sym.ttyputc/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000080      lb v0, 0x114(s0)\l0x08000084      nop\l0x08000088      beqz v0, 0x8000098\l0x0800008c      nop\l"]
+	"0x08000090" [URL="sym.ttyputc/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000090      jal 0\l0x08000094      addiu a1, zero, 0xd\l"]
+	"0x08000098" [URL="sym.ttyputc/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttyputc @ 0x8000078, 0x8000088\l0x08000098      lw a0, 0xd4(s0)\l0x0800009c      jal 0\l0x080000a0      nop\l0x080000a4      lw v1, 0x8c(s0)\l0x080000a8      nop\l0x080000ac      addiu v0, v1, 1\l0x080000b0      sw v0, 0x8c(s0)\l0x080000b4      addu v1, s0, v1\l0x080000b8      slti v0, v0, 0x40\l0x080000bc      bnez v0, 0x80000c8\l0x080000c0      sb s1, 0x94(v1)\l"]
+	"0x080000c4" [URL="sym.ttyputc/0x080000c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000c4      sw zero, 0x8c(s0)\l"]
+	"0x080000c8" [URL="sym.ttyputc/0x080000c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyputc @ 0x80000bc\l0x080000c8      lw v0, 0x118(s0)\l0x080000cc      addiu v1, zero, 0x40\l0x080000d0      sw v1, 8(v0)\l0x080000d4      addiu v0, zero, 1\l0x080000d8      lw ra, (var_1ch)\l0x080000dc      lw s1, (var_18h)\l0x080000e0      lw s0, (var_14h)\l0x080000e4      jr ra\l0x080000e8      addiu sp, sp, 0x20\l"]
+        "0x08000034" -> "0x08000098" [color="#13a10e"];
+        "0x08000034" -> "0x08000080" [color="#c50f1f"];
+        "0x08000080" -> "0x08000098" [color="#13a10e"];
+        "0x08000080" -> "0x08000090" [color="#c50f1f"];
+        "0x08000090" -> "0x08000098" [color="#3a96dd"];
+        "0x08000098" -> "0x080000c8" [color="#13a10e"];
+        "0x08000098" -> "0x080000c4" [color="#c50f1f"];
+        "0x080000c4" -> "0x080000c8" [color="#3a96dd"];
+}

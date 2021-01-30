@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x080000d8" [URL="sym.ioinit/0x080000d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="68: sym.ioinit (int32_t arg1);\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg1 @ a0\l0x080000d8      sltiu v0, a0, 0x15                                     ; arg1\l0x080000dc      beqz v0, 0x8000114\l0x080000e0      sll v1, a0, 3                                          ; arg1\l"]
+	"0x080000e4" [URL="sym.ioinit/0x080000e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000e4      addiu sp, sp, -0x18\l0x080000e8      sw ra, (var_14h)\l0x080000ec      sll v0, a0, 6                                          ; arg1\l0x080000f0      addu v1, v1, v0\l0x080000f4      lui v0, 0\l0x080000f8      addiu v0, v0, 0\l0x080000fc      addu v0, v0, v1\l0x08000100      lw a2, 0x44(v0)\l0x08000104      jal 0\l0x08000108      move a1, a2\l0x0800010c      j 0xe8\l0x08000110      addiu v0, zero, 1\l"]
+	"0x08000114" [URL="sym.ioinit/0x08000114", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.ioinit @ 0x80000dc\l0x08000114      jr ra\l0x08000118      addiu v0, zero, -1\l"]
+        "0x080000d8" -> "0x08000114" [color="#13a10e"];
+        "0x080000d8" -> "0x080000e4" [color="#c50f1f"];
+}

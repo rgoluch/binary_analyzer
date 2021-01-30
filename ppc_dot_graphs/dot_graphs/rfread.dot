@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.rfread/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l64: sym.rfread (int32_t arg2, signed int arg3, signed int arg_10h, int32_t arg_14h);\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg2 @ r4\l; arg signed int arg3 @ r5\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 64 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      mr r0, r4                                              ; arg2\l0x08000044      mr r6, r5                                              ; arg3\l0x08000048      cmpwi cr7, r5, 0x200                                   ; arg3\l0x0800004c      ble cr7, 0x8000054\l"]
+	"0x08000050" [URL="sym.rfread/0x08000050", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000050      li r6, 0x200\l"]
+	"0x08000054" [URL="sym.rfread/0x08000054", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfread @ 0x800004c\l0x08000054      li r4, 2                                               ; int32_t arg3\l0x08000058      mr r5, r0                                              ; int32_t arg_10h\l0x0800005c      crclr 6\l0x08000060      bl 0x8000060\l0x08000064      lwz r0, 0x14(r1)\l0x08000068      mtlr r0\l0x0800006c      addi r1, r1, 0x10\l0x08000070      blr\l"]
+        "0x08000034" -> "0x08000054" [color="#13a10e"];
+        "0x08000034" -> "0x08000050" [color="#c50f1f"];
+        "0x08000050" -> "0x08000054" [color="#3a96dd"];
+}

@@ -1,0 +1,23 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.rfalloc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l140: sym.rfalloc (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x08000034      lui v0, 0                                              ; [01] -r-x section size 140 named .text\l0x08000038      lw v1, 0x5c(v0)\l0x0800003c      addiu v0, zero, -1\l0x08000040      beq v1, v0, 0x8000090\l0x08000044      move v0, zero\l"]
+	"0x08000048" [URL="sym.rfalloc/0x08000048", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000048      lui v0, 0\l0x0800004c      lw v1, 0xc0(v0)\l0x08000050      addiu v0, zero, -1\l0x08000054      beq v1, v0, 0x8000090\l0x08000058      addiu v0, zero, 1\l"]
+	"0x0800005c" [URL="sym.rfalloc/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800005c      lui v0, 0\l0x08000060      lw v1, 0x124(v0)\l0x08000064      addiu v0, zero, -1\l0x08000068      beq v1, v0, 0x800008c\l0x0800006c      addiu v1, zero, -1\l"]
+	"0x08000070" [URL="sym.rfalloc/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000070      lui v0, 0\l0x08000074      lw a0, 0x188(v0)\l0x08000078      nop\l0x0800007c      bne a0, v1, 0x80000b8\l0x08000080      addiu v0, zero, -1\l"]
+	"0x08000084" [URL="sym.rfalloc/0x08000084", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000084      j 0x5c\l0x08000088      addiu v0, zero, 3\l"]
+	"0x0800008c" [URL="sym.rfalloc/0x0800008c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfalloc @ 0x8000068\l0x0800008c      addiu v0, zero, 2\l"]
+	"0x08000090" [URL="sym.rfalloc/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.rfalloc @ 0x8000040, 0x8000054\l0x08000090      sll a0, v0, 2                                          ; arg1\l0x08000094      sll v1, v0, 4\l0x08000098      addu v1, a0, v1                                        ; arg1\l0x0800009c      sll a0, v1, 2                                          ; arg1\l0x080000a0      addu v1, v1, a0                                        ; arg1\l0x080000a4      lui a0, 0\l0x080000a8      addiu a0, a0, 0                                        ; arg1\l0x080000ac      addu v1, a0, v1                                        ; arg1\l0x080000b0      addiu a0, zero, 1                                      ; arg1\l0x080000b4      sw a0, 0x5c(v1)\l"]
+	"0x080000b8" [URL="sym.rfalloc/0x080000b8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.rfalloc @ 0x800007c\l0x080000b8      jr ra\l0x080000bc      nop\l"]
+        "0x08000034" -> "0x08000090" [color="#13a10e"];
+        "0x08000034" -> "0x08000048" [color="#c50f1f"];
+        "0x08000048" -> "0x08000090" [color="#13a10e"];
+        "0x08000048" -> "0x0800005c" [color="#c50f1f"];
+        "0x0800005c" -> "0x0800008c" [color="#13a10e"];
+        "0x0800005c" -> "0x08000070" [color="#c50f1f"];
+        "0x08000070" -> "0x080000b8" [color="#13a10e"];
+        "0x08000070" -> "0x08000084" [color="#c50f1f"];
+        "0x0800008c" -> "0x08000090" [color="#3a96dd"];
+        "0x08000090" -> "0x080000b8" [color="#3a96dd"];
+}

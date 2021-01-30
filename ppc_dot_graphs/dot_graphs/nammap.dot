@@ -1,0 +1,12 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.nammap/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l92: sym.nammap (int32_t arg2, signed int arg_60h, int32_t arg_64h);\l; var signed int var_8h @ r1+0x8\l; var int32_t var_5ch @ r1+0x5c\l; arg signed int arg_60h @ r1+0x60\l; arg int32_t arg_64h @ r1+0x64\l; arg int32_t arg2 @ r4\l0x08000034      stwu r1, -0x60(r1)                                     ; [01] -r-x section size 92 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x64(r1)\l0x08000040      stw r31, 0x5c(r1)\l0x08000044      mr r31, r4                                             ; arg2\l0x08000048      crclr 6\l0x0800004c      bl 0x800004c\l0x08000050      cmpwi cr7, r3, 0x14\l0x08000054      bne cr7, 0x800007c\l"]
+	"0x08000058" [URL="sym.nammap/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nammap @ 0x8000078\l0x08000058      addi r3, r1, 8                                         ; int32_t arg2\l0x0800005c      mr r4, r31                                             ; int32_t arg_60h\l0x08000060      bl 0x8000060\l0x08000064      addi r3, r1, 8                                         ; int32_t arg2\l0x08000068      mr r4, r31                                             ; int32_t arg_60h\l0x0800006c      crclr 6\l0x08000070      bl 0x8000070\l0x08000074      cmpwi cr7, r3, 0x14\l0x08000078      beq cr7, 0x8000058\l"]
+	"0x0800007c" [URL="sym.nammap/0x0800007c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nammap @ 0x8000054\l0x0800007c      lwz r0, 0x64(r1)\l0x08000080      mtlr r0\l0x08000084      lwz r31, 0x5c(r1)\l0x08000088      addi r1, r1, 0x60\l0x0800008c      blr\l"]
+        "0x08000034" -> "0x0800007c" [color="#13a10e"];
+        "0x08000034" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x08000058" [color="#13a10e"];
+        "0x08000058" -> "0x0800007c" [color="#c50f1f"];
+}

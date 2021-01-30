@@ -1,0 +1,12 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00000228" [URL="fcn.00000228/0x00000228", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- rip:\l75: fcn.00000228 ();\l; var int64_t var_84h @ rbp-0x84\l; var uint32_t var_30h @ rbp-0x30\l0x00000228      xor eax, eax\l0x0000022a      call 0x22f\l; CALL XREF from fcn.00000228 @ 0x22a\l0x0000022f      mov rdi, r13\l0x00000232      call 0x237\l; CALL XREF from fcn.00000228 @ 0x232\l0x00000237      mov edi, dword [var_84h]\l0x0000023d      mov rsi, r13\l0x00000240      mov rdx, rax\l0x00000243      xor eax, eax\l0x00000245      call 0x24a\l"]
+	"0x0000024a" [URL="fcn.00000228/0x0000024a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000039 @ 0x1f1\l; CALL XREF from fcn.00000228 @ 0x245\l0x0000024a      mov rax, qword [0x00000251]                            ; [0x251:8]=0x75d0453b48008b48\l; DATA XREF from fcn.00000228 @ 0x24a\l0x00000251      mov rax, qword [rax]\l0x00000254      cmp rax, qword [var_30h]\l0x00000258      jne 0x26e\l"]
+	"0x0000025a" [URL="fcn.00000228/0x0000025a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000025a      mov eax, 1\l0x0000025f      add rsp, 0x68\l0x00000263      pop rbx\l0x00000264      pop r12\l0x00000266      pop r13\l0x00000268      pop r14\l0x0000026a      pop r15\l0x0000026c      pop rbp\l0x0000026d      ret\l"]
+	"0x0000026e" [URL="fcn.00000228/0x0000026e", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.00000228 @ 0x258\l0x0000026e      call str.bpool_d__mutex_cnt_d__d__nxt_prt_d__addr__svalid_n\l"]
+        "0x00000228" -> "0x0000024a" [color="#3a96dd"];
+        "0x0000024a" -> "0x0000026e" [color="#13a10e"];
+        "0x0000024a" -> "0x0000025a" [color="#c50f1f"];
+}

@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.remove/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l120: int sym.remove (const char *filename);\l; var signed int var_8h @ r1+0x8\l; var int32_t var_5ch @ r1+0x5c\l; arg signed int arg_60h @ r1+0x60\l; arg int32_t arg_64h @ r1+0x64\l; arg int32_t arg2 @ r4\l0x08000034      stwu r1, -0x60(r1)                                     ; [01] -r-x section size 120 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x64(r1)\l0x08000040      stw r31, 0x5c(r1)\l0x08000044      mr r31, r4                                             ; arg2\l0x08000048      addi r4, r1, 8\l0x0800004c      crclr 6\l0x08000050      bl 0x8000050                                           ; int remove(const char *filename)\l0x08000054      mr r0, r3\l0x08000058      li r3, 0xffff\l0x0800005c      cmpwi cr7, r0, 0xffff\l0x08000060      beq cr7, 0x8000098\l"]
+	"0x08000064" [URL="sym.remove/0x08000064", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000064      slwi r3, r0, 3\l0x08000068      slwi r0, r0, 6\l0x0800006c      add r3, r3, r0\l0x08000070      lis r9, 0\l0x08000074      addi r9, r9, 0\l0x08000078      add r3, r3, r9\l0x0800007c      lwz r0, 0x28(r3)\l0x08000080      li r4, 0xbb9\l0x08000084      addi r5, r1, 8\l0x08000088      mr r6, r31\l0x0800008c      mtctr r0\l0x08000090      crclr 6\l0x08000094      bctrl\l"]
+	"0x08000098" [URL="sym.remove/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.remove @ 0x8000060\l0x08000098      lwz r0, 0x64(r1)\l0x0800009c      mtlr r0\l0x080000a0      lwz r31, 0x5c(r1)\l0x080000a4      addi r1, r1, 0x60\l0x080000a8      blr\l"]
+        "0x08000034" -> "0x08000098" [color="#13a10e"];
+        "0x08000034" -> "0x08000064" [color="#c50f1f"];
+        "0x08000064" -> "0x08000098" [color="#3a96dd"];
+}

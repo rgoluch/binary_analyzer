@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ttyopen/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l36: sym.ttyopen (int32_t arg1, int32_t arg2);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x08000034      lb v0, (a1)                                            ; arg2 ; [01] -r-x section size 36 named .text\l0x08000038      nop\l0x0800003c      bnez v0, 0x8000050\l0x08000040      nop\l"]
+	"0x08000044" [URL="sym.ttyopen/0x08000044", fillcolor="white",color="#767676", fontname="Courier",label="0x08000044      lw v0, (a0)                                            ; arg1\l0x08000048      jr ra\l0x0800004c      nop\l"]
+	"0x08000050" [URL="sym.ttyopen/0x08000050", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.ttyopen @ 0x800003c\l0x08000050      jr ra\l0x08000054      addiu v0, zero, -1\l"]
+        "0x08000034" -> "0x08000050" [color="#13a10e"];
+        "0x08000034" -> "0x08000044" [color="#c50f1f"];
+}

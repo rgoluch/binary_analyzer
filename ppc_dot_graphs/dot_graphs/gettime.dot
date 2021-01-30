@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.gettime/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l84: sym.gettime (signed int arg1, signed int arg_20h, int32_t arg_24h);\l; var signed int var_8h @ r1+0x8\l; var int32_t var_1ch @ r1+0x1c\l; arg signed int arg_20h @ r1+0x20\l; arg int32_t arg_24h @ r1+0x24\l; arg signed int arg1 @ r3\l0x08000034      stwu r1, -0x20(r1)                                     ; [01] -r-x section size 84 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x24(r1)\l0x08000040      stw r31, 0x1c(r1)\l0x08000044      mr r31, r3                                             ; arg1\l0x08000048      addi r3, r1, 8                                         ; int32_t arg1\l0x0800004c      crclr 6\l0x08000050      bl 0x8000050\l0x08000054      li r0, 0xffff\l0x08000058      cmpwi cr7, r3, 0xffff\l0x0800005c      beq cr7, 0x8000070\l"]
+	"0x08000060" [URL="sym.gettime/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000060      lwz r9, 8(r1)\l0x08000064      addi r0, r9, 0xb9b0\l0x08000068      stw r0, 0(r31)\l0x0800006c      li r0, 1\l"]
+	"0x08000070" [URL="sym.gettime/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.gettime @ 0x800005c\l0x08000070      mr r3, r0\l0x08000074      lwz r0, 0x24(r1)\l0x08000078      mtlr r0\l0x0800007c      lwz r31, 0x1c(r1)\l0x08000080      addi r1, r1, 0x20\l0x08000084      blr\l"]
+        "0x08000034" -> "0x08000070" [color="#13a10e"];
+        "0x08000034" -> "0x08000060" [color="#c50f1f"];
+        "0x08000060" -> "0x08000070" [color="#3a96dd"];
+}

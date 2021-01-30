@@ -1,0 +1,14 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.scount/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l68: sym.scount (signed int arg1);\l; arg signed int arg1 @ r3\l0x08000034      li r0, 0xffff                                          ; [01] -r-x section size 68 named .text\l0x08000038      cmplwi cr7, r3, 0x1d                                   ; arg1\l0x0800003c      bgt cr7, 0x8000070\l"]
+	"0x08000040" [URL="sym.scount/0x08000040", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000040      slwi r0, r3, 3                                         ; arg1\l0x08000044      lis r9, 0\l0x08000048      addi r9, r9, 0\l0x0800004c      lbzx r9, r9, r0\l0x08000050      li r0, 0xffff\l0x08000054      cmpwi cr7, r9, 1\l0x08000058      beq cr7, 0x8000070\l"]
+	"0x0800005c" [URL="sym.scount/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800005c      slwi r3, r3, 3                                         ; arg1\l0x08000060      lis r9, 0\l0x08000064      addi r0, r9, 0\l0x08000068      add r3, r0, r3                                         ; arg1\l0x0800006c      lha r0, 2(r3)                                          ; arg1\l"]
+	"0x08000070" [URL="sym.scount/0x08000070", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREFS from sym.scount @ 0x800003c, 0x8000058\l0x08000070      mr r3, r0\l0x08000074      blr\l"]
+        "0x08000034" -> "0x08000070" [color="#13a10e"];
+        "0x08000034" -> "0x08000040" [color="#c50f1f"];
+        "0x08000040" -> "0x08000070" [color="#13a10e"];
+        "0x08000040" -> "0x0800005c" [color="#c50f1f"];
+        "0x0800005c" -> "0x08000070" [color="#3a96dd"];
+}

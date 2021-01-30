@@ -1,0 +1,26 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.lfwrite/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l136: sym.lfwrite (int32_t arg1, signed int arg2, int32_t arg3, int32_t arg_1h, signed int arg_20h, int32_t arg_24h);\l; arg int32_t arg_1h @ r31+0x1\l; var int32_t var_10h @ r1+0x10\l; var int32_t var_14h @ r1+0x14\l; var int32_t var_18h @ r1+0x18\l; var int32_t var_1ch @ r1+0x1c\l; arg signed int arg_20h @ r1+0x20\l; arg int32_t arg_24h @ r1+0x24\l; arg int32_t arg1 @ r3\l; arg signed int arg2 @ r4\l; arg int32_t arg3 @ r5\l0x08000034      stwu r1, -0x20(r1)                                     ; [01] -r-x section size 136 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x24(r1)\l0x08000040      stw r28, 0x10(r1)\l0x08000044      stw r29, 0x14(r1)\l; UNKNOWN XREF from sym.lfwrite @ 0x8000090\l;-- aav.0x08000048:\l0x08000048      stw r30, 0x18(r1)\l0x0800004c      stw r31, 0x1c(r1)\l0x08000050      mr r30, r3                                             ; arg1\l0x08000054      or. r28, r5, r5                                        ; arg3\l0x08000058      blt 0x800008c\l"]
+	"0x0800005c" [URL="sym.lfwrite/0x0800005c", fillcolor="white",color="#767676", fontname="Courier",label="0x0800005c      ble 0x8000098\l"]
+	"0x08000060" [URL="sym.lfwrite/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000060      addi r31, r4, 0xffff                                   ; arg2\l0x08000064      add r29, r31, r28\l"]
+	"0x08000068" [URL="sym.lfwrite/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfwrite @ 0x8000084\l0x08000068      mr r3, r30                                             ; int32_t arg1\l0x0800006c      lbzu r4, 1(r31)                                        ; int32_t arg2\l0x08000070      crclr 6\l0x08000074      bl 0x8000074\l0x08000078      cmpwi cr7, r3, 0xffff\l0x0800007c      beq cr7, 0x8000094\l"]
+	"0x08000080" [URL="sym.lfwrite/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000080      cmpw cr7, r31, r29\l0x08000084      bne cr7, 0x8000068\l"]
+	"0x08000088" [URL="sym.lfwrite/0x08000088", fillcolor="white",color="#767676", fontname="Courier",label="0x08000088      b 0x8000098\l"]
+	"0x0800008c" [URL="sym.lfwrite/0x0800008c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfwrite @ 0x8000058\l0x0800008c      li r28, 0xffff\l0x08000090      .dword 0x48000008\l"]
+	"0x08000094" [URL="sym.lfwrite/0x08000094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfwrite @ 0x800007c\l0x08000094      li r28, 0xffff\l"]
+	"0x08000098" [URL="sym.lfwrite/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.lfwrite @ 0x800005c, 0x8000088, 0x8000090\l0x08000098      mr r3, r28\l0x0800009c      lwz r0, 0x24(r1)\l0x080000a0      mtlr r0\l0x080000a4      lwz r28, 0x10(r1)\l0x080000a8      lwz r29, 0x14(r1)\l0x080000ac      lwz r30, 0x18(r1)\l0x080000b0      lwz r31, 0x1c(r1)\l0x080000b4      addi r1, r1, 0x20\l0x080000b8      blr\l"]
+        "0x08000034" -> "0x0800008c" [color="#13a10e"];
+        "0x08000034" -> "0x0800005c" [color="#c50f1f"];
+        "0x0800005c" -> "0x08000098" [color="#13a10e"];
+        "0x0800005c" -> "0x08000060" [color="#c50f1f"];
+        "0x08000060" -> "0x08000068" [color="#3a96dd"];
+        "0x08000068" -> "0x08000094" [color="#13a10e"];
+        "0x08000068" -> "0x08000080" [color="#c50f1f"];
+        "0x08000080" -> "0x08000068" [color="#13a10e"];
+        "0x08000080" -> "0x08000088" [color="#c50f1f"];
+        "0x08000088" -> "0x08000098" [color="#3a96dd"];
+        "0x0800008c" -> "0x08000098" [color="#3a96dd"];
+        "0x08000094" -> "0x08000098" [color="#3a96dd"];
+}

@@ -1,0 +1,16 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.getaddr/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l140: sym.getaddr (int32_t arg1, signed int arg_10h, int32_t arg_14h);\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg1 @ r3\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 140 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r31, 0xc(r1)\l0x08000044      mr r31, r3                                             ; arg1\l0x08000048      lis r9, 0\l0x0800004c      lwz r3, 0x78(r9)                                       ; int32_t arg1\l0x08000050      crclr 6\l0x08000054      bl 0x8000054\l0x08000058      lis r9, 0\l0x0800005c      lbz r0, 0x35(r9)\l0x08000060      cmpwi cr7, r0, 0\l0x08000064      bne cr7, 0x800006c\l"]
+	"0x08000068" [URL="sym.getaddr/0x08000068", fillcolor="white",color="#767676", fontname="Courier",label="0x08000068      bl 0x8000068\l"]
+	"0x0800006c" [URL="sym.getaddr/0x0800006c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getaddr @ 0x8000064\l0x0800006c      lis r9, 0\l0x08000070      lwz r3, 0x78(r9)                                       ; int32_t arg1\l0x08000074      crclr 6\l0x08000078      bl 0x8000078\l0x0800007c      lis r9, 0\l0x08000080      lbz r0, 0x35(r9)\l0x08000084      li r3, 0xffff\l0x08000088      cmpwi cr7, r0, 0\l0x0800008c      beq cr7, 0x80000ac\l"]
+	"0x08000090" [URL="sym.getaddr/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000090      mr r3, r31                                             ; int32_t arg1\l0x08000094      lis r4, 0\l0x08000098      addi r4, r4, 0x54                                      ; int32_t arg_10h\l0x0800009c      li r5, 4                                               ; int32_t arg_14h\l0x080000a0      crclr 6\l0x080000a4      bl 0x80000a4\l0x080000a8      li r3, 1\l"]
+	"0x080000ac" [URL="sym.getaddr/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getaddr @ 0x800008c\l0x080000ac      lwz r0, 0x14(r1)\l0x080000b0      mtlr r0\l0x080000b4      lwz r31, 0xc(r1)\l0x080000b8      addi r1, r1, 0x10\l0x080000bc      blr\l"]
+        "0x08000034" -> "0x0800006c" [color="#13a10e"];
+        "0x08000034" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x0800006c" [color="#3a96dd"];
+        "0x0800006c" -> "0x080000ac" [color="#13a10e"];
+        "0x0800006c" -> "0x08000090" [color="#c50f1f"];
+        "0x08000090" -> "0x080000ac" [color="#3a96dd"];
+}

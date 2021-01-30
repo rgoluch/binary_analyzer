@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.rfgetc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l72: sym.rfgetc (int32_t arg1, int32_t arg2);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_1ch @ sp+0x1c\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x08000034      addiu sp, sp, -0x20                                    ; [01] -r-x section size 72 named .text\l0x08000038      sw ra, (var_1ch)\l0x0800003c      lw a0, (a0)                                            ; arg1\l0x08000040      addiu a1, sp, 0x10                                     ; arg2\l0x08000044      jal 0\l0x08000048      addiu a2, zero, 1\l0x0800004c      addiu v1, zero, 1\l0x08000050      bne v0, v1, 0x8000064\l0x08000054      nop\l"]
+	"0x08000058" [URL="sym.rfgetc/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000058      lb v0, (var_10h)\l0x0800005c      j 0x38\l0x08000060      nop\l"]
+	"0x08000064" [URL="sym.rfgetc/0x08000064", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfgetc @ 0x8000050\l0x08000064      sltu v0, zero, v0\l0x08000068      addiu v0, v0, -2\l0x0800006c      lw ra, (var_1ch)\l0x08000070      nop\l0x08000074      jr ra\l0x08000078      addiu sp, sp, 0x20\l"]
+        "0x08000034" -> "0x08000064" [color="#13a10e"];
+        "0x08000034" -> "0x08000058" [color="#c50f1f"];
+}

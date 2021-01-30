@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.lfinit/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l76: sym.lfinit (int32_t arg1, int32_t arg2);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x08000034      lw v1, 0x44(a0)                                        ; arg1 ; [01] -r-x section size 76 named .text\l0x08000038      nop\l0x0800003c      sll v0, v1, 3\l0x08000040      sll a1, v1, 5                                          ; arg2\l0x08000044      subu v0, a1, v0                                        ; arg2\l0x08000048      sll a1, v0, 3                                          ; arg2\l0x0800004c      subu v0, a1, v0                                        ; arg2\l0x08000050      addu v1, v0, v1\l0x08000054      sll v1, v1, 2\l0x08000058      lui v0, 0\l0x0800005c      addiu v0, v0, 0\l0x08000060      addu v0, v0, v1\l0x08000064      sw v0, 0x40(a0)                                        ; arg1\l0x08000068      sw zero, 8(v0)\l0x0800006c      lw v1, (a0)                                            ; arg1\l0x08000070      nop\l0x08000074      sw v1, (v0)\l0x08000078      jr ra\l0x0800007c      addiu v0, zero, 1\l"]
+}

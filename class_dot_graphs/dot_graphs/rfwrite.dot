@@ -1,0 +1,29 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.rfwrite/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l156: sym.rfwrite (int32_t arg2, int32_t arg4);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; var int32_t var_20h @ sp+0x20\l; var int32_t var_24h @ sp+0x24\l; arg int32_t arg2 @ a1\l; arg int32_t arg4 @ a3\l0x08000034      addiu sp, sp, -0x28                                    ; [01] -r-x section size 156 named .text\l0x08000038      sw ra, (var_24h)\l0x0800003c      sw s4, (var_20h)\l0x08000040      sw s3, (var_1ch)\l0x08000044      sw s2, (var_18h)\l0x08000048      sw s1, (var_14h)\l0x0800004c      sw s0, (var_10h)\l0x08000050      bltz a2, 0x80000a4\l0x08000054      move s4, a2\l"]
+	"0x08000058" [URL="sym.rfwrite/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000058      blez a2, 0x80000ac\l0x0800005c      move s2, a0\l"]
+	"0x08000060" [URL="sym.rfwrite/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000060      move s1, a1\l0x08000064      move s0, a2\l0x08000068      addiu s3, zero, -1\l"]
+	"0x0800006c" [URL="sym.rfwrite/0x0800006c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfwrite @ 0x8000094\l0x0800006c      slti v0, s0, 0x201\l0x08000070      bnez v0, 0x800007c\l0x08000074      move a3, s0\l"]
+	"0x08000078" [URL="sym.rfwrite/0x08000078", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000078      addiu a3, zero, 0x200                                  ; arg4\l"]
+	"0x0800007c" [URL="sym.rfwrite/0x0800007c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfwrite @ 0x8000070\l0x0800007c      move a0, s2\l0x08000080      addiu a1, zero, 3                                      ; arg2\l0x08000084      jal 0\l0x08000088      move a2, s1\l0x0800008c      beq v0, s3, 0x80000b0\l0x08000090      addiu s0, s0, -0x200\l"]
+	"0x08000094" [URL="sym.rfwrite/0x08000094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000094      bgtz s0, 0x800006c\l0x08000098      addiu s1, s1, 0x200\l"]
+	"0x0800009c" [URL="sym.rfwrite/0x0800009c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800009c      j 0x7c\l0x080000a0      move v0, s4\l"]
+	"0x080000a4" [URL="sym.rfwrite/0x080000a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfwrite @ 0x8000050\l0x080000a4      j 0x7c\l0x080000a8      addiu v0, zero, -1\l"]
+	"0x080000ac" [URL="sym.rfwrite/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfwrite @ 0x8000058\l0x080000ac      move v0, a2\l"]
+	"0x080000b0" [URL="sym.rfwrite/0x080000b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfwrite @ 0x800008c\l0x080000b0      lw ra, (var_24h)\l0x080000b4      lw s4, (var_20h)\l0x080000b8      lw s3, (var_1ch)\l0x080000bc      lw s2, (var_18h)\l0x080000c0      lw s1, (var_14h)\l0x080000c4      lw s0, (var_10h)\l0x080000c8      jr ra\l0x080000cc      addiu sp, sp, 0x28\l"]
+        "0x08000034" -> "0x080000a4" [color="#13a10e"];
+        "0x08000034" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x080000ac" [color="#13a10e"];
+        "0x08000058" -> "0x08000060" [color="#c50f1f"];
+        "0x08000060" -> "0x0800006c" [color="#3a96dd"];
+        "0x0800006c" -> "0x0800007c" [color="#13a10e"];
+        "0x0800006c" -> "0x08000078" [color="#c50f1f"];
+        "0x08000078" -> "0x0800007c" [color="#3a96dd"];
+        "0x0800007c" -> "0x080000b0" [color="#13a10e"];
+        "0x0800007c" -> "0x08000094" [color="#c50f1f"];
+        "0x08000094" -> "0x0800006c" [color="#13a10e"];
+        "0x08000094" -> "0x0800009c" [color="#c50f1f"];
+        "0x080000ac" -> "0x080000b0" [color="#3a96dd"];
+}

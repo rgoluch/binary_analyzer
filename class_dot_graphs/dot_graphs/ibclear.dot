@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ibclear/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l44: sym.ibclear (int32_t arg1, int32_t arg2, int32_t arg3);\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l0x08000034      sw a1, (a0)                                            ; arg1 ; [01] -r-x section size 44 named .text\l0x08000038      move v0, zero\l0x0800003c      ori a2, zero, 0xffff                                   ; arg3\l0x08000040      addiu a1, zero, 0x74                                   ; arg2\l"]
+	"0x08000044" [URL="sym.ibclear/0x08000044", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ibclear @ 0x800004c\l0x08000044      addu v1, a0, v0                                        ; arg1\l0x08000048      addiu v0, v0, 4\l0x0800004c      bne v0, a1, 0x8000044\l0x08000050      sw a2, 8(v1)\l"]
+	"0x08000054" [URL="sym.ibclear/0x08000054", fillcolor="white",color="#767676", fontname="Courier",label="0x08000054      addiu v0, zero, -1\l0x08000058      jr ra\l0x0800005c      sw v0, 4(a0)                                           ; arg1\l"]
+        "0x08000034" -> "0x08000044" [color="#3a96dd"];
+        "0x08000044" -> "0x08000044" [color="#13a10e"];
+        "0x08000044" -> "0x08000054" [color="#c50f1f"];
+}

@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.udpecho/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l144: sym.udpecho (signed int arg_10h, int32_t arg_14h);\l; var int32_t var_8h @ r1+0x8\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 144 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r30, 8(r1)\l0x08000044      stw r31, 0xc(r1)\l0x08000048      li r3, 6                                               ; int32_t arg_10h\l0x0800004c      li r4, 0                                               ; int32_t arg_14h\l0x08000050      li r5, 7\l0x08000054      crclr 6\l0x08000058      bl 0x8000058\l0x0800005c      mr r31, r3\l0x08000060      cmpwi cr7, r3, 0xffff\l0x08000064      bne cr7, 0x8000090\l"]
+	"0x08000068" [URL="sym.udpecho/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      lis r3, 0\l0x0800006c      addi r3, r3, 0                                         ; int32_t arg_10h\l0x08000070      bl 0x8000070\l0x08000074      li r3, 0xffff\l0x08000078      lwz r0, 0x14(r1)\l0x0800007c      mtlr r0\l0x08000080      lwz r30, 8(r1)\l0x08000084      lwz r31, 0xc(r1)\l0x08000088      addi r1, r1, 0x10\l0x0800008c      blr\l"]
+	"0x08000090" [URL="sym.udpecho/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.udpecho @ 0x8000064\l0x08000090      lis r30, 0\l0x08000094      addi r30, r30, 0\l"]
+	"0x08000098" [URL="sym.udpecho/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.udpecho @ 0x80000c0\l0x08000098      mr r3, r31                                             ; int32_t arg_10h\l0x0800009c      mr r4, r30                                             ; int32_t arg_14h\l0x080000a0      li r5, 0x258\l0x080000a4      crclr 6\l0x080000a8      bl 0x80000a8\l0x080000ac      mr r5, r3\l0x080000b0      mr r3, r31                                             ; int32_t arg_10h\l0x080000b4      mr r4, r30                                             ; int32_t arg_14h\l0x080000b8      crclr 6\l0x080000bc      bl 0x80000bc\l0x080000c0      b 0x8000098\l"]
+        "0x08000034" -> "0x08000090" [color="#13a10e"];
+        "0x08000034" -> "0x08000068" [color="#c50f1f"];
+        "0x08000090" -> "0x08000098" [color="#3a96dd"];
+        "0x08000098" -> "0x08000098" [color="#3a96dd"];
+}

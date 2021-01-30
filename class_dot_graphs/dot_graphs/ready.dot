@@ -1,0 +1,14 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ready/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l136: sym.ready (int32_t arg1);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg1 @ a0\l0x08000034      addiu v0, a0, -1                                       ; arg1 ; [01] -r-x section size 136 named .text\l0x08000038      sltiu v0, v0, 9\l0x0800003c      beqz v0, 0x80000a0\l0x08000040      sll v1, a0, 4                                          ; arg1\l"]
+	"0x08000044" [URL="sym.ready/0x08000044", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000044      addiu sp, sp, -0x18\l0x08000048      sw ra, (var_14h)\l0x0800004c      sw s0, (var_10h)\l0x08000050      move s0, a1\l0x08000054      sll v0, a0, 2                                          ; arg1\l0x08000058      subu v1, v1, v0\l0x0800005c      addu v1, v1, a0                                        ; arg1\l0x08000060      sll v1, v1, 2\l0x08000064      lui v0, 0\l0x08000068      addiu v0, v0, 0\l0x0800006c      addu v0, v0, v1\l0x08000070      addiu v1, zero, 3\l0x08000074      sb v1, (v0)\l0x08000078      lw a1, (gp)\l0x0800007c      lh a2, 2(v0)\l0x08000080      jal 0\l0x08000084      nop\l0x08000088      beqz s0, 0x80000a8\l0x0800008c      nop\l"]
+	"0x08000090" [URL="sym.ready/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000090      jal 0\l0x08000094      nop\l0x08000098      j 0x78\l0x0800009c      addiu v0, zero, 1\l"]
+	"0x080000a0" [URL="sym.ready/0x080000a0", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.ready @ 0x800003c\l0x080000a0      jr ra\l0x080000a4      addiu v0, zero, -1\l"]
+	"0x080000a8" [URL="sym.ready/0x080000a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ready @ 0x8000088\l0x080000a8      addiu v0, zero, 1\l0x080000ac      lw ra, (var_14h)\l0x080000b0      lw s0, (var_10h)\l0x080000b4      jr ra\l0x080000b8      addiu sp, sp, 0x18\l"]
+        "0x08000034" -> "0x080000a0" [color="#13a10e"];
+        "0x08000034" -> "0x08000044" [color="#c50f1f"];
+        "0x08000044" -> "0x080000a8" [color="#13a10e"];
+        "0x08000044" -> "0x08000090" [color="#c50f1f"];
+}

@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.dot2ip/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l20: sym.dot2ip ();\l0x08000034      stb r4, 0(r3)                                          ; [01] -r-x section size 20 named .text\l0x08000038      stb r5, 1(r3)\l0x0800003c      stb r6, 2(r3)\l0x08000040      stb r7, 3(r3)\l0x08000044      blr\l"]
+}

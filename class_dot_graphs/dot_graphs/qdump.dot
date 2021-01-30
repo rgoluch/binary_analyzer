@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000110" [URL="sym.qdump/0x08000110", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="32: sym.qdump ();\l; var int32_t var_14h @ sp+0x14\l0x08000110      addiu sp, sp, -0x18\l0x08000114      sw ra, (var_14h)\l0x08000118      jal 0\l0x0800011c      move a0, zero\l0x08000120      lw ra, (var_14h)\l0x08000124      nop\l0x08000128      jr ra\l0x0800012c      addiu sp, sp, 0x18\l"]
+}

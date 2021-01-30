@@ -1,0 +1,25 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.send/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l184: ssize_t sym.send (int socket, void *buffer, size_t length, int flags);\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg signed int socket @ r3\l; arg void *buffer @ r4\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 184 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r31, 0xc(r1)\l0x08000044      mr r31, r3                                             ; socket\l0x08000048      addi r0, r3, 0xffff                                    ; socket\l0x0800004c      li r3, 0xffff\l0x08000050      cmplwi cr7, r0, 8\l0x08000054      bgt cr7, 0x80000d8\l"]
+	"0x08000058" [URL="sym.send/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000058      mulli r0, r31, 0x34\l0x0800005c      lis r11, 0\l0x08000060      addi r11, r11, 0\l0x08000064      add r9, r0, r11\l0x08000068      lbzx r0, r11, r0\l0x0800006c      cmpwi cr7, r0, 2\l0x08000070      beq cr7, 0x80000d8\l"]
+	"0x08000074" [URL="sym.send/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000074      lbz r11, 0x1a(r9)\l0x08000078      cmpwi cr7, r11, 0\l0x0800007c      bne cr7, 0x80000d8\l"]
+	"0x08000080" [URL="sym.send/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000080      sth r4, 0x18(r9)                                       ; buffer\l0x08000084      li r11, 1\l0x08000088      stb r11, 0x1a(r9)\l0x0800008c      cmpwi cr7, r0, 4\l0x08000090      bne cr7, 0x80000ac\l"]
+	"0x08000094" [URL="sym.send/0x08000094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000094      mr r3, r31                                             ; int socket\l0x08000098      li r4, 1                                               ; void *buffer\l0x0800009c      crclr 6\l0x080000a0      bl 0x80000a0                                           ; ssize_t send(int socket, void *buffer, size_t length, int flags)\l0x080000a4      li r3, 1\l0x080000a8      b 0x80000d8\l"]
+	"0x080000ac" [URL="sym.send/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.send @ 0x8000090\l0x080000ac      li r3, 1\l0x080000b0      cmpwi cr7, r0, 8\l0x080000b4      bne cr7, 0x80000d8\l"]
+	"0x080000b8" [URL="sym.send/0x080000b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000b8      mr r3, r31                                             ; int socket\l0x080000bc      crclr 6\l0x080000c0      bl 0x80000c0                                           ; ssize_t send(int socket, void *buffer, size_t length, int flags)\l0x080000c4      mr r3, r31                                             ; int socket\l0x080000c8      li r4, 1                                               ; void *buffer\l0x080000cc      crclr 6\l0x080000d0      bl 0x80000d0                                           ; ssize_t send(int socket, void *buffer, size_t length, int flags)\l0x080000d4      li r3, 1\l"]
+	"0x080000d8" [URL="sym.send/0x080000d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.send @ 0x8000054, 0x8000070, 0x800007c, 0x80000a8, 0x80000b4\l0x080000d8      lwz r0, 0x14(r1)\l0x080000dc      mtlr r0\l0x080000e0      lwz r31, 0xc(r1)\l0x080000e4      addi r1, r1, 0x10\l0x080000e8      blr\l"]
+        "0x08000034" -> "0x080000d8" [color="#13a10e"];
+        "0x08000034" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x080000d8" [color="#13a10e"];
+        "0x08000058" -> "0x08000074" [color="#c50f1f"];
+        "0x08000074" -> "0x080000d8" [color="#13a10e"];
+        "0x08000074" -> "0x08000080" [color="#c50f1f"];
+        "0x08000080" -> "0x080000ac" [color="#13a10e"];
+        "0x08000080" -> "0x08000094" [color="#c50f1f"];
+        "0x08000094" -> "0x080000d8" [color="#3a96dd"];
+        "0x080000ac" -> "0x080000d8" [color="#13a10e"];
+        "0x080000ac" -> "0x080000b8" [color="#c50f1f"];
+        "0x080000b8" -> "0x080000d8" [color="#3a96dd"];
+}

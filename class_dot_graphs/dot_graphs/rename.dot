@@ -1,0 +1,18 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.rename/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l160: int sym.rename (const char *oldpath, const char *newpath);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_60h @ sp+0x60\l; var int32_t var_b4h @ sp+0xb4\l; var int32_t var_b8h @ sp+0xb8\l; var int32_t var_bch @ sp+0xbc\l0x08000034      addiu sp, sp, -0xc0                                    ; [01] -r-x section size 160 named .text\l0x08000038      sw ra, (var_bch)\l0x0800003c      sw s1, (var_b8h)\l0x08000040      sw s0, (var_b4h)\l0x08000044      move s1, a1\l0x08000048      jal 0\l0x0800004c      addiu a1, sp, 0x10\l0x08000050      move s0, v0\l0x08000054      addiu v0, zero, -1\l0x08000058      beq s0, v0, 0x80000ac\l0x0800005c      move a0, s1\l"]
+	"0x08000060" [URL="sym.rename/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000060      jal 0\l0x08000064      addiu a1, sp, 0x60\l0x08000068      addiu v1, zero, -1\l0x0800006c      beq v0, v1, 0x80000b4\l0x08000070      nop\l"]
+	"0x08000074" [URL="sym.rename/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000074      bne s0, v0, 0x80000bc\l0x08000078      sll a0, s0, 3\l"]
+	"0x0800007c" [URL="sym.rename/0x0800007c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800007c      sll s0, s0, 6\l0x08000080      addu s0, a0, s0\l0x08000084      lui a0, 0\l0x08000088      addiu a0, a0, 0\l0x0800008c      addu a0, a0, s0\l0x08000090      lw v0, 0x28(a0)\l0x08000094      addiu a1, zero, 0xbbb\l0x08000098      addiu a2, sp, 0x10\l0x0800009c      jalr v0\l0x080000a0      addiu a3, sp, 0x60\l0x080000a4      j 0x8c\l0x080000a8      nop\l"]
+	"0x080000ac" [URL="sym.rename/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rename @ 0x8000058\l0x080000ac      j 0x8c\l0x080000b0      addiu v0, zero, -1\l"]
+	"0x080000b4" [URL="sym.rename/0x080000b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rename @ 0x800006c\l0x080000b4      j 0x8c\l0x080000b8      addiu v0, zero, -1\l"]
+	"0x080000bc" [URL="sym.rename/0x080000bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rename @ 0x8000074\l0x080000bc      addiu v0, zero, -1\l0x080000c0      lw ra, (var_bch)\l0x080000c4      lw s1, (var_b8h)\l0x080000c8      lw s0, (var_b4h)\l0x080000cc      jr ra\l0x080000d0      addiu sp, sp, 0xc0\l"]
+        "0x08000034" -> "0x080000ac" [color="#13a10e"];
+        "0x08000034" -> "0x08000060" [color="#c50f1f"];
+        "0x08000060" -> "0x080000b4" [color="#13a10e"];
+        "0x08000060" -> "0x08000074" [color="#c50f1f"];
+        "0x08000074" -> "0x080000bc" [color="#13a10e"];
+        "0x08000074" -> "0x0800007c" [color="#c50f1f"];
+}

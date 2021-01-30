@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.arpinit/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l136: sym.arpinit ();\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l0x08000034      addiu sp, sp, -0x18                                    ; [01] -r-x section size 136 named .text\l0x08000038      sw ra, (var_14h)\l0x0800003c      sw s0, (var_10h)\l0x08000040      lui s0, 0\l0x08000044      addiu s0, s0, 0\l0x08000048      sw zero, 0x60(s0)\l0x0800004c      sw zero, 0x64(s0)\l0x08000050      jal 0\l0x08000054      addiu a0, zero, 1\l0x08000058      sw v0, 0x68(s0)\l0x0800005c      jal 0\l0x08000060      addiu a0, zero, 1\l0x08000064      sw v0, 0x78(s0)\l0x08000068      addiu v0, zero, -1\l0x0800006c      sw v0, 0x74(s0)\l0x08000070      sw v0, 0x6c(s0)\l0x08000074      move v0, s0\l0x08000078      addiu s0, s0, 0x60\l0x0800007c      addiu v1, zero, -1\l"]
+	"0x08000080" [URL="sym.arpinit/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.arpinit @ 0x80000a4\l0x08000080      sb zero, (v0)\l0x08000084      sb zero, 1(v0)\l0x08000088      sb zero, 2(v0)\l0x0800008c      sb zero, 3(v0)\l0x08000090      sb zero, 4(v0)\l0x08000094      sb zero, 5(v0)\l0x08000098      sb zero, 6(v0)\l0x0800009c      sw v1, 0xc(v0)\l0x080000a0      addiu v0, v0, 0x10\l0x080000a4      bne v0, s0, 0x8000080\l0x080000a8      nop\l"]
+	"0x080000ac" [URL="sym.arpinit/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000ac      lw ra, (var_14h)\l0x080000b0      lw s0, (var_10h)\l0x080000b4      jr ra\l0x080000b8      addiu sp, sp, 0x18\l"]
+        "0x08000034" -> "0x08000080" [color="#3a96dd"];
+        "0x08000080" -> "0x08000080" [color="#13a10e"];
+        "0x08000080" -> "0x080000ac" [color="#c50f1f"];
+}

@@ -1,0 +1,19 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.lfseek/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l132: sym.lfseek (int32_t arg1, signed int arg2, int32_t arg_ch, int32_t arg_10h, int32_t arg_9ch, signed int arg_sp_10h, int32_t arg_14h);\l; arg int32_t arg_ch @ r31+0xc\l; arg int32_t arg_10h @ r31+0x10\l; arg int32_t arg_9ch @ r31+0x9c\l; var int32_t var_8h @ r1+0x8\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_sp_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg1 @ r3\l; arg signed int arg2 @ r4\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 132 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r30, 8(r1)\l0x08000044      stw r31, 0xc(r1)\l0x08000048      mr r30, r4                                             ; arg2\l0x0800004c      lwz r31, 0x40(r3)                                      ; arg1\l0x08000050      lwz r0, 0x10(r31)\l0x08000054      andi. r9, r0, 2\l0x08000058      beq 0x8000078\l"]
+	"0x0800005c" [URL="sym.lfseek/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800005c      lbz r0, 0x9c(r31)\l0x08000060      cmpwi cr7, r0, 0\l0x08000064      beq cr7, 0x800008c\l"]
+	"0x08000068" [URL="sym.lfseek/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      mr r3, r31                                             ; int32_t arg1\l0x0800006c      crclr 6\l0x08000070      bl 0x8000070\l0x08000074      b 0x800008c\l"]
+	"0x08000078" [URL="sym.lfseek/0x08000078", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfseek @ 0x8000058\l0x08000078      lwz r9, 0xc(r31)\l0x0800007c      lwz r0, 0(r9)\l0x08000080      li r3, 0xffff\l0x08000084      cmpw cr7, r0, r4                                       ; arg2\l0x08000088      blt cr7, 0x80000a0\l"]
+	"0x0800008c" [URL="sym.lfseek/0x0800008c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.lfseek @ 0x8000064, 0x8000074\l0x0800008c      stw r30, 0x98(r31)\l0x08000090      lwz r3, 4(r31)                                         ; int32_t arg1\l0x08000094      mr r4, r31                                             ; int32_t arg2\l0x08000098      crclr 6\l0x0800009c      bl 0x800009c\l"]
+	"0x080000a0" [URL="sym.lfseek/0x080000a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfseek @ 0x8000088\l0x080000a0      lwz r0, 0x14(r1)\l0x080000a4      mtlr r0\l0x080000a8      lwz r30, 8(r1)\l0x080000ac      lwz r31, 0xc(r1)\l0x080000b0      addi r1, r1, 0x10\l0x080000b4      blr\l"]
+        "0x08000034" -> "0x08000078" [color="#13a10e"];
+        "0x08000034" -> "0x0800005c" [color="#c50f1f"];
+        "0x0800005c" -> "0x0800008c" [color="#13a10e"];
+        "0x0800005c" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x0800008c" [color="#3a96dd"];
+        "0x08000078" -> "0x080000a0" [color="#13a10e"];
+        "0x08000078" -> "0x0800008c" [color="#c50f1f"];
+        "0x0800008c" -> "0x080000a0" [color="#3a96dd"];
+}

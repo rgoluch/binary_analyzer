@@ -1,0 +1,43 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ttyoin/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l280: sym.ttyoin (signed int arg1, int32_t arg_90h, int32_t arg_d4h, int32_t arg_d8h, signed int arg_10h, int32_t arg_14h);\l; arg int32_t arg_90h @ r31+0x90\l; arg int32_t arg_d4h @ r31+0xd4\l; arg int32_t arg_d8h @ r31+0xd8\l; var int32_t var_8h @ r1+0x8\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg signed int arg1 @ r3\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 280 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r30, 8(r1)\l0x08000044      stw r31, 0xc(r1)\l; UNKNOWN XREF from sym.ttyoin @ 0x800012c\l;-- aav.0x08000048:\l0x08000048      mr r31, r3                                             ; arg1\l0x0800004c      lwz r30, 0x118(r3)                                     ; arg1\l0x08000050      lwz r9, 0xe0(r3)                                       ; arg1\l0x08000054      lwz r0, 0xdc(r3)                                       ; arg1\l0x08000058      cmpw cr7, r0, r9\l0x0800005c      beq cr7, 0x8000088\l"]
+	"0x08000060" [URL="sym.ttyoin/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000060      add r11, r3, r9                                        ; arg1\l0x08000064      lbz r0, 0xe4(r11)\l0x08000068      stw r0, 0xc(r30)\l0x0800006c      addi r9, r9, 1\l0x08000070      stw r9, 0xe0(r3)                                       ; arg1\l0x08000074      cmpwi cr7, r9, 0x13\l0x08000078      ble cr7, 0x8000130\l"]
+	"0x0800007c" [URL="sym.ttyoin/0x0800007c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800007c      li r0, 0\l0x08000080      stw r0, 0xe0(r3)                                       ; arg1\l0x08000084      b 0x8000130\l"]
+	"0x08000088" [URL="sym.ttyoin/0x08000088", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyoin @ 0x800005c\l0x08000088      lbz r0, 0x111(r3)                                      ; arg1\l0x0800008c      cmpwi cr7, r0, 0\l0x08000090      beq cr7, 0x80000a0\l"]
+	"0x08000094" [URL="sym.ttyoin/0x08000094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000094      li r0, 0\l0x08000098      stw r0, 8(r30)\l0x0800009c      b 0x8000130\l"]
+	"0x080000a0" [URL="sym.ttyoin/0x080000a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyoin @ 0x8000090\l0x080000a0      lwz r3, 0xd4(r3)                                       ; int32_t arg1\l0x080000a4      crclr 6\l0x080000a8      bl 0x80000a8\l0x080000ac      cmpwi cr7, r3, 0x3f\l0x080000b0      bgt cr7, 0x8000124\l"]
+	"0x080000b4" [URL="sym.ttyoin/0x080000b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000b4      lwz r9, 0x90(r31)\l0x080000b8      add r11, r31, r9\l0x080000bc      lbz r0, 0x94(r11)\l0x080000c0      stw r0, 0xc(r30)\l0x080000c4      addi r0, r9, 1\l0x080000c8      stw r0, 0x90(r31)\l0x080000cc      cmpwi cr7, r0, 0x3f\l0x080000d0      ble cr7, 0x80000dc\l"]
+	"0x080000d4" [URL="sym.ttyoin/0x080000d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000d4      li r0, 0\l0x080000d8      stw r0, 0x90(r31)\l"]
+	"0x080000dc" [URL="sym.ttyoin/0x080000dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyoin @ 0x80000d0\l0x080000dc      cmpwi cr7, r3, 0x14\l0x080000e0      ble cr7, 0x80000f4\l"]
+	"0x080000e4" [URL="sym.ttyoin/0x080000e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000e4      lwz r3, 0xd4(r31)                                      ; int32_t arg1\l0x080000e8      crclr 6\l0x080000ec      bl 0x80000ec\l0x080000f0      b 0x800012c\l"]
+	"0x080000f4" [URL="sym.ttyoin/0x080000f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyoin @ 0x80000e0\l0x080000f4      lwz r9, 0xd8(r31)\l0x080000f8      addi r0, r9, 1\l0x080000fc      stw r0, 0xd8(r31)\l0x08000100      cmpwi cr7, r0, 0x14\l0x08000104      bne cr7, 0x800012c\l"]
+	"0x08000108" [URL="sym.ttyoin/0x08000108", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000108      li r0, 0\l0x0800010c      stw r0, 0xd8(r31)\l0x08000110      lwz r3, 0xd4(r31)                                      ; int32_t arg1\l0x08000114      li r4, 0x14                                            ; int32_t arg_90h\l0x08000118      crclr 6\l0x0800011c      bl 0x800011c\l0x08000120      b 0x800012c\l"]
+	"0x08000124" [URL="sym.ttyoin/0x08000124", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyoin @ 0x80000b0\l0x08000124      li r0, 0\l0x08000128      stw r0, 8(r30)\l"]
+	"0x0800012c" [URL="sym.ttyoin/0x0800012c", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREFS from sym.ttyoin @ 0x80000f0, 0x8000104, 0x8000120\l0x0800012c      .dword 0x48000008\l"]
+	"0x08000130" [URL="sym.ttyoin/0x08000130", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttyoin @ 0x8000078, 0x8000084, 0x800009c\l0x08000130      li r3, 1\l"]
+	"0x08000134" [URL="sym.ttyoin/0x08000134", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyoin @ 0x800012c\l0x08000134      lwz r0, 0x14(r1)\l0x08000138      mtlr r0\l0x0800013c      lwz r30, 8(r1)\l0x08000140      lwz r31, 0xc(r1)\l0x08000144      addi r1, r1, 0x10\l0x08000148      blr\l"]
+        "0x08000034" -> "0x08000088" [color="#13a10e"];
+        "0x08000034" -> "0x08000060" [color="#c50f1f"];
+        "0x08000060" -> "0x08000130" [color="#13a10e"];
+        "0x08000060" -> "0x0800007c" [color="#c50f1f"];
+        "0x0800007c" -> "0x08000130" [color="#3a96dd"];
+        "0x08000088" -> "0x080000a0" [color="#13a10e"];
+        "0x08000088" -> "0x08000094" [color="#c50f1f"];
+        "0x08000094" -> "0x08000130" [color="#3a96dd"];
+        "0x080000a0" -> "0x08000124" [color="#13a10e"];
+        "0x080000a0" -> "0x080000b4" [color="#c50f1f"];
+        "0x080000b4" -> "0x080000dc" [color="#13a10e"];
+        "0x080000b4" -> "0x080000d4" [color="#c50f1f"];
+        "0x080000d4" -> "0x080000dc" [color="#3a96dd"];
+        "0x080000dc" -> "0x080000f4" [color="#13a10e"];
+        "0x080000dc" -> "0x080000e4" [color="#c50f1f"];
+        "0x080000e4" -> "0x0800012c" [color="#3a96dd"];
+        "0x080000f4" -> "0x0800012c" [color="#13a10e"];
+        "0x080000f4" -> "0x08000108" [color="#c50f1f"];
+        "0x08000108" -> "0x0800012c" [color="#3a96dd"];
+        "0x08000124" -> "0x0800012c" [color="#3a96dd"];
+        "0x0800012c" -> "0x08000134" [color="#3a96dd"];
+        "0x08000130" -> "0x08000134" [color="#3a96dd"];
+}

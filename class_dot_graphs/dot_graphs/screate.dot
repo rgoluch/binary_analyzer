@@ -1,0 +1,27 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.screate/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l164: sym.screate (int32_t arg2, int32_t arg3, int32_t arg4);\l; arg int32_t arg2 @ a1\l; arg int32_t arg3 @ a2\l; arg int32_t arg4 @ a3\l0x08000034      bltz a0, 0x80000d0                                     ; [01] -r-x section size 164 named .text\l0x08000038      addiu v1, zero, 0x1e\l"]
+	"0x0800003c" [URL="sym.screate/0x0800003c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800003c      lw v0, (gp)\l0x08000040      lui t0, 0\l0x08000044      addiu t0, t0, 0\l0x08000048      addiu a3, zero, 1                                      ; arg4\l0x0800004c      addiu a1, v0, -1                                       ; arg2\l0x08000050      bgez a1, 0x800005c\l0x08000054      sll a2, v0, 3                                          ; arg3\l"]
+	"0x08000058" [URL="sym.screate/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000058      addiu a1, zero, 0x1d                                   ; arg2\l"]
+	"0x0800005c" [URL="sym.screate/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.screate @ 0x8000050\l0x0800005c      addu a2, a2, t0                                        ; arg3\l0x08000060      lb a2, (a2)                                            ; arg3\l0x08000064      nop\l0x08000068      bne a2, a3, 0x80000a0\l0x0800006c      addiu v1, v1, -1\l"]
+	"0x08000070" [URL="sym.screate/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000070      sw a1, (gp)\l0x08000074      sll v1, v0, 3\l0x08000078      lui a1, 0\l0x0800007c      addiu a1, a1, 0                                        ; arg2\l0x08000080      addu v1, v1, a1                                        ; arg2\l0x08000084      addiu a1, zero, 2                                      ; arg2\l0x08000088      sb a1, (v1)\l0x0800008c      addiu v1, zero, -1\l0x08000090      bne v0, v1, 0x80000bc\l0x08000094      sll a1, v0, 3                                          ; arg2\l"]
+	"0x08000098" [URL="sym.screate/0x08000098", fillcolor="white",color="#767676", fontname="Courier",label="0x08000098      jr ra\l0x0800009c      nop\l"]
+	"0x080000a0" [URL="sym.screate/0x080000a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.screate @ 0x8000068\l0x080000a0      bnez v1, 0x80000b4\l0x080000a4      nop\l"]
+	"0x080000a8" [URL="sym.screate/0x080000a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000a8      sw a1, (gp)\l0x080000ac      jr ra\l0x080000b0      addiu v0, zero, -1\l"]
+	"0x080000b4" [URL="sym.screate/0x080000b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.screate @ 0x80000a0\l0x080000b4      j 0x18\l0x080000b8      move v0, a1\l"]
+	"0x080000bc" [URL="sym.screate/0x080000bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.screate @ 0x8000090\l0x080000bc      lui v1, 0\l0x080000c0      addiu v1, v1, 0\l0x080000c4      addu v1, v1, a1                                        ; arg2\l0x080000c8      jr ra\l0x080000cc      sh a0, 2(v1)\l"]
+	"0x080000d0" [URL="sym.screate/0x080000d0", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.screate @ 0x8000034\l0x080000d0      jr ra\l0x080000d4      addiu v0, zero, -1\l"]
+        "0x08000034" -> "0x080000d0" [color="#13a10e"];
+        "0x08000034" -> "0x0800003c" [color="#c50f1f"];
+        "0x0800003c" -> "0x0800005c" [color="#13a10e"];
+        "0x0800003c" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x0800005c" [color="#3a96dd"];
+        "0x0800005c" -> "0x080000a0" [color="#13a10e"];
+        "0x0800005c" -> "0x08000070" [color="#c50f1f"];
+        "0x08000070" -> "0x080000bc" [color="#13a10e"];
+        "0x08000070" -> "0x08000098" [color="#c50f1f"];
+        "0x080000a0" -> "0x080000b4" [color="#13a10e"];
+        "0x080000a0" -> "0x080000a8" [color="#c50f1f"];
+}

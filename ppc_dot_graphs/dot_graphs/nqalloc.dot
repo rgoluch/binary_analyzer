@@ -1,0 +1,23 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.nqalloc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l140: sym.nqalloc ();\l0x08000034      lis r9, 0                                              ; [01] -r-x section size 140 named .text\l0x08000038      lbz r0, 4(r9)\l0x0800003c      cmpwi cr7, r0, 0\l0x08000040      bne cr7, 0x8000050\l"]
+	"0x08000044" [URL="sym.nqalloc/0x08000044", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000044      addi r9, r9, 4\l; UNKNOWN XREF from sym.nqalloc @ 0x800009c\l;-- aav.0x08000048:\l0x08000048      li r3, 0\l0x0800004c      b 0x80000a4\l"]
+	"0x08000050" [URL="sym.nqalloc/0x08000050", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nqalloc @ 0x8000040\l0x08000050      lis r9, 0\l0x08000054      addi r9, r9, 0x10\l0x08000058      lbz r0, 0(r9)\l0x0800005c      cmpwi cr7, r0, 0\l0x08000060      beq cr7, 0x8000098\l"]
+	"0x08000064" [URL="sym.nqalloc/0x08000064", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000064      lis r9, 0\l0x08000068      addi r9, r9, 0x1c\l0x0800006c      lbz r0, 0(r9)\l0x08000070      cmpwi cr7, r0, 0\l0x08000074      beq cr7, 0x80000a0\l"]
+	"0x08000078" [URL="sym.nqalloc/0x08000078", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000078      lis r9, 0\l0x0800007c      addi r9, r9, 0x28\l0x08000080      lbz r0, 0(r9)\l0x08000084      li r3, 0xffff\l0x08000088      cmpwi cr7, r0, 0\l0x0800008c      bnelr cr7\l0x08000090      li r3, 3\l0x08000094      b 0x80000a4\l"]
+	"0x08000098" [URL="sym.nqalloc/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nqalloc @ 0x8000060\l0x08000098      li r3, 1\l0x0800009c      .dword 0x48000008\l"]
+	"0x080000a0" [URL="sym.nqalloc/0x080000a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nqalloc @ 0x8000074\l0x080000a0      li r3, 2\l"]
+	"0x080000a4" [URL="sym.nqalloc/0x080000a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.nqalloc @ 0x800004c, 0x8000094, 0x800009c\l0x080000a4      li r0, 1\l0x080000a8      stb r0, 0(r9)\l0x080000ac      li r0, 0xffff\l0x080000b0      sth r0, 2(r9)\l0x080000b4      li r0, 0xffff\l0x080000b8      stw r0, 4(r9)\l0x080000bc      blr\l"]
+        "0x08000034" -> "0x08000050" [color="#13a10e"];
+        "0x08000034" -> "0x08000044" [color="#c50f1f"];
+        "0x08000044" -> "0x080000a4" [color="#3a96dd"];
+        "0x08000050" -> "0x08000098" [color="#13a10e"];
+        "0x08000050" -> "0x08000064" [color="#c50f1f"];
+        "0x08000064" -> "0x080000a0" [color="#13a10e"];
+        "0x08000064" -> "0x08000078" [color="#c50f1f"];
+        "0x08000078" -> "0x080000a4" [color="#3a96dd"];
+        "0x08000098" -> "0x080000a4" [color="#3a96dd"];
+        "0x080000a0" -> "0x080000a4" [color="#3a96dd"];
+}

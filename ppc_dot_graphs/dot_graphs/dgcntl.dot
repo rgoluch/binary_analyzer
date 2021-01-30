@@ -1,0 +1,18 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.dgcntl/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l92: sym.dgcntl (int32_t arg1, signed int arg2, int32_t arg3, signed int arg_10h, int32_t arg_14h);\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg1 @ r3\l; arg signed int arg2 @ r4\l; arg int32_t arg3 @ r5\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 92 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      lwz r9, 0x40(r3)                                       ; arg1\l0x08000044      cmpwi cr7, r4, 1                                       ; arg2\l0x08000048      beq cr7, 0x800005c\l"]
+	"0x0800004c" [URL="sym.dgcntl/0x0800004c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800004c      li r3, 0xffff\l0x08000050      cmpwi cr7, r4, 2                                       ; arg2\l0x08000054      bne cr7, 0x8000080\l"]
+	"0x08000058" [URL="sym.dgcntl/0x08000058", fillcolor="white",color="#767676", fontname="Courier",label="0x08000058      b 0x8000068\l"]
+	"0x0800005c" [URL="sym.dgcntl/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dgcntl @ 0x8000048\l0x0800005c      stw r5, 0x1c(r9)                                       ; arg3\l0x08000060      li r3, 1\l0x08000064      b 0x8000080\l"]
+	"0x08000068" [URL="sym.dgcntl/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dgcntl @ 0x8000058\l0x08000068      lwz r3, 0x14(r9)                                       ; int32_t arg1\l0x0800006c      lis r4, 0\l0x08000070      addi r4, r4, 0                                         ; int32_t arg2\l0x08000074      crclr 6\l0x08000078      bl 0x8000078\l0x0800007c      li r3, 1\l"]
+	"0x08000080" [URL="sym.dgcntl/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.dgcntl @ 0x8000054, 0x8000064\l0x08000080      lwz r0, 0x14(r1)\l0x08000084      mtlr r0\l0x08000088      addi r1, r1, 0x10\l0x0800008c      blr\l"]
+        "0x08000034" -> "0x0800005c" [color="#13a10e"];
+        "0x08000034" -> "0x0800004c" [color="#c50f1f"];
+        "0x0800004c" -> "0x08000080" [color="#13a10e"];
+        "0x0800004c" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x08000068" [color="#3a96dd"];
+        "0x0800005c" -> "0x08000080" [color="#3a96dd"];
+        "0x08000068" -> "0x08000080" [color="#3a96dd"];
+}

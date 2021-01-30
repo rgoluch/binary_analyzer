@@ -1,0 +1,16 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.rfdump/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l184: sym.rfdump ();\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; var int32_t var_20h @ sp+0x20\l; var int32_t var_24h @ sp+0x24\l; var int32_t var_28h @ sp+0x28\l; var int32_t var_2ch @ sp+0x2c\l0x08000034      addiu sp, sp, -0x30                                    ; [01] -r-x section size 184 named .text\l0x08000038      sw ra, (var_2ch)\l0x0800003c      sw s4, (var_28h)\l0x08000040      sw s3, (var_24h)\l0x08000044      sw s2, (var_20h)\l0x08000048      sw s1, (var_1ch)\l0x0800004c      sw s0, (var_18h)\l0x08000050      lui v0, 0\l0x08000054      addiu s2, v0, 0\l0x08000058      lui a0, 0\l0x0800005c      lw a1, (v0)\l0x08000060      lw a2, 4(s2)\l0x08000064      jal 0\l0x08000068      addiu a0, a0, 0\l0x0800006c      lui s0, 0\l0x08000070      addiu s0, s0, 0xc\l0x08000074      addiu s2, s2, 0x19c\l0x08000078      addiu s1, zero, -1\l0x0800007c      lui s4, 0\l0x08000080      addiu s4, s4, 0\l0x08000084      lui s3, 0\l0x08000088      addiu s3, s3, 0\l"]
+	"0x0800008c" [URL="sym.rfdump/0x0800008c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfdump @ 0x80000c4\l0x0800008c      lw v0, 0x50(s0)\l0x08000090      nop\l0x08000094      beq v0, s1, 0x80000c0\l0x08000098      nop\l"]
+	"0x0800009c" [URL="sym.rfdump/0x0800009c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800009c      lw a1, -4(s0)\l0x080000a0      jal 0\l0x080000a4      move a0, s4\l0x080000a8      lw a1, 0x54(s0)\l0x080000ac      lw a2, 0x58(s0)\l0x080000b0      lw a3, 0x5c(s0)\l0x080000b4      sw s0, (var_10h)\l0x080000b8      jal 0\l0x080000bc      move a0, s3\l"]
+	"0x080000c0" [URL="sym.rfdump/0x080000c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfdump @ 0x8000094\l0x080000c0      addiu s0, s0, 0x64\l0x080000c4      bne s0, s2, 0x800008c\l0x080000c8      nop\l"]
+	"0x080000cc" [URL="sym.rfdump/0x080000cc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000cc      lw ra, (var_2ch)\l0x080000d0      lw s4, (var_28h)\l0x080000d4      lw s3, (var_24h)\l0x080000d8      lw s2, (var_20h)\l0x080000dc      lw s1, (var_1ch)\l0x080000e0      lw s0, (var_18h)\l0x080000e4      jr ra\l0x080000e8      addiu sp, sp, 0x30\l"]
+        "0x08000034" -> "0x0800008c" [color="#3a96dd"];
+        "0x0800008c" -> "0x080000c0" [color="#13a10e"];
+        "0x0800008c" -> "0x0800009c" [color="#c50f1f"];
+        "0x0800009c" -> "0x080000c0" [color="#3a96dd"];
+        "0x080000c0" -> "0x0800008c" [color="#13a10e"];
+        "0x080000c0" -> "0x080000cc" [color="#c50f1f"];
+}

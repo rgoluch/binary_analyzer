@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.blkequ/0x08000034", fillcolor="white",color="#767676", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l8: sym.blkequ (int32_t arg3);\l; arg int32_t arg3 @ a2\l0x08000034      j 0x20                                                 ; [01] -r-x section size 56 named .text\l0x08000038      addiu a2, a2, -1                                       ; arg3\l"]
+}

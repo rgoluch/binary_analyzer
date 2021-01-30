@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.pcreate/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l64: sym.pcreate ();\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l0x08000034      addiu sp, sp, -0x20                                    ; [01] -r-x section size 260 named .text\l0x08000038      sw ra, (var_1ch)\l0x0800003c      sw s2, (var_18h)\l0x08000040      sw s1, (var_14h)\l0x08000044      sw s0, (var_10h)\l0x08000048      bltz a0, 0x8000100\l0x0800004c      move s2, a0\l"]
+	"0x08000050" [URL="sym.pcreate/0x08000050", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000050      jal 0\l0x08000054      addiu a0, gp, 0\l0x08000058      addiu v1, zero, 1\l0x0800005c      bne v0, v1, 0x8000108\l0x08000060      nop\l"]
+	"0x08000064" [URL="sym.pcreate/0x08000064", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000064      jal 0\l0x08000068      addiu a0, zero, 0x32\l0x0800006c      j 0xd4\l0x08000070      nop\l"]
+        "0x08000034" -> "0x08000050" [color="#c50f1f"];
+        "0x08000050" -> "0x08000064" [color="#c50f1f"];
+}

@@ -1,0 +1,27 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.preset/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l184: sym.preset (int32_t arg1);\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg1 @ a0\l0x08000034      sltiu v0, a0, 0x14                                     ; arg1 ; [01] -r-x section size 184 named .text\l0x08000038      beqz v0, 0x80000c0\l0x0800003c      nop\l"]
+	"0x08000040" [URL="sym.preset/0x08000040", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000040      addiu sp, sp, -0x18\l0x08000044      sw ra, (var_14h)\l0x08000048      lw v0, (gp)\l0x0800004c      nop\l0x08000050      bltz v0, 0x80000c8\l0x08000054      nop\l"]
+	"0x08000058" [URL="sym.preset/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000058      lw v1, (gp)\l0x0800005c      nop\l0x08000060      slt v1, v0, v1\l0x08000064      beqz v1, 0x80000d0\l0x08000068      lui v1, 0\l"]
+	"0x0800006c" [URL="sym.preset/0x0800006c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800006c      sll v0, v0, 2\l0x08000070      addiu v1, v1, 0\l0x08000074      addu v0, v0, v1\l0x08000078      lw v1, (v0)\l0x0800007c      addiu v0, gp, 0\l0x08000080      bne v1, v0, 0x80000dc\l0x08000084      addiu v0, zero, -1\l"]
+	"0x08000088" [URL="sym.preset/0x08000088", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000088      sll v0, a0, 2                                          ; arg1\l0x0800008c      sll a0, a0, 5                                          ; arg1\l0x08000090      subu a0, a0, v0                                        ; arg1\l0x08000094      lui v0, 0\l0x08000098      addiu v0, v0, 0\l0x0800009c      addu a0, v0, a0                                        ; arg1\l0x080000a0      lb v1, (a0)                                            ; arg1\l0x080000a4      addiu v0, zero, 3\l0x080000a8      bne v1, v0, 0x80000d8\l0x080000ac      move a2, a1\l"]
+	"0x080000b0" [URL="sym.preset/0x080000b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000b0      jal 0\l0x080000b4      addiu a1, zero, 3\l0x080000b8      j 0xa8\l0x080000bc      addiu v0, zero, 1\l"]
+	"0x080000c0" [URL="sym.preset/0x080000c0", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.preset @ 0x8000038\l0x080000c0      jr ra\l0x080000c4      addiu v0, zero, -1\l"]
+	"0x080000c8" [URL="sym.preset/0x080000c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.preset @ 0x8000050\l0x080000c8      j 0xa8\l0x080000cc      addiu v0, zero, -1\l"]
+	"0x080000d0" [URL="sym.preset/0x080000d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.preset @ 0x8000064\l0x080000d0      j 0xa8\l0x080000d4      addiu v0, zero, -1\l"]
+	"0x080000d8" [URL="sym.preset/0x080000d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.preset @ 0x80000a8\l0x080000d8      addiu v0, zero, -1\l"]
+	"0x080000dc" [URL="sym.preset/0x080000dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.preset @ 0x8000080\l0x080000dc      lw ra, (var_14h)\l0x080000e0      nop\l0x080000e4      jr ra\l0x080000e8      addiu sp, sp, 0x18\l"]
+        "0x08000034" -> "0x080000c0" [color="#13a10e"];
+        "0x08000034" -> "0x08000040" [color="#c50f1f"];
+        "0x08000040" -> "0x080000c8" [color="#13a10e"];
+        "0x08000040" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x080000d0" [color="#13a10e"];
+        "0x08000058" -> "0x0800006c" [color="#c50f1f"];
+        "0x0800006c" -> "0x080000dc" [color="#13a10e"];
+        "0x0800006c" -> "0x08000088" [color="#c50f1f"];
+        "0x08000088" -> "0x080000d8" [color="#13a10e"];
+        "0x08000088" -> "0x080000b0" [color="#c50f1f"];
+        "0x080000d8" -> "0x080000dc" [color="#3a96dd"];
+}

@@ -1,0 +1,15 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.getaddr/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l140: sym.getaddr ();\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l0x08000034      addiu sp, sp, -0x18                                    ; [01] -r-x section size 140 named .text\l0x08000038      sw ra, (var_14h)\l0x0800003c      sw s0, (var_10h)\l0x08000040      move s0, a0\l0x08000044      lui v0, 0\l0x08000048      lw a0, 0x78(v0)\l0x0800004c      jal 0\l0x08000050      nop\l0x08000054      lui v0, 0\l0x08000058      lb v0, 0x35(v0)\l0x0800005c      nop\l0x08000060      bnez v0, 0x8000074\l0x08000064      lui v0, 0\l"]
+	"0x08000068" [URL="sym.getaddr/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      jal 0\l0x0800006c      nop\l0x08000070      lui v0, 0\l"]
+	"0x08000074" [URL="sym.getaddr/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getaddr @ 0x8000060\l0x08000074      lw a0, 0x78(v0)\l0x08000078      jal 0\l0x0800007c      nop\l0x08000080      lui v0, 0\l0x08000084      lb v0, 0x35(v0)\l0x08000088      nop\l0x0800008c      beqz v0, 0x80000ac\l0x08000090      move a0, s0\l"]
+	"0x08000094" [URL="sym.getaddr/0x08000094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000094      lui a1, 0\l0x08000098      addiu a1, a1, 0x54\l0x0800009c      jal 0\l0x080000a0      addiu a2, zero, 4\l0x080000a4      j 0x7c\l0x080000a8      addiu v0, zero, 1\l"]
+	"0x080000ac" [URL="sym.getaddr/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getaddr @ 0x800008c\l0x080000ac      addiu v0, zero, -1\l0x080000b0      lw ra, (var_14h)\l0x080000b4      lw s0, (var_10h)\l0x080000b8      jr ra\l0x080000bc      addiu sp, sp, 0x18\l"]
+        "0x08000034" -> "0x08000074" [color="#13a10e"];
+        "0x08000034" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x08000074" [color="#3a96dd"];
+        "0x08000074" -> "0x080000ac" [color="#13a10e"];
+        "0x08000074" -> "0x08000094" [color="#c50f1f"];
+}

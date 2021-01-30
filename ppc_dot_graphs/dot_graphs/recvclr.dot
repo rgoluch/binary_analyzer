@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.recvclr/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l68: sym.recvclr ();\l0x08000034      lis r9, 0                                              ; [01] -r-x section size 68 named .text\l0x08000038      lwz r0, 0(r9)\l0x0800003c      mulli r11, r0, 0x34\l0x08000040      lis r9, 0\l0x08000044      addi r9, r9, 0\l0x08000048      add r9, r9, r11\l0x0800004c      lbz r9, 0x1a(r9)\l0x08000050      li r3, 1\l0x08000054      cmpwi cr7, r9, 0\l0x08000058      beqlr cr7\l0x0800005c      lis r9, 0\l0x08000060      addi r9, r9, 0\l0x08000064      add r9, r9, r11\l0x08000068      li r0, 0\l0x0800006c      stb r0, 0x1a(r9)\l0x08000070      lha r3, 0x18(r9)\l0x08000074      blr\l"]
+}

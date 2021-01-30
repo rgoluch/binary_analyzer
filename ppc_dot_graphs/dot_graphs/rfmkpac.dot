@@ -1,0 +1,60 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.rfmkpac/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l548: sym.rfmkpac (int32_t arg1, int32_t arg2, int32_t arg3, int32_t arg4, int32_t arg5, signed int arg_30h, int32_t arg_34h);\l; var signed int var_8h @ r31-0x8\l; var signed int var_3h @ r31-0x3\l; var signed int var_2h @ r31-0x2\l; var int32_t var_14h @ r1+0x14\l; var int32_t var_18h @ r1+0x18\l; var int32_t var_1ch @ r1+0x1c\l; var int32_t var_20h @ r1+0x20\l; var int32_t var_24h @ r1+0x24\l; var int32_t var_2ch @ r1+0x2c\l; arg signed int arg_30h @ r1+0x30\l; arg int32_t arg_34h @ r1+0x34\l; arg int32_t arg1 @ r3\l; arg int32_t arg2 @ r4\l; arg int32_t arg3 @ r5\l; arg int32_t arg4 @ r6\l; arg int32_t arg5 @ r7\l0x08000034      stwu r1, -0x30(r1)                                     ; [01] -r-x section size 548 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x34(r1)\l0x08000040      stw r25, 0x14(r1)\l0x08000044      stw r26, 0x18(r1)\l; UNKNOWN XREF from sym.rfmkpac @ 0x8000210\l;-- aav.0x08000048:\l0x08000048      stw r27, 0x1c(r1)\l0x0800004c      stw r28, 0x20(r1)\l0x08000050      stw r29, 0x24(r1)\l0x08000054      stw r30, 0x28(r1)\l0x08000058      stw r31, 0x2c(r1)\l0x0800005c      mr r31, r3                                             ; arg1\l0x08000060      mr r25, r4                                             ; arg2\l0x08000064      mr r27, r5                                             ; arg3\l0x08000068      mr r26, r6                                             ; arg4\l0x0800006c      mr r30, r7                                             ; arg5\l0x08000070      lis r9, 0                                              ; int32_t arg_34h\l0x08000074      lwz r3, 4(r9)                                          ; int32_t arg1\l0x08000078      crclr 6\l0x0800007c      bl 0x800007c\l0x08000080      mr r3, r31                                             ; int32_t arg1\l0x08000084      crclr 6\l0x08000088      bl 0x8000088\l0x0800008c      lis r28, 0\l0x08000090      addi r29, r28, 0\l0x08000094      sth r3, 6(r29)\l0x08000098      lwz r3, 0(r27)                                         ; int32_t arg1\l0x0800009c      crclr 6\l0x080000a0      bl 0x80000a0\l0x080000a4      stw r3, 0(r28)\l0x080000a8      mr r3, r30                                             ; int32_t arg1\l0x080000ac      crclr 6\l0x080000b0      bl 0x80000b0\l0x080000b4      sth r3, 4(r29)\l0x080000b8      addi r3, r29, 8                                        ; int32_t arg1\l0x080000bc      mr r4, r25                                             ; int32_t arg2\l0x080000c0      li r5, 0x50                                            ; int32_t arg3\l0x080000c4      bl 0x80000c4\l0x080000c8      addi r29, r30, 0x58\l0x080000cc      cmplwi cr7, r31, 8\l0x080000d0      bgt cr7, 0x8000168\l"]
+	"0x080000d4" [URL="sym.rfmkpac/0x080000d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000d4      li r0, 1\l0x080000d8      slw r0, r0, r31\l0x080000dc      andi. r9, r0, 0x1d3\l0x080000e0      bne 0x8000140\l"]
+	"0x080000e4" [URL="sym.rfmkpac/0x080000e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000e4      andi. r9, r0, 0x28\l0x080000e8      bne 0x80000f8\l"]
+	"0x080000ec" [URL="sym.rfmkpac/0x080000ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000ec      andi. r9, r0, 4\l0x080000f0      bne 0x8000144\l"]
+	"0x080000f4" [URL="sym.rfmkpac/0x080000f4", fillcolor="white",color="#767676", fontname="Courier",label="0x080000f4      b 0x8000168\l"]
+	"0x080000f8" [URL="sym.rfmkpac/0x080000f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x80000e8\l0x080000f8      cmpwi cr7, r30, 0x200\l0x080000fc      ble cr7, 0x8000118\l"]
+	"0x08000100" [URL="sym.rfmkpac/0x08000100", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000100      lis r9, 0                                              ; int32_t arg_34h\l0x08000104      lwz r3, 4(r9)                                          ; int32_t arg1\l0x08000108      crclr 6\l0x0800010c      bl 0x800010c\l0x08000110      li r31, 0xffff\l0x08000114      b 0x8000228\l"]
+	"0x08000118" [URL="sym.rfmkpac/0x08000118", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x80000fc\l0x08000118      lis r3, 0\l0x0800011c      addi r3, r3, 0\l0x08000120      addi r3, r3, 0x58                                      ; int32_t arg1\l0x08000124      mr r4, r26                                             ; int32_t arg2\l0x08000128      mr r5, r30                                             ; int32_t arg3\l0x0800012c      crclr 6\l0x08000130      bl 0x8000130\l0x08000134      mr r4, r29\l0x08000138      li r29, 0x58\l0x0800013c      b 0x800016c\l"]
+	"0x08000140" [URL="sym.rfmkpac/0x08000140", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x80000e0\l0x08000140      li r29, 0x58\l"]
+	"0x08000144" [URL="sym.rfmkpac/0x08000144", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x80000f0\l0x08000144      li r4, 0x58\l0x08000148      cmpwi cr7, r30, 0x200\l0x0800014c      ble cr7, 0x800016c\l"]
+	"0x08000150" [URL="sym.rfmkpac/0x08000150", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000150      lis r9, 0                                              ; int32_t arg_34h\l0x08000154      lwz r3, 4(r9)                                          ; int32_t arg1\l0x08000158      crclr 6\l0x0800015c      bl 0x800015c\l0x08000160      li r31, 0xffff\l0x08000164      b 0x8000228\l"]
+	"0x08000168" [URL="sym.rfmkpac/0x08000168", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.rfmkpac @ 0x80000d0, 0x80000f4\l0x08000168      mr r4, r29\l"]
+	"0x0800016c" [URL="sym.rfmkpac/0x0800016c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.rfmkpac @ 0x800013c, 0x800014c\l0x0800016c      lis r3, 0\l0x08000170      addi r3, r3, 0                                         ; int32_t arg1\l0x08000174      mr r5, r29                                             ; int32_t arg3\l0x08000178      crclr 6\l0x0800017c      bl 0x800017c\l0x08000180      cmpwi cr7, r3, 0xffff\l0x08000184      beq cr7, 0x80001a0\l"]
+	"0x08000188" [URL="sym.rfmkpac/0x08000188", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000188      lis r9, 0\l0x0800018c      lha r3, 6(r9)                                          ; int32_t arg1\l0x08000190      crclr 6\l0x08000194      bl 0x8000194\l0x08000198      cmpwi cr7, r3, 0xffff\l0x0800019c      bne cr7, 0x80001b8\l"]
+	"0x080001a0" [URL="sym.rfmkpac/0x080001a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x8000184\l0x080001a0      lis r9, 0                                              ; int32_t arg_34h\l0x080001a4      lwz r3, 4(r9)                                          ; int32_t arg1\l0x080001a8      crclr 6\l0x080001ac      bl 0x80001ac\l0x080001b0      li r31, 0xffff\l0x080001b4      b 0x8000228\l"]
+	"0x080001b8" [URL="sym.rfmkpac/0x080001b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x800019c\l0x080001b8      cmpwi cr7, r31, 2\l0x080001bc      beq cr7, 0x80001cc\l"]
+	"0x080001c0" [URL="sym.rfmkpac/0x080001c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080001c0      cmpwi cr7, r31, 3\l0x080001c4      bne cr7, 0x8000214\l"]
+	"0x080001c8" [URL="sym.rfmkpac/0x080001c8", fillcolor="white",color="#767676", fontname="Courier",label="0x080001c8      b 0x80001e8\l"]
+	"0x080001cc" [URL="sym.rfmkpac/0x080001cc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x80001bc\l0x080001cc      mr r3, r26                                             ; int32_t arg1\l0x080001d0      lis r4, 0\l0x080001d4      addi r4, r4, 0\l0x080001d8      addi r4, r4, 0x58                                      ; int32_t arg2\l0x080001dc      mr r5, r30                                             ; int32_t arg3\l0x080001e0      crclr 6\l0x080001e4      bl 0x80001e4\l"]
+	"0x080001e8" [URL="sym.rfmkpac/0x080001e8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x80001c8\l0x080001e8      lis r9, 0                                              ; int32_t arg_34h\l0x080001ec      addi r31, r9, 0\l0x080001f0      lwz r3, 0(r9)                                          ; int32_t arg1\l0x080001f4      crclr 6\l0x080001f8      bl 0x80001f8\l0x080001fc      stw r3, 0(r27)\l0x08000200      lha r3, 4(r31)                                         ; int32_t arg1\l0x08000204      crclr 6\l0x08000208      bl 0x8000208\l0x0800020c      mr r31, r3\l0x08000210      .dword 0x48000008\l"]
+	"0x08000214" [URL="sym.rfmkpac/0x08000214", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x80001c4\l0x08000214      li r31, 1\l"]
+	"0x08000218" [URL="sym.rfmkpac/0x08000218", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfmkpac @ 0x8000210\l0x08000218      lis r9, 0                                              ; int32_t arg_34h\l0x0800021c      lwz r3, 4(r9)                                          ; int32_t arg1\l0x08000220      crclr 6\l0x08000224      bl 0x8000224\l"]
+	"0x08000228" [URL="sym.rfmkpac/0x08000228", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.rfmkpac @ 0x8000114, 0x8000164, 0x80001b4\l0x08000228      mr r3, r31\l0x0800022c      lwz r0, 0x34(r1)\l0x08000230      mtlr r0\l0x08000234      lwz r25, 0x14(r1)\l0x08000238      lwz r26, 0x18(r1)\l0x0800023c      lwz r27, 0x1c(r1)\l0x08000240      lwz r28, 0x20(r1)\l0x08000244      lwz r29, 0x24(r1)\l0x08000248      lwz r30, 0x28(r1)\l0x0800024c      lwz r31, 0x2c(r1)\l0x08000250      addi r1, r1, 0x30\l0x08000254      blr\l"]
+        "0x08000034" -> "0x08000168" [color="#13a10e"];
+        "0x08000034" -> "0x080000d4" [color="#c50f1f"];
+        "0x080000d4" -> "0x08000140" [color="#13a10e"];
+        "0x080000d4" -> "0x080000e4" [color="#c50f1f"];
+        "0x080000e4" -> "0x080000f8" [color="#13a10e"];
+        "0x080000e4" -> "0x080000ec" [color="#c50f1f"];
+        "0x080000ec" -> "0x08000144" [color="#13a10e"];
+        "0x080000ec" -> "0x080000f4" [color="#c50f1f"];
+        "0x080000f4" -> "0x08000168" [color="#3a96dd"];
+        "0x080000f8" -> "0x08000118" [color="#13a10e"];
+        "0x080000f8" -> "0x08000100" [color="#c50f1f"];
+        "0x08000100" -> "0x08000228" [color="#3a96dd"];
+        "0x08000118" -> "0x0800016c" [color="#3a96dd"];
+        "0x08000140" -> "0x08000144" [color="#3a96dd"];
+        "0x08000144" -> "0x0800016c" [color="#13a10e"];
+        "0x08000144" -> "0x08000150" [color="#c50f1f"];
+        "0x08000150" -> "0x08000228" [color="#3a96dd"];
+        "0x08000168" -> "0x0800016c" [color="#3a96dd"];
+        "0x0800016c" -> "0x080001a0" [color="#13a10e"];
+        "0x0800016c" -> "0x08000188" [color="#c50f1f"];
+        "0x08000188" -> "0x080001b8" [color="#13a10e"];
+        "0x08000188" -> "0x080001a0" [color="#c50f1f"];
+        "0x080001a0" -> "0x08000228" [color="#3a96dd"];
+        "0x080001b8" -> "0x080001cc" [color="#13a10e"];
+        "0x080001b8" -> "0x080001c0" [color="#c50f1f"];
+        "0x080001c0" -> "0x08000214" [color="#13a10e"];
+        "0x080001c0" -> "0x080001c8" [color="#c50f1f"];
+        "0x080001c8" -> "0x080001e8" [color="#3a96dd"];
+        "0x080001cc" -> "0x080001e8" [color="#3a96dd"];
+        "0x080001e8" -> "0x08000218" [color="#3a96dd"];
+        "0x08000214" -> "0x08000218" [color="#3a96dd"];
+        "0x08000218" -> "0x08000228" [color="#3a96dd"];
+}

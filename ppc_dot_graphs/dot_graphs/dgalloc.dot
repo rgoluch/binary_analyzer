@@ -1,0 +1,23 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.dgalloc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l128: sym.dgalloc ();\l0x08000034      lis r9, 0                                              ; [01] -r-x section size 128 named .text\l0x08000038      lwz r0, 4(r9)\l0x0800003c      cmpwi cr7, r0, 0\l0x08000040      bne cr7, 0x8000054\l"]
+	"0x08000044" [URL="sym.dgalloc/0x08000044", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000044      lis r9, 0\l; UNKNOWN XREF from sym.dgalloc @ 0x80000a0\l;-- aav.0x08000048:\l0x08000048      addi r9, r9, 0\l0x0800004c      li r3, 0\l0x08000050      b 0x80000a8\l"]
+	"0x08000054" [URL="sym.dgalloc/0x08000054", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dgalloc @ 0x8000040\l0x08000054      lis r9, 0\l0x08000058      addi r9, r9, 0x20\l0x0800005c      lwz r0, 4(r9)\l0x08000060      cmpwi cr7, r0, 0\l0x08000064      beq cr7, 0x800009c\l"]
+	"0x08000068" [URL="sym.dgalloc/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      lis r9, 0\l0x0800006c      addi r9, r9, 0x40\l0x08000070      lwz r0, 4(r9)\l0x08000074      cmpwi cr7, r0, 0\l0x08000078      beq cr7, 0x80000a4\l"]
+	"0x0800007c" [URL="sym.dgalloc/0x0800007c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800007c      lis r9, 0\l0x08000080      addi r9, r9, 0x60\l0x08000084      lwz r0, 4(r9)\l0x08000088      li r3, 0xffff\l0x0800008c      cmpwi cr7, r0, 0\l0x08000090      bnelr cr7\l0x08000094      li r3, 3\l0x08000098      b 0x80000a8\l"]
+	"0x0800009c" [URL="sym.dgalloc/0x0800009c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dgalloc @ 0x8000064\l0x0800009c      li r3, 1\l0x080000a0      .dword 0x48000008\l"]
+	"0x080000a4" [URL="sym.dgalloc/0x080000a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dgalloc @ 0x8000078\l0x080000a4      li r3, 2\l"]
+	"0x080000a8" [URL="sym.dgalloc/0x080000a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.dgalloc @ 0x8000050, 0x8000098, 0x80000a0\l0x080000a8      li r0, 1\l0x080000ac      stw r0, 4(r9)\l0x080000b0      blr\l"]
+        "0x08000034" -> "0x08000054" [color="#13a10e"];
+        "0x08000034" -> "0x08000044" [color="#c50f1f"];
+        "0x08000044" -> "0x080000a8" [color="#3a96dd"];
+        "0x08000054" -> "0x0800009c" [color="#13a10e"];
+        "0x08000054" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x080000a4" [color="#13a10e"];
+        "0x08000068" -> "0x0800007c" [color="#c50f1f"];
+        "0x0800007c" -> "0x080000a8" [color="#3a96dd"];
+        "0x0800009c" -> "0x080000a8" [color="#3a96dd"];
+        "0x080000a4" -> "0x080000a8" [color="#3a96dd"];
+}

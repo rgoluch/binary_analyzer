@@ -1,0 +1,19 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ttyputc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l164: sym.ttyputc (int32_t arg1, int32_t arg2, int32_t arg_8ch, int32_t arg_d4h, int32_t arg_114h, int32_t arg_118h, signed int arg_10h, int32_t arg_14h);\l; arg int32_t arg_8ch @ r31+0x8c\l; arg int32_t arg_d4h @ r31+0xd4\l; arg int32_t arg_114h @ r31+0x114\l; arg int32_t arg_118h @ r31+0x118\l; var int32_t var_8h @ r1+0x8\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg1 @ r3\l; arg int32_t arg2 @ r4\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 164 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r30, 8(r1)\l0x08000044      stw r31, 0xc(r1)\l0x08000048      clrlwi r30, r4, 0x18                                   ; arg2\l0x0800004c      lwz r31, 0x44(r3)                                      ; arg1\l0x08000050      mulli r31, r31, 0x11c\l0x08000054      lis r9, 0\l0x08000058      addi r0, r9, 0\l0x0800005c      add r31, r31, r0\l0x08000060      cmpwi cr7, r30, 0xa\l0x08000064      bne cr7, 0x8000080\l"]
+	"0x08000068" [URL="sym.ttyputc/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      lbz r0, 0x114(r31)\l0x0800006c      cmpwi cr7, r0, 0\l0x08000070      beq cr7, 0x8000080\l"]
+	"0x08000074" [URL="sym.ttyputc/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000074      li r4, 0xd                                             ; int32_t arg2\l0x08000078      crclr 6\l0x0800007c      bl 0x800007c\l"]
+	"0x08000080" [URL="sym.ttyputc/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttyputc @ 0x8000064, 0x8000070\l0x08000080      lwz r3, 0xd4(r31)                                      ; int32_t arg1\l0x08000084      crclr 6\l0x08000088      bl 0x8000088\l0x0800008c      lwz r9, 0x8c(r31)\l0x08000090      add r11, r31, r9\l0x08000094      stb r30, 0x94(r11)\l0x08000098      addi r0, r9, 1\l0x0800009c      stw r0, 0x8c(r31)\l0x080000a0      cmpwi cr7, r0, 0x3f\l0x080000a4      ble cr7, 0x80000b0\l"]
+	"0x080000a8" [URL="sym.ttyputc/0x080000a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000a8      li r0, 0\l0x080000ac      stw r0, 0x8c(r31)\l"]
+	"0x080000b0" [URL="sym.ttyputc/0x080000b0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttyputc @ 0x80000a4\l0x080000b0      lwz r9, 0x118(r31)\l0x080000b4      li r0, 0x40\l0x080000b8      stw r0, 8(r9)\l0x080000bc      li r3, 1\l0x080000c0      lwz r0, 0x14(r1)\l0x080000c4      mtlr r0\l0x080000c8      lwz r30, 8(r1)\l0x080000cc      lwz r31, 0xc(r1)\l0x080000d0      addi r1, r1, 0x10\l0x080000d4      blr\l"]
+        "0x08000034" -> "0x08000080" [color="#13a10e"];
+        "0x08000034" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x08000080" [color="#13a10e"];
+        "0x08000068" -> "0x08000074" [color="#c50f1f"];
+        "0x08000074" -> "0x08000080" [color="#3a96dd"];
+        "0x08000080" -> "0x080000b0" [color="#13a10e"];
+        "0x08000080" -> "0x080000a8" [color="#c50f1f"];
+        "0x080000a8" -> "0x080000b0" [color="#3a96dd"];
+}

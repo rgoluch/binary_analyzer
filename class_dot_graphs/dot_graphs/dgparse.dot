@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.dgparse/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l44: sym.dgparse (int32_t arg1, int32_t arg4);\l; arg int32_t arg1 @ a0\l; arg int32_t arg4 @ a3\l0x08000034      bnez a1, 0x8000048                                     ; [01] -r-x section size 396 named .text\l0x08000038      addiu t2, a0, 0x10                                     ; arg1\l"]
+	"0x0800003c" [URL="sym.dgparse/0x0800003c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800003c      sw zero, 0xc(a0)                                       ; arg1\l0x08000040      jr ra\l0x08000044      addiu v0, zero, 1\l"]
+	"0x08000048" [URL="sym.dgparse/0x08000048", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dgparse @ 0x8000034\l0x08000048      move t0, zero\l0x0800004c      addiu a3, gp, 0                                        ; arg4\l0x08000050      addiu a3, a3, 1                                        ; arg4\l0x08000054      addiu t3, zero, 0x2e\l0x08000058      j 0xa4\l0x0800005c      addiu t1, zero, 4\l"]
+        "0x08000034" -> "0x08000048" [color="#13a10e"];
+        "0x08000034" -> "0x0800003c" [color="#c50f1f"];
+}

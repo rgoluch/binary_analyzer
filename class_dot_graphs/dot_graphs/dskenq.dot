@@ -1,0 +1,40 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.dskenq/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l284: sym.dskenq (int32_t arg1, int32_t arg2);\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; var int32_t var_20h @ sp+0x20\l; var int32_t var_24h @ sp+0x24\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l0x08000034      addiu sp, sp, -0x28                                    ; [01] -r-x section size 284 named .text\l0x08000038      sw ra, (var_24h)\l0x0800003c      sw s3, (var_20h)\l; UNKNOWN XREFS from sym.dskenq @ 0x800006c, 0x8000104\l;-- aav.0x08000040:\l0x08000040      sw s2, (var_1ch)\l0x08000044      sw s1, (var_18h)\l0x08000048      sw s0, (var_14h)\l0x0800004c      lw s2, 4(a1)                                           ; arg2\l0x08000050      nop\l0x08000054      bnez s2, 0x8000074\l0x08000058      move s3, a0\l"]
+	"0x0800005c" [URL="sym.dskenq/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800005c      sw a0, 4(a1)                                           ; arg2\l0x08000060      sw zero, 0x14(a0)                                      ; arg1\l0x08000064      jal 0\l0x08000068      move a0, a1\l0x0800006c      .dword 0x08000040 ; aav.0x08000040\l0x08000070      addiu v0, zero, 2\l"]
+	"0x08000074" [URL="sym.dskenq/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dskenq @ 0x8000054\l0x08000074      lw s1, (a0)                                            ; arg1\l0x08000078      lw s0, 0x14(s2)\l0x0800007c      nop\l0x08000080      beqz s0, 0x8000124\l0x08000084      nop\l"]
+	"0x08000088" [URL="sym.dskenq/0x08000088", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000088      lw v0, (s0)\l0x0800008c      nop\l0x08000090      bne v0, s1, 0x80000b4\l0x08000094      move a0, s0\l"]
+	"0x08000098" [URL="sym.dskenq/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000098      move a1, s2\l0x0800009c      jal 0\l0x080000a0      move a2, s3\l0x080000a4      addiu v0, v0, 1\l0x080000a8      sltu v0, zero, v0\l0x080000ac      bnez v0, 0x8000134\l0x080000b0      nop\l"]
+	"0x080000b4" [URL="sym.dskenq/0x080000b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dskenq @ 0x8000090\l0x080000b4      lw v0, (s2)\l0x080000b8      nop\l0x080000bc      sltu v1, s1, v0\l0x080000c0      bnez v1, 0x80000e8\l0x080000c4      nop\l"]
+	"0x080000c8" [URL="sym.dskenq/0x080000c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000c8      lw v1, (s0)\l0x080000cc      nop\l0x080000d0      sltu v1, s1, v1\l0x080000d4      bnez v1, 0x80000fc\l0x080000d8      nop\l"]
+	"0x080000dc" [URL="sym.dskenq/0x080000dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000dc      sltu v0, v0, s1\l0x080000e0      bnez v0, 0x800010c\l0x080000e4      nop\l"]
+	"0x080000e8" [URL="sym.dskenq/0x080000e8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dskenq @ 0x80000c0\l0x080000e8      lw v0, (s0)\l0x080000ec      nop\l0x080000f0      sltu v0, v0, s1\l0x080000f4      beqz v0, 0x800010c\l0x080000f8      nop\l"]
+	"0x080000fc" [URL="sym.dskenq/0x080000fc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dskenq @ 0x80000d4\l0x080000fc      sw s0, 0x14(s3)\l0x08000100      sw s3, 0x14(s2)\l0x08000104      .dword 0x08000040 ; aav.0x08000040\l0x08000108      addiu v0, zero, 2\l"]
+	"0x0800010c" [URL="sym.dskenq/0x0800010c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.dskenq @ 0x80000e0, 0x80000f4\l0x0800010c      lw v0, 0x14(s0)\l0x08000110      nop\l0x08000114      beqz v0, 0x8000128\l0x08000118      move s2, s0\l"]
+	"0x0800011c" [URL="sym.dskenq/0x0800011c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800011c      j 0x54\l0x08000120      move s0, v0\l"]
+	"0x08000124" [URL="sym.dskenq/0x08000124", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dskenq @ 0x8000080\l0x08000124      move s0, s2\l"]
+	"0x08000128" [URL="sym.dskenq/0x08000128", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dskenq @ 0x8000114\l0x08000128      sw zero, 0x14(s3)\l0x0800012c      sw s3, 0x14(s0)\l0x08000130      addiu v0, zero, 2\l"]
+	"0x08000134" [URL="sym.dskenq/0x08000134", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dskenq @ 0x80000ac\l0x08000134      lw ra, (var_24h)\l0x08000138      lw s3, (var_20h)\l0x0800013c      lw s2, (var_1ch)\l0x08000140      lw s1, (var_18h)\l0x08000144      lw s0, (var_14h)\l0x08000148      jr ra\l0x0800014c      addiu sp, sp, 0x28\l"]
+        "0x08000034" -> "0x08000074" [color="#13a10e"];
+        "0x08000034" -> "0x0800005c" [color="#c50f1f"];
+        "0x08000074" -> "0x08000124" [color="#13a10e"];
+        "0x08000074" -> "0x08000088" [color="#c50f1f"];
+        "0x08000088" -> "0x080000b4" [color="#13a10e"];
+        "0x08000088" -> "0x08000098" [color="#c50f1f"];
+        "0x08000098" -> "0x08000134" [color="#13a10e"];
+        "0x08000098" -> "0x080000b4" [color="#c50f1f"];
+        "0x080000b4" -> "0x080000e8" [color="#13a10e"];
+        "0x080000b4" -> "0x080000c8" [color="#c50f1f"];
+        "0x080000c8" -> "0x080000fc" [color="#13a10e"];
+        "0x080000c8" -> "0x080000dc" [color="#c50f1f"];
+        "0x080000dc" -> "0x0800010c" [color="#13a10e"];
+        "0x080000dc" -> "0x080000e8" [color="#c50f1f"];
+        "0x080000e8" -> "0x0800010c" [color="#13a10e"];
+        "0x080000e8" -> "0x080000fc" [color="#c50f1f"];
+        "0x0800010c" -> "0x08000128" [color="#13a10e"];
+        "0x0800010c" -> "0x0800011c" [color="#c50f1f"];
+        "0x08000124" -> "0x08000128" [color="#3a96dd"];
+        "0x08000128" -> "0x08000134" [color="#3a96dd"];
+}

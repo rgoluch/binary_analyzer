@@ -1,0 +1,14 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.nammap/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l88: sym.nammap ();\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_64h @ sp+0x64\l; var int32_t var_68h @ sp+0x68\l; var int32_t var_6ch @ sp+0x6c\l0x08000034      addiu sp, sp, -0x70                                    ; [01] -r-x section size 88 named .text\l0x08000038      sw ra, (var_6ch)\l0x0800003c      sw s1, (var_68h)\l0x08000040      sw s0, (var_64h)\l0x08000044      jal 0\l0x08000048      move s0, a1\l0x0800004c      addiu v1, zero, 0x14\l0x08000050      bne v0, v1, 0x8000078\l0x08000054      addiu s1, zero, 0x14\l"]
+	"0x08000058" [URL="sym.nammap/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000058      addiu a0, sp, 0x10\l"]
+	"0x0800005c" [URL="sym.nammap/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nammap @ 0x8000070\l0x0800005c      jal 0\l0x08000060      move a1, s0\l0x08000064      addiu a0, sp, 0x10\l0x08000068      jal 0\l0x0800006c      move a1, s0\l0x08000070      beq v0, s1, 0x800005c\l0x08000074      addiu a0, sp, 0x10\l"]
+	"0x08000078" [URL="sym.nammap/0x08000078", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nammap @ 0x8000050\l0x08000078      lw ra, (var_6ch)\l0x0800007c      lw s1, (var_68h)\l0x08000080      lw s0, (var_64h)\l0x08000084      jr ra\l0x08000088      addiu sp, sp, 0x70\l"]
+        "0x08000034" -> "0x08000078" [color="#13a10e"];
+        "0x08000034" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x0800005c" [color="#3a96dd"];
+        "0x0800005c" -> "0x0800005c" [color="#13a10e"];
+        "0x0800005c" -> "0x08000078" [color="#c50f1f"];
+}

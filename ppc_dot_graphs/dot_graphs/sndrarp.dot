@@ -1,0 +1,21 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.sndrarp/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l220: sym.sndrarp (signed int arg_30h, int32_t arg_34h);\l; var signed int var_8h @ r1+0x8\l; var int32_t var_18h @ r1+0x18\l; var int32_t var_20h @ r1+0x20\l; var int32_t var_24h @ r1+0x24\l; var int32_t var_28h @ r1+0x28\l; var int32_t var_2ch @ r1+0x2c\l; arg signed int arg_30h @ r1+0x30\l; arg int32_t arg_34h @ r1+0x34\l0x08000034      stwu r1, -0x30(r1)                                     ; [01] -r-x section size 220 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x34(r1)\l0x08000040      stw r28, 0x20(r1)\l0x08000044      stw r29, 0x24(r1)\l; UNKNOWN XREF from sym.sndrarp @ 0x80000e8\l;-- aav.0x08000048:\l0x08000048      stw r30, 0x28(r1)\l0x0800004c      stw r31, 0x2c(r1)\l0x08000050      bl 0x8000050\l0x08000054      mr r28, r3\l0x08000058      li r0, 2\l0x0800005c      stw r0, 0x18(r1)\l0x08000060      li r30, 0\l0x08000064      ori r30, r30, 0x8035\l0x08000068      lis r29, 0\l"]
+	"0x0800006c" [URL="sym.sndrarp/0x0800006c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sndrarp @ 0x80000d0\l0x0800006c      mr r3, r30                                             ; int32_t arg_30h\l0x08000070      li r4, 3                                               ; int32_t arg_34h\l0x08000074      addi r5, r1, 8\l0x08000078      mr r6, r5\l0x0800007c      crclr 6\l0x08000080      bl 0x8000080\l0x08000084      mr r31, r3\l0x08000088      cmpwi cr7, r3, 0xffff\l0x0800008c      beq cr7, 0x80000d4\l"]
+	"0x08000090" [URL="sym.sndrarp/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000090      addi r9, r29, 0\l0x08000094      stw r28, 0x74(r9)\l0x08000098      bl 0x8000098\l0x0800009c      li r3, 5                                               ; int32_t arg_30h\l0x080000a0      mr r4, r31                                             ; int32_t arg_34h\l0x080000a4      li r5, 0x40\l0x080000a8      crclr 6\l0x080000ac      bl 0x80000ac\l0x080000b0      li r3, 0x3c                                            ; int32_t arg_30h\l0x080000b4      crclr 6\l0x080000b8      bl 0x80000b8\l0x080000bc      cmpwi cr7, r3, 0xfffd\l0x080000c0      bne cr7, 0x80000ec\l"]
+	"0x080000c4" [URL="sym.sndrarp/0x080000c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000c4      lwz r0, 0x18(r1)\l0x080000c8      addic. r9, r0, 0xffff\l0x080000cc      stw r9, 0x18(r1)\l0x080000d0      bne 0x800006c\l"]
+	"0x080000d4" [URL="sym.sndrarp/0x080000d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sndrarp @ 0x800008c\l0x080000d4      lis r3, 0\l0x080000d8      addi r3, r3, 0                                         ; int32_t arg_30h\l0x080000dc      crclr 6\l0x080000e0      bl 0x80000e0\l0x080000e4      li r3, 0xffff\l0x080000e8      .dword 0x48000008\l"]
+	"0x080000ec" [URL="sym.sndrarp/0x080000ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sndrarp @ 0x80000c0\l0x080000ec      li r3, 1\l"]
+	"0x080000f0" [URL="sym.sndrarp/0x080000f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sndrarp @ 0x80000e8\l0x080000f0      lwz r0, 0x34(r1)\l0x080000f4      mtlr r0\l0x080000f8      lwz r28, 0x20(r1)\l0x080000fc      lwz r29, 0x24(r1)\l0x08000100      lwz r30, 0x28(r1)\l0x08000104      lwz r31, 0x2c(r1)\l0x08000108      addi r1, r1, 0x30\l0x0800010c      blr\l"]
+        "0x08000034" -> "0x0800006c" [color="#3a96dd"];
+        "0x0800006c" -> "0x080000d4" [color="#13a10e"];
+        "0x0800006c" -> "0x08000090" [color="#c50f1f"];
+        "0x08000090" -> "0x080000ec" [color="#13a10e"];
+        "0x08000090" -> "0x080000c4" [color="#c50f1f"];
+        "0x080000c4" -> "0x0800006c" [color="#13a10e"];
+        "0x080000c4" -> "0x080000d4" [color="#c50f1f"];
+        "0x080000d4" -> "0x080000f0" [color="#3a96dd"];
+        "0x080000ec" -> "0x080000f0" [color="#3a96dd"];
+}

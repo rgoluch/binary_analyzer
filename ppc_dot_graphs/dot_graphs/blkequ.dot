@@ -1,0 +1,18 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.blkequ/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l80: sym.blkequ (signed int arg1, signed int arg2, signed int arg3);\l; arg signed int arg1 @ r3\l; arg signed int arg2 @ r4\l; arg signed int arg3 @ r5\l0x08000034      addi r3, r3, 0xffff                                    ; arg1 ; [01] -r-x section size 80 named .text\l0x08000038      addi r4, r4, 0xffff                                    ; arg2\l0x0800003c      addi r0, r5, 1                                         ; arg3\l0x08000040      mtctr r0\l0x08000044      addi r0, r5, 0xffff                                    ; arg3\l0x08000048      cmpwi cr7, r0, 0xffff\l0x0800004c      bge cr7, 0x800006c\l"]
+	"0x08000050" [URL="sym.blkequ/0x08000050", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000050      li r0, 1\l0x08000054      mtctr r0\l0x08000058      b 0x800006c\l"]
+	"0x0800005c" [URL="sym.blkequ/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.blkequ @ 0x8000070\l0x0800005c      lbzu r9, 1(r3)                                         ; arg1\l0x08000060      lbzu r0, 1(r4)                                         ; arg2\l0x08000064      cmpw cr7, r9, r0\l0x08000068      bne cr7, 0x800007c\l"]
+	"0x0800006c" [URL="sym.blkequ/0x0800006c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.blkequ @ 0x800004c, 0x8000058\l0x0800006c      addi r5, r5, 0xffff                                    ; arg3\l0x08000070      bdnz 0x800005c\l"]
+	"0x08000074" [URL="sym.blkequ/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000074      li r3, 1\l0x08000078      blr\l"]
+	"0x0800007c" [URL="sym.blkequ/0x0800007c", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.blkequ @ 0x8000068\l0x0800007c      li r3, 0\l0x08000080      blr\l"]
+        "0x08000034" -> "0x0800006c" [color="#13a10e"];
+        "0x08000034" -> "0x08000050" [color="#c50f1f"];
+        "0x08000050" -> "0x0800006c" [color="#3a96dd"];
+        "0x0800005c" -> "0x0800007c" [color="#13a10e"];
+        "0x0800005c" -> "0x0800006c" [color="#c50f1f"];
+        "0x0800006c" -> "0x0800005c" [color="#13a10e"];
+        "0x0800006c" -> "0x08000074" [color="#c50f1f"];
+}

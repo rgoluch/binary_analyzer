@@ -1,0 +1,14 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.getprio/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l56: sym.getprio (signed int arg1);\l; arg signed int arg1 @ r3\l0x08000034      addi r9, r3, 0xffff                                    ; arg1 ; [01] -r-x section size 56 named .text\l0x08000038      li r0, 0xffff\l0x0800003c      cmplwi cr7, r9, 8\l0x08000040      bgt cr7, 0x8000064\l"]
+	"0x08000044" [URL="sym.getprio/0x08000044", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000044      mulli r3, r3, 0x34\l0x08000048      lis r9, 0\l0x0800004c      addi r9, r9, 0\l0x08000050      add r11, r3, r9                                        ; arg1\l0x08000054      lbzx r9, r9, r3                                        ; arg1\l0x08000058      cmpwi cr7, r9, 2\l0x0800005c      beq cr7, 0x8000064\l"]
+	"0x08000060" [URL="sym.getprio/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000060      lha r0, 2(r11)\l"]
+	"0x08000064" [URL="sym.getprio/0x08000064", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREFS from sym.getprio @ 0x8000040, 0x800005c\l0x08000064      mr r3, r0\l0x08000068      blr\l"]
+        "0x08000034" -> "0x08000064" [color="#13a10e"];
+        "0x08000034" -> "0x08000044" [color="#c50f1f"];
+        "0x08000044" -> "0x08000064" [color="#13a10e"];
+        "0x08000044" -> "0x08000060" [color="#c50f1f"];
+        "0x08000060" -> "0x08000064" [color="#3a96dd"];
+}

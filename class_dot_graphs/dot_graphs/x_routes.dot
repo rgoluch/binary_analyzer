@@ -1,0 +1,62 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x0000005f" [URL="fcn.0000005f/0x0000005f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from fcn.00000000 @ 0x5a\l501: fcn.0000005f ();\l; var int64_t var_80h @ rbp-0x80\l; var uint32_t var_30h @ rbp-0x30\l0x0000005f      mov rdi, rbx\l0x00000062      call 0x67\l; CALL XREF from fcn.0000005f @ 0x62\l0x00000067      mov edi, r15d\l0x0000006a      mov rsi, rbx\l0x0000006d      mov rdx, rax\l0x00000070      xor eax, eax\l0x00000072      call 0x77\l; CALL XREF from fcn.0000005f @ 0x72\l0x00000077      mov eax, dword [r14 + 0x60]\l0x0000007b      test eax, eax\l0x0000007d      jle 0x180\l"]
+	"0x00000083" [URL="fcn.0000005f/0x00000083", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000083      lea r13, [var_80h]\l0x00000087      mov r12, qword [0x0000008e]                            ; [0x8e:8]=0x841f0f2e66f63145\l; DATA XREF from fcn.0000005f @ 0x87\l0x0000008e      xor r14d, r14d\l0x00000091      nop word cs:[rax + rax]\l0x0000009b      nop dword [rax + rax]\l"]
+	"0x000000a0" [URL="fcn.0000005f/0x000000a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0x17a\l0x000000a0      movsx rcx, byte [r12]\l0x000000a5      test rcx, rcx\l0x000000a8      je 0x16d\l"]
+	"0x000000ae" [URL="fcn.0000005f/0x000000ae", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000000ae      lea rax, [0x000000b5]\l; DATA XREF from fcn.0000005f @ 0xae\l0x000000b5      movsx ecx, byte [rcx + rax]\l0x000000b9      mov r8d, dword [r12 + 0xc]\l0x000000be      mov rdi, r13\l0x000000c1      lea rsi, str.__2d._Route_c__Dev_2d                     ; 0x1ca ; \" %2d. Route=%c, Dev=%2d\"\l0x000000c8      mov edx, r14d\l0x000000cb      xor eax, eax\l0x000000cd      call 0xd2\l; CALL XREF from fcn.0000005f @ 0xcd\l0x000000d2      mov rdi, r13\l0x000000d5      call 0xda\l; CALL XREF from fcn.0000005f @ 0xd5\l0x000000da      lea rdi, [rbp + rax - 0x80]\l0x000000df      movzx edx, byte [r12 + 7]\l0x000000e5      movzx ecx, byte [r12 + 8]\l0x000000eb      movzx r8d, byte [r12 + 9]\l0x000000f1      movzx r9d, byte [r12 + 0xa]\l0x000000f7      lea rsi, str._IPaddr_03d._03d._03d._03d__              ; 0x1e7 ; \" IPaddr=%03d.%03d.%03d.%03d, \"\l0x000000fe      xor eax, eax\l0x00000100      call 0x105\l; CALL XREF from fcn.0000005f @ 0x100\l0x00000105      mov rdi, r13\l0x00000108      call 0x10d\l; CALL XREF from fcn.0000005f @ 0x108\l0x0000010d      lea rdi, [rbp + rax - 0x80]\l0x00000112      movzx edx, byte [r12 + 1]\l0x00000118      movzx ecx, byte [r12 + 2]\l0x0000011e      movzx r8d, byte [r12 + 3]\l0x00000124      movzx r9d, byte [r12 + 4]\l0x0000012a      movzx r10d, byte [r12 + 5]\l0x00000130      movzx ebx, byte [r12 + 6]\l0x00000136      lea rsi, str.Ether_addr_02x_02x._02x_02x._02x_02x_n    ; 0x205 ; \"Ether addr=%02x%02x.%02x%02x.%02x%02x\\n\"\l0x0000013d      xor eax, eax\l0x0000013f      push rbx\l0x00000140      push r10\l0x00000142      call 0x147\l; CALL XREF from fcn.0000005f @ 0x142\l0x00000147      add rsp, 0x10\l0x0000014b      mov rdi, r13\l0x0000014e      call 0x153\l; CALL XREF from fcn.0000005f @ 0x14e\l0x00000153      mov edi, r15d\l0x00000156      mov rsi, r13\l0x00000159      mov rdx, rax\l0x0000015c      xor eax, eax\l0x0000015e      call 0x163\l; CALL XREF from fcn.0000005f @ 0x15e\l0x00000163      mov rax, qword [0x0000016a]                            ; [0x16a:8]=0x6348c6ff4960408b\l; DATA XREF from fcn.0000005f @ 0x163\l0x0000016a      mov eax, dword [rax + 0x60]\l"]
+	"0x0000016d" [URL="fcn.0000005f/0x0000016d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0xa8\l0x0000016d      inc r14\l0x00000170      movsxd rcx, eax\l0x00000173      add r12, 0x10\l0x00000177      cmp r14, rcx\l0x0000017a      jl 0xa0\l"]
+	"0x00000180" [URL="fcn.0000005f/0x00000180", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000000 @ 0x33\l; CODE XREF from fcn.0000005f @ 0x7d\l0x00000180      mov rax, qword [0x00000187]                            ; [0x187:8]=0x75d0453b48008b48\l; DATA XREF from fcn.0000005f @ 0x180\l0x00000187      mov rax, qword [rax]\l0x0000018a      cmp rax, qword [var_30h]\l0x0000018e      jne 0x1a4\l"]
+	"0x00000190" [URL="fcn.0000005f/0x00000190", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000190      mov eax, 1\l0x00000195      add rsp, 0x58\l0x00000199      pop rbx\l0x0000019a      pop r12\l0x0000019c      pop r13\l0x0000019e      pop r14\l0x000001a0      pop r15\l0x000001a2      pop rbp\l0x000001a3      ret\l"]
+	"0x000001a4" [URL="fcn.0000005f/0x000001a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0x18e\l0x000001a4      call str.Routing_cache:_size_d__next_d_n\l; DATA XREF from fcn.00000000 @ 0x4a\l; CALL XREF from fcn.0000005f @ 0x1a4\l;-- str.Routing_cache:_size_d__next_d_n:\l;-- section.1..__cstring:\l0x000001a9     .string \"Routing cache: size=%d, next=%d\\n\" ; len=33    ; [01] -rwx section size 131 named 1..__cstring\l"]
+	"0x000001ad" [URL="fcn.0000005f/0x000001ad", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000001ad     .string \"Routing cache: size=%d, next=%d\\n\" ; len=33\l"]
+	"0x000001c5" [URL="fcn.0000005f/0x000001c5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000001c5     .string \"Routing cache: size=%d, next=%d\\n\" ; len=33\l; DATA XREF from fcn.0000005f @ 0xc1\l;-- str.__2d._Route_c__Dev_2d:\l0x000001ca     .string \" %2d. Route=%c, Dev=%2d\" ; len=24\l"]
+	"0x000001d4" [URL="fcn.0000005f/0x000001d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000001d4     .string \" %2d. Route=%c, Dev=%2d\" ; len=24\l"]
+	"0x000001de" [URL="fcn.0000005f/0x000001de", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000001de     .string \" %2d. Route=%c, Dev=%2d\" ; len=24\l;-- str.F_GD:\l;-- _st:\l0x000001e2     .string \"F?GD\" ; len=5\l"]
+	"0x0000021b" [URL="fcn.0000005f/0x0000021b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0x1da\l0x0000021b     .string \"Ether addr=%02x%02x.%02x%02x.%02x%02x\\n\" ; len=39\l"]
+	"0x00000221" [URL="fcn.0000005f/0x00000221", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0x1ab\l0x00000221     .string \"Ether addr=%02x%02x.%02x%02x.%02x%02x\\n\" ; len=39\l0x00000222     .string \"Ether addr=%02x%02x.%02x%02x.%02x%02x\\n\" ; len=39\l"]
+	"0x00000222" [URL="fcn.0000005f/0x00000222", fillcolor="white",color="#767676", fontname="Courier",label="0x00000222     .string \"Ether addr=%02x%02x.%02x%02x.%02x%02x\\n\" ; len=39\l"]
+	"0x00000227" [URL="fcn.0000005f/0x00000227", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000227     .string \"Ether addr=%02x%02x.%02x%02x.%02x%02x\\n\" ; len=39\l;-- rip:\l0x00000228     .string \"Ether addr=%02x%02x.%02x%02x.%02x%02x\\n\" ; len=39\l"]
+	"0x0000022b" [URL="fcn.0000005f/0x0000022b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from str.Ether_addr_02x_02x._02x_02x._02x_02x_n @ +0x3\l0x0000022b     .string \"Ether addr=%02x%02x.%02x%02x.%02x%02x\\n\" ; len=39\l; CODE XREF from str._IPaddr_03d._03d._03d._03d__ @ +0x4\l0x0000022c      add byte [rax], al\l0x0000022e      add byte [rax], al\l;-- section.2..__compact_unwind:\l0x00000230      add byte [rax], al                                     ; [02] -rwx section size 32 named 2..__compact_unwind\l0x00000232      add byte [rax], al\l0x00000234      invalid\l"]
+	"0x00000235" [URL="fcn.0000005f/0x00000235", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0x229\l0x00000235      add byte [rax], al\l0x00000237  ~   add byte [rcx - 0x2effffff], ch\l; CODE XREF from fcn.0000005f @ 0x1c3\l0x00000239      add dword [rax], eax\l0x0000023b      add cl, dl\l"]
+	"0x00000239" [URL="fcn.0000005f/0x00000239", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0x1c3\l0x00000239      add dword [rax], eax\l0x0000023b      add cl, dl\l"]
+	"0x0000023d" [URL="fcn.0000005f/0x0000023d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000023d      pop rax\l0x0000023e      add eax, 1\l0x00000243      add byte [rax], al\l0x00000245      add byte [rax], al\l; CODE XREF from str.Ether_addr_02x_02x._02x_02x._02x_02x_n @ +0x12\l0x00000247  ~   add byte [rax], al\l; CODE XREF from fcn.0000005f @ 0x1d2\l0x00000248      add byte [rax], al\l0x0000024a      add byte [rax], al\l0x0000024c      add byte [rax], al\l0x0000024e      add byte [rax], al\l; CODE XREF from fcn.0000005f @ 0x220\l;-- section.3..__eh_frame:\l0x00000250      adc al, 0                                              ; [03] -rwx section size 72 named 3..__eh_frame\l"]
+	"0x00000248" [URL="fcn.0000005f/0x00000248", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0x1d2\l0x00000248      add byte [rax], al\l0x0000024a      add byte [rax], al\l0x0000024c      add byte [rax], al\l0x0000024e      add byte [rax], al\l"]
+	"0x00000250" [URL="fcn.0000005f/0x00000250", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0x220\l;-- section.3..__eh_frame:\l0x00000250      adc al, 0                                              ; [03] -rwx section size 72 named 3..__eh_frame\l"]
+	"0x00000252" [URL="fcn.0000005f/0x00000252", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000252      add byte [rax], al\l0x00000254      add byte [rax], al\l0x00000256      add byte [rax], al\l0x00000258      add dword [rdx + 0x52], edi\l0x0000025b      add byte [rcx], al\l0x0000025d      js 0x26f\l"]
+	"0x0000025f" [URL="fcn.0000005f/0x0000025f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000025f      add dword [rax], edx\l0x00000261      or al, 7\l0x00000263      or byte [rax + 0x2c000001], dl\l0x00000269      add byte [rax], al\l0x0000026b      add byte [rax + rax], bl\l0x0000026e  ~   add byte [rax], al\l; CODE XREF from fcn.0000005f @ 0x25d\l0x0000026f      invalid\l; CODE XREF from str.Ether_addr_02x_02x._02x_02x._02x_02x_n @ \l0x00000270      nop\l0x00000271      std\l"]
+	"0x0000026f" [URL="fcn.0000005f/0x0000026f", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.0000005f @ 0x25d\l0x0000026f      add byte [rax - 3], dl\l"]
+        "0x0000005f" -> "0x00000180" [color="#13a10e"];
+        "0x0000005f" -> "0x00000083" [color="#c50f1f"];
+        "0x00000083" -> "0x000000a0" [color="#3a96dd"];
+        "0x000000a0" -> "0x0000016d" [color="#13a10e"];
+        "0x000000a0" -> "0x000000ae" [color="#c50f1f"];
+        "0x000000ae" -> "0x0000016d" [color="#3a96dd"];
+        "0x0000016d" -> "0x000000a0" [color="#13a10e"];
+        "0x0000016d" -> "0x00000180" [color="#c50f1f"];
+        "0x00000180" -> "0x000001a4" [color="#13a10e"];
+        "0x00000180" -> "0x00000190" [color="#c50f1f"];
+        "0x000001a4" -> "0x00000221" [color="#13a10e"];
+        "0x000001a4" -> "0x000001ad" [color="#c50f1f"];
+        "0x000001ad" -> "0x00000239" [color="#13a10e"];
+        "0x000001ad" -> "0x000001c5" [color="#c50f1f"];
+        "0x000001c5" -> "0x00000248" [color="#13a10e"];
+        "0x000001c5" -> "0x000001d4" [color="#c50f1f"];
+        "0x000001d4" -> "0x0000021b" [color="#13a10e"];
+        "0x000001d4" -> "0x000001de" [color="#c50f1f"];
+        "0x0000021b" -> "0x00000250" [color="#13a10e"];
+        "0x0000021b" -> "0x00000222" [color="#c50f1f"];
+        "0x00000221" -> "0x00000227" [color="#3a96dd"];
+        "0x00000222" -> "0x00000227" [color="#3a96dd"];
+        "0x00000227" -> "0x00000235" [color="#13a10e"];
+        "0x00000227" -> "0x0000022b" [color="#c50f1f"];
+        "0x0000022b" -> "0x00000235" [color="#3a96dd"];
+        "0x00000235" -> "0x0000023d" [color="#3a96dd"];
+        "0x00000239" -> "0x0000023d" [color="#3a96dd"];
+        "0x0000023d" -> "0x00000252" [color="#3a96dd"];
+        "0x00000248" -> "0x00000250" [color="#3a96dd"];
+        "0x00000250" -> "0x00000252" [color="#3a96dd"];
+        "0x00000252" -> "0x0000026f" [color="#13a10e"];
+        "0x00000252" -> "0x0000025f" [color="#c50f1f"];
+}

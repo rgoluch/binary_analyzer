@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.mdump/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l64: sym.mdump ();\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; var int32_t var_20h @ sp+0x20\l; var int32_t var_24h @ sp+0x24\l0x08000034      addiu sp, sp, -0x28                                    ; [01] -r-x section size 336 named .text\l0x08000038      sw ra, (var_24h)\l0x0800003c      sw s2, (var_20h)\l0x08000040      sw s1, (var_1ch)\l0x08000044      sw s0, (var_18h)\l; UNKNOWN XREF from sym.mdump @ 0x800006c\l;-- aav.0x08000048:\l0x08000048      lw v0, (gp)\l0x0800004c      nop\l0x08000050      beqz v0, 0x8000150\l0x08000054      move s0, zero\l"]
+	"0x08000058" [URL="sym.mdump/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.mdump @ 0x8000064\l0x08000058      lw v1, 4(v0)\l0x0800005c      lw v0, (v0)\l0x08000060      nop\l0x08000064      bnez v0, 0x8000058\l0x08000068      addu s0, s0, v1\l"]
+	"0x0800006c" [URL="sym.mdump/0x0800006c", fillcolor="white",color="#767676", fontname="Courier",label="0x0800006c      .dword 0x08000048 ; aav.0x08000048\l0x08000070      lui v0, 0\l"]
+        "0x08000034" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x08000058" [color="#13a10e"];
+        "0x08000058" -> "0x0800006c" [color="#c50f1f"];
+}

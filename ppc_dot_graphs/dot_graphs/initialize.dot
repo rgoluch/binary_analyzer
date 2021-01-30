@@ -1,0 +1,23 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.nulluser/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l308: sym.nulluser (int32_t arg_0h);\l; arg int32_t arg_0h @ r31+0x0\l; var int32_t var_ch @ r1+0xc\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 308 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r31, 0xc(r1)\l0x08000044      lis r3, 0\l0x08000048      addi r3, r3, 8                                         ; int32_t arg_0h\l0x0800004c      lis r4, 0\l0x08000050      addi r4, r4, 0\l0x08000054      crclr 6\l0x08000058      bl 0x8000058\l0x0800005c      lis r11, 0\l0x08000060      lwz r9, 0(r11)\l0x08000064      addi r4, r9, 1\l0x08000068      stw r4, 0(r11)\l0x0800006c      cmpwi cr7, r9, 0\l0x08000070      bgt cr7, 0x8000088\l"]
+	"0x08000074" [URL="sym.nulluser/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000074      lis r3, 0\l0x08000078      addi r3, r3, 0x1c                                      ; int32_t arg_0h\l0x0800007c      crclr 6\l0x08000080      bl 0x8000080\l0x08000084      b 0x8000098\l"]
+	"0x08000088" [URL="sym.nulluser/0x08000088", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nulluser @ 0x8000070\l0x08000088      lis r3, 0\l0x0800008c      addi r3, r3, 0x20                                      ; int32_t arg_0h\l0x08000090      crclr 6\l0x08000094      bl 0x8000094\l"]
+	"0x08000098" [URL="sym.nulluser/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nulluser @ 0x8000084\l0x08000098      lis r31, 0\l0x0800009c      lwz r4, 0(r31)\l0x080000a0      lis r3, 0\l0x080000a4      addi r3, r3, 0x30                                      ; int32_t arg_0h\l0x080000a8      addi r4, r4, 4\l0x080000ac      crclr 6\l0x080000b0      bl 0x80000b0\l0x080000b4      lwz r4, 0(r31)\l0x080000b8      lis r9, 0\l0x080000bc      addi r0, r9, 0\l0x080000c0      subf r4, r0, r4\l0x080000c4      lis r3, 0\l0x080000c8      addi r3, r3, 0x40                                      ; int32_t arg_0h\l0x080000cc      addi r4, r4, 4\l0x080000d0      crclr 6\l0x080000d4      bl 0x80000d4\l0x080000d8      lis r9, 0\l0x080000dc      lwz r0, 0(r9)\l0x080000e0      cmpwi cr7, r0, 1\l0x080000e4      bne cr7, 0x80000f4\l"]
+	"0x080000e8" [URL="sym.nulluser/0x080000e8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000e8      lis r4, 0\l0x080000ec      addi r4, r4, 0\l0x080000f0      b 0x80000fc\l"]
+	"0x080000f4" [URL="sym.nulluser/0x080000f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nulluser @ 0x80000e4\l0x080000f4      lis r4, 0\l0x080000f8      addi r4, r4, 4\l"]
+	"0x080000fc" [URL="sym.nulluser/0x080000fc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nulluser @ 0x80000f0\l0x080000fc      lis r3, 0\l0x08000100      addi r3, r3, 0x50                                      ; int32_t arg_0h\l0x08000104      crclr 6\l0x08000108      bl 0x8000108\l0x0800010c      lis r3, 0\l0x08000110      addi r3, r3, 0                                         ; int32_t arg_0h\l0x08000114      li r4, 0x1f4\l0x08000118      li r5, 0x14\l0x0800011c      lis r6, 0\l0x08000120      addi r6, r6, 0x60\l0x08000124      li r7, 1\l0x08000128      li r8, 0\l0x0800012c      crclr 6\l0x08000130      bl 0x8000130\l0x08000134      mr r8, r3\l0x08000138      lis r3, 0\l0x0800013c      addi r3, r3, 0                                         ; int32_t arg_0h\l0x08000140      li r4, 0x15e\l0x08000144      li r5, 0x64\l0x08000148      lis r6, 0\l0x0800014c      addi r6, r6, 0x68\l0x08000150      li r7, 1\l0x08000154      crclr 6\l0x08000158      bl 0x8000158\l0x0800015c      crclr 6\l0x08000160      bl 0x8000160\l"]
+	"0x08000164" [URL="sym.nulluser/0x08000164", fillcolor="white",color="#767676", fontname="Courier",label="0x08000164      b 0x8000164\l"]
+        "0x08000034" -> "0x08000088" [color="#13a10e"];
+        "0x08000034" -> "0x08000074" [color="#c50f1f"];
+        "0x08000074" -> "0x08000098" [color="#3a96dd"];
+        "0x08000088" -> "0x08000098" [color="#3a96dd"];
+        "0x08000098" -> "0x080000f4" [color="#13a10e"];
+        "0x08000098" -> "0x080000e8" [color="#c50f1f"];
+        "0x080000e8" -> "0x080000fc" [color="#3a96dd"];
+        "0x080000f4" -> "0x080000fc" [color="#3a96dd"];
+        "0x080000fc" -> "0x08000164" [color="#3a96dd"];
+        "0x08000164" -> "0x08000164" [color="#3a96dd"];
+}

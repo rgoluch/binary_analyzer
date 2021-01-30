@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.dgmcntl/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l68: sym.dgmcntl (signed int arg2, int32_t arg3, signed int arg_10h, int32_t arg_14h);\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg signed int arg2 @ r4\l; arg int32_t arg3 @ r5\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 68 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      li r3, 0xffff\l0x08000044      cmpwi cr7, r4, 1                                       ; arg2\l0x08000048      bne cr7, 0x8000068\l"]
+	"0x0800004c" [URL="sym.dgmcntl/0x0800004c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800004c      lis r3, 0\l0x08000050      addi r3, r3, 0x5c                                      ; int32_t arg2\l0x08000054      mr r4, r5                                              ; int32_t arg3\l0x08000058      li r5, 4                                               ; int32_t arg_10h\l0x0800005c      crclr 6\l0x08000060      bl 0x8000060\l0x08000064      li r3, 1\l"]
+	"0x08000068" [URL="sym.dgmcntl/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.dgmcntl @ 0x8000048\l0x08000068      lwz r0, 0x14(r1)\l0x0800006c      mtlr r0\l0x08000070      addi r1, r1, 0x10\l0x08000074      blr\l"]
+        "0x08000034" -> "0x08000068" [color="#13a10e"];
+        "0x08000034" -> "0x0800004c" [color="#c50f1f"];
+        "0x0800004c" -> "0x08000068" [color="#3a96dd"];
+}

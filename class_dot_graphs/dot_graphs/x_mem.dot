@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x00000228" [URL="fcn.00000228/0x00000228", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- rip:\l38: fcn.00000228 ();\l; var uint32_t var_30h @ rbp-0x30\l0x00000228      add eax, 0\l"]
+	"0x0000022d" [URL="fcn.00000228/0x0000022d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; DATA XREF from fcn.0000010c @ 0x226\l0x0000022d      mov rax, qword [rax]\l0x00000230      cmp rax, qword [var_30h]\l0x00000234      jne 0x314                                              ; fcn.0000010c+0x208\l"]
+	"0x0000023a" [URL="fcn.00000228/0x0000023a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000023a      mov eax, 1\l0x0000023f      add rsp, 0x58\l0x00000243      pop rbx\l0x00000244      pop r12\l0x00000246      pop r13\l0x00000248      pop r14\l0x0000024a      pop r15\l0x0000024c      pop rbp\l0x0000024d      ret\l"]
+        "0x00000228" -> "0x0000022d" [color="#3a96dd"];
+        "0x0000022d" -> "0x0000023a" [color="#c50f1f"];
+}

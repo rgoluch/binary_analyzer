@@ -1,33 +1,39 @@
 import r2pipe
 import os
 
-r2 = r2pipe.open("/Users/RyanGoluch/Desktop/xinu_x86.elf")
-r2.cmd("aaaa")
-
 functions = []
 
-with open("x86_functions.txt", "r") as f:
+with open("obj_files_2.txt", "r") as f:
     x = f.readline()
     while x: 
-        y = x.split(' ')
-        y = y[len(y)-1]
+        y = x.split('\n')
+        y = y[0]
+        # y = x
         # print(y)
         functions.append(y)
         x = f.readline()
     f.close()
 
+print(len(functions))
 ext = "dot"
 
 for z in functions: 
+    t = z+".o"
+    # z = "shell.o"
+    # t = "object_files/"+t
+    t = str(t)
+    r2 = r2pipe.open(t)
+    r2.cmd("aaaa")
+    z = z.split('.')[0]
     #print(z)
-    r2.cmd("s "+str(z))
+    r2.cmd("s "+str("sym."+z))
     s = str(z).split('.')
     print(s)
     if len(s) == 1:
         temp = os.path.join("", s[0].replace("\n", "") + "." + ext)
     else:
         temp = os.path.join("", s[1].replace("\n", "") + "." + ext)
-    r2.cmd("agfd > "+str(temp))
+    r2.cmd("agfd > "+temp)
 
 
-print(len(functions))
+

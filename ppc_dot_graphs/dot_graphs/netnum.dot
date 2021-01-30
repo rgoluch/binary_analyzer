@@ -1,0 +1,21 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.netnum/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l108: sym.netnum (int32_t arg1, signed int arg_0h, int32_t arg_14h);\l; arg signed int arg_0h @ r31+0x0\l; var int32_t var_ch @ r1+0xc\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg1 @ r3\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 108 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r31, 0xc(r1)\l0x08000044      mr r31, r3                                             ; arg1\l0x08000048      li r5, 4                                               ; int32_t arg_14h\l0x0800004c      crclr 6\l0x08000050      bl 0x8000050\l0x08000054      lbz r0, 0(r31)\l0x08000058      rlwinm r0, r0, 0, 0x18, 0x19\l0x0800005c      cmpwi cr7, r0, 0x80\l0x08000060      beq cr7, 0x8000078\l"]
+	"0x08000064" [URL="sym.netnum/0x08000064", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000064      cmpwi cr7, r0, 0xc0\l0x08000068      beq cr7, 0x8000080\l"]
+	"0x0800006c" [URL="sym.netnum/0x0800006c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800006c      cmpwi cr7, r0, 0\l0x08000070      bne cr7, 0x8000088\l"]
+	"0x08000074" [URL="sym.netnum/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000074      stb r0, 1(r31)\l"]
+	"0x08000078" [URL="sym.netnum/0x08000078", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.netnum @ 0x8000060\l0x08000078      li r0, 0\l0x0800007c      stb r0, 2(r31)\l"]
+	"0x08000080" [URL="sym.netnum/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.netnum @ 0x8000068\l0x08000080      li r0, 0\l0x08000084      stb r0, 3(r31)\l"]
+	"0x08000088" [URL="sym.netnum/0x08000088", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.netnum @ 0x8000070\l0x08000088      li r3, 1\l0x0800008c      lwz r0, 0x14(r1)\l0x08000090      mtlr r0\l0x08000094      lwz r31, 0xc(r1)\l0x08000098      addi r1, r1, 0x10\l0x0800009c      blr\l"]
+        "0x08000034" -> "0x08000078" [color="#13a10e"];
+        "0x08000034" -> "0x08000064" [color="#c50f1f"];
+        "0x08000064" -> "0x08000080" [color="#13a10e"];
+        "0x08000064" -> "0x0800006c" [color="#c50f1f"];
+        "0x0800006c" -> "0x08000088" [color="#13a10e"];
+        "0x0800006c" -> "0x08000074" [color="#c50f1f"];
+        "0x08000074" -> "0x08000078" [color="#3a96dd"];
+        "0x08000078" -> "0x08000080" [color="#3a96dd"];
+        "0x08000080" -> "0x08000088" [color="#3a96dd"];
+}

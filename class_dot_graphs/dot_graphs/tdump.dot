@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000250" [URL="sym.tdump/0x08000250", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="56: sym.tdump ();\l; var int32_t var_14h @ sp+0x14\l0x08000250      addiu sp, sp, -0x18\l0x08000254      sw ra, (var_14h)\l0x08000258      jal 0\l0x0800025c      move a0, zero\l0x08000260      jal 0\l0x08000264      addiu a0, zero, 1\l0x08000268      jal 0\l0x0800026c      addiu a0, zero, 2\l0x08000270      jal 0\l0x08000274      addiu a0, zero, 3\l0x08000278      lw ra, (var_14h)\l0x0800027c      nop\l0x08000280      jr ra\l0x08000284      addiu sp, sp, 0x18\l"]
+}

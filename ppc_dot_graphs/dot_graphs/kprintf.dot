@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.kprintf/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l92: sym.kprintf ();\l0x08000034      lis r9, 0                                              ; [01] -r-x section size 92 named .text\l0x08000038      addi r11, r9, 0\l0x0800003c      li r0, 0\l0x08000040      stb r0, 0(r9)\l0x08000044      stw r0, 4(r11)\l0x08000048      lis r9, 0\l0x0800004c      addi r9, r9, 0\l0x08000050      lwz r10, 0x2c(r9)\l0x08000054      lwz r8, 0(r10)\l0x08000058      rlwinm r8, r8, 0, 0x19, 0x19\l0x0800005c      stw r8, 8(r11)\l0x08000060      stw r0, 0(r10)\l0x08000064      lwz r7, 0x2c(r9)\l0x08000068      lwz r10, 8(r7)\l0x0800006c      rlwinm r10, r10, 0, 0x19, 0x19\l0x08000070      stw r10, 0xc(r11)\l0x08000074      stw r0, 8(r7)\l0x08000078      lwz r11, 0x2c(r9)\l0x0800007c      stw r8, 0(r11)\l0x08000080      lwz r9, 0x2c(r9)\l0x08000084      stw r10, 8(r9)\l0x08000088      li r3, 1\l0x0800008c      blr\l"]
+}

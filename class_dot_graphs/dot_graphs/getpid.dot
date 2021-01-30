@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.getpid/0x08000034", fillcolor="white",color="#767676", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l12: int sym.getpid ();\l0x08000034      lw v0, (gp)                                            ; [01] -r-x section size 12 named .text\l0x08000038      jr ra\l0x0800003c      nop\l"]
+}

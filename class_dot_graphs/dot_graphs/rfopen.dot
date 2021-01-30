@@ -1,0 +1,22 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.rfopen/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l256: sym.rfopen ();\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; var int32_t var_20h @ sp+0x20\l; var int32_t var_24h @ sp+0x24\l0x08000034      addiu sp, sp, -0x28                                    ; [01] -r-x section size 256 named .text\l0x08000038      sw ra, (var_24h)\l0x0800003c      sw s3, (var_20h)\l0x08000040      sw s2, (var_1ch)\l0x08000044      sw s1, (var_18h)\l0x08000048      sw s0, (var_14h)\l0x0800004c      move s3, a1\l0x08000050      move s0, a2\l0x08000054      jal 0\l0x08000058      move a0, a1\l0x0800005c      sltiu v0, v0, 0x51\l0x08000060      beqz v0, 0x8000118\l0x08000064      addiu v0, zero, -1\l"]
+	"0x08000068" [URL="sym.rfopen/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      jal 0\l0x0800006c      move a0, s0\l0x08000070      move s1, v0\l0x08000074      addiu v0, zero, -1\l0x08000078      beq s1, v0, 0x8000118\l0x0800007c      nop\l"]
+	"0x08000080" [URL="sym.rfopen/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000080      jal 0\l0x08000084      nop\l0x08000088      addiu v1, zero, -1\l0x0800008c      beq v0, v1, 0x800010c\l0x08000090      sll s0, v0, 2\l"]
+	"0x08000094" [URL="sym.rfopen/0x08000094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000094      sll v0, v0, 4\l0x08000098      addu v0, s0, v0\l0x0800009c      sll s0, v0, 2\l0x080000a0      addu v0, v0, s0\l0x080000a4      addiu v0, v0, 8\l0x080000a8      lui s0, 0\l0x080000ac      addiu s0, s0, 0\l0x080000b0      addu s0, s0, v0\l0x080000b4      lw s2, (s0)\l0x080000b8      addiu a0, s0, 4\l0x080000bc      jal 0\l0x080000c0      move a1, s3\l0x080000c4      sw s1, 0x58(s0)\l0x080000c8      sw zero, 0x60(s0)\l0x080000cc      sll v1, s2, 3\l0x080000d0      sll v0, s2, 6\l0x080000d4      addu v0, v1, v0\l0x080000d8      lui a0, 0\l0x080000dc      addiu a0, a0, 0\l0x080000e0      addu a0, a0, v0\l0x080000e4      move a1, zero\l0x080000e8      lui a2, 0\l0x080000ec      addiu a2, a2, 0\l0x080000f0      jal 0\l0x080000f4      move a3, s1\l0x080000f8      addiu v1, zero, -1\l0x080000fc      bne v0, v1, 0x8000114\l0x08000100      nop\l"]
+	"0x08000104" [URL="sym.rfopen/0x08000104", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000104      j 0xe4\l0x08000108      sw v1, 0x54(s0)\l"]
+	"0x0800010c" [URL="sym.rfopen/0x0800010c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfopen @ 0x800008c\l0x0800010c      j 0xe4\l0x08000110      addiu v0, zero, -1\l"]
+	"0x08000114" [URL="sym.rfopen/0x08000114", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.rfopen @ 0x80000fc\l0x08000114      move v0, s2\l"]
+	"0x08000118" [URL="sym.rfopen/0x08000118", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.rfopen @ 0x8000060, 0x8000078\l0x08000118      lw ra, (var_24h)\l0x0800011c      lw s3, (var_20h)\l0x08000120      lw s2, (var_1ch)\l0x08000124      lw s1, (var_18h)\l0x08000128      lw s0, (var_14h)\l0x0800012c      jr ra\l0x08000130      addiu sp, sp, 0x28\l"]
+        "0x08000034" -> "0x08000118" [color="#13a10e"];
+        "0x08000034" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x08000118" [color="#13a10e"];
+        "0x08000068" -> "0x08000080" [color="#c50f1f"];
+        "0x08000080" -> "0x0800010c" [color="#13a10e"];
+        "0x08000080" -> "0x08000094" [color="#c50f1f"];
+        "0x08000094" -> "0x08000114" [color="#13a10e"];
+        "0x08000094" -> "0x08000104" [color="#c50f1f"];
+        "0x08000114" -> "0x08000118" [color="#3a96dd"];
+}

@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.stopclk/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l20: sym.stopclk ();\l0x08000034      lw v0, (gp)                                            ; [01] -r-x section size 376 named .text\l0x08000038      nop\l0x0800003c      addiu v0, v0, 1\l0x08000040      jr ra\l0x08000044      sw v0, (gp)\l"]
+}

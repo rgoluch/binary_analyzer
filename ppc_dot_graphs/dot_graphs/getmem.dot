@@ -1,0 +1,45 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.getmem/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l188: sym.getmem (signed int arg1);\l; arg signed int arg1 @ r3\l0x08000034      li r9, 0xffff                                          ; [01] -r-x section size 188 named .text\l0x08000038      cmpwi r3, 0                                            ; arg1\l0x0800003c      beq 0x80000e8\l"]
+	"0x08000040" [URL="sym.getmem/0x08000040", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000040      lis r9, 0\l0x08000044      lwz r10, 0(r9)\l0x08000048      li r9, 0xffff\l0x0800004c      cmpwi cr7, r10, 0\l0x08000050      beq cr7, 0x80000e8\l"]
+	"0x08000054" [URL="sym.getmem/0x08000054", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000054      addi r11, r3, 3                                        ; arg1\l0x08000058      rlwinm r11, r11, 0, 0, 0x1d\l0x0800005c      lwz r0, 4(r10)\l0x08000060      cmpw cr7, r0, r11\l0x08000064      beq cr7, 0x8000084\l"]
+	"0x08000068" [URL="sym.getmem/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      cmplw cr7, r11, r0\l0x0800006c      bge cr7, 0x80000d8\l"]
+	"0x08000070" [URL="sym.getmem/0x08000070", fillcolor="white",color="#767676", fontname="Courier",label="0x08000070      b 0x80000a8\l"]
+	"0x08000074" [URL="sym.getmem/0x08000074", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getmem @ 0x80000e0\l0x08000074      lwz r0, 4(r9)\l0x08000078      cmpw cr7, r0, r11\l0x0800007c      bne cr7, 0x800009c\l"]
+	"0x08000080" [URL="sym.getmem/0x08000080", fillcolor="white",color="#767676", fontname="Courier",label="0x08000080      b 0x8000090\l"]
+	"0x08000084" [URL="sym.getmem/0x08000084", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getmem @ 0x8000064\l0x08000084      mr r9, r10\l0x08000088      lis r10, 0\l0x0800008c      addi r10, r10, 0\l"]
+	"0x08000090" [URL="sym.getmem/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getmem @ 0x8000080\l0x08000090      lwz r0, 0(r9)\l0x08000094      stw r0, 0(r10)\l0x08000098      b 0x80000e8\l"]
+	"0x0800009c" [URL="sym.getmem/0x0800009c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getmem @ 0x800007c\l0x0800009c      cmplw cr7, r11, r0\l0x080000a0      bge cr7, 0x80000d4\l"]
+	"0x080000a4" [URL="sym.getmem/0x080000a4", fillcolor="white",color="#767676", fontname="Courier",label="0x080000a4      b 0x80000b4\l"]
+	"0x080000a8" [URL="sym.getmem/0x080000a8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getmem @ 0x8000070\l0x080000a8      mr r9, r10\l0x080000ac      lis r10, 0\l0x080000b0      addi r10, r10, 0\l"]
+	"0x080000b4" [URL="sym.getmem/0x080000b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getmem @ 0x80000a4\l0x080000b4      add r8, r9, r11\l0x080000b8      stw r8, 0(r10)\l0x080000bc      lwz r0, 0(r9)\l0x080000c0      stwx r0, r9, r11\l0x080000c4      lwz r0, 4(r9)\l0x080000c8      subf r11, r11, r0\l0x080000cc      stw r11, 4(r8)\l0x080000d0      b 0x80000e8\l"]
+	"0x080000d4" [URL="sym.getmem/0x080000d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getmem @ 0x80000a0\l0x080000d4      mr r10, r9\l"]
+	"0x080000d8" [URL="sym.getmem/0x080000d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.getmem @ 0x800006c\l0x080000d8      lwz r9, 0(r10)\l0x080000dc      cmpwi cr7, r9, 0\l0x080000e0      bne cr7, 0x8000074\l"]
+	"0x080000e4" [URL="sym.getmem/0x080000e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000e4      li r9, 0xffff\l"]
+	"0x080000e8" [URL="sym.getmem/0x080000e8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREFS from sym.getmem @ 0x800003c, 0x8000050, 0x8000098, 0x80000d0\l0x080000e8      mr r3, r9\l0x080000ec      blr\l"]
+        "0x08000034" -> "0x080000e8" [color="#13a10e"];
+        "0x08000034" -> "0x08000040" [color="#c50f1f"];
+        "0x08000040" -> "0x080000e8" [color="#13a10e"];
+        "0x08000040" -> "0x08000054" [color="#c50f1f"];
+        "0x08000054" -> "0x08000084" [color="#13a10e"];
+        "0x08000054" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x080000d8" [color="#13a10e"];
+        "0x08000068" -> "0x08000070" [color="#c50f1f"];
+        "0x08000070" -> "0x080000a8" [color="#3a96dd"];
+        "0x08000074" -> "0x0800009c" [color="#13a10e"];
+        "0x08000074" -> "0x08000080" [color="#c50f1f"];
+        "0x08000080" -> "0x08000090" [color="#3a96dd"];
+        "0x08000084" -> "0x08000090" [color="#3a96dd"];
+        "0x08000090" -> "0x080000e8" [color="#3a96dd"];
+        "0x0800009c" -> "0x080000d4" [color="#13a10e"];
+        "0x0800009c" -> "0x080000a4" [color="#c50f1f"];
+        "0x080000a4" -> "0x080000b4" [color="#3a96dd"];
+        "0x080000a8" -> "0x080000b4" [color="#3a96dd"];
+        "0x080000b4" -> "0x080000e8" [color="#3a96dd"];
+        "0x080000d4" -> "0x080000d8" [color="#3a96dd"];
+        "0x080000d8" -> "0x08000074" [color="#13a10e"];
+        "0x080000d8" -> "0x080000e4" [color="#c50f1f"];
+        "0x080000e4" -> "0x080000e8" [color="#3a96dd"];
+}

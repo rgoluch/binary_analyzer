@@ -1,0 +1,6 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.clkint/0x08000034", fillcolor="white",color="#767676", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l4: sym.clkint ();\l0x08000034      blr                                                    ; [01] -r-x section size 4 named .text\l"]
+}

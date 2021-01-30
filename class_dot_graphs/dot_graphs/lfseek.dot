@@ -1,0 +1,17 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.lfseek/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l152: sym.lfseek (int32_t arg1);\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; arg int32_t arg1 @ a0\l0x08000034      addiu sp, sp, -0x20                                    ; [01] -r-x section size 152 named .text\l0x08000038      sw ra, (var_1ch)\l0x0800003c      sw s1, (var_18h)\l0x08000040      sw s0, (var_14h)\l0x08000044      lw s0, 0x40(a0)                                        ; arg1\l0x08000048      nop\l0x0800004c      lw v0, 0x10(s0)\l0x08000050      nop\l0x08000054      andi v0, v0, 2\l0x08000058      beqz v0, 0x8000080\l0x0800005c      move s1, a1\l"]
+	"0x08000060" [URL="sym.lfseek/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000060      lb v0, 0x9c(s0)\l0x08000064      nop\l0x08000068      beqz v0, 0x800009c\l0x0800006c      nop\l"]
+	"0x08000070" [URL="sym.lfseek/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000070      jal 0\l0x08000074      move a0, s0\l0x08000078      j 0x6c\l0x0800007c      sw s1, 0x98(s0)\l"]
+	"0x08000080" [URL="sym.lfseek/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfseek @ 0x8000058\l0x08000080      lw v0, 0xc(s0)\l0x08000084      nop\l0x08000088      lw v0, (v0)\l0x0800008c      nop\l0x08000090      slt v0, v0, a1\l0x08000094      bnez v0, 0x80000b4\l0x08000098      nop\l"]
+	"0x0800009c" [URL="sym.lfseek/0x0800009c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfseek @ 0x8000068\l0x0800009c      sw s1, 0x98(s0)\l0x080000a0      lw a0, 4(s0)\l0x080000a4      jal 0\l0x080000a8      move a1, s0\l0x080000ac      j 0x84\l0x080000b0      nop\l"]
+	"0x080000b4" [URL="sym.lfseek/0x080000b4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.lfseek @ 0x8000094\l0x080000b4      addiu v0, zero, -1\l0x080000b8      lw ra, (var_1ch)\l0x080000bc      lw s1, (var_18h)\l0x080000c0      lw s0, (var_14h)\l0x080000c4      jr ra\l0x080000c8      addiu sp, sp, 0x20\l"]
+        "0x08000034" -> "0x08000080" [color="#13a10e"];
+        "0x08000034" -> "0x08000060" [color="#c50f1f"];
+        "0x08000060" -> "0x0800009c" [color="#13a10e"];
+        "0x08000060" -> "0x08000070" [color="#c50f1f"];
+        "0x08000080" -> "0x080000b4" [color="#13a10e"];
+        "0x08000080" -> "0x0800009c" [color="#c50f1f"];
+}

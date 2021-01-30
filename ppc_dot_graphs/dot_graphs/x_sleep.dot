@@ -1,0 +1,13 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.x_sleep/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l92: sym.x_sleep (int32_t arg3, signed int arg4, int32_t arg5, signed int arg_10h, int32_t arg_14h);\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg3 @ r5\l; arg signed int arg4 @ r6\l; arg int32_t arg5 @ r7\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 92 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      mr r0, r5                                              ; arg3\l0x08000044      cmpwi cr7, r6, 2                                       ; arg4\l0x08000048      beq cr7, 0x800006c\l"]
+	"0x0800004c" [URL="sym.x_sleep/0x0800004c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800004c      lis r3, 0\l0x08000050      addi r3, r3, 0                                         ; int32_t arg3\l0x08000054      li r4, 1                                               ; int32_t arg4\l0x08000058      li r5, 0x13                                            ; int32_t arg5\l0x0800005c      mr r6, r0                                              ; int32_t arg_10h\l0x08000060      bl 0x8000060\l0x08000064      li r3, 0xffff\l0x08000068      b 0x8000080\l"]
+	"0x0800006c" [URL="sym.x_sleep/0x0800006c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_sleep @ 0x8000048\l0x0800006c      lwz r3, 4(r7)                                          ; int32_t arg3\l0x08000070      crclr 6\l0x08000074      bl 0x8000074\l0x08000078      crclr 6\l0x0800007c      bl 0x800007c\l"]
+	"0x08000080" [URL="sym.x_sleep/0x08000080", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_sleep @ 0x8000068\l0x08000080      lwz r0, 0x14(r1)\l0x08000084      mtlr r0\l0x08000088      addi r1, r1, 0x10\l0x0800008c      blr\l"]
+        "0x08000034" -> "0x0800006c" [color="#13a10e"];
+        "0x08000034" -> "0x0800004c" [color="#c50f1f"];
+        "0x0800004c" -> "0x08000080" [color="#3a96dd"];
+        "0x0800006c" -> "0x08000080" [color="#3a96dd"];
+}

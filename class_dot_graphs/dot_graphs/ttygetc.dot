@@ -1,0 +1,19 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.ttygetc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l156: sym.ttygetc (int32_t arg1);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg1 @ a0\l0x08000034      addiu sp, sp, -0x18                                    ; [01] -r-x section size 156 named .text\l0x08000038      sw ra, (var_14h)\l0x0800003c      sw s0, (var_10h)\l0x08000040      lw v0, 0x44(a0)                                        ; arg1\l0x08000044      nop\l0x08000048      sll s0, v0, 3\l0x0800004c      sll v1, v0, 6\l0x08000050      addu s0, s0, v1\l0x08000054      subu v0, s0, v0\l0x08000058      sll v0, v0, 2\l0x0800005c      lui s0, 0\l0x08000060      addiu s0, s0, 0\l0x08000064      addu s0, s0, v0\l0x08000068      lw a0, 0x88(s0)\l0x0800006c      jal 0\l0x08000070      nop\l0x08000074      lw v0, 4(s0)\l0x08000078      nop\l0x0800007c      addiu v1, v0, 1\l0x08000080      sw v1, 4(s0)\l0x08000084      addu v0, s0, v0\l0x08000088      lbu v0, 8(v0)\l0x0800008c      slti v1, v1, 0x80\l0x08000090      bnez v1, 0x800009c\l0x08000094      nop\l"]
+	"0x08000098" [URL="sym.ttygetc/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000098      sw zero, 4(s0)\l"]
+	"0x0800009c" [URL="sym.ttygetc/0x0800009c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.ttygetc @ 0x8000090\l0x0800009c      lb v1, 0x108(s0)\l0x080000a0      nop\l0x080000a4      beqz v1, 0x80000c0\l0x080000a8      nop\l"]
+	"0x080000ac" [URL="sym.ttygetc/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000ac      lb v1, 0x109(s0)\l0x080000b0      nop\l0x080000b4      bne v1, v0, 0x80000c0\l0x080000b8      nop\l"]
+	"0x080000bc" [URL="sym.ttygetc/0x080000bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000bc      addiu v0, zero, -2\l"]
+	"0x080000c0" [URL="sym.ttygetc/0x080000c0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.ttygetc @ 0x80000a4, 0x80000b4\l0x080000c0      lw ra, (var_14h)\l0x080000c4      lw s0, (var_10h)\l0x080000c8      jr ra\l0x080000cc      addiu sp, sp, 0x18\l"]
+        "0x08000034" -> "0x0800009c" [color="#13a10e"];
+        "0x08000034" -> "0x08000098" [color="#c50f1f"];
+        "0x08000098" -> "0x0800009c" [color="#3a96dd"];
+        "0x0800009c" -> "0x080000c0" [color="#13a10e"];
+        "0x0800009c" -> "0x080000ac" [color="#c50f1f"];
+        "0x080000ac" -> "0x080000c0" [color="#13a10e"];
+        "0x080000ac" -> "0x080000bc" [color="#c50f1f"];
+        "0x080000bc" -> "0x080000c0" [color="#3a96dd"];
+}

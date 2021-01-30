@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.bpdump/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l148: sym.bpdump ();\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_1ch @ sp+0x1c\l; var int32_t var_20h @ sp+0x20\l; var int32_t var_24h @ sp+0x24\l; var int32_t var_28h @ sp+0x28\l; var int32_t var_2ch @ sp+0x2c\l; var int32_t var_30h @ sp+0x30\l; var int32_t var_34h @ sp+0x34\l0x08000034      addiu sp, sp, -0x38                                    ; [01] -r-x section size 148 named .text\l0x08000038      sw ra, (var_34h)\l0x0800003c      sw s5, (var_30h)\l0x08000040      sw s4, (var_2ch)\l0x08000044      sw s3, (var_28h)\l0x08000048      sw s2, (var_24h)\l0x0800004c      sw s1, (var_20h)\l0x08000050      sw s0, (var_1ch)\l0x08000054      lui s1, 0\l0x08000058      addiu s1, s1, 0\l0x0800005c      move s0, zero\l0x08000060      lui s5, 0\l0x08000064      addiu s5, s5, 0\l0x08000068      addiu s4, zero, 5\l"]
+	"0x0800006c" [URL="sym.bpdump/0x0800006c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.bpdump @ 0x8000098\l0x0800006c      lw s3, (s1)\l0x08000070      lw s2, 8(s1)\l0x08000074      jal 0\l0x08000078      move a0, s2\l0x0800007c      sw v0, (var_10h)\l0x08000080      move a0, s5\l0x08000084      move a1, s0\l0x08000088      move a2, s3\l0x0800008c      jal 0\l0x08000090      move a3, s2\l0x08000094      addiu s0, s0, 1\l0x08000098      bne s0, s4, 0x800006c\l0x0800009c      addiu s1, s1, 0xc\l"]
+	"0x080000a0" [URL="sym.bpdump/0x080000a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000a0      addiu v0, zero, 1\l0x080000a4      lw ra, (var_34h)\l0x080000a8      lw s5, (var_30h)\l0x080000ac      lw s4, (var_2ch)\l0x080000b0      lw s3, (var_28h)\l0x080000b4      lw s2, (var_24h)\l0x080000b8      lw s1, (var_20h)\l0x080000bc      lw s0, (var_1ch)\l0x080000c0      jr ra\l0x080000c4      addiu sp, sp, 0x38\l"]
+        "0x08000034" -> "0x0800006c" [color="#3a96dd"];
+        "0x0800006c" -> "0x0800006c" [color="#13a10e"];
+        "0x0800006c" -> "0x080000a0" [color="#c50f1f"];
+}

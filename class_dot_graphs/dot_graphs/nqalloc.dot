@@ -1,0 +1,23 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.nqalloc/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l160: sym.nqalloc (int32_t arg1);\l; arg int32_t arg1 @ a0\l0x08000034      lui v0, 0                                              ; [01] -r-x section size 160 named .text\l0x08000038      lb v0, 4(v0)\l0x0800003c      nop\l0x08000040      beqz v0, 0x80000ac\l0x08000044      lui v1, 0\l"]
+	"0x08000048" [URL="sym.nqalloc/0x08000048", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000048      lui v0, 0\l0x0800004c      lb v0, 0x10(v0)\l0x08000050      nop\l0x08000054      beqz v0, 0x8000094\l0x08000058      addiu v0, zero, 1\l"]
+	"0x0800005c" [URL="sym.nqalloc/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800005c      lui v0, 0\l0x08000060      lb v0, 0x1c(v0)\l0x08000064      nop\l0x08000068      beqz v0, 0x80000a0\l0x0800006c      lui v1, 0\l"]
+	"0x08000070" [URL="sym.nqalloc/0x08000070", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000070      lui v0, 0\l0x08000074      lb v1, 0x28(v0)\l0x08000078      nop\l0x0800007c      bnez v1, 0x80000cc\l0x08000080      addiu v0, zero, -1\l"]
+	"0x08000084" [URL="sym.nqalloc/0x08000084", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000084      addiu v0, zero, 3\l0x08000088      lui v1, 0\l0x0800008c      j 0x80\l0x08000090      addiu v1, v1, 0x28\l"]
+	"0x08000094" [URL="sym.nqalloc/0x08000094", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nqalloc @ 0x8000054\l0x08000094      lui v1, 0\l0x08000098      j 0x80\l0x0800009c      addiu v1, v1, 0x10\l"]
+	"0x080000a0" [URL="sym.nqalloc/0x080000a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nqalloc @ 0x8000068\l0x080000a0      addiu v0, zero, 2\l0x080000a4      j 0x80\l0x080000a8      addiu v1, v1, 0x1c\l"]
+	"0x080000ac" [URL="sym.nqalloc/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.nqalloc @ 0x8000040\l0x080000ac      addiu v1, v1, 4\l0x080000b0      move v0, zero\l0x080000b4      addiu a0, zero, 1                                      ; arg1\l0x080000b8      sb a0, (v1)\l0x080000bc      addiu a0, zero, -1                                     ; arg1\l0x080000c0      sh a0, 2(v1)\l0x080000c4      addiu a0, zero, -1                                     ; arg1\l0x080000c8      sw a0, 4(v1)\l"]
+	"0x080000cc" [URL="sym.nqalloc/0x080000cc", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.nqalloc @ 0x800007c\l0x080000cc      jr ra\l0x080000d0      nop\l"]
+        "0x08000034" -> "0x080000ac" [color="#13a10e"];
+        "0x08000034" -> "0x08000048" [color="#c50f1f"];
+        "0x08000048" -> "0x08000094" [color="#13a10e"];
+        "0x08000048" -> "0x0800005c" [color="#c50f1f"];
+        "0x0800005c" -> "0x080000a0" [color="#13a10e"];
+        "0x0800005c" -> "0x08000070" [color="#c50f1f"];
+        "0x08000070" -> "0x080000cc" [color="#13a10e"];
+        "0x08000070" -> "0x08000084" [color="#c50f1f"];
+        "0x080000ac" -> "0x080000cc" [color="#3a96dd"];
+}

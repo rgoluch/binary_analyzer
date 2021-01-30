@@ -1,0 +1,11 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.lfsetup/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l92: sym.lfsetup (int32_t arg2);\l; var int32_t var_14h @ sp+0x14\l; var int32_t var_18h @ sp+0x18\l; var int32_t var_1ch @ sp+0x1c\l; var int32_t var_20h @ sp+0x20\l; var int32_t var_24h @ sp+0x24\l; arg int32_t arg2 @ a1\l0x08000034      addiu sp, sp, -0x28                                    ; [01] -r-x section size 396 named .text\l0x08000038      sw ra, (var_24h)\l0x0800003c      sw s3, (var_20h)\l0x08000040      sw s2, (var_1ch)\l0x08000044      sw s1, (var_18h)\l0x08000048      sw s0, (var_14h)\l0x0800004c      move s1, a0\l0x08000050      move s0, a1\l0x08000054      lw v1, 0x98(a1)                                        ; arg2\l0x08000058      lw v0, 0x18(a1)                                        ; arg2\l; UNKNOWN XREF from aav.0x0800005c @ +0x134\l;-- aav.0x0800005c:\l0x0800005c      nop\l0x08000060      slt v0, v1, v0\l0x08000064      beqz v0, 0x8000088\l0x08000068      addiu s2, a1, 0x18                                     ; arg2\l"]
+	"0x0800006c" [URL="sym.lfsetup/0x0800006c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800006c      lw v0, 0xc(a1)                                         ; arg2\l0x08000070      nop\l0x08000074      lw a1, 4(v0)\l0x08000078      nop\l0x0800007c      sw a1, 0x14(s0)\l0x08000080      jal 0\l0x08000084      move a2, s2\l"]
+	"0x08000088" [URL="sym.lfsetup/0x08000088", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.lfsetup @ 0x8000064\l0x08000088      j 0xc8\l0x0800008c      addiu s3, zero, -1\l"]
+        "0x08000034" -> "0x08000088" [color="#13a10e"];
+        "0x08000034" -> "0x0800006c" [color="#c50f1f"];
+        "0x0800006c" -> "0x08000088" [color="#3a96dd"];
+}

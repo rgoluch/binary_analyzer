@@ -1,0 +1,19 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.sleep10/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l204: sym.sleep10 (int32_t arg1, signed int arg_10h, int32_t arg_14h);\l; var int32_t var_8h @ r1+0x8\l; var int32_t var_ch @ r1+0xc\l; arg signed int arg_10h @ r1+0x10\l; arg int32_t arg_14h @ r1+0x14\l; arg int32_t arg1 @ r3\l0x08000034      stwu r1, -0x10(r1)                                     ; [01] -r-x section size 204 named .text\l0x08000038      mflr r0\l0x0800003c      stw r0, 0x14(r1)\l0x08000040      stw r30, 8(r1)\l0x08000044      stw r31, 0xc(r1)\l0x08000048      li r0, 0xffff\l0x0800004c      or. r5, r3, r3                                         ; arg1\l0x08000050      blt 0x80000e4\l"]
+	"0x08000054" [URL="sym.sleep10/0x08000054", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000054      lis r9, 0\l0x08000058      lwz r9, 0(r9)\l0x0800005c      cmpwi cr7, r9, 0\l0x08000060      beq cr7, 0x80000e4\l"]
+	"0x08000064" [URL="sym.sleep10/0x08000064", fillcolor="white",color="#767676", fontname="Courier",label="0x08000064      beq 0x80000dc\l"]
+	"0x08000068" [URL="sym.sleep10/0x08000068", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000068      lis r31, 0\l0x0800006c      lis r30, 0\l0x08000070      lwz r3, 0(r31)                                         ; int32_t arg1\l0x08000074      lwz r4, 0(r30)                                         ; int32_t arg_10h\l0x08000078      crclr 6\l0x0800007c      bl 0x800007c\l0x08000080      li r0, 1\l0x08000084      lis r9, 0\l0x08000088      stw r0, 0(r9)\l0x0800008c      lis r9, 0\l0x08000090      addi r0, r9, 0\l0x08000094      lwz r9, 0(r30)\l0x08000098      slwi r11, r9, 1\l0x0800009c      slwi r9, r9, 3\l0x080000a0      subf r9, r11, r9\l0x080000a4      add r9, r0, r9\l0x080000a8      lha r9, 2(r9)\l0x080000ac      slwi r11, r9, 1\l0x080000b0      slwi r9, r9, 3\l0x080000b4      subf r9, r11, r9\l0x080000b8      add r0, r9, r0\l0x080000bc      lis r11, 0\l0x080000c0      stw r0, 0(r11)\l0x080000c4      lwz r0, 0(r31)\l0x080000c8      mulli r0, r0, 0x34\l0x080000cc      li r11, 5\l0x080000d0      lis r9, 0\l0x080000d4      addi r9, r9, 0\l0x080000d8      stbx r11, r9, r0\l"]
+	"0x080000dc" [URL="sym.sleep10/0x080000dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.sleep10 @ 0x8000064\l0x080000dc      bl 0x80000dc\l0x080000e0      li r0, 1\l"]
+	"0x080000e4" [URL="sym.sleep10/0x080000e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from sym.sleep10 @ 0x8000050, 0x8000060\l0x080000e4      mr r3, r0\l0x080000e8      lwz r0, 0x14(r1)\l0x080000ec      mtlr r0\l0x080000f0      lwz r30, 8(r1)\l0x080000f4      lwz r31, 0xc(r1)\l0x080000f8      addi r1, r1, 0x10\l0x080000fc      blr\l"]
+        "0x08000034" -> "0x080000e4" [color="#13a10e"];
+        "0x08000034" -> "0x08000054" [color="#c50f1f"];
+        "0x08000054" -> "0x080000e4" [color="#13a10e"];
+        "0x08000054" -> "0x08000064" [color="#c50f1f"];
+        "0x08000064" -> "0x080000dc" [color="#13a10e"];
+        "0x08000064" -> "0x08000068" [color="#c50f1f"];
+        "0x08000068" -> "0x080000dc" [color="#3a96dd"];
+        "0x080000dc" -> "0x080000e4" [color="#3a96dd"];
+}

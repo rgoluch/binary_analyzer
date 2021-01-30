@@ -1,0 +1,14 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.blkcopy/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l40: sym.blkcopy (signed int arg1, signed int arg2, int32_t arg3);\l; arg signed int arg1 @ r3\l; arg signed int arg2 @ r4\l; arg int32_t arg3 @ r5\l0x08000034      addic. r0, r5, 0xffff                                  ; arg3 ; [01] -r-x section size 40 named .text\l0x08000038      blt 0x8000054\l"]
+	"0x0800003c" [URL="sym.blkcopy/0x0800003c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800003c      addi r4, r4, 0xffff                                    ; arg2\l0x08000040      addi r3, r3, 0xffff                                    ; arg1\l0x08000044      mtctr r5\l"]
+	"0x08000048" [URL="sym.blkcopy/0x08000048", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.blkcopy @ 0x8000050\l0x08000048      lbzu r0, 1(r4)                                         ; arg2\l0x0800004c      stbu r0, 1(r3)                                         ; arg1\l0x08000050      bdnz 0x8000048\l"]
+	"0x08000054" [URL="sym.blkcopy/0x08000054", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.blkcopy @ 0x8000038\l0x08000054      li r3, 1\l0x08000058      blr\l"]
+        "0x08000034" -> "0x08000054" [color="#13a10e"];
+        "0x08000034" -> "0x0800003c" [color="#c50f1f"];
+        "0x0800003c" -> "0x08000048" [color="#3a96dd"];
+        "0x08000048" -> "0x08000048" [color="#13a10e"];
+        "0x08000048" -> "0x08000054" [color="#c50f1f"];
+}

@@ -1,0 +1,22 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.recvtim/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l236: sym.recvtim (int32_t arg1);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_14h @ sp+0x14\l; arg int32_t arg1 @ a0\l0x08000034      bltz a0, 0x8000104                                     ; [01] -r-x section size 236 named .text\l0x08000038      move a2, a0\l"]
+	"0x0800003c" [URL="sym.recvtim/0x0800003c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800003c      addiu sp, sp, -0x18\l0x08000040      sw ra, (var_14h)\l0x08000044      sw s0, (var_10h)\l0x08000048      lw v0, (gp)\l0x0800004c      nop\l0x08000050      beqz v0, 0x800010c\l0x08000054      nop\l"]
+	"0x08000058" [URL="sym.recvtim/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000058      lw a0, (gp)\l0x0800005c      nop\l0x08000060      sll v1, a0, 2                                          ; arg1\l0x08000064      sll s0, a0, 4                                          ; arg1\l0x08000068      subu v1, s0, v1\l0x0800006c      addu v1, v1, a0                                        ; arg1\l0x08000070      sll v1, v1, 2\l0x08000074      lui s0, 0\l0x08000078      addiu s0, s0, 0\l0x0800007c      addu s0, s0, v1\l0x08000080      lb v1, 0x1a(s0)\l0x08000084      nop\l0x08000088      bnez v1, 0x80000f8\l0x0800008c      nop\l"]
+	"0x08000090" [URL="sym.recvtim/0x08000090", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000090      lw a1, (gp)\l0x08000094      jal 0\l0x08000098      nop\l0x0800009c      addiu v0, zero, 1\l0x080000a0      sw v0, (gp)\l0x080000a4      lw v1, (gp)\l0x080000a8      lui v0, 0\l0x080000ac      addiu v0, v0, 0\l0x080000b0      sll a0, v1, 1\l0x080000b4      sll v1, v1, 3\l0x080000b8      subu v1, v1, a0\l0x080000bc      addu v1, v0, v1\l0x080000c0      lh v1, 2(v1)\l0x080000c4      nop\l0x080000c8      sll a0, v1, 1\l0x080000cc      sll v1, v1, 3\l0x080000d0      subu v1, v1, a0\l0x080000d4      addu v0, v0, v1\l0x080000d8      sw v0, (gp)\l0x080000dc      addiu v0, zero, 8\l0x080000e0      jal 0\l0x080000e4      sb v0, (s0)\l0x080000e8      lb v1, 0x1a(s0)\l0x080000ec      nop\l0x080000f0      beqz v1, 0x8000110\l0x080000f4      addiu v0, zero, -3\l"]
+	"0x080000f8" [URL="sym.recvtim/0x080000f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.recvtim @ 0x8000088\l0x080000f8      lh v0, 0x18(s0)\l0x080000fc      j 0xdc\l0x08000100      sb zero, 0x1a(s0)\l"]
+	"0x08000104" [URL="sym.recvtim/0x08000104", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from sym.recvtim @ 0x8000034\l0x08000104      jr ra\l0x08000108      addiu v0, zero, -1\l"]
+	"0x0800010c" [URL="sym.recvtim/0x0800010c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.recvtim @ 0x8000050\l0x0800010c      addiu v0, zero, -1\l"]
+	"0x08000110" [URL="sym.recvtim/0x08000110", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.recvtim @ 0x80000f0\l0x08000110      lw ra, (var_14h)\l0x08000114      lw s0, (var_10h)\l0x08000118      jr ra\l0x0800011c      addiu sp, sp, 0x18\l"]
+        "0x08000034" -> "0x08000104" [color="#13a10e"];
+        "0x08000034" -> "0x0800003c" [color="#c50f1f"];
+        "0x0800003c" -> "0x0800010c" [color="#13a10e"];
+        "0x0800003c" -> "0x08000058" [color="#c50f1f"];
+        "0x08000058" -> "0x080000f8" [color="#13a10e"];
+        "0x08000058" -> "0x08000090" [color="#c50f1f"];
+        "0x08000090" -> "0x08000110" [color="#13a10e"];
+        "0x08000090" -> "0x080000f8" [color="#c50f1f"];
+        "0x0800010c" -> "0x08000110" [color="#3a96dd"];
+}

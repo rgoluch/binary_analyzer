@@ -39,6 +39,8 @@ public class RadareImporter {
 			// HashMap of Node for further access
 			Map<String,Node> nodeMap = new HashMap<String,Node>();
 			
+			ArrayList<String> functionNames = new ArrayList<String>();
+			
 			//read in and parse .dot files from dot_graphs dir
 			String path = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/dot_graphs";
 			File dir = new File(path);
@@ -95,6 +97,13 @@ public class RadareImporter {
 							label = label.replace("]", "");
 							label = label.replace("\\l", "\n");
 							n.putAttr(XCSG.name, label);
+							
+							if (label.contains("slti")) {
+								if (!functionNames.contains(functionName.getAttr(XCSG.name))) {
+									functionNames.add(functionName.getAttr(XCSG.name).toString());
+								}
+//								System.out.println(functionName.getAttr(XCSG.name));
+							}
 							
 							
 							//Map all control flow nodes to function container
@@ -185,7 +194,8 @@ public class RadareImporter {
 									Edge containEdge = Graph.U.createEdge(functionName, loopBody);
 									containEdge.tag(XCSG.Contains);
 									
-//									System.out.println(fromNode.getAttr(XCSG.name).toString());
+//									System.out.println("Self loop: "+functionName.getAttr(XCSG.name));
+									
 									String conditionVal = null;
 									if (e.hasAttr(XCSG.conditionValue)) {
 										conditionVal = e.getAttr(XCSG.conditionValue).toString();
@@ -238,17 +248,17 @@ public class RadareImporter {
 				//Toggle which line is commented out depending on if single return or original returns
 				//being used
 //				tag_binary_exits(name);
-//				if (name.contains("strcmp")) {
-					tag_binary_single_exits(name);
-					tag_binary_branches(name);
-					tag_binary_loops(name);
-					tag_binary_ifs(name);
-//				}
+				tag_binary_single_exits(name);
+				tag_binary_branches(name);
+				tag_binary_loops(name);
+				tag_binary_ifs(name);
 				
 			}
+			for (String s : functionNames) {
+				System.out.println(s);
+			}
 			
-			
-			System.out.println(count);
+//			System.out.println(count);
 			//create a new node
 			//XCSG.name, name of function (differentiate from source)
 			//tag as XCSG.Function

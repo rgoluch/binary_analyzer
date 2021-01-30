@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.remove/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l104: int sym.remove (const char *filename);\l; var int32_t var_10h @ sp+0x10\l; var int32_t var_60h @ sp+0x60\l; var int32_t var_64h @ sp+0x64\l0x08000034      addiu sp, sp, -0x68                                    ; [01] -r-x section size 104 named .text\l0x08000038      sw ra, (var_64h)\l0x0800003c      sw s0, (var_60h)\l0x08000040      move s0, a1\l0x08000044      jal 0\l0x08000048      addiu a1, sp, 0x10\l0x0800004c      addiu v1, zero, -1\l0x08000050      beq v0, v1, 0x8000088\l0x08000054      sll a0, v0, 3\l"]
+	"0x08000058" [URL="sym.remove/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000058      sll v0, v0, 6\l0x0800005c      addu v0, a0, v0\l0x08000060      lui a0, 0\l0x08000064      addiu a0, a0, 0\l0x08000068      addu a0, a0, v0\l0x0800006c      lw v0, 0x28(a0)\l0x08000070      addiu a1, zero, 0xbb9\l0x08000074      addiu a2, sp, 0x10\l0x08000078      jalr v0\l0x0800007c      move a3, s0\l0x08000080      j 0x58\l0x08000084      nop\l"]
+	"0x08000088" [URL="sym.remove/0x08000088", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.remove @ 0x8000050\l0x08000088      addiu v0, zero, -1\l0x0800008c      lw ra, (var_64h)\l0x08000090      lw s0, (var_60h)\l0x08000094      jr ra\l0x08000098      addiu sp, sp, 0x68\l"]
+        "0x08000034" -> "0x08000088" [color="#13a10e"];
+        "0x08000034" -> "0x08000058" [color="#c50f1f"];
+}

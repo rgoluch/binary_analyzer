@@ -1,0 +1,10 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x08000034" [URL="sym.poolinit/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l56: sym.poolinit ();\l; var int32_t var_14h @ sp+0x14\l0x08000034      addiu sp, sp, -0x18                                    ; [01] -r-x section size 56 named .text\l0x08000038      sw ra, (var_14h)\l0x0800003c      jal 0\l0x08000040      addiu a0, gp, 0\l0x08000044      addiu v1, zero, 1\l0x08000048      bne v0, v1, 0x8000058\l0x0800004c      addiu v0, zero, 1\l"]
+	"0x08000050" [URL="sym.poolinit/0x08000050", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000050      j 0x28\l0x08000054      sw zero, (gp)\l"]
+	"0x08000058" [URL="sym.poolinit/0x08000058", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.poolinit @ 0x8000048\l0x08000058      addiu v0, zero, -1\l0x0800005c      lw ra, (var_14h)\l0x08000060      nop\l0x08000064      jr ra\l0x08000068      addiu sp, sp, 0x18\l"]
+        "0x08000034" -> "0x08000058" [color="#13a10e"];
+        "0x08000034" -> "0x08000050" [color="#c50f1f"];
+}
