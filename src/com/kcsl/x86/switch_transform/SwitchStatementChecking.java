@@ -520,6 +520,7 @@ public class SwitchStatementChecking {
 				firstFalseEdge.tag("switch_edge");
 				firstFalseEdge.tag("bst_edge");
 				firstFalseEdge.putAttr(XCSG.conditionValue, false);
+				firstFalseEdge.putAttr(XCSG.name, "false");
 				falseEdgeAdded.add(bstNodes.get(0));
 				
 				Edge checkPointTrue = Graph.U.createEdge(checkPoint, cases.get(1).createdNode);
@@ -527,6 +528,7 @@ public class SwitchStatementChecking {
 				checkPointTrue.tag("switch_edge");
 				checkPointTrue.tag("bst_edge");
 				checkPointTrue.putAttr(XCSG.conditionValue, true);
+				checkPointTrue.putAttr(XCSG.name, "true");
 				
 				int mid = (cases.size() / 2) + 1;
 				
@@ -535,6 +537,7 @@ public class SwitchStatementChecking {
 				checkPointFalse.tag("switch_edge");
 				checkPointFalse.tag("bst_edge");
 				checkPointFalse.putAttr(XCSG.conditionValue, false);
+				checkPointFalse.putAttr(XCSG.name, "false");
 				
 				int i = 0; 
 				mid = cases.size() / 2;
@@ -548,6 +551,7 @@ public class SwitchStatementChecking {
 							falseEdge.tag(XCSG.ControlFlow_Edge);
 							falseEdge.tag("bst_edge");
 							falseEdge.tag("switch_edge");
+							falseEdge.putAttr(XCSG.name, "false");
 							falseEdgeAdded.add(cases.get(i).createdNode);
 						}
 						else if (i < cases.size() - 1) {
@@ -556,6 +560,7 @@ public class SwitchStatementChecking {
 							falseEdge.tag(XCSG.ControlFlow_Edge);
 							falseEdge.tag("bst_edge");
 							falseEdge.tag("switch_edge");
+							falseEdge.putAttr(XCSG.name, "false");
 							falseEdgeAdded.add(cases.get(i).createdNode);
 						}
 					}
@@ -571,6 +576,7 @@ public class SwitchStatementChecking {
 						falseEdge.tag(XCSG.ControlFlow_Edge);
 						falseEdge.tag("bst_edge");
 						falseEdge.tag("switch_edge");
+						falseEdge.putAttr(XCSG.name, "false");
 					}
 				}
 				
@@ -581,6 +587,7 @@ public class SwitchStatementChecking {
 				falseEdge.tag(XCSG.ControlFlow_Edge);
 				falseEdge.tag("bst_edge");
 				falseEdge.tag("switch_edge");
+				falseEdge.putAttr(XCSG.name, "false");
 			}
 		}
 
@@ -662,6 +669,7 @@ public class SwitchStatementChecking {
 								trueEdge.tag("switch_edge");
 								trueEdge.putAttr(XCSG.conditionValue, false);
 								trueEdge.tag(XCSG.ControlFlow_Edge);
+								trueEdge.putAttr(XCSG.name, "false");
 							}
 						}
 					}
@@ -674,6 +682,7 @@ public class SwitchStatementChecking {
 					trueEdge.tag("switch_edge");
 					trueEdge.putAttr(XCSG.conditionValue, true);
 					trueEdge.tag(XCSG.ControlFlow_Edge);
+					trueEdge.putAttr(XCSG.name, "true");
 				}
 			}
 			for (int i = mid-1; i >= 0; i--) {
@@ -711,6 +720,8 @@ public class SwitchStatementChecking {
 								trueEdge.tag("switch_edge");
 								trueEdge.putAttr(XCSG.conditionValue, false);
 								trueEdge.tag(XCSG.ControlFlow_Edge);
+								trueEdge.putAttr(XCSG.name, "false");
+
 							}
 						}
 					}
@@ -723,6 +734,8 @@ public class SwitchStatementChecking {
 					trueEdge.tag("switch_edge");
 					trueEdge.putAttr(XCSG.conditionValue, true);
 					trueEdge.tag(XCSG.ControlFlow_Edge);
+					trueEdge.putAttr(XCSG.name, "true");
+
 				}
 			}
 			

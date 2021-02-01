@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 import org.eclipse.core.resources.IFile;
 
+import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
+import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.index.common.SourceCorrespondence;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
@@ -43,31 +45,50 @@ public class StaticFunctionChecking {
 	public static Q staticTransform(String functionName) {
 		
 		Q f = my_function(functionName);
-//		;
 		Q cfg = my_cfg(f);
-		Q dfg = my_dataFlow(f);
+		Q dfg = my_dataFlow(functionName);
 		
 		ArrayList<String> staticFunctions = staticChecker();
 		ArrayList<Node> callSites = new ArrayList<Node>();
-		
-		for (Node x : dfg.eval().nodes()) {
-			if (x.taggedWith(XCSG.Function)) {
-				callSites.add(x);
-			}
-		}
-		
 		int count = 0; 
 		
-		for (Node y : callSites) {
+		for (Node y : dfg.eval().nodes()) {
 			if (staticFunctions.contains(y.getAttr(XCSG.name))) {
 				count++;
+				callSites.add(y);
 			}
 		}
 		
-		System.out.println(callSites);
+		ArrayList<Q> staticCFG = new ArrayList<Q>();
+		for (Node c : callSites) {
+			Q b = bcfg(c.getAttr(XCSG.name).toString());
+			String bTU = b.nodes(XCSG.C.TranslationUnit).toString();
+			String dTU = cfg.nodes(XCSG.C.TranslationUnit).toString();
+			System.out.println(dTU);
+//			if (b.containers().)
+			staticCFG.add(b);
+		}
+		
+		Node functionNode = Graph.U.createNode();
+		functionNode.putAttr(XCSG.name, "static_transform_"+functionName);
+		functionNode.tag(XCSG.Function);
+
+		for (Q b : staticCFG) {
+//			Node bFunction = b.eval().edges().tagged(XCSG.Contains).getFirst().from();
+			for (Node d : b.eval().nodes()) {
+				d.tag("static_node");
+				Edge e = Graph.U.createEdge(functionNode, d);
+				e.tag(XCSG.Contains);
+			}
+		}
 		
 		
-		return f.edges(XCSG.Call);
+		System.out.println(count);
+		
+		
+		Q x = my_function(functionNode.getAttr(XCSG.name).toString());
+		Q static_cfg = my_cfg(x);
+		return static_cfg.nodes("static_node");
 		
 	}
 

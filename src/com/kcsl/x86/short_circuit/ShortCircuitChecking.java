@@ -302,9 +302,11 @@ public class ShortCircuitChecking {
 				
 				if (e.hasAttr(XCSG.conditionValue)) {
 					if (e.getAttr(XCSG.conditionValue).toString().contains("true")) {
-						tempEdge.putAttr(XCSG.conditionValue, "true");
+						tempEdge.putAttr(XCSG.conditionValue, true);
+						tempEdge.putAttr(XCSG.name, "true");
 					}else {
-						tempEdge.putAttr(XCSG.conditionValue, "false");
+						tempEdge.putAttr(XCSG.conditionValue, false);
+						tempEdge.putAttr(XCSG.name, "false");
 					}
 				}
 			}
@@ -463,6 +465,7 @@ public class ShortCircuitChecking {
 							
 							if (p.conditionValue != null) {
 								predEdge.putAttr(XCSG.conditionValue, p.conditionValue);
+								predEdge.putAttr(XCSG.name, p.conditionValue.toString());
 							}
 						}
 					}
@@ -589,7 +592,8 @@ public class ShortCircuitChecking {
 			
 			Edge tempTrue = Graph.U.createEdge(temp1, temp2);
 			tempTrue.tag(XCSG.ControlFlow_Edge);
-			tempTrue.putAttr(XCSG.conditionValue, "true");
+			tempTrue.putAttr(XCSG.conditionValue, true);
+			tempTrue.putAttr(XCSG.name, "true");
 			tempTrue.tag("sc_edge");
 			tempTrue.tag("sc_edge_testing");
 		}
@@ -603,7 +607,8 @@ public class ShortCircuitChecking {
 			
 			Edge tempTrue = Graph.U.createEdge(temp1, temp2);
 			tempTrue.tag(XCSG.ControlFlow_Edge);
-			tempTrue.putAttr(XCSG.conditionValue, "false");
+			tempTrue.putAttr(XCSG.conditionValue, false);
+			tempTrue.putAttr(XCSG.name, "false");
 			tempTrue.tag("sc_edge");
 			tempTrue.tag("sc_edge_testing");
 		}

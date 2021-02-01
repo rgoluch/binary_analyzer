@@ -271,8 +271,12 @@ public class SupportMethods {
 	 * @return
 	 */
 	
-	public static Q my_dataFlow(Q f) {
-		return f.contained().nodes(XCSG.Function).induce(Query.universe().edges(XCSG.Call));
+	public static Q my_dataFlow(String name) {
+		name = name +".c";
+		Q f = Query.universe().nodes(XCSG.C.TranslationUnit);
+		Q found = f.selectNode(XCSG.name, name);
+		return found.children().nodes(XCSG.Function, XCSG.C.Provisional.internalLinkage);
+//				.induce(Query.universe().edges(XCSG.Call));
 	}
 	
 }
