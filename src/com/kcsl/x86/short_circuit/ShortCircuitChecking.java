@@ -136,6 +136,10 @@ public class ShortCircuitChecking {
 				tempSCPred.tag(XCSG.ControlFlow_Node);
 				tempSCPred.tag("sc_graph");
 				
+				if (e.from().taggedWith(XCSG.ControlFlowCondition)) {
+					tempSCPred.tag(XCSG.ControlFlowCondition);
+				}
+				
 //				if (!e.taggedWith(XCSG.ControlFlowBackEdge)) {
 //					tempSCPred.tag("sc_pred");
 //
@@ -146,16 +150,26 @@ public class ShortCircuitChecking {
 				//If it has, handle the special case of the edge being a loopback edge since that node is not a predecessor node
 				Node checkingPred = addedToGraph.get(e.from());
 				
+				//If predecessor node is a conditional, then we want to add the condition value on the edge
+				String edgeValue = null;
+				if (e.hasAttr(XCSG.conditionValue)) {
+					if (e.getAttr(XCSG.conditionValue).toString().contains("true")) {
+						edgeValue = "true";
+					}else {
+						edgeValue = "false";
+					}
+				}
+				
 				//Case where node was created and is the predecessor
 				if (checkingPred != null && !e.taggedWith(XCSG.ControlFlowBackEdge)) {
 					scPredecessors.add(checkingPred);
 					predMap.put(checkingPred.addressBits(), e.to());
-					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred);
+					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred, edgeValue);
 					edgeCreated.add(p);
 				} 
 				//Case where node was created and edge is a loopback edge
 				else if (checkingPred != null && e.taggedWith(XCSG.ControlFlowBackEdge)) {
-					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred);
+					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred, edgeValue);
 					loopBackTails.add(p);
 					loopBackHeaderMap.put(checkingPred, e.to());
 				}
@@ -166,13 +180,13 @@ public class ShortCircuitChecking {
 					addedToGraph.put(e.from(), tempSCPred);
 					
 					if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
-						predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), tempSCPred);
+						predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), tempSCPred, edgeValue);
 						loopBackTails.add(p);
 						loopBackHeaderMap.put(tempSCPred, e.to());
 					}else {
 						scPredecessors.add(tempSCPred);
 						predMap.put(tempSCPred.addressBits(), e.to());
-						predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), tempSCPred);
+						predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), tempSCPred, edgeValue);
 						edgeCreated.add(p);
 					}
 				}
@@ -446,6 +460,10 @@ public class ShortCircuitChecking {
 							predEdge.tag("sc_edge");
 							predEdge.tag("sc_pred_edge");
 							p.toggleEdge();
+							
+							if (p.conditionValue != null) {
+								predEdge.putAttr(XCSG.conditionValue, p.conditionValue);
+							}
 						}
 					}
 					
@@ -458,6 +476,10 @@ public class ShortCircuitChecking {
 							backEdge.tag("sc_back_edge");
 							backEdge.tag("sc_edge");
 							b.toggleEdge();
+							
+							if (b.conditionValue != null) {
+								backEdge.putAttr(XCSG.conditionValue, b.conditionValue);
+							}
 						}
 					}
 				}
@@ -621,12 +643,14 @@ public class ShortCircuitChecking {
 		private int toAddr;
 		private Node addedNode;
 		private boolean edgeAdded;
+		private String conditionValue;
 		
-		public predecessorNode(int f, int t, Node n) {
+		public predecessorNode(int f, int t, Node n, String value) {
 			this.fromAddr = f;
 			this.toAddr = t;
 			this.addedNode = n;
 			this.edgeAdded = false;
+			this.conditionValue = value;
 		}
 		
 		public int getFromAddr() {

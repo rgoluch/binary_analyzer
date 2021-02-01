@@ -252,12 +252,27 @@ public class SupportMethods {
 //		return dag;
 	}
 	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
 	
 	public static Q bcfg(String name) {
 		Q f = my_function(name);
 		Q c = my_cfg(f);
 		
 		return c;
+	}
+	
+	/**
+	 * 
+	 * @param f
+	 * @return
+	 */
+	
+	public static Q my_dataFlow(Q f) {
+		return f.contained().nodes(XCSG.Function).induce(Query.universe().edges(XCSG.Call));
 	}
 	
 }

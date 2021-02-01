@@ -86,25 +86,29 @@ public class SwitchStatementChecking {
 		functionNode.tag(XCSG.Function);
 		functionNode.tag("switch_graph");
 		
+		//Keep track of what nodes have already been recreated for final graph
 		Map<Node,Node> recreatedNodes = new HashMap<Node,Node>();
+		//Keep track of the case nodes as we find them
 		ArrayList<caseNode> caseNodes = new ArrayList<caseNode>();
+		//Keep track of all nodes that have an edge to a switch header
 		Map<Integer,Node> switchPredecessors = new HashMap<Integer,Node>();
+		//Keep track of the CFG nodes that proceed each of the case nodes for continuation edges
 		Map<Node, Node> caseCFGPredecessors = new HashMap<Node, Node>();
-		
 		//Key is the predecessor node that is created, value is the address bits of predecessor
 		Map<predecessorNode,Integer> switchNodeTracking = new HashMap<predecessorNode,Integer>();
-		
 		//Used to keep track of the default nodes for each switch block
 		Map<Node,Node> defaultNodeTracking = new HashMap<Node,Node>();
 
-//		Node defNode = null;
 		
 		for (Edge e : c.eval().edges().tagged(XCSG.ControlFlow_Edge)) {
+			
+			//First check to see if are going to a switch node
 			if (e.to().taggedWith(XCSG.ControlFlowSwitchCondition)) {
 				
 				Node predecessor = e.from();
 				Node recreatedCheck = recreatedNodes.get(predecessor);
 				
+				//Do not want to inadvertently retain a switch node
 				if(e.from().taggedWith(XCSG.ControlFlowSwitchCondition)) {
 					continue;
 				}
@@ -125,57 +129,28 @@ public class SwitchStatementChecking {
 					recreatedNodes.put(predecessor, tempPred);
 					switchPredecessors.put(predecessor.addressBits(), tempPred);
 					
+					//Update the recreated node tracking and predecessor tracking 
 					predecessorNode p = new predecessorNode(e.to(), predecessor, tempPred);
 					switchNodeTracking.put(p, predecessor.addressBits());
 					
 				}
 				else {
+					
+					//If node was already recreated, just update tracking
 					recreatedCheck.tag("switch_pred");
 					switchPredecessors.put(predecessor.addressBits(), recreatedCheck);
 					
 					predecessorNode p = new predecessorNode(e.to(), predecessor, recreatedCheck);
 					switchNodeTracking.put(p, predecessor.addressBits());
 				}
-				
-//				Node switchNode = e.to();
-//				
-//				for(Edge defEdge : switchNode.out()) {
-//					if (defEdge.hasAttr(XCSG.conditionValue)) {
-//						if (defEdge.getAttr(XCSG.conditionValue).toString().contains("default")) {
-//							Node addedCheck = recreatedNodes.get(defEdge.to());
-//							
-//							if (addedCheck == null && !defEdge.to().taggedWith(XCSG.ControlFlowSwitchCondition)) {
-//								Node tempDef = Graph.U.createNode();
-//								tempDef.putAttr(XCSG.name, defEdge.to().getAttr(XCSG.name).toString());
-//								tempDef.tag("switch_graph");
-//								tempDef.tag("switch_def");
-//								tempDef.tag(XCSG.ControlFlow_Node);
-//								
-//								if (defEdge.to().taggedWith(XCSG.ControlFlowCondition)) {
-//									tempDef.tag(XCSG.ControlFlowCondition);
-//								}
-//								
-//								Edge e1 = Graph.U.createEdge(functionNode, tempDef);
-//								e1.tag(XCSG.Contains);
-//								recreatedNodes.put(defEdge.to(), tempDef);
-//								defNode = tempDef;
-//							}
-//							else if (addedCheck == null && defEdge.to().taggedWith(XCSG.ControlFlowSwitchCondition)) {
-//								
-//							}
-//							else {
-//								defNode = addedCheck;
-//								defNode.tag("switch_def");
-//							}
-//						}
-//					}
-//				}
 			}
+			//Handle the case where CFG nodes are case and non-case node
 			else if (e.from().taggedWith(XCSG.CaseLabel) && !e.from().taggedWith(XCSG.DefaultCaseLabel)) {
 				Node trueEval = e.to();
 				Node recreatedCheck = recreatedNodes.get(trueEval);
 				Node tempTrue = null;
-					
+				
+				//Recreate the to node if necessary and then update the tracking
 				if (recreatedCheck == null) {
 					tempTrue = Graph.U.createNode();
 					tempTrue.putAttr(XCSG.name, trueEval.getAttr(XCSG.name).toString());
@@ -198,6 +173,7 @@ public class SwitchStatementChecking {
 					tempTrue = recreatedCheck;
 				}
 				
+				//Keep track of which switch node points to each case, so we need to find the switch node
 				AtlasSet<Edge> inEdges = e.from().in(XCSG.ControlFlow_Edge);
 				Node switchToCaseNode = null;
 				for (Edge i : inEdges) {
@@ -208,14 +184,14 @@ public class SwitchStatementChecking {
 					}
 				}
 				
-				
+				//Track the case nodes 
 				long l = getCSourceLineNumber(e.from());
 				caseNode x = new caseNode(e.from(), l, tempTrue);
 				x.setSwitchNode(switchToCaseNode);
-				
 				caseNodes.add(x);
 				continue;
 			}
+			//Handle the case where the from node is a default case, this should not become a branch node 
 			else if (e.from().taggedWith(XCSG.DefaultCaseLabel)) {
 				Node header = e.to();
 				
@@ -224,6 +200,7 @@ public class SwitchStatementChecking {
 				Node tempDefault = null;
 				Node tempHeader = null;
 				
+				//Recreate the node if necessary and update the tracking
 				if (recreatedFromCheck == null) {
 					tempDefault = Graph.U.createNode();
 					
@@ -234,13 +211,10 @@ public class SwitchStatementChecking {
 					
 					Edge e1 = Graph.U.createEdge(functionNode, tempDefault);
 					e1.tag(XCSG.Contains);
-//					defNode = tempDefault;
 					recreatedNodes.put(e.from(), tempDefault);
 				}
 				else {
 					tempDefault = recreatedFromCheck;
-//					defNode = tempDefault;
-//					defNode.tag("switch_def");
 				}
 				
 				if (recreatedCheck == null) {
@@ -269,6 +243,7 @@ public class SwitchStatementChecking {
 				defaultEdge.tag(XCSG.ControlFlow_Edge);
 				defaultEdge.tag("switch_edge");
 			}
+			//Handle the case where the end of one case points to a default case with no break or return 
 			else if (e.to().taggedWith(XCSG.DefaultCaseLabel) && !e.from().taggedWith(XCSG.ControlFlowSwitchCondition)) {
 				Node header = e.to();
 				
@@ -277,6 +252,7 @@ public class SwitchStatementChecking {
 				Node tempDefault = null;
 				Node tempHeader = null;
 				
+				//Recreate the node if necessary and update tracking
 				if (recreatedFromCheck == null) {
 					tempDefault = Graph.U.createNode();
 					
@@ -310,20 +286,17 @@ public class SwitchStatementChecking {
 					
 					Edge e1 = Graph.U.createEdge(functionNode, tempHeader);
 					e1.tag(XCSG.Contains);
-					
-//					defNode = tempHeader;
 					recreatedNodes.put(header, tempHeader);
 				}
 				else {
 					tempHeader = recreatedCheck;
-//					defNode = tempHeader;
-//					defNode.tag("switch_def");
 				}
 				
 				Edge defaultEdge = Graph.U.createEdge(tempDefault, tempHeader);
 				defaultEdge.tag(XCSG.ControlFlow_Edge);
 				defaultEdge.tag("switch_edge");
 			}
+			//Handle all other nodes in the graph
 			else if (!e.from().taggedWith(XCSG.CaseLabel) && !e.from().taggedWith(XCSG.ControlFlowSwitchCondition) 
 					&& !e.to().taggedWith(XCSG.CaseLabel) && !e.to().taggedWith(XCSG.ControlFlowSwitchCondition)) {
 				Node from = e.from();
@@ -332,6 +305,7 @@ public class SwitchStatementChecking {
 				Node tempFrom = Graph.U.createNode();
 				Node tempTo = Graph.U.createNode();
 				
+				//Recreate the node if necessary and update the tracking
 				tempFrom.putAttr(XCSG.name, from.getAttr(XCSG.name).toString());
 				tempFrom.tag("switch_graph");
 				tempFrom.tag(XCSG.ControlFlow_Node);
@@ -411,7 +385,7 @@ public class SwitchStatementChecking {
 					}
 				}
 			}
-			
+			//Handle the case where we evaluate a non case node to case node, only want to recreate the non case node if necessary
 			if (e.to().taggedWith(XCSG.CaseLabel) && !e.to().taggedWith(XCSG.DefaultCaseLabel) && !e.from().taggedWith(XCSG.ControlFlowSwitchCondition)) {
 				Node cfgFrom = e.from();
 				Node fromCheck = recreatedNodes.get(cfgFrom);
@@ -439,10 +413,14 @@ public class SwitchStatementChecking {
 			}
 		}
 		
+		//Keep track of the cases that have been added to the final graph
 		Map<Node, Node> casesAdded = new HashMap<Node, Node>();
+		//Mapping of the created case node to the respective caseNode object
 		Map<Node, caseNode> bstToSortedNodes = new HashMap<Node, caseNode>();
+		//Mapping of each switch node to all of its respective cases
 		Map<Node, ArrayList<caseNode>> switchCaseRelation = new HashMap<Node, ArrayList<caseNode>>();
 		
+		//Fill switchCaseRelation mapping
 		for (Node s : switchNodes) {
 			ArrayList<caseNode> tempList = new ArrayList<caseNode>();
 			
@@ -455,17 +433,19 @@ public class SwitchStatementChecking {
 			switchCaseRelation.put(s, tempList);
 		}
 		
+		//Bubble sort each switch's cases and update the mapping
 		for (Node g : switchCaseRelation.keySet()) {
 			ArrayList<caseNode> a = switchCaseRelation.get(g);
 			a = caseSorter(a);
 			switchCaseRelation.replace(g, a);
 		}
 		
+		//Create the case node branches and add the true edges. 
 		ArrayList<Node> bstNodes = bstCaseNodes(switchCaseRelation, functionNode, casesAdded, bstToSortedNodes);
 		
+		//Fill the default node mapping to know which node in the CFG is the default to node for each switch node
 		for (Node n : switchNodes) {
 			for (Edge e : n.out(XCSG.ControlFlow_Edge)) {
-//				if (e.hasAttr(XCSG.conditionValue)) {
 				if (e.getAttr(XCSG.conditionValue).toString().contains("default") && !e.to().taggedWith(XCSG.ControlFlowSwitchCondition)) {
 					Node toNodeChecking = null;
 					
@@ -481,6 +461,9 @@ public class SwitchStatementChecking {
 						tempDefault.putAttr(XCSG.name, e.to().getAttr(XCSG.name).toString());
 						tempDefault.tag("switch_graph");
 						tempDefault.tag(XCSG.ControlFlow_Node);
+						
+						Edge containerEdge = Graph.U.createEdge(functionNode, tempDefault);
+						containerEdge.tag(XCSG.Contains);
 						
 						if (e.to().taggedWith(XCSG.ControlFlowCondition)) {
 							tempDefault.tag(XCSG.ControlFlowCondition);
@@ -511,17 +494,16 @@ public class SwitchStatementChecking {
 					}
 					defaultNodeTracking.put(n, toNodeChecking);
 				}
-//				}
 			}
 		}
 		
 		
 		ArrayList<Node> falseEdgeAdded = new ArrayList<Node>();
-
 		for (Node s : switchCaseRelation.keySet()) {
 			
 			ArrayList<caseNode> cases = switchCaseRelation.get(s);
 			
+			//Add in checkpoint node for switch nodes with more than 3 cases
 			if (cases.size() > 3) {
 				Node checkPoint = Graph.U.createNode();
 				checkPoint.putAttr(XCSG.name, "direction checkpoint");
@@ -554,16 +536,13 @@ public class SwitchStatementChecking {
 				checkPointFalse.tag("bst_edge");
 				checkPointFalse.putAttr(XCSG.conditionValue, false);
 				
-				int i = 1; 
+				int i = 0; 
 				mid = cases.size() / 2;
 				
+				//Add false edges for cases 
 				while (i < cases.size()) {	
-					if (!falseEdgeAdded.contains(cases.get(i).createdNode) && cases.get(i).createdNode.out(XCSG.ControlFlow_Edge).size() < 2) {
-						
-						//ADD in default creation
-						
-						if ((i == mid)) {
-							
+					if (!falseEdgeAdded.contains(cases.get(i).createdNode) && cases.get(i).createdNode.out(XCSG.ControlFlow_Edge).size() < 2) {						
+						if ((i == mid) || (i == cases.size() - 1)) {
 							Edge falseEdge = Graph.U.createEdge(cases.get(i).createdNode, defaultNodeTracking.get(s));
 							falseEdge.putAttr(XCSG.conditionValue, false);
 							falseEdge.tag(XCSG.ControlFlow_Edge);
@@ -584,6 +563,7 @@ public class SwitchStatementChecking {
 				}
 			}
 			else {
+				//Add false edges for and switch node with fewer than 4 cases
 				for (int i = 1; i < cases.size(); i++) {
 					if (cases.get(i-1).createdNode.out(XCSG.ControlFlow_Edge).size() < 2) {
 						Edge falseEdge = Graph.U.createEdge(cases.get(i - 1).createdNode, cases.get(i).createdNode);
@@ -603,100 +583,9 @@ public class SwitchStatementChecking {
 				falseEdge.tag("switch_edge");
 			}
 		}
+
 		
-		
-		//ADD in default creation 
-		
-		//Handle extra check needed for binary search if more than 3 cases
-//		if (4 > 3) {
-//			Node checkPoint = Graph.U.createNode();
-//			checkPoint.putAttr(XCSG.name, "direction checkpoint");
-//			checkPoint.tag(XCSG.ControlFlowCondition);
-//			checkPoint.tag("switch_graph");
-//			checkPoint.tag("bst_node");
-//			checkPoint.tag("check");
-//			
-//			Edge checkPointEdge = Graph.U.createEdge(functionNode, checkPoint);
-//			checkPointEdge.tag(XCSG.Contains);
-//			
-//			Edge firstFalseEdge = Graph.U.createEdge(bstNodes.get(0), checkPoint);
-//			firstFalseEdge.tag(XCSG.ControlFlow_Edge);
-//			firstFalseEdge.tag("switch_edge");
-//			firstFalseEdge.tag("bst_edge");
-//			firstFalseEdge.putAttr(XCSG.conditionValue, false);
-//			falseEdgeAdded.add(bstNodes.get(0));
-//			
-//			Edge checkPointTrue = Graph.U.createEdge(checkPoint, bstNodes.get(1));
-//			checkPointTrue.tag(XCSG.ControlFlow_Edge);
-//			checkPointTrue.tag("switch_edge");
-//			checkPointTrue.tag("bst_edge");
-//			checkPointTrue.putAttr(XCSG.conditionValue, true);
-//			
-//			int mid = (bstNodes.size() / 2) + 1;
-//			
-//			Edge checkPointFalse = Graph.U.createEdge(checkPoint, bstNodes.get(mid));
-//			checkPointFalse.tag(XCSG.ControlFlow_Edge);
-//			checkPointFalse.tag("switch_edge");
-//			checkPointFalse.tag("bst_edge");
-//			checkPointFalse.putAttr(XCSG.conditionValue, false);
-//			
-//			int i = 1; 
-//			mid = bstNodes.size() / 2;
-//			
-//			while (i < bstNodes.size()) {	
-//				if (!falseEdgeAdded.contains(bstNodes.get(i))) {
-//					
-//					caseNode b1 = bstToSortedNodes.get(bstNodes.get(i));
-//					caseNode b2 = bstToSortedNodes.get(bstNodes.get(i+1));
-//					Node switch1 = b1.switchNode;
-//					Node switch2 = b2.switchNode;
-//					if (switch1.equals(switch2)) {
-//						if (i < bstNodes.size() - 1) {
-//							Edge falseEdge = Graph.U.createEdge(bstNodes.get(i), bstNodes.get(i+1));
-//							falseEdge.putAttr(XCSG.conditionValue, false);
-//							falseEdge.tag(XCSG.ControlFlow_Edge);
-//							falseEdge.tag("bst_edge");
-//							falseEdge.tag("switch_edge");
-//							falseEdgeAdded.add(bstNodes.get(i));
-//						}
-//					}else {
-//						Node defNode = defaultNodeTracking.get(switch2);
-//						Edge falseEdge = Graph.U.createEdge(bstNodes.get(i), defNode);
-//						
-//						falseEdge.putAttr(XCSG.conditionValue, false);
-//						falseEdge.tag(XCSG.ControlFlow_Edge);
-//						falseEdge.tag("bst_edge");
-//						falseEdge.tag("switch_edge");
-//						falseEdgeAdded.add(bstNodes.get(i));
-//					}
-//					
-//					
-////					if ((i == mid)) {
-////						Edge falseEdge = Graph.U.createEdge(bstNodes.get(i), defNode);
-////						falseEdge.putAttr(XCSG.conditionValue, false);
-////						falseEdge.tag(XCSG.ControlFlow_Edge);
-////						falseEdge.tag("bst_edge");
-////						falseEdge.tag("switch_edge");
-////						falseEdgeAdded.add(bstNodes.get(i));
-////					}
-////					else 
-//				}
-//				
-//				i++;
-//			}
-//		}
-//		else {
-//			//setting false edges for anything less than 3 cases
-//			for (int i = 1; i < bstNodes.size(); i++) {
-//				Edge falseEdge = Graph.U.createEdge(bstNodes.get(i - 1), bstNodes.get(i));
-//				falseEdge.putAttr(XCSG.conditionValue, false);
-//				falseEdge.tag(XCSG.ControlFlow_Edge);
-//				falseEdge.tag("bst_edge");
-//				falseEdge.tag("switch_edge");
-//			}
-//		}
-		
-		
+		//Have all predecessors point to the first case
 		for (Node k : switchNodes) {
 			for (predecessorNode p : switchNodeTracking.keySet()) {
 				if (p.switchNode.equals(k)) {
@@ -707,16 +596,6 @@ public class SwitchStatementChecking {
 				}
 			}
 		}
-		
-		
-		//Have all predecessors point to the first case
-//		Node firstCase = bstNodes.get(0);
-//		
-//		for (Node n : switchPredecessors.values()) {
-//			Edge predEdge = Graph.U.createEdge(n, firstCase);
-//			predEdge.tag(XCSG.ControlFlow_Edge);
-//			predEdge.tag("switch_edge");
-//		}
 		
 		//Add fall through edges (i.e. if cases are consecutive with no break or return)
 		for (Node n : caseCFGPredecessors.keySet()) {
@@ -849,188 +728,6 @@ public class SwitchStatementChecking {
 			
 			nodesMap.replace(s, replacementList);
 		}
-		
-		
-		
-//		while(bstIndex < nodes.size()) {
-//			
-//			if (toggle) {
-//				
-//				if (upperL > upperR) {
-//					toggle = false;
-//					continue;
-//				}
-//				
-//				
-//				Node current = nodes.get(upperMid).getOriginalNode();
-//				Node caseCreate = Graph.U.createNode();
-//				
-//				//Create the case condition
-//				caseCreate.putAttr(XCSG.name, current.getAttr(XCSG.name).toString());
-//				caseCreate.tag(XCSG.ControlFlowCondition);
-//				caseCreate.tag("switch_graph");
-//				caseCreate.tag("bst_node");
-//				upperMid = (upperL + upperR)/2;
-//				upperL = upperMid+1; 
-//				
-//				//Add to array for size check
-//				if (casesAdded.get(current) == null) {
-//					bst.add(caseCreate);
-//					
-//					nodes.get(mid).setCreatedNode(caseCreate);
-//					bstSorted.put(caseCreate, nodes.get(mid));
-//					
-//					//Add to return graph
-//					Edge containerEdge = Graph.U.createEdge(functionNode, caseCreate);
-//					containerEdge.tag(XCSG.Contains);
-//					
-//					//Set true destination
-//					Node trueDest = nodes.get(mid).getToNode();
-//					trueDest.tag("bst_node");
-//					casesAdded.put(current, trueDest);
-//					
-//					Edge trueEdge = Graph.U.createEdge(caseCreate, trueDest);
-//					trueEdge.tag("bst_edge");
-//					trueEdge.tag("switch_edge");
-//					trueEdge.putAttr(XCSG.conditionValue, true);
-//					trueEdge.tag(XCSG.ControlFlow_Edge);
-//					
-//					bstIndex++;
-//				}
-//				toggle = false;
-//			}else if (!toggle && lowerL <= lowerR){
-//				
-//				Node current = nodes.get(lowerMid).getOriginalNode();
-//				Node caseCreate = Graph.U.createNode();
-//				
-//				//Create the case condition
-//				caseCreate.putAttr(XCSG.name, current.getAttr(XCSG.name).toString());
-//				caseCreate.tag(XCSG.ControlFlowCondition);
-//				caseCreate.tag("switch_graph");
-//				caseCreate.tag("bst_node");
-//				
-//				lowerMid = (lowerL + lowerR)/2;
-//				lowerR = lowerMid-1; 
-//				
-//				//Add to array for size check
-//				if (casesAdded.get(current) == null) {
-//					bst.add(caseCreate);
-//					
-//					nodes.get(lowerMid).setCreatedNode(caseCreate);
-//					bstSorted.put(caseCreate, nodes.get(lowerMid));
-//					
-//					//Add to return graph
-//					Edge containerEdge = Graph.U.createEdge(functionNode, caseCreate);
-//					containerEdge.tag(XCSG.Contains);
-//					
-//					//Set true destination
-//					Node trueDest = nodes.get(lowerMid).getToNode();
-//					trueDest.tag("bst_node");
-//					casesAdded.put(current, trueDest);
-//					
-//					Edge trueEdge = Graph.U.createEdge(caseCreate, trueDest);
-//					trueEdge.tag("bst_edge");
-//					trueEdge.tag("switch_edge");
-//					trueEdge.putAttr(XCSG.conditionValue, true);
-//					trueEdge.tag(XCSG.ControlFlow_Edge);
-//					
-//					bstIndex++;
-//				}
-//				toggle = true;
-//			}
-//			
-//		}
-		
-		
-//		while(l <= r) {
-//			mid = (l + r)/2;
-//			Node current = nodes.get(mid).getOriginalNode();
-//			Node caseCreate = Graph.U.createNode();
-//			
-//			//Create the case condition
-//			caseCreate.putAttr(XCSG.name, current.getAttr(XCSG.name).toString());
-//			caseCreate.tag(XCSG.ControlFlowCondition);
-//			caseCreate.tag("switch_graph");
-//			caseCreate.tag("bst_node");
-//			
-//			l = mid+1; 
-//			
-//			//Add to array for size check
-//			if (casesAdded.get(current) == null) {
-//				bst.add(caseCreate);
-//				
-//				nodes.get(mid).setCreatedNode(caseCreate);
-//				bstSorted.put(caseCreate, nodes.get(mid));
-//				
-//				//Add to return graph
-//				Edge containerEdge = Graph.U.createEdge(functionNode, caseCreate);
-//				containerEdge.tag(XCSG.Contains);
-//				
-//				//Set true destination
-//				Node trueDest = nodes.get(mid).getToNode();
-//				trueDest.tag("bst_node");
-//				casesAdded.put(current, trueDest);
-//				
-//				Edge trueEdge = Graph.U.createEdge(caseCreate, trueDest);
-//				trueEdge.tag("bst_edge");
-//				trueEdge.tag("switch_edge");
-//				trueEdge.putAttr(XCSG.conditionValue, true);
-//				trueEdge.tag(XCSG.ControlFlow_Edge);
-//				
-//				bstIndex++;
-//			}
-//		}
-//		
-//		l = 0;
-//		r = nodes.size() - 1;
-//		mid = (l + r) / 2;
-//		
-//		while(l <= r) {
-//			mid = (l + r)/2;
-//			Node current = nodes.get(mid).getOriginalNode();
-//			Node caseCreate = Graph.U.createNode();
-//			
-//			//Create the case condition
-//			caseCreate.putAttr(XCSG.name, current.getAttr(XCSG.name).toString());
-//			caseCreate.tag(XCSG.ControlFlowCondition);
-//			caseCreate.tag("switch_graph");
-//			caseCreate.tag("bst_node");
-//			
-//			r = mid-1; 
-//			
-//			//Add to array for size check
-//			if (casesAdded.get(current) == null) {
-//				bst.add(caseCreate);
-//				
-//				nodes.get(mid).setCreatedNode(caseCreate);
-//				bstSorted.put(caseCreate, nodes.get(mid));
-//				
-//				//Add to return graph
-//				Edge containerEdge = Graph.U.createEdge(functionNode, caseCreate);
-//				containerEdge.tag(XCSG.Contains);
-//				
-//				//Set true destination
-//				Node trueDest = nodes.get(mid).getToNode();
-//				trueDest.tag("bst_node");
-//				casesAdded.put(current, trueDest);
-//				
-//				Edge trueEdge = Graph.U.createEdge(caseCreate, trueDest);
-//				trueEdge.tag("bst_edge");
-//				trueEdge.tag("switch_edge");
-//				trueEdge.putAttr(XCSG.conditionValue, true);
-//				trueEdge.tag(XCSG.ControlFlow_Edge);
-//
-//				bstIndex++;
-//			}
-//		}
-		
-		
-//		Edge finalDestEdge = Graph.U.createEdge(bst.get(bstIndex-1), finalDest);
-//		finalDestEdge.putAttr(XCSG.conditionValue, false);
-//		finalDestEdge.tag("bst_edge");
-//		finalDestEdge.tag("switch_edge");
-//		finalDestEdge.tag(XCSG.ControlFlow_Edge);
-//		finalDest.tag("bst_node");
 
 		return bst;
 	}

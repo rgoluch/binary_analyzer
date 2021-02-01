@@ -183,33 +183,33 @@ public class RadareImporter {
 //									root_to_loop.tag(XCSG.ControlFlow_Edge);
 									
 									fromNode.tag("self_loop_node");
-									fromNode.tag(XCSG.Loop);
-									fromNode.tag(XCSG.ControlFlowLoopCondition);
+//									fromNode.tag(XCSG.Loop);
+//									fromNode.tag(XCSG.ControlFlowLoopCondition);
 									
-									Node loopBody = Graph.U.createNode();
-									loopBody.tag(XCSG.ControlFlow_Node);
-									loopBody.tag("my_node");
-									loopBody.putAttr(XCSG.name, fromNode.getAttr(XCSG.name).toString());
-
-									Edge containEdge = Graph.U.createEdge(functionName, loopBody);
-									containEdge.tag(XCSG.Contains);
-									
-//									System.out.println("Self loop: "+functionName.getAttr(XCSG.name));
-									
-									String conditionVal = null;
-									if (e.hasAttr(XCSG.conditionValue)) {
-										conditionVal = e.getAttr(XCSG.conditionValue).toString();
-
-									}
+//									Node loopBody = Graph.U.createNode();
+//									loopBody.tag(XCSG.ControlFlow_Node);
+//									loopBody.tag("my_node");
+//									loopBody.putAttr(XCSG.name, fromNode.getAttr(XCSG.name).toString());
+//
+//									Edge containEdge = Graph.U.createEdge(functionName, loopBody);
+//									containEdge.tag(XCSG.Contains);
+//									
+////									System.out.println("Self loop: "+functionName.getAttr(XCSG.name));
+//									
+//									String conditionVal = null;
+//									if (e.hasAttr(XCSG.conditionValue)) {
+//										conditionVal = e.getAttr(XCSG.conditionValue).toString();
+//
+//									}
 									
 									Graph.U.delete(e);
 									
 //									Edge originalLoopBody = from.oneOut("self_loop_edge");
 //									originalLoopBody.untag(XCSG.ControlFlowBackEdge);
 									
-									Edge headerToBody = Graph.U.createEdge(fromNode, loopBody);
-									headerToBody.tag(XCSG.ControlFlow_Edge);
-									headerToBody.putAttr(XCSG.conditionValue, conditionVal);
+//									Edge headerToBody = Graph.U.createEdge(fromNode, loopBody);
+//									headerToBody.tag(XCSG.ControlFlow_Edge);
+//									headerToBody.putAttr(XCSG.conditionValue, conditionVal);
 									
 //									AtlasSet<Edge> conditionValues = fromNode.out().taggedWithAll(XCSG.ControlFlow_Edge);
 //									for (Edge z : conditionValues) {
@@ -222,13 +222,13 @@ public class RadareImporter {
 //										}
 //									}
 									
-									Edge bodyToHeader = Graph.U.createEdge(loopBody, fromNode);
-//									bodyToHeader.tag("bin_induced_edge");
-									bodyToHeader.tag(XCSG.ControlFlowBackEdge);
-									
-//									e.tag("self_loop_edge");
-//									e.tag(XCSG.ControlFlowBackEdge);
-									count +=1;
+//									Edge bodyToHeader = Graph.U.createEdge(loopBody, fromNode);
+////									bodyToHeader.tag("bin_induced_edge");
+//									bodyToHeader.tag(XCSG.ControlFlowBackEdge);
+//									
+////									e.tag("self_loop_edge");
+////									e.tag(XCSG.ControlFlowBackEdge);
+//									count +=1;
 									
 								}
 							}
@@ -254,9 +254,9 @@ public class RadareImporter {
 				tag_binary_ifs(name);
 				
 			}
-			for (String s : functionNames) {
-				System.out.println(s);
-			}
+//			for (String s : functionNames) {
+//				System.out.println(s);
+//			}
 			
 //			System.out.println(count);
 			//create a new node
