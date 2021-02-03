@@ -271,12 +271,28 @@ public class SupportMethods {
 	 * @return
 	 */
 	
-	public static Q my_dataFlow(String name) {
+	public static ArrayList<Node> my_dataFlow(String name) {
 		name = name +".c";
 		Q f = Query.universe().nodes(XCSG.C.TranslationUnit);
 		Q found = f.selectNode(XCSG.name, name);
-		return found.children().nodes(XCSG.Function, XCSG.C.Provisional.internalLinkage);
-//				.induce(Query.universe().edges(XCSG.Call));
+		Q staticNames = found.children().nodes(XCSG.C.Provisional.internalLinkage);
+		AtlasSet<Node> callNodes = found.contained().eval().nodes().taggedWithAll(XCSG.DataFlow_Node, XCSG.SimpleCallSite);
+		
+		AtlasSet<Node> functionNodes = staticNames.eval().nodes();
+		ArrayList<String> functionNames = new ArrayList<String>();
+		for (Node f1 : functionNodes) {
+			functionNames.add(f1.getAttr(XCSG.name).toString());
+		}
+
+		ArrayList<Node> foundNodes = new ArrayList<Node>();
+		for(Node c : callNodes) {
+			String s = c.getAttr(XCSG.name).toString().split("\\(")[0];
+			if (functionNames.contains(s) && !foundNodes.contains(c)) {
+				foundNodes.add(c);
+			}
+		}
+		
+		return foundNodes;
 	}
 	
 }

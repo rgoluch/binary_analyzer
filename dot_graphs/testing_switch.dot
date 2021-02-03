@@ -1,0 +1,51 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x080001ac" [URL="sym.testing_switch_break/0x080001ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text.testing_switch_break:\l  ;-- .text.testing_switch_break:\l236: sym.testing_switch_break (signed int arg1);\l; arg signed int arg1 @ a0\l0x080001ac      sll a0, a0, 0x18                                       ; arg1 ; [10] -r-x section size 236 named .text.testing_switch_break\l0x080001b0      sra a0, a0, 0x18                                       ; arg1\l0x080001b4      bgez a0, 0x80001c8\l0x080001b8      addiu v0, zero, 0x47\l"]
+	"0x080001bc" [URL="sym.testing_switch_break/0x080001bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080001bc      addiu a0, a0, 0x64                                     ; arg1\l0x080001c0      sll a0, a0, 0x18                                       ; arg1\l0x080001c4      sra a0, a0, 0x18                                       ; arg1\l"]
+	"0x080001c8" [URL="sym.testing_switch_break/0x080001c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x80001b4\l0x080001c8      beq a0, v0, 0x8000278\l0x080001cc      slti v0, a0, 0x48                                      ; arg1\l"]
+	"0x080001d0" [URL="sym.testing_switch_break/0x080001d0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080001d0      beqz v0, 0x80001fc\l0x080001d4      addiu v0, zero, 0x62\l"]
+	"0x080001d8" [URL="sym.testing_switch_break/0x080001d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080001d8      addiu v0, zero, 0x45\l0x080001dc      beq a0, v0, 0x800026c\l0x080001e0      slti v0, a0, 0x46                                      ; arg1\l"]
+	"0x080001e4" [URL="sym.testing_switch_break/0x080001e4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080001e4      beqz v0, 0x8000258\l0x080001e8      addiu v0, zero, 0x41\l"]
+	"0x080001ec" [URL="sym.testing_switch_break/0x080001ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080001ec      beq a0, v0, 0x8000238\l0x080001f0      lui a0, 0\l"]
+	"0x080001f4" [URL="sym.testing_switch_break/0x080001f4", fillcolor="white",color="#767676", fontname="Courier",label="0x080001f4      jr ra\l0x080001f8      nop\l"]
+	"0x080001fc" [URL="sym.testing_switch_break/0x080001fc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x80001d0\l0x080001fc      beq a0, v0, 0x800024c\l0x08000200      slti v0, a0, 0x63                                      ; arg1\l"]
+	"0x08000204" [URL="sym.testing_switch_break/0x08000204", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000204      beqz v0, 0x8000220\l0x08000208      addiu v0, zero, 0x63\l"]
+	"0x0800020c" [URL="sym.testing_switch_break/0x0800020c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800020c      addiu v0, zero, 0x49\l0x08000210      beq a0, v0, 0x8000284\l0x08000214      lui a0, 0\l"]
+	"0x08000218" [URL="sym.testing_switch_break/0x08000218", fillcolor="white",color="#767676", fontname="Courier",label="0x08000218      jr ra\l0x0800021c      nop\l"]
+	"0x08000220" [URL="sym.testing_switch_break/0x08000220", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x8000204\l0x08000220      beq a0, v0, 0x8000240\l0x08000224      addiu v0, zero, 0x64\l"]
+	"0x08000228" [URL="sym.testing_switch_break/0x08000228", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000228      beq a0, v0, 0x8000264\l0x0800022c      lui a0, 0\l"]
+	"0x08000230" [URL="sym.testing_switch_break/0x08000230", fillcolor="white",color="#767676", fontname="Courier",label="0x08000230      jr ra\l0x08000234      nop\l"]
+	"0x08000238" [URL="sym.testing_switch_break/0x08000238", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x80001ec\l0x08000238      j 0xdc\l0x0800023c      addiu a0, a0, 0                                        ; arg1\l"]
+	"0x08000240" [URL="sym.testing_switch_break/0x08000240", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x8000220\l0x08000240      lui a0, 0\l0x08000244      j 0xdc\l0x08000248      addiu a0, a0, 0                                        ; arg1\l"]
+	"0x0800024c" [URL="sym.testing_switch_break/0x0800024c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x80001fc\l0x0800024c      lui a0, 0\l0x08000250      j 0xdc\l0x08000254      addiu a0, a0, 0                                        ; arg1\l"]
+	"0x08000258" [URL="sym.testing_switch_break/0x08000258", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x80001e4\l0x08000258      lui a0, 0\l0x0800025c      j 0xdc\l0x08000260      addiu a0, a0, 0                                        ; arg1\l"]
+	"0x08000264" [URL="sym.testing_switch_break/0x08000264", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x8000228\l0x08000264      j 0xdc\l0x08000268      addiu a0, a0, 0                                        ; arg1\l"]
+	"0x0800026c" [URL="sym.testing_switch_break/0x0800026c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x80001dc\l0x0800026c      lui a0, 0\l0x08000270      j 0xdc\l0x08000274      addiu a0, a0, 0                                        ; arg1\l"]
+	"0x08000278" [URL="sym.testing_switch_break/0x08000278", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x80001c8\l0x08000278      lui a0, 0\l0x0800027c      j 0xdc\l0x08000280      addiu a0, a0, 0                                        ; arg1\l"]
+	"0x08000284" [URL="sym.testing_switch_break/0x08000284", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.testing_switch_break @ 0x8000210\l0x08000284      addiu a0, a0, 0                                        ; arg1\l0x08000288      lui t9, 0\l0x0800028c      addiu t9, t9, 0\l0x08000290      jr t9\l0x08000294      nop\l"]
+        "0x080001ac" -> "0x080001c8" [color="#13a10e"];
+        "0x080001ac" -> "0x080001bc" [color="#c50f1f"];
+        "0x080001bc" -> "0x080001c8" [color="#3a96dd"];
+        "0x080001c8" -> "0x08000278" [color="#13a10e"];
+        "0x080001c8" -> "0x080001d0" [color="#c50f1f"];
+        "0x080001d0" -> "0x080001fc" [color="#13a10e"];
+        "0x080001d0" -> "0x080001d8" [color="#c50f1f"];
+        "0x080001d8" -> "0x0800026c" [color="#13a10e"];
+        "0x080001d8" -> "0x080001e4" [color="#c50f1f"];
+        "0x080001e4" -> "0x08000258" [color="#13a10e"];
+        "0x080001e4" -> "0x080001ec" [color="#c50f1f"];
+        "0x080001ec" -> "0x08000238" [color="#13a10e"];
+        "0x080001ec" -> "0x080001f4" [color="#c50f1f"];
+        "0x080001fc" -> "0x0800024c" [color="#13a10e"];
+        "0x080001fc" -> "0x08000204" [color="#c50f1f"];
+        "0x08000204" -> "0x08000220" [color="#13a10e"];
+        "0x08000204" -> "0x0800020c" [color="#c50f1f"];
+        "0x0800020c" -> "0x08000284" [color="#13a10e"];
+        "0x0800020c" -> "0x08000218" [color="#c50f1f"];
+        "0x08000220" -> "0x08000240" [color="#13a10e"];
+        "0x08000220" -> "0x08000228" [color="#c50f1f"];
+        "0x08000228" -> "0x08000264" [color="#13a10e"];
+        "0x08000228" -> "0x08000230" [color="#c50f1f"];
+}

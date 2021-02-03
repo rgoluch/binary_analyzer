@@ -182,9 +182,11 @@ public class RadareImporter {
 									//Mark true and false edges based on dot file edge color
 									if (color.contentEquals("#13a10e")) {
 										e.putAttr(XCSG.conditionValue, true);
+										e.putAttr(XCSG.name, "true");
 									}
 									else if (color.contentEquals("#c50f1f")) {
 										e.putAttr(XCSG.conditionValue, false);
+										e.putAttr(XCSG.name, "false");
 									}
 							
 									if(from.contains(to)) {

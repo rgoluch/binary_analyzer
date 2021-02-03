@@ -1,0 +1,69 @@
+digraph code {
+	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
+	node [fillcolor=gray style=filled shape=box];
+	edge [arrowhead="normal"];
+	"0x800067c8" [URL="dbg.testing_switch_break/0x800067c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREFS from dbg.xsh_date @ 0x80006a34, 0x80006a38\l  ;-- testing_switch_break:\l272: dbg.testing_switch_break (signed int arg1);\l; arg signed int arg1 @ a0\l0x800067c8      addiu a0, a0, 0x14                                     ; arg1 ; void testing_switch_break(int y);\l0x800067cc      addiu v0, zero, 0x47\l0x800067d0      beq a0, v0, 0x800068a0\l0x800067d4      slti v0, a0, 0x48                                      ; arg1\l"]
+	"0x800067d8" [URL="dbg.testing_switch_break/0x800067d8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067d8      beqz v0, 0x80006820\l0x800067dc      addiu v0, zero, 0x59\l"]
+	"0x800067e0" [URL="dbg.testing_switch_break/0x800067e0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067e0      addiu v0, zero, 2\l0x800067e4      beq a0, v0, 0x8000686c\l0x800067e8      slti v0, a0, 3                                         ; arg1\l"]
+	"0x800067ec" [URL="dbg.testing_switch_break/0x800067ec", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067ec      beqz v0, 0x80006808\l0x800067f0      addiu v0, zero, 0x45\l"]
+	"0x800067f4" [URL="dbg.testing_switch_break/0x800067f4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x800067f4      addiu v0, zero, 1\l0x800067f8      beq a0, v0, 0x80006864\l0x800067fc      lui a0, 0x8001\l"]
+	"0x80006800" [URL="dbg.testing_switch_break/0x80006800", fillcolor="white",color="#767676", fontname="Courier",label="0x80006800      jr ra\l0x80006804      nop\l"]
+	"0x80006808" [URL="dbg.testing_switch_break/0x80006808", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x800067ec\l0x80006808      beq a0, v0, 0x80006894\l0x8000680c      addiu v0, zero, 0x46\l"]
+	"0x80006810" [URL="dbg.testing_switch_break/0x80006810", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006810      beq a0, v0, 0x80006884\l0x80006814      lui a0, 0x8001\l"]
+	"0x80006818" [URL="dbg.testing_switch_break/0x80006818", fillcolor="white",color="#767676", fontname="Courier",label="0x80006818      jr ra\l0x8000681c      nop\l"]
+	"0x80006820" [URL="dbg.testing_switch_break/0x80006820", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x800067d8\l0x80006820      beq a0, v0, 0x800068b8\l0x80006824      slti v0, a0, 0x5a                                      ; arg1\l"]
+	"0x80006828" [URL="dbg.testing_switch_break/0x80006828", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006828      beqz v0, 0x8000684c\l0x8000682c      addiu v0, zero, 0x62\l"]
+	"0x80006830" [URL="dbg.testing_switch_break/0x80006830", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006830      addiu v0, zero, 0x49\l0x80006834      beq a0, v0, 0x800068ac\l0x80006838      addiu v0, zero, 0x4a\l"]
+	"0x8000683c" [URL="dbg.testing_switch_break/0x8000683c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x8000683c      beq a0, v0, 0x800068c4\l0x80006840      lui a0, 0x8001\l"]
+	"0x80006844" [URL="dbg.testing_switch_break/0x80006844", fillcolor="white",color="#767676", fontname="Courier",label="0x80006844      jr ra\l0x80006848      nop\l"]
+	"0x8000684c" [URL="dbg.testing_switch_break/0x8000684c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x80006828\l0x8000684c      beq a0, v0, 0x80006878\l0x80006850      addiu v0, zero, 0x64\l"]
+	"0x80006854" [URL="dbg.testing_switch_break/0x80006854", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x80006854      beq a0, v0, 0x8000688c\l0x80006858      lui a0, 0x8001\l"]
+	"0x8000685c" [URL="dbg.testing_switch_break/0x8000685c", fillcolor="white",color="#767676", fontname="Courier",label="0x8000685c      jr ra\l0x80006860      nop\l"]
+	"0x80006864" [URL="dbg.testing_switch_break/0x80006864", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x800067f8\l0x80006864      j 0x800068c8\l0x80006868      addiu a0, a0, 0x3130                                   ; arg1 ; esilref: 'case 0'\l"]
+	"0x8000686c" [URL="dbg.testing_switch_break/0x8000686c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x800067e4\l0x8000686c      lui a0, 0x8001\l0x80006870      j 0x800068c8\l0x80006874      addiu a0, a0, 0x3138                                   ; arg1 ; esilref: 'case 1'\l"]
+	"0x80006878" [URL="dbg.testing_switch_break/0x80006878", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x8000684c\l0x80006878      lui a0, 0x8001\l0x8000687c      j 0x800068c8\l0x80006880      addiu a0, a0, 0x3140                                   ; arg1 ; esilref: 'case 2'\l"]
+	"0x80006884" [URL="dbg.testing_switch_break/0x80006884", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x80006810\l0x80006884      j 0x800068c8\l0x80006888      addiu a0, a0, 0x3148                                   ; arg1 ; esilref: 'case 3'\l"]
+	"0x8000688c" [URL="dbg.testing_switch_break/0x8000688c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x80006854\l0x8000688c      j 0x800068c8\l0x80006890      addiu a0, a0, 0x3150                                   ; arg1 ; esilref: 'case 4'\l"]
+	"0x80006894" [URL="dbg.testing_switch_break/0x80006894", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x80006808\l0x80006894      lui a0, 0x8001\l0x80006898      j 0x800068c8\l0x8000689c      addiu a0, a0, 0x3158                                   ; arg1 ; esilref: 'case 5'\l"]
+	"0x800068a0" [URL="dbg.testing_switch_break/0x800068a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x800067d0\l0x800068a0      lui a0, 0x8001\l0x800068a4      j 0x800068c8\l0x800068a8      addiu a0, a0, 0x3160                                   ; arg1 ; esilref: 'case 6'\l"]
+	"0x800068ac" [URL="dbg.testing_switch_break/0x800068ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x80006834\l0x800068ac      lui a0, 0x8001\l0x800068b0      j 0x800068c8\l0x800068b4      addiu a0, a0, 0x3168                                   ; arg1 ; esilref: 'case 7'\l"]
+	"0x800068b8" [URL="dbg.testing_switch_break/0x800068b8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x80006820\l0x800068b8      lui a0, 0x8001\l0x800068bc      j 0x800068c8\l0x800068c0      addiu a0, a0, 0x3170                                   ; arg1 ; esilref: 'case 8'\l"]
+	"0x800068c4" [URL="dbg.testing_switch_break/0x800068c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from dbg.testing_switch_break @ 0x8000683c\l0x800068c4      addiu a0, a0, 0x3178                                   ; arg1 ; esilref: 'case 9'\l"]
+	"0x800068c8" [URL="dbg.testing_switch_break/0x800068c8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; XREFS: CODE 0x80006864  CODE 0x80006870  CODE 0x8000687c  CODE 0x80006884  CODE 0x8000688c  CODE 0x80006898  \l; XREFS: CODE 0x800068a4  CODE 0x800068b0  CODE 0x800068bc  \l0x800068c8      lui t9, 0x8001\l0x800068cc      addiu t9, t9, 0x1510                                   ; 0x80011510\l                                                                       ; sym.printf ; sym.printf\l0x800068d0      jr t9\l0x800068d4      nop\l"]
+        "0x800067c8" -> "0x800068a0" [color="#13a10e"];
+        "0x800067c8" -> "0x800067d8" [color="#c50f1f"];
+        "0x800067d8" -> "0x80006820" [color="#13a10e"];
+        "0x800067d8" -> "0x800067e0" [color="#c50f1f"];
+        "0x800067e0" -> "0x8000686c" [color="#13a10e"];
+        "0x800067e0" -> "0x800067ec" [color="#c50f1f"];
+        "0x800067ec" -> "0x80006808" [color="#13a10e"];
+        "0x800067ec" -> "0x800067f4" [color="#c50f1f"];
+        "0x800067f4" -> "0x80006864" [color="#13a10e"];
+        "0x800067f4" -> "0x80006800" [color="#c50f1f"];
+        "0x80006808" -> "0x80006894" [color="#13a10e"];
+        "0x80006808" -> "0x80006810" [color="#c50f1f"];
+        "0x80006810" -> "0x80006884" [color="#13a10e"];
+        "0x80006810" -> "0x80006818" [color="#c50f1f"];
+        "0x80006820" -> "0x800068b8" [color="#13a10e"];
+        "0x80006820" -> "0x80006828" [color="#c50f1f"];
+        "0x80006828" -> "0x8000684c" [color="#13a10e"];
+        "0x80006828" -> "0x80006830" [color="#c50f1f"];
+        "0x80006830" -> "0x800068ac" [color="#13a10e"];
+        "0x80006830" -> "0x8000683c" [color="#c50f1f"];
+        "0x8000683c" -> "0x800068c4" [color="#13a10e"];
+        "0x8000683c" -> "0x80006844" [color="#c50f1f"];
+        "0x8000684c" -> "0x80006878" [color="#13a10e"];
+        "0x8000684c" -> "0x80006854" [color="#c50f1f"];
+        "0x80006854" -> "0x8000688c" [color="#13a10e"];
+        "0x80006854" -> "0x8000685c" [color="#c50f1f"];
+        "0x80006864" -> "0x800068c8" [color="#3a96dd"];
+        "0x8000686c" -> "0x800068c8" [color="#3a96dd"];
+        "0x80006878" -> "0x800068c8" [color="#3a96dd"];
+        "0x80006884" -> "0x800068c8" [color="#3a96dd"];
+        "0x8000688c" -> "0x800068c8" [color="#3a96dd"];
+        "0x80006894" -> "0x800068c8" [color="#3a96dd"];
+        "0x800068a0" -> "0x800068c8" [color="#3a96dd"];
+        "0x800068ac" -> "0x800068c8" [color="#3a96dd"];
+        "0x800068b8" -> "0x800068c8" [color="#3a96dd"];
+        "0x800068c4" -> "0x800068c8" [color="#3a96dd"];
+}
