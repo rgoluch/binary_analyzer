@@ -405,7 +405,7 @@ public class Importer {
 			
 			
 			MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
-			TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
+			TopDownDFPathCounter srcCounter = new TopDownDFPathCounter(true);
 			
 			// We will now generate the results for all the functions in the graph database.
 			// It is assumed that you have XINU mapped into Atlas before you run this code.

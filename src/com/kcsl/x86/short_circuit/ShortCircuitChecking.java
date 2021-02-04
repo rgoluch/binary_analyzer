@@ -23,9 +23,9 @@ import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
-import com.kcsl.paths.counting.TopDownDFMultiplicitiesPathCounter;
 import com.se421.paths.algorithms.PathCounter.CountingResult;
 import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
+import com.kcsl.paths.counting.TopDownDFPathCounter;
 
 public class ShortCircuitChecking {
 	
@@ -508,8 +508,8 @@ public class ShortCircuitChecking {
 				
 				if(checking.getOperator().contains(AND)) {
 					checking.setTrueDest(checkingNode, scNodesInGraph.get(m+1));
-					checking.setFalseDest(checkingNode, falseDest);
-//					nodes[m+1].getFalseDest()
+					checking.setFalseDest(checkingNode, nodes[m+1].getFalseDest());
+//					falseDest
 				}
 				if(checking.getOperator().contains(OR)) {
 					checking.setFalseDest(checkingNode, scNodesInGraph.get(m+1));
@@ -705,8 +705,8 @@ public class ShortCircuitChecking {
 			scInfo x = scChecker(c);
 			Q transformedGraph = scTransform(srcName);
 			if (transformedGraph != null) {
-				TopDownDFMultiplicitiesPathCounter transformCounter = new TopDownDFMultiplicitiesPathCounter(true);
-				TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
+				TopDownDFPathCounter transformCounter = new TopDownDFPathCounter(true);
+				TopDownDFPathCounter srcCounter = new TopDownDFPathCounter(true);
 				com.kcsl.paths.algorithms.PathCounter.CountingResult t = srcCounter.countPaths(c);
 
 				com.kcsl.paths.algorithms.PathCounter.CountingResult r = transformCounter.countPaths(transformedGraph);

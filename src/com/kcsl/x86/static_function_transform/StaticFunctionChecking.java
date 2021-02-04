@@ -41,26 +41,35 @@ public class StaticFunctionChecking {
 		Q f = my_function(functionName);
 		Q cfg = my_cfg(f);
 		ArrayList<Node> dfg = my_dataFlow(functionName);
+
 		
-		//ArrayList to hold nodes to all static functions in code base
-		ArrayList<Node> staticFunctions = staticChecker();
+		Map<Integer, Node> headerIDMapping = new HashMap<Integer, Node>();
+		
+		//List to hold all static roots that have leaves added, make sure we don't add duplicate edges
+		ArrayList<Node> leavesAdded = new ArrayList<Node>();
 		
 		//Map to hold node names for all nodes that are callsites to static functions for a given
 		//source function and their respective CFGs
 		Map<String, Q> staticCFG = new HashMap<String, Q>();
-
+		Map<Integer, Node> recreatedNodes = new HashMap<Integer, Node>();
+		
+		//Map to hold static cfg root and the leaves for ease of edge addition for leaves to successor
+		Map<Node, ArrayList<Node>> leavesMap = new HashMap<Node, ArrayList<Node>>();
+		
 		Node container = cfg.containers().nodes(XCSG.C.TranslationUnit).eval().nodes().one();
 		String containerName = container.getAttr(XCSG.name).toString();
 		
+		//Get all the static cfgs found in the graph to easily remake 
 		for (Node y : dfg) {
 			String staticName = Common.toQ(y).containers().nodes(XCSG.C.TranslationUnit).eval().nodes().one().getAttr(XCSG.name).toString();
 			String nodeName = y.getAttr(XCSG.name).toString();
 			nodeName = nodeName.replace("...", "");
 			nodeName += ";";
 			
-			if (!staticCFG.containsKey(nodeName) && staticName.equals(containerName)) {
-				Q b = bcfg(y.getAttr(XCSG.name).toString().split("\\(")[0]);
-				System.out.println(b.eval().edges().size());
+			Q b = bcfg(y.getAttr(XCSG.name).toString().split("\\(")[0]);
+			String bContainer = b.containers().nodes(XCSG.C.TranslationUnit).eval().nodes().one().getAttr(XCSG.name).toString(); 
+			
+			if (!staticCFG.containsKey(nodeName) && staticName.equals(containerName) && staticName.equals(bContainer)) {
 				staticCFG.put(nodeName, b);
 			}
 		}
@@ -69,9 +78,7 @@ public class StaticFunctionChecking {
 		functionNode.putAttr(XCSG.name, "static_transform_"+functionName);
 		functionNode.tag(XCSG.Function);
 		
-		Map<Node, Node> recreatedNodes = new HashMap<Node, Node>();
-		ArrayList<staticHeaderNode> headerNodes = new ArrayList<staticHeaderNode>();
-		
+
 		for (Edge e : cfg.eval().edges()) {
 			Node eFrom = e.from();
 			Node eTo = e.to();
@@ -81,138 +88,210 @@ public class StaticFunctionChecking {
 			String toNode = e.to().getAttr(XCSG.name).toString().split("\\(")[0];
 			toNode += "();";
 			
-			if (!staticCFG.containsKey(fromFunctionNode)) {
+			//Need to handle when the return value of a function is used in a variable assignment
+			if (fromFunctionNode.contains("=")) {
+				fromFunctionNode = fromFunctionNode.split("=")[1];
+				fromFunctionNode = fromFunctionNode.split(" ")[1];
+				if (!staticCFG.containsKey(fromFunctionNode)) {
+					fromFunctionNode = eFrom.getAttr(XCSG.name).toString();
+				}
+			}else if(!staticCFG.containsKey(fromFunctionNode)) {
 				fromFunctionNode = eFrom.getAttr(XCSG.name).toString();
 			}
 			
-			if (!staticCFG.containsKey(toNode)) {
+			if (toNode.contains("=")) {
+				toNode = toNode.split("=")[1];
+				toNode = toNode.split(" ")[1];
+				if (!staticCFG.containsKey(toNode)) {
+					toNode = eTo.getAttr(XCSG.name).toString();
+				}
+			}else if(!staticCFG.containsKey(toNode)) {
 				toNode = eTo.getAttr(XCSG.name).toString();
 			}
 			
-			if (staticCFG.containsKey(toNode)) {
-				Node fromCheck = recreatedNodes.get(e.from());
+			//Handle the case where we have consecutive static function calls
+			if (staticCFG.containsKey(fromFunctionNode) && staticCFG.containsKey(toNode)) {
+				
+				Node root = null;
+				Node root2 = null;
+				Q fromFunction = staticCFG.get(fromFunctionNode);
+				Q toFunction = staticCFG.get(toNode);
+				
+				Node firstGraphCheck = headerIDMapping.get(eFrom.addressBits());
+				if (firstGraphCheck != null) {
+					root = recreatedNodes.get(firstGraphCheck.addressBits());
+				}
+				else {
+					root = createStaticCFG(toFunction,functionNode,recreatedNodes, leavesMap, containerName);
+					headerIDMapping.put(eFrom.addressBits(), root);
+				}
+				
+				//get root of second graph for destination of leaves from first graph
+				Node secondGraphCheck = headerIDMapping.get(eTo.addressBits());
+				if (secondGraphCheck != null) {
+					root2 = recreatedNodes.get(secondGraphCheck.addressBits());
+				}
+				else {
+					root2 = createStaticCFG(fromFunction,functionNode,recreatedNodes, leavesMap, containerName);
+					headerIDMapping.put(eTo.addressBits(), root2);
+				}
+				
+				if(!leavesAdded.contains(root)) {
+					addLeafEdges(root, root2, e, leavesMap);
+					leavesAdded.add(root);
+				}
+				continue;
+			}
+			//Handle the case where we point to a static call site
+			else if (staticCFG.containsKey(toNode)) {
+				Node fromCheck = recreatedNodes.get(e.from().addressBits());
 				if (fromCheck == null) {
 					fromCheck = createNode(e.from(), false, functionNode);
-					recreatedNodes.put(e.from(), fromCheck);
+					recreatedNodes.put(e.from().addressBits(), fromCheck);
 					
 					fromCheck.tag("static_transform");
 					Edge tempEdge = Graph.U.createEdge(functionNode, fromCheck);
 					tempEdge.tag(XCSG.Contains);
 				}
 				
+				//Check to make sure we haven't already made the static CFG
+				Node graphCheck = headerIDMapping.get(eTo.addressBits());
+				if (graphCheck != null) {
+
+					//If graph has already been made, just add edges from predecessor to root
+					Node root = recreatedNodes.get(graphCheck.addressBits());
+					createEdge(e, fromCheck, root);
+					continue;
+				}
+				
 				Node successor = e.to().out(XCSG.ControlFlow_Edge).one().to();
-				Node toCheck = recreatedNodes.get(successor);
-				if (toCheck == null) {
+				Node toCheck = recreatedNodes.get(successor.addressBits());
+				String toCheckName = successor.getAttr(XCSG.name).toString();
+				toCheckName = toCheckName.split("\\(")[0];
+				toCheckName += "();";
+				
+				if (toCheckName.contains("=")) {
+					toCheckName = toCheckName.split("=")[1];
+					toCheckName = toCheckName.split(" ")[1];
+					if (!staticCFG.containsKey(toCheckName)) {
+						toCheckName = successor.getAttr(XCSG.name).toString();
+					}
+				}else if(!staticCFG.containsKey(toCheckName)) {
+					toCheckName = successor.getAttr(XCSG.name).toString();				
+				}
+				
+				if (toCheck == null && !staticCFG.containsKey(toCheckName)) {
 					toCheck = createNode(successor, false, functionNode);
-					recreatedNodes.put(successor, toCheck);
+					recreatedNodes.put(successor.addressBits(), toCheck);
 					
 					toCheck.tag("static_transform");
 					Edge tempToEdge = Graph.U.createEdge(functionNode, toCheck);
 					tempToEdge.tag(XCSG.Contains);
 				}
-				
-				Q sFunction = staticCFG.get(toNode);
-				System.out.println(sFunction.eval().edges().size());
-				//Check to make sure we haven't already made the static CFG
-				Edge checkEdge = sFunction.eval().edges().tagged(XCSG.ControlFlow_Edge).getFirst();
-				Node graphCheck = recreatedNodes.get(checkEdge.from());
-				if (graphCheck != null) {
-					//If graph has already been made, just add edges from predecessor to root
-					Node r = sFunction.roots().eval().nodes().one();
-					Node root = recreatedNodes.get(r);
-					createEdge(e, e.from(), root);
-					continue;
-				}
-				
-				for(Edge eStatic : sFunction.eval().edges()) {
-					Node from = recreatedNodes.get(eStatic.from());
-					Node to = recreatedNodes.get(eStatic.to());
-					
-					if (from == null) {
-						 from = createNode(eStatic.from(), true, functionNode);
-						 recreatedNodes.put(eStatic.from(), from);
+				else if (toCheck == null && staticCFG.containsKey(toCheckName)){
+					Node successorCheck = headerIDMapping.get(successor.addressBits());
+					if (successorCheck == null) {
+						Q successorFunction = staticCFG.get(toCheckName);
+						toCheck = createStaticCFG(successorFunction,functionNode,recreatedNodes, leavesMap, containerName);
+						headerIDMapping.put(successor.addressBits(), toCheck);
 					}
-					if (to == null) {
-						to = createNode(eStatic.to(), true, functionNode);
-						recreatedNodes.put(eStatic.to(), to);
+				}
 
-					}
+				Q sFunction = staticCFG.get(toNode);				
+				Node root = createStaticCFG(sFunction,functionNode,recreatedNodes, leavesMap, containerName);
+				createEdge(e, fromCheck, root);
+				headerIDMapping.put(eTo.addressBits(), root);
 				
-					createEdge(eStatic, from, to);					
+				if(!leavesAdded.contains(root)) {
+					addLeafEdges(root, toCheck, e, leavesMap);
+					leavesAdded.add(root);
 				}
-				
-//				recreatedNodes.put(e.to(), e.to());
-				Node r = sFunction.roots().eval().nodes().one();
-				Node root = recreatedNodes.get(r);
-				createEdge(e, e.from(), root);
-				
-				for (Node l : sFunction.leaves().eval().nodes()) {
-					Node createdLeaf = recreatedNodes.get(l);
-					createEdge(e.to().out(XCSG.ControlFlow_Edge).one(), createdLeaf, toCheck);
-				}
-				
-				
 			}
+			//Handle the case where the from node for the edge is a static function call
 			else if (staticCFG.containsKey(fromFunctionNode)) {
 				
 				//Check to see if we've already created the static CFG
-				if (recreatedNodes.containsKey(e.from())) {
+				if (headerIDMapping.containsKey(e.from().addressBits())) {
+					
 					//If graph has already been made, just add edges to from leaves to successor
 					String fromName = e.from().getAttr(XCSG.name).toString();
+					fromName = fromName.split("\\(")[0];
+					fromName += "();";
+					
 					Q sCFG = staticCFG.get(fromName);
-					for (Node l : sCFG.leaves().eval().nodes()) {
-						Node createdLeaf = recreatedNodes.get(l);
-						createEdge(e, createdLeaf, e.to());
+					Node dest = recreatedNodes.get(e.to().addressBits());
+					if (dest == null) {
+						dest = createNode(e.to(), false, functionNode);
+						recreatedNodes.put(e.to().addressBits(), dest);
+						
+						dest.tag("static_transform");
+						Edge tempEdge = Graph.U.createEdge(functionNode, dest);
+						tempEdge.tag(XCSG.Contains);
+					}
+					
+					Node root = headerIDMapping.get(e.from().addressBits());
+					if(!leavesAdded.contains(root)) {
+						addLeafEdges(root, dest, e, leavesMap);
+						leavesAdded.add(root);
 					}
 					continue;
 				}
 				
 				Node successor = e.to();
-				Node toCheck = recreatedNodes.get(successor);
+				Node toCheck = recreatedNodes.get(successor.addressBits());
 				
-				if (toCheck == null) {
-					toCheck = createNode(e.to(), false, functionNode);
-					recreatedNodes.put(e.to(), toCheck);
+				String toCheckName = successor.getAttr(XCSG.name).toString();
+				toCheckName = toCheckName.split("\\(")[0];
+				toCheckName += "();";
+				
+				if (toCheckName.contains("=")) {
+					toCheckName = toCheckName.split("=")[1];
+					toCheckName = toCheckName.split(" ")[1];
+					if (!staticCFG.containsKey(toCheckName)) {
+						toCheckName = successor.getAttr(XCSG.name).toString();
+					}
+				}else if(!staticCFG.containsKey(toCheckName)) {
+					toCheckName = successor.getAttr(XCSG.name).toString();				
+				}
+				
+				if (toCheck == null && !staticCFG.containsKey(toCheckName)) {
+					toCheck = createNode(successor, false, functionNode);
+					recreatedNodes.put(successor.addressBits(), toCheck);
 					
 					toCheck.tag("static_transform");
-					Edge tempEdge = Graph.U.createEdge(functionNode, toCheck);
-					tempEdge.tag(XCSG.Contains);
+					Edge tempToEdge = Graph.U.createEdge(functionNode, toCheck);
+					tempToEdge.tag(XCSG.Contains);
+				}
+				else if (toCheck == null && staticCFG.containsKey(toCheckName)){
+					Node successorCheck = headerIDMapping.get(successor.addressBits());
+					if (successorCheck == null) {
+						Q successorFunction = staticCFG.get(toCheckName);
+						toCheck = createStaticCFG(successorFunction,functionNode,recreatedNodes, leavesMap, containerName);
+						headerIDMapping.put(successor.addressBits(), toCheck);
+					}
 				}
 				
 				Q sFunction = staticCFG.get(fromFunctionNode);
-				for(Edge eStatic : sFunction.eval().edges()) {
-					Node from = recreatedNodes.get(eStatic.from());
-					Node to = recreatedNodes.get(eStatic.to());
-					
-					if (from == null) {
-						 from = createNode(eStatic.from(), true, functionNode);
-						 recreatedNodes.put(eStatic.from(), from);
-					}
-					if (to == null) {
-						to = createNode(eStatic.to(), true, functionNode);
-						recreatedNodes.put(eStatic.to(), to);
+				Node root = createStaticCFG(sFunction,functionNode,recreatedNodes, leavesMap, containerName);
 
-					}
-				
-					createEdge(eStatic, from, to);
-				}
-				
-				for (Node l : sFunction.leaves().eval().nodes()) {
-					Node createdLeaf = recreatedNodes.get(l);
-					createEdge(e, createdLeaf, toCheck);
+				headerIDMapping.put(eFrom.addressBits(), root);
+				if(!leavesAdded.contains(root)) {
+					addLeafEdges(root, toCheck, e, leavesMap);
+					leavesAdded.add(root);
 				}
 
 			}
+			//Handle all other CFG nodes 
 			else {
 				Node from = createNode(e.from(), false, functionNode);
 				Node to = createNode(e.to(), false, functionNode);
 				
-				Node fromCheck = recreatedNodes.get(e.from());
-				Node toCheck = recreatedNodes.get(e.to());
+				Node fromCheck = recreatedNodes.get(e.from().addressBits());
+				Node toCheck = recreatedNodes.get(e.to().addressBits());
 				
 				if (fromCheck == null && toCheck == null) {
-					recreatedNodes.put(e.from(), from);
-					recreatedNodes.put(e.to(), to);	
+					recreatedNodes.put(e.from().addressBits(), from);
+					recreatedNodes.put(e.to().addressBits(), to);	
 					createEdge(e, from, to);
 					
 					
@@ -226,7 +305,7 @@ public class StaticFunctionChecking {
 					toEdge.tag(XCSG.Contains);
 				}
 				else if (fromCheck != null && toCheck == null) {
-					recreatedNodes.put(e.to(), to);	
+					recreatedNodes.put(e.to().addressBits(), to);	
 					createEdge(e, fromCheck, to);
 					
 					to.tag("static_transform");
@@ -234,7 +313,7 @@ public class StaticFunctionChecking {
 					toEdge.tag(XCSG.Contains);
 				}
 				else if (fromCheck == null && toCheck != null) {
-					recreatedNodes.put(e.from(), from);	
+					recreatedNodes.put(e.from().addressBits(), from);	
 					createEdge(e, from, toCheck);
 					
 					from.tag("static_transform");
@@ -254,39 +333,18 @@ public class StaticFunctionChecking {
 		
 	}
 	
-	private static class staticHeaderNode{
-		private Node staticHeader;
-		private Node toNode;
-		private Node createdNode;
-		private Node fromNode;
-		
-		public staticHeaderNode(Node n, Node f, Node t) {
-			this.staticHeader = n;
-			this.fromNode = f;
-			this.toNode = t;
-		}
-		
-		public Node getToNode() {
-			return this.toNode;
-		}
-//		
-//		public Node getOriginalNode() {
-//			return this.originalNode;
-//		}
-		
-//		public long getLineNumber() {
-//			return this.lineNumber;
-//		}
-		
-		public void setCreatedNode(Node n) {
-			this.createdNode = n;
-		}
-		
-//		public void setSwitchNode(Node n) {
-//			this.switchNode = n;
-//		}
 	
-	}
+	/**
+	 * Method used to ease the creation of nodes that will be added to returned graph
+	 * @param original
+	 * 		Node from the original CFG that we are recreating
+	 * @param check
+	 * 		Used to determine if these are nodes for a static CFG that need to be tagged
+	 * @param function
+	 * 		Function node for returned graph to add container edges
+	 * @return
+	 * 		Returns the new created node
+	 */
 	
 	public static Node createNode(Node original, boolean check, Node function) {
 		Node returnNode = null;
@@ -305,7 +363,6 @@ public class StaticFunctionChecking {
 			toEdge.tag(XCSG.Contains);
 			returnNode.tag("static_transform");
 		}
-		
 		return returnNode;
 	}
 	
@@ -327,6 +384,97 @@ public class StaticFunctionChecking {
 		if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
 			cfgEdge.tag(XCSG.ControlFlowBackEdge);
 		}
+	}
+	
+	
+	/**
+	 * Method used to create the static CFGs that will replace each static function call 
+	 * in a given funciton
+	 * @param sFunction
+	 * 		CFG for the original static function 
+	 * @param functionNode
+	 * 		Function node for the new graph that will be returned, used to add container edges
+	 * @param recreatedNodes
+	 * 		Map of nodes that have already been recreated for the graph that will be returned. 
+	 * 		We want to add all of the nodes created here to that map. Key is the address bits of the
+	 * 		created node and value is the node itself
+	 * @param leafMapping
+	 * 		Map of created static CFG roots and their associated leaves, used
+	 * 		for ease of edge creation and iteration. Roots and their leaves are added here
+	 * @param container
+	 * 		Translation Unit name for the parent C file to ensure that we are getting the correct static function
+	 * @return
+	 * 		Returns the root of the static CFG created
+	 */
+	
+	
+	public static Node createStaticCFG(Q sFunction, Node functionNode, Map<Integer, Node> recreatedNodes, Map<Node, ArrayList<Node>> leafMapping, String container) {
+		
+		Node root = null;
+		Map<Integer, Node> tempTracking = new HashMap<Integer, Node>();
+		ArrayList<Node> tempMapping = new ArrayList<Node>();
+
+		for(Edge eStatic : sFunction.eval().edges()) {
+			
+			//Need to make sure that we don't get a different static funciton with the same name
+			String eContainer = Common.toQ(eStatic.from()).containers().nodes(XCSG.C.TranslationUnit).eval().nodes().one().getAttr(XCSG.name).toString();
+			if (!container.equals(eContainer)) {
+				continue;
+			}
+			
+			Node from = tempTracking.get(eStatic.from().addressBits());
+			Node to = tempTracking.get(eStatic.to().addressBits());
+			
+			if (from == null) {
+				 from = createNode(eStatic.from(), true, functionNode);
+				 recreatedNodes.put(from.addressBits(), from);
+				 tempTracking.put(eStatic.from().addressBits(), from);
+			}
+			if (to == null) {
+				to = createNode(eStatic.to(), true, functionNode);
+				recreatedNodes.put(to.addressBits(), to);
+				tempTracking.put(eStatic.to().addressBits(), to);
+				
+				if (eStatic.to().taggedWith(XCSG.controlFlowExitPoint)) {
+					to.tag("static_leaf");
+					tempMapping.add(to);
+				}
+			}
+			
+			if (from.taggedWith(XCSG.controlFlowRoot)) {
+				root = from;
+			}else if (to.taggedWith(XCSG.controlFlowRoot)) {
+				root = to;
+			}
+			createEdge(eStatic, from, to);					
+		}
+		leafMapping.put(root, tempMapping);
+		return root;
+	}
+	
+	
+	/**
+	 * Method used to create the edges between all of the leaf nodes for a 
+	 * static CFG to the correct successor
+	 * @param root
+	 * 		Root of the static CFG call we are trying add the edges for
+	 * @param dest
+	 * 		Node that we want all of the leaf nodes to point to
+	 * @param e
+	 * 		The original CFG edge, used to add any tags/conditional values
+	 * @param leafMapping
+	 * 		Map of created static CFG roots and their associated leaves, used
+	 * 		for ease of edge creation and iteration
+	 */
+	
+	public static void addLeafEdges(Node root, Node dest, Edge e, Map<Node, ArrayList<Node>> leafMapping) {
+		ArrayList<Node> tempMapping = new ArrayList<Node>();		
+		tempMapping = leafMapping.get(root);
+		for (Node l : tempMapping) {
+			l.untag(XCSG.controlFlowExitPoint);
+			createEdge(e, l, dest);
+		}
+
 	}
 
 }

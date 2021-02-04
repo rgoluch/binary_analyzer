@@ -23,7 +23,7 @@ import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
-import com.kcsl.paths.counting.TopDownDFMultiplicitiesPathCounter;
+import com.kcsl.paths.counting.TopDownDFPathCounter;
 import com.se421.paths.algorithms.counting.MultiplicitiesPathCounter;
 
 /**
@@ -609,7 +609,7 @@ public class SubGraphGenerator {
 		countsWriter.write("Function Name, # If Nodes, # Loop Nodes, # Switch Nodes, # of Control Flow Nodes, Total Nodes in Subgraph, Induced Path Count, Original Path Count\n");
 		countsWriter.flush();
 		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
-		TopDownDFMultiplicitiesPathCounter t = new TopDownDFMultiplicitiesPathCounter();
+		TopDownDFPathCounter t = new TopDownDFPathCounter();
 		
 		for(Node function : functions.eval().nodes()) {
 			String functionName = function.getAttr(XCSG.name).toString();
@@ -679,7 +679,7 @@ public class SubGraphGenerator {
 		countsWriter.flush();
 		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
 		MultiplicitiesPathCounter linearCounter = new MultiplicitiesPathCounter();
-		TopDownDFMultiplicitiesPathCounter srcCounter = new TopDownDFMultiplicitiesPathCounter(true);
+		TopDownDFPathCounter srcCounter = new TopDownDFPathCounter(true);
 		
 		long bin_total_gt_src = 0;
 		long bin_total_lt_src = 0;
