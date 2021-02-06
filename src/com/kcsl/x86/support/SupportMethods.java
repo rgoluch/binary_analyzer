@@ -265,6 +265,15 @@ public class SupportMethods {
 		return c;
 	}
 	
+	public static Q staticCFGFinder(String name, String staticFunction) {
+		Q f = Query.universe().nodes(XCSG.C.TranslationUnit);
+		Q found = f.selectNode(XCSG.name, name);
+		Q c = found.children().selectNode(XCSG.name, staticFunction);
+		Q graph = c.contained().nodes(XCSG.ControlFlow_Node).induce(Query.universe().edges(XCSG.ControlFlow_Edge));
+		
+		return graph;
+	}
+	
 	/**
 	 * 
 	 * @param f
