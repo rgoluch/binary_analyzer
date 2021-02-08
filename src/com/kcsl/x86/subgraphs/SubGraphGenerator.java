@@ -232,12 +232,12 @@ public class SubGraphGenerator {
 		}
 	}
 	
-	public static Q singleSrcReturn(String name) {
+	public static Q singleSrcReturn(Q c, String name) {
 		
-		Q f = my_function(name);
-		Q originalCFG = my_cfg(f);
+//		Q f = my_function(name);
+//		Q originalCFG = my_cfg(f);
 		
-		Q subgraph = scTransform(name);
+		Q subgraph = scTransform(c, name);
 		
 //		if (subgraph == null) {
 //			return null;
@@ -355,12 +355,12 @@ public class SubGraphGenerator {
 		}
 
 		Q x = my_function(functionNode.getAttr(XCSG.name).toString());
-		Q c = x.contained().nodes("consolidated_src").induce(Query.universe().edges(XCSG.ControlFlow_Edge));
+		Q singleSrc = x.contained().nodes("consolidated_src").induce(Query.universe().edges(XCSG.ControlFlow_Edge));
 		//Need to make a new graph that contains the dummy return node and then return that
 		
 //		Q r = findSrcSubGraph(c);
 		
-		return c;
+		return singleSrc;
 		
 	}
 	
@@ -623,9 +623,10 @@ public class SubGraphGenerator {
 			functionName = functionName.replace("sym_", "");
 //			System.out.println(functionName);
 			
-			Graph subGraph = singleSrcReturn(functionName).eval();
 			Q srcFunction = my_function(functionName);
 			Q srcCFG = my_cfg(srcFunction);
+			Graph subGraph = singleSrcReturn(srcCFG, functionName).eval();
+			
 			
 			long ifNodes = subGraph.nodes().tagged(XCSG.ControlFlowIfCondition).size();
 			long loopNodes = subGraph.nodes().tagged(XCSG.ControlFlowLoopCondition).size();
@@ -702,7 +703,7 @@ public class SubGraphGenerator {
 			Graph srcCFG = my_cfg(srcF).eval();
 			
 			Graph binSubGraph = findSubGraph(functionName).eval();
-			Graph srcSubGraph = singleSrcReturn(srcFunctionName).eval();
+			Graph srcSubGraph = singleSrcReturn(srcF, srcFunctionName).eval();
 			
 			
 			

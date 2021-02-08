@@ -70,11 +70,11 @@ public class ShortCircuitChecking {
 	 * @return
 	 */
 	
-	public static Q scTransform(String name) {
+	public static Q scTransform(Q c, String name) {
 		
 		//Get the original source CFG
-		Q f = my_function(name);	
-		Q c = my_cfg(f);
+//		Q f = my_function(name);	
+//		Q c = my_cfg(f);
 		
 		
 		//Set up for new function node for returned CFG
@@ -703,7 +703,7 @@ public class ShortCircuitChecking {
 			Q c = my_cfg(function);
 			
 			scInfo x = scChecker(c);
-			Q transformedGraph = scTransform(srcName);
+			Q transformedGraph = scTransform(c, srcName);
 			if (transformedGraph != null) {
 				TopDownDFPathCounter transformCounter = new TopDownDFPathCounter(true);
 				TopDownDFPathCounter srcCounter = new TopDownDFPathCounter(true);

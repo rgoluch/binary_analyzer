@@ -15,6 +15,7 @@ import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.index.common.SourceCorrespondence;
+//import com.ensoftcorp.atlas.core.index.common.SourceCorrespondence;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
@@ -77,14 +78,7 @@ public class StaticFunctionChecking {
 			nodeName = nodeName.replace("...", "");
 			nodeName += ";";
 			
-//			String bContainer = null;
 			Q b = staticCFGFinder(containerName, sFuncName);
-			
-//			while (!containerName.equals(bContainer)) {
-//				b = bcfg(y.getAttr(XCSG.name).toString().split("\\(")[0]);
-//				bContainer = b.containers().nodes(XCSG.C.TranslationUnit).eval().nodes().one().getAttr(XCSG.name).toString();
-//			} 
-			
 			if (!staticCFG.containsKey(nodeName) && staticName.equals(containerName)) {
 				staticCFG.put(nodeName, b);
 			}
@@ -107,8 +101,6 @@ public class StaticFunctionChecking {
 				
 				Node root = null;
 				Node root2 = null;
-//				Q fromFunction = staticCFG.get(fromFunctionNode);
-//				Q toFunction = staticCFG.get(toNode);
 				
 				Node firstGraphCheck = headerIDMapping.get(eFrom.addressBits());
 				if (firstGraphCheck != null) {
@@ -162,24 +154,6 @@ public class StaticFunctionChecking {
 				String toCheckName = createNodeName(successor);
 				toCheck = createSuccessorEdges(toCheck, toCheckName, functionNode, successor, headerIDMapping);
 				
-//				if (toCheck == null && !staticCFG.containsKey(toCheckName)) {
-//					toCheck = createNode(successor, false, functionNode);
-//					recreatedNodes.put(successor.addressBits(), toCheck);
-//					
-//					toCheck.tag("static_transform");
-//					Edge tempToEdge = Graph.U.createEdge(functionNode, toCheck);
-//					tempToEdge.tag(XCSG.Contains);
-//				}
-//				else if (toCheck == null && staticCFG.containsKey(toCheckName)){
-//					Node successorCheck = headerIDMapping.get(successor.addressBits());
-//					if (successorCheck == null) {
-////						Q successorFunction = staticCFG.get(toCheckName);
-//						toCheck = createStaticCFG(toCheckName,functionNode);
-//						headerIDMapping.put(successor.addressBits(), toCheck);
-//					}
-//				}
-
-//				Q sFunction = staticCFG.get(toNode);				
 				Node root = createStaticCFG(toNode,functionNode, headerIDMapping);
 				createEdge(e, fromCheck, root);
 				headerIDMapping.put(eTo.addressBits(), root);
@@ -223,25 +197,6 @@ public class StaticFunctionChecking {
 				Node toCheck = recreatedNodes.get(successor.addressBits());
 				String toCheckName = createNodeName(successor);
 				toCheck = createSuccessorEdges(toCheck, toCheckName, functionNode, successor, headerIDMapping);
-				
-//				if (toCheck == null && !staticCFG.containsKey(toCheckName)) {
-//					toCheck = createNode(successor, false, functionNode);
-//					recreatedNodes.put(successor.addressBits(), toCheck);
-//					
-//					toCheck.tag("static_transform");
-//					Edge tempToEdge = Graph.U.createEdge(functionNode, toCheck);
-//					tempToEdge.tag(XCSG.Contains);
-//				}
-//				else if (toCheck == null && staticCFG.containsKey(toCheckName)){
-//					Node successorCheck = headerIDMapping.get(successor.addressBits());
-//					if (successorCheck == null) {
-////						Q successorFunction = staticCFG.get(toCheckName);
-//						toCheck = createStaticCFG(toCheckName,functionNode);
-//						headerIDMapping.put(successor.addressBits(), toCheck);
-//					}
-//				}
-				
-//				Q sFunction = staticCFG.get(fromFunctionNode);
 				Node root = createStaticCFG(fromFunctionNode,functionNode, headerIDMapping);
 
 				headerIDMapping.put(eFrom.addressBits(), root);
@@ -328,6 +283,32 @@ public class StaticFunctionChecking {
 			returnNode.tag(s);
 		}
 		
+		//Adding source correspondence for switch statement transform
+		SourceCorrespondence c = (SourceCorrespondence) original.getAttr(XCSG.sourceCorrespondence);
+		returnNode.putAttr(XCSG.sourceCorrespondence, c);
+		
+		//Handling the case when there are logical operators for short circuit transform
+		AtlasSet<Node> containerNodes = Common.toQ(original).contained().nodes(XCSG.LogicalAnd, XCSG.LogicalOr).eval().nodes();
+		if (containerNodes.size() > 0) {
+			for (Node n : containerNodes) {
+				Iterable<String> containerTags = n.tagsI();
+				Node dataNode = Graph.U.createNode();
+				String dName = n.getAttr(XCSG.name).toString();
+				dataNode.putAttr(XCSG.name, dName);
+				for (String t : containerTags) {
+					dataNode.tag(t);
+				}
+				dataNode.tag("static_transform");
+				Edge containerEdge = Graph.U.createEdge(returnNode, dataNode);
+				containerEdge.tag(XCSG.Contains);
+				containerEdge.tag("switch_edge");
+				
+				Edge functionContainer = Graph.U.createEdge(function, dataNode);
+				functionContainer.tag(XCSG.Contains);
+				functionContainer.tag("static_edge");
+			}
+		}
+		
 		if (check) {
 			Edge toEdge = Graph.U.createEdge(function, returnNode);
 			toEdge.tag(XCSG.Contains);
@@ -342,12 +323,14 @@ public class StaticFunctionChecking {
 		cfgEdge.tag("static_edge");
 		
 		if (e.hasAttr(XCSG.conditionValue)) {
+			String conditionVal = e.getAttr(XCSG.conditionValue).toString();
+			cfgEdge.putAttr(XCSG.conditionValue, conditionVal);
 			if (e.getAttr(XCSG.conditionValue).toString().contains("true")) {
-				cfgEdge.putAttr(XCSG.conditionValue, true);
 				cfgEdge.putAttr(XCSG.name, "true");
-			}else {
-				cfgEdge.putAttr(XCSG.conditionValue, false);
+			}else if (e.getAttr(XCSG.conditionValue).toString().contains("false")){
 				cfgEdge.putAttr(XCSG.name, "false");
+			}else if (e.getAttr(XCSG.conditionValue).toString().contains("default")) {
+				cfgEdge.putAttr(XCSG.name, "default");
 			}
 		}
 		

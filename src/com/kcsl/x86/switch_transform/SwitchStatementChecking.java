@@ -85,6 +85,7 @@ public class SwitchStatementChecking {
 		functionNode.putAttr(XCSG.name, "switch_transform_"+name);
 		functionNode.tag(XCSG.Function);
 		functionNode.tag("switch_graph");
+		functionNode.tag("switch_function_node");
 		
 		//Keep track of what nodes have already been recreated for final graph
 		Map<Node,Node> recreatedNodes = new HashMap<Node,Node>();
@@ -122,6 +123,7 @@ public class SwitchStatementChecking {
 					
 					if (predecessor.taggedWith(XCSG.ControlFlowCondition)) {
 						tempPred.tag(XCSG.ControlFlowCondition);
+						addSCOperators(predecessor, tempPred);
 					}
 					
 					Edge e1 = Graph.U.createEdge(functionNode, tempPred);
@@ -159,6 +161,7 @@ public class SwitchStatementChecking {
 					
 					if (trueEval.taggedWith(XCSG.ControlFlowCondition)) {
 						tempTrue.tag(XCSG.ControlFlowCondition);
+						addSCOperators(trueEval, tempTrue);
 					}
 					
 					if (trueEval.taggedWith(XCSG.CaseLabel) && !trueEval.taggedWith(XCSG.DefaultCaseLabel)) {
@@ -229,6 +232,7 @@ public class SwitchStatementChecking {
 					
 					if (header.taggedWith(XCSG.ControlFlowCondition)) {
 						tempHeader.tag(XCSG.ControlFlowCondition);
+						addSCOperators(header, tempHeader);
 					}
 					if (header.taggedWith(XCSG.controlFlowExitPoint)) {
 						tempHeader.tag(XCSG.controlFlowExitPoint);
@@ -265,6 +269,7 @@ public class SwitchStatementChecking {
 					
 					if (e.from().taggedWith(XCSG.ControlFlowCondition)) {
 						tempDefault.tag(XCSG.ControlFlowCondition);
+						addSCOperators(e.from(), tempDefault);
 					}
 					if (e.from().taggedWith(XCSG.controlFlowExitPoint)) {
 						tempDefault.tag(XCSG.controlFlowExitPoint);
@@ -315,12 +320,14 @@ public class SwitchStatementChecking {
 				
 				if (from.taggedWith(XCSG.ControlFlowCondition)) {
 					tempFrom.tag(XCSG.ControlFlowCondition);
+//					addSCOperators(from, tempFrom, functionNode);
 				}
 				if (from.taggedWith(XCSG.controlFlowExitPoint)) {
 					tempFrom.tag(XCSG.controlFlowExitPoint);
 				}
 				if (to.taggedWith(XCSG.ControlFlowCondition)) {
 					tempTo.tag(XCSG.ControlFlowCondition);
+//					addSCOperators(to, tempTo, functionNode);
 				}
 				if (to.taggedWith(XCSG.controlFlowExitPoint)) {
 					tempTo.tag(XCSG.controlFlowExitPoint);
@@ -343,6 +350,13 @@ public class SwitchStatementChecking {
 					
 					recreatedNodes.put(from, tempFrom);
 					recreatedNodes.put(to, tempTo);
+					
+					if (from.taggedWith(XCSG.ControlFlowCondition)) {
+						addSCOperators(from, tempFrom);
+					}
+					if (to.taggedWith(XCSG.ControlFlowCondition)) {
+						addSCOperators(to, tempTo);
+					}
 				}
 				
 				if (checkFrom != null && checkTo == null) {
@@ -354,6 +368,10 @@ public class SwitchStatementChecking {
 					tempEdge.tag("switch_edge");
 					
 					recreatedNodes.put(to, tempTo);
+					
+					if (to.taggedWith(XCSG.ControlFlowCondition)) {
+						addSCOperators(to, tempTo);
+					}
 				}
 				
 				if (checkFrom == null && checkTo != null) {
@@ -365,6 +383,10 @@ public class SwitchStatementChecking {
 					tempEdge.tag("switch_edge");
 					
 					recreatedNodes.put(from, tempFrom);
+					
+					if (from.taggedWith(XCSG.ControlFlowCondition)) {
+						addSCOperators(from, tempFrom);
+					}
 				}
 				
 				if (checkFrom != null && checkTo != null) {
@@ -399,6 +421,7 @@ public class SwitchStatementChecking {
 					
 					if (cfgFrom.taggedWith(XCSG.ControlFlowCondition)) {
 						tempCFGFrom.tag(XCSG.ControlFlowCondition);
+						addSCOperators(cfgFrom, tempCFGFrom);
 					}
 					
 					Edge e1 = Graph.U.createEdge(functionNode, tempCFGFrom);
@@ -467,6 +490,7 @@ public class SwitchStatementChecking {
 						
 						if (e.to().taggedWith(XCSG.ControlFlowCondition)) {
 							tempDefault.tag(XCSG.ControlFlowCondition);
+							addSCOperators(e.to(), tempDefault);
 						}
 						if (e.to().taggedWith(XCSG.controlFlowExitPoint)) {
 							tempDefault.tag(XCSG.controlFlowExitPoint);
@@ -743,6 +767,27 @@ public class SwitchStatementChecking {
 		}
 
 		return bst;
+	}
+	
+	//Handling the case when there are logical operators for short circuit transform
+	public static void addSCOperators(Node conditional, Node createdNode) {
+		AtlasSet<Node> containerNodes = Common.toQ(conditional).contained().nodes(XCSG.LogicalAnd, XCSG.LogicalOr).eval().nodes();
+		if (containerNodes.size() > 0) {
+			for (Node n : containerNodes) {
+				Iterable<String> containerTags = n.tagsI();
+				Node dataNode = Graph.U.createNode();
+				String dName = n.getAttr(XCSG.name).toString();
+				dataNode.putAttr(XCSG.name, dName);
+				for (String t : containerTags) {
+					dataNode.tag(t);
+				}
+				dataNode.tag("switch_graph");
+				dataNode.tag("data_node");
+				Edge containerEdge = Graph.U.createEdge(createdNode, dataNode);
+				containerEdge.tag(XCSG.Contains);
+				containerEdge.tag("switch_edge");
+			}
+		}
 	}
 	
 	private static class caseNode{

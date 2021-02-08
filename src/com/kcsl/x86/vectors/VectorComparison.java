@@ -22,7 +22,7 @@ public class VectorComparison{
 		
 		Q binPCG = findSubGraph(functionName);
 		String srcName = functionName.substring(4);
-		Q srcPCG_SC = singleSrcReturn(srcName);
+		Q srcPCG_SC = singleSrcReturn(null, srcName);
 		Q srcPCG_switch = switchTransform(functionName, srcPCG_SC); 
 		Q srcPCG = findSrcSubGraph(srcPCG_switch);
 		
