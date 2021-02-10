@@ -41,9 +41,7 @@ public class SupportMethods {
 		for (Node n : cfg.eval().nodes()) {
 			AtlasSet<Edge> edges = n.out();
 			if((edges.size() == 2 || n.taggedWith(XCSG.ControlFlowIfCondition)) && !n.taggedWith(XCSG.ControlFlowLoopCondition)) {
-//				 && !edges.one().taggedWith(XCSG.ControlFlowBackEdge)
 				n.tag(XCSG.ControlFlowIfCondition);
-//				n.tag(XCSG.ControlFlowCondition);
 			}
 		}
 		
@@ -56,9 +54,6 @@ public class SupportMethods {
 		for (Node n : cfg.eval().nodes()) {
 			AtlasSet<Edge> edges = n.out();
 			if(edges.size() == 2) {
-//				|| n.taggedWith(XCSG.ControlFlowIfCondition)) && !n.taggedWith(XCSG.ControlFlowLoopCondition)
-//				 && !edges.one().taggedWith(XCSG.ControlFlowBackEdge)
-//				n.tag(XCSG.ControlFlowIfCondition);
 				n.tag(XCSG.ControlFlowCondition);
 			}
 		}
@@ -135,16 +130,7 @@ public class SupportMethods {
 		}
 		
 		if(CommonQueries.isEmpty(r)) {
-//			Q srcFunction = my_function(name);
-//			Q srcCFG = my_cfg(srcFunction);
-//			AtlasSet<Node> n = srcCFG.eval().nodes();
-//			System.out.println(n.size());
-//			GraphElement x = srcCFG.eval().roots().one();
-//			System.out.println(x.getAttr(XCSG.name));
-//			
-//			
-//			System.out.println(name+" roots: "+Common.toQ(srcCFG);
-//			SaveUtil.saveGraph(new File("/Users/RyanGoluch/Desktop/cfg_"+name+".png"), g);
+
 		}
 		else {
 
@@ -175,29 +161,6 @@ public class SupportMethods {
 			for (Node n : loopNodes.keySet()) {
 				n.tag(XCSG.Loop);
 			}
-		
-//			for (Node n : g.nodes()) {
-//				AtlasSet<Edge> outEdges = n.out();
-//				for (Edge e : outEdges) {
-//					if (((e.to().taggedWith(XCSG.Loop) && !e.from().taggedWith(XCSG.Loop)) || e.from().taggedWith(XCSG.DoWhileLoop)) 
-//							&& !n.taggedWith(XCSG.Loop) && !e.to().taggedWith(XCSG.ControlFlowIfCondition)) {
-//						e.to().tag(XCSG.ControlFlowLoopCondition);
-////						e.to().tag(XCSG.ControlFlowCondition);
-//					}
-//				}
-//			}
-			
-//			for (Edge e : g.edges()) {
-//				if ((e.from().taggedWith(XCSG.Loop) && e.to().taggedWith(XCSG.ControlFlowLoopCondition)) ||
-//						(e.from().taggedWith(XCSG.Loop) && e.to().taggedWith(XCSG.ControlFlowCondition) && e.from().out().size() == 1)){
-//					e.tag(XCSG.ControlFlowBackEdge);
-//					e.from().tag("bin_loopback_tail");
-//					
-//					if (!e.to().taggedWith(XCSG.ControlFlowLoopCondition)) {
-//						e.to().tag(XCSG.ControlFlowLoopCondition);
-//					}
-//				}
-//			}
 		}
 	}
 	
@@ -303,5 +266,50 @@ public class SupportMethods {
 		
 		return foundNodes;
 	}
+	
+	public static Node createNode(Node original, String[] transformTags) {
+		Node returnNode = null;
+		
+		Iterable<String> tags = original.tagsI();
+		returnNode = Graph.U.createNode();
+		String name = original.getAttr(XCSG.name).toString();
+		
+		returnNode.putAttr(XCSG.name, name);
+		for (String s : tags) {
+			returnNode.tag(s);
+		}
+		
+		for (String t : transformTags) {
+			returnNode.tag(t);
+		}
+		
+		return returnNode;
+	}
+	
+//	public static Edge createEdge(Edge e, Node f, Node t, String[] transformTags) {
+//		Edge cfgEdge = Graph.U.createEdge(f, t);
+//		cfgEdge.tag(XCSG.ControlFlow_Edge);
+//		for (String s : transformTags) {
+//			cfgEdge.tag(s);
+//		}
+//		
+//		if (e.hasAttr(XCSG.conditionValue)) {
+//			String conditionVal = e.getAttr(XCSG.conditionValue).toString();
+//			cfgEdge.putAttr(XCSG.conditionValue, conditionVal);
+//			if (e.getAttr(XCSG.conditionValue).toString().contains("true")) {
+//				cfgEdge.putAttr(XCSG.name, "true");
+//			}else if (e.getAttr(XCSG.conditionValue).toString().contains("false")){
+//				cfgEdge.putAttr(XCSG.name, "false");
+//			}else if (e.getAttr(XCSG.conditionValue).toString().contains("default")) {
+//				cfgEdge.putAttr(XCSG.name, "default");
+//			}
+//		}
+//		
+//		if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+//			cfgEdge.tag(XCSG.ControlFlowBackEdge);
+//		}
+//		
+//		return cfgEdge;
+//	}
 	
 }

@@ -2,6 +2,7 @@ package com.kcsl.x86.short_circuit;
 
 import static com.kcsl.x86.Importer.my_cfg;
 import static com.kcsl.x86.Importer.my_function;
+import static com.kcsl.x86.support.SupportMethods.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -32,6 +33,7 @@ public class ShortCircuitChecking {
 	protected static final String OR = "||";
 	protected static final String AND = "&&";
 	protected static final String LAST = "sc_end";
+	protected static String[] scNodeTags = {"sc_node"};
 
 	
 	/**
@@ -129,16 +131,8 @@ public class ShortCircuitChecking {
 			//Handling the case of the complex condition predecessor that needs to point to the new 
 			//simple condition
 			if (scNodes.contains(e.to()) && !e.from().taggedWith("sc_node")) {
-				Node tempSCPred = Graph.U.createNode();
-				String predName = e.from().getAttr(XCSG.name).toString();
+				Node tempSCPred = createNode(e.from(), scNodeTags);
 				
-				tempSCPred.putAttr(XCSG.name, predName);
-				tempSCPred.tag(XCSG.ControlFlow_Node);
-				tempSCPred.tag("sc_graph");
-				
-				if (e.from().taggedWith(XCSG.ControlFlowCondition)) {
-					tempSCPred.tag(XCSG.ControlFlowCondition);
-				}
 				
 //				if (!e.taggedWith(XCSG.ControlFlowBackEdge)) {
 //					tempSCPred.tag("sc_pred");
@@ -193,21 +187,7 @@ public class ShortCircuitChecking {
 			}
 			
 			else if (scNodes.contains(e.from()) && e.to().taggedWith("sc_graph")) {
-				Node tempSingle = Graph.U.createNode();
-				String singleName = e.to().getAttr(XCSG.name).toString();
-				
-				tempSingle.putAttr(XCSG.name, singleName);
-				tempSingle.tag(XCSG.ControlFlow_Node);
-				tempSingle.tag("sc_graph");
-				
-				if (e.to().taggedWith(XCSG.ControlFlowCondition)) {
-					tempSingle.tag(XCSG.ControlFlowCondition);
-				}
-				
-				if (e.to().taggedWith(XCSG.controlFlowExitPoint)) {
-					tempSingle.tag(XCSG.controlFlowExitPoint);
-//					tempSingle.tag("src_exit");
-				}
+				Node tempSingle = createNode(e.to(), scNodeTags);
 				
 				//Check to make sure the node hasn't already been created so we don't make duplicated nodes
 				Node checkingSuccessor = addedToGraph.get(e.to());
@@ -219,37 +199,9 @@ public class ShortCircuitChecking {
 			}
 			//Handling all other control flow nodes
 			else if (e.from().taggedWith("sc_graph") && e.to().taggedWith("sc_graph")) {
-				Node tempFrom = Graph.U.createNode();
-				Node tempTo = Graph.U.createNode();
+				Node tempFrom = createNode(e.from(), scNodeTags);
+				Node tempTo = createNode(e.to(), scNodeTags);
 				
-				String fromName = e.from().getAttr(XCSG.name).toString();
-				String toName = e.to().getAttr(XCSG.name).toString();
-				
-				tempFrom.putAttr(XCSG.name, fromName);
-				tempFrom.tag(XCSG.ControlFlow_Node);
-				tempFrom.tag("sc_graph");
-				
-				if (e.from().taggedWith(XCSG.ControlFlowCondition)) {
-					tempFrom.tag(XCSG.ControlFlowCondition);
-				}
-				
-				if (e.from().taggedWith(XCSG.controlFlowExitPoint)) {
-					tempFrom.tag(XCSG.controlFlowExitPoint);
-//					tempFrom.tag("src_exit");
-				}
-				
-				if (e.to().taggedWith(XCSG.controlFlowExitPoint)) {
-					tempTo.tag(XCSG.controlFlowExitPoint);
-//					tempTo.tag("src_exit");
-				}
-				
-				tempTo.putAttr(XCSG.name, toName);
-				tempTo.tag(XCSG.ControlFlow_Node);
-				tempTo.tag("sc_graph");
-				
-				if (e.to().taggedWith(XCSG.ControlFlowCondition)) {
-					tempTo.tag(XCSG.ControlFlowCondition);
-				}
 				
 				//Check to make sure the node hasn't already been created so we don't make duplicated nodes
 				Node checkingResultFrom  = addedToGraph.get(e.from());
@@ -320,23 +272,15 @@ public class ShortCircuitChecking {
 		//in order to have initial true and false destinations
 		for (int r = 0; r < scNodes.size(); r++) {
 			Node current = scNodes.get(r);
-//			int lastNonNested = 0;
 			for (int s = r + 1; s < scNodes.size(); s++) {
 				Node next = scNodes.get(s);
 				
 				if(!current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
 					Node temp = current; 
-//					lastNonNested = r;
 					scNodes.set(r, next);
 					scNodes.set(s, temp);
 					current = scNodes.get(r);
 				}
-//				else if (current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
-//					Node temp = scNodes.get(lastNonNested);
-////					lastNonNested = r;
-//					scNodes.set(r, next);
-//					scNodes.set(s, temp);
-//				}
 			}
 		}
 		

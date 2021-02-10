@@ -41,7 +41,6 @@ public class StaticFunctionChecking {
 				staticFunctions.add(f);
 			}
 		}		
-		
 		return staticFunctions;
 	}
 	
@@ -131,7 +130,7 @@ public class StaticFunctionChecking {
 			else if (staticCFG.containsKey(toNode)) {
 				Node fromCheck = recreatedNodes.get(e.from().addressBits());
 				if (fromCheck == null) {
-					fromCheck = createNode(e.from(), false, functionNode);
+					fromCheck = createStaticNode(e.from(), false, functionNode);
 					recreatedNodes.put(e.from().addressBits(), fromCheck);
 					
 					fromCheck.tag("static_transform");
@@ -145,7 +144,7 @@ public class StaticFunctionChecking {
 
 					//If graph has already been made, just add edges from predecessor to root
 					Node root = recreatedNodes.get(graphCheck.addressBits());
-					createEdge(e, fromCheck, root);
+					createStaticEdge(e, fromCheck, root);
 					continue;
 				}
 				
@@ -155,7 +154,7 @@ public class StaticFunctionChecking {
 				toCheck = createSuccessorEdges(toCheck, toCheckName, functionNode, successor, headerIDMapping);
 				
 				Node root = createStaticCFG(toNode,functionNode, headerIDMapping);
-				createEdge(e, fromCheck, root);
+				createStaticEdge(e, fromCheck, root);
 				headerIDMapping.put(eTo.addressBits(), root);
 				
 				if(!leavesAdded.contains(root)) {
@@ -177,7 +176,7 @@ public class StaticFunctionChecking {
 					Q sCFG = staticCFG.get(fromName);
 					Node dest = recreatedNodes.get(e.to().addressBits());
 					if (dest == null) {
-						dest = createNode(e.to(), false, functionNode);
+						dest = createStaticNode(e.to(), false, functionNode);
 						recreatedNodes.put(e.to().addressBits(), dest);
 						
 						dest.tag("static_transform");
@@ -208,8 +207,8 @@ public class StaticFunctionChecking {
 			}
 			//Handle all other CFG nodes 
 			else {
-				Node from = createNode(e.from(), false, functionNode);
-				Node to = createNode(e.to(), false, functionNode);
+				Node from = createStaticNode(e.from(), false, functionNode);
+				Node to = createStaticNode(e.to(), false, functionNode);
 				
 				Node fromCheck = recreatedNodes.get(e.from().addressBits());
 				Node toCheck = recreatedNodes.get(e.to().addressBits());
@@ -217,7 +216,7 @@ public class StaticFunctionChecking {
 				if (fromCheck == null && toCheck == null) {
 					recreatedNodes.put(e.from().addressBits(), from);
 					recreatedNodes.put(e.to().addressBits(), to);	
-					createEdge(e, from, to);
+					createStaticEdge(e, from, to);
 					
 					
 					from.tag("static_transform");
@@ -231,7 +230,7 @@ public class StaticFunctionChecking {
 				}
 				else if (fromCheck != null && toCheck == null) {
 					recreatedNodes.put(e.to().addressBits(), to);	
-					createEdge(e, fromCheck, to);
+					createStaticEdge(e, fromCheck, to);
 					
 					to.tag("static_transform");
 					Edge toEdge = Graph.U.createEdge(functionNode, to);
@@ -239,14 +238,14 @@ public class StaticFunctionChecking {
 				}
 				else if (fromCheck == null && toCheck != null) {
 					recreatedNodes.put(e.from().addressBits(), from);	
-					createEdge(e, from, toCheck);
+					createStaticEdge(e, from, toCheck);
 					
 					from.tag("static_transform");
 					Edge fromEdge = Graph.U.createEdge(functionNode, from);
 					fromEdge.tag(XCSG.Contains);
 				}
 				else if (fromCheck != null && toCheck != null) {
-					createEdge(e, fromCheck, toCheck);
+					createStaticEdge(e, fromCheck, toCheck);
 				}
 			}
 		}
@@ -271,7 +270,7 @@ public class StaticFunctionChecking {
 	 * 		Returns the new created node
 	 */
 	
-	public static Node createNode(Node original, boolean check, Node function) {
+	public static Node createStaticNode(Node original, boolean check, Node function) {
 		Node returnNode = null;
 		
 		Iterable<String> tags = original.tagsI();
@@ -317,7 +316,7 @@ public class StaticFunctionChecking {
 		return returnNode;
 	}
 	
-	public static void createEdge(Edge e, Node f, Node t) {
+	public static void createStaticEdge(Edge e, Node f, Node t) {
 		Edge cfgEdge = Graph.U.createEdge(f, t);
 		cfgEdge.tag(XCSG.ControlFlow_Edge);
 		cfgEdge.tag("static_edge");
@@ -377,7 +376,7 @@ public class StaticFunctionChecking {
 			
 			//Check for nested static function calls
 			if (from == null && !staticCFG.containsKey(fromName)) {
-				from = createNode(eStatic.from(), true, functionNode);
+				from = createStaticNode(eStatic.from(), true, functionNode);
 				from.tag(sFunctionName);
 				recreatedNodes.put(from.addressBits(), from);
 				tempTracking.put(eStatic.from().addressBits(), from);
@@ -395,7 +394,7 @@ public class StaticFunctionChecking {
 			}
 			
 			if (to == null && !staticCFG.containsKey(toName)) {
-				to = createNode(eStatic.to(), true, functionNode);
+				to = createStaticNode(eStatic.to(), true, functionNode);
 				to.tag(sFunctionName);
 				recreatedNodes.put(to.addressBits(), to);
 				tempTracking.put(eStatic.to().addressBits(), to);
@@ -418,7 +417,7 @@ public class StaticFunctionChecking {
 			}
 			//Check to see if we need to add continuation edges from another static call
 			if (edgeCheck) {
-				createEdge(eStatic, from, to);
+				createStaticEdge(eStatic, from, to);
 			}else {
 				if (!staticCheck) {
 					addLeafEdges(from, to, eStatic);
@@ -427,7 +426,7 @@ public class StaticFunctionChecking {
 					//leaves to successor
 					ArrayList<Node> leaves = leavesMap.get(from);
 					for (Node staticLeaf : leaves) {
-						createEdge(eStatic, staticLeaf, to);
+						createStaticEdge(eStatic, staticLeaf, to);
 					}
 				}
 			}
@@ -456,7 +455,7 @@ public class StaticFunctionChecking {
 		tempMapping = leavesMap.get(root);
 		for (Node l : tempMapping) {
 			l.untag(XCSG.controlFlowExitPoint);
-			createEdge(e, l, dest);
+			createStaticEdge(e, l, dest);
 		}
 
 	}
@@ -464,7 +463,7 @@ public class StaticFunctionChecking {
 	public static Node createSuccessorEdges(Node toCheck, String toCheckName, Node functionNode, Node successor, Map<Integer, Node> headerIDMapping) {
 		
 		if (toCheck == null && !staticCFG.containsKey(toCheckName)) {
-			toCheck = createNode(successor, false, functionNode);
+			toCheck = createStaticNode(successor, false, functionNode);
 			recreatedNodes.put(successor.addressBits(), toCheck);
 			
 			toCheck.tag("static_transform");
