@@ -443,6 +443,8 @@ public class ShortCircuitChecking {
 				if(checking.getOperator().contains(LAST)) {
 					checking.setTrueDest(checkingNode, trueDest);
 					checking.setFalseDest(checkingNode, falseDest);
+					checking.trueSCNode = checking;
+					checking.falseSCNode = checking;
 				}
 			}
 			
@@ -452,12 +454,37 @@ public class ShortCircuitChecking {
 				
 				if(checking.getOperator().contains(AND)) {
 					checking.setTrueDest(checkingNode, scNodesInGraph.get(m+1));
-					checking.setFalseDest(checkingNode, nodes[m+1].getFalseDest());
+					checking.setSCTrue(nodes[m+1]);
+//					
+					if (nodes[m+1].falseSCNode.getOperator().contains(LAST)) {
+						if (m >=1 && nodes[m-1].getOperator().contains(OR)) {
+							checking.setFalseDest(checkingNode, falseDest);
+							checking.setSCFalse(nodes[m+1]);
+						}else {
+							checking.setFalseDest(checkingNode, nodes[m+1].getFalseDest());
+							checking.setSCFalse(nodes[m+1]);
+						}
+					}else {
+						checking.setFalseDest(checkingNode, nodes[m+1].getFalseDest());
+						checking.setSCFalse(nodes[m+1]);
+					}
 //					falseDest
 				}
 				if(checking.getOperator().contains(OR)) {
 					checking.setFalseDest(checkingNode, scNodesInGraph.get(m+1));
-					checking.setTrueDest(checkingNode, nodes[m+1].getTrueDest());
+					checking.setSCFalse(nodes[m+1]);
+					if (nodes[m+1].trueSCNode.getOperator().contains(LAST)) {
+						checking.setTrueDest(checkingNode, trueDest);
+						checking.setSCTrue(nodes[m+1]);
+					}
+					else {
+						checking.setTrueDest(checkingNode, nodes[m+1].getTrueDest());
+						checking.setSCTrue(nodes[m+1]);
+					}
+//					}else {
+//						checking.setTrueDest(checkingNode, trueDest);
+//					}
+//					checking.setTrueDest(checkingNode, nodes[m+1].getTrueDest());
 				}
 			}
 		}
@@ -516,11 +543,21 @@ public class ShortCircuitChecking {
 		private Node truDest; 
 		private Node falsDest; 
 		private int address; 
+		private scNode trueSCNode; 
+		private scNode falseSCNode;
 		
 		public scNode(String c, String o, int i) {
 			this.condition = c;
 			this.operator = o;
 			this.address = i;
+		}
+		
+		public void setSCTrue(scNode s) {
+			this.trueSCNode = s;
+		}
+		
+		public void setSCFalse(scNode s) {
+			this.falseSCNode = s;
 		}
 		
 		public String getCondition() {

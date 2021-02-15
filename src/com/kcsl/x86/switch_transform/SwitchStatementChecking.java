@@ -273,7 +273,7 @@ public class SwitchStatementChecking {
 					
 					createFunctionEdge(functionNode, tempFrom);
 					createFunctionEdge(functionNode, tempTo);
-					createSwitchEdge(null, null, tempFrom, tempTo, switchTags);
+					createSwitchEdge(null, e, tempFrom, tempTo, switchTags);
 					
 					recreatedNodes.put(from, tempFrom);
 					recreatedNodes.put(to, tempTo);
@@ -289,7 +289,7 @@ public class SwitchStatementChecking {
 				if (checkFrom != null && checkTo == null) {
 					
 					createFunctionEdge(functionNode, tempTo);
-					createSwitchEdge(null, null, checkFrom, tempTo, switchTags);
+					createSwitchEdge(null, e, checkFrom, tempTo, switchTags);
 					recreatedNodes.put(to, tempTo);
 					
 					if (to.taggedWith(XCSG.ControlFlowCondition)) {

@@ -382,7 +382,8 @@ public class SubGraphGenerator {
 				
 				for(Edge e : outgoing) {
 					Node goingTo = e.to();
-					if (goingTo.taggedWith(XCSG.ControlFlowCondition)  || goingTo.taggedWith(XCSG.controlFlowExitPoint) || goingTo.out().tagged(XCSG.ControlFlowBackEdge).size() > 0) {
+					if (goingTo.taggedWith(XCSG.ControlFlowCondition)  || goingTo.taggedWith(XCSG.controlFlowExitPoint) ) {
+//						|| goingTo.out().tagged(XCSG.ControlFlowBackEdge).size() > 0
 						e.tag("src_induced_edge");
 						if (e.hasAttr(XCSG.conditionValue)) {
 							String val = e.getAttr(XCSG.conditionValue).toString();
@@ -407,7 +408,8 @@ public class SubGraphGenerator {
 						boolean unTag = false;
 						successor = e.to();
 						
-						if (successor.taggedWith(XCSG.ControlFlowCondition) && e.taggedWith(XCSG.ControlFlowBackEdge)) {
+						if (successor.taggedWith(XCSG.ControlFlowCondition) && e.taggedWith(XCSG.ControlFlowBackEdge) && 
+								in.size() == 1 && !predecessor.taggedWith(XCSG.ControlFlowCondition)) {
 							n.tag("src_node");
 							e.tag("src_induced_edge");
 						}	
