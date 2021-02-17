@@ -239,6 +239,24 @@ public class SubGraphGenerator {
 			}
 		}
 		
+		//Properly tag new roots if not done already
+		//Roots are identified as nodes with 0 incoming bin induced edges (excluding back edges)
+		for (Node n : subgraph.eval().nodes().tagged("bin_node")) {
+			AtlasSet<Edge> incoming = n.in().tagged("bin_induced_edge");
+			long backSize = 0;
+			
+			for (Edge e : incoming) {
+				if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					backSize +=1;
+				}
+			}
+			
+			if ((incoming.size() - backSize) == 0) {
+				n.tag(XCSG.controlFlowRoot);
+				break;
+			}
+		}
+		
 		return subgraph.nodes("bin_node").induce(Query.universe().edges("bin_induced_edge"));
 	}
 	
@@ -270,7 +288,7 @@ public class SubGraphGenerator {
 			functionNode.putAttr(XCSG.name, "single_src_return_"+name);
 		}
 		else {
-			name = name.substring(17);
+//			name = name.substring(17);
 			functionNode.putAttr(XCSG.name, "isomorphic_checking_"+name);
 		}
 		functionNode.tag(XCSG.Function);
@@ -529,6 +547,24 @@ public class SubGraphGenerator {
 					temp.putAttr(XCSG.conditionValue, e.conditionValue);
 					temp.putAttr(XCSG.name, e.conditionValue);
 				}
+			}
+		}
+		
+		//Properly tag new roots if not done already
+		//Roots are identified as nodes with 0 incoming src induced edges (excluding back edges)
+		for (Node n : subgraph.eval().nodes().tagged("src_node")) {
+			AtlasSet<Edge> incoming = n.in().tagged("src_induced_edge");
+			long backSize = 0;
+			
+			for (Edge e : incoming) {
+				if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					backSize +=1;
+				}
+			}
+			
+			if ((incoming.size() - backSize) == 0) {
+				n.tag(XCSG.controlFlowRoot);
+				break;
 			}
 		}
 		

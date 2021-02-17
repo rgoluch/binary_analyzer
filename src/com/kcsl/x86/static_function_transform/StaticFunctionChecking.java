@@ -68,10 +68,17 @@ public class StaticFunctionChecking {
 		
 		Node container = cfg.containers().nodes(XCSG.C.TranslationUnit).eval().nodes().one();
 		containerName = container.getAttr(XCSG.name).toString();
+		for (Node x : cfg.containers().nodes(XCSG.C.TranslationUnit).eval().nodes()) {
+//			System.out.println(x.toString());
+			if (x.getAttr(XCSG.name).toString().contains(functionName)) {
+				containerName = x.getAttr(XCSG.name).toString();
+			}
+		}
 		
 		//Get all the static cfgs found in the graph to easily remake 
 		for (Node y : dfg) {
 			String staticName = Common.toQ(y).containers().nodes(XCSG.C.TranslationUnit).eval().nodes().one().getAttr(XCSG.name).toString();
+			
 			String nodeName = y.getAttr(XCSG.name).toString();
 			String sFuncName = y.getAttr(XCSG.name).toString().split("\\(")[0];
 			nodeName = nodeName.replace("...", "");
@@ -156,6 +163,9 @@ public class StaticFunctionChecking {
 				Node root = createStaticCFG(toNode,functionNode, headerIDMapping);
 				createStaticEdge(e, fromCheck, root);
 				headerIDMapping.put(eTo.addressBits(), root);
+				if (root.out().size() == 0) {
+					recreatedNodes.put(root.addressBits(), root);
+				}
 				
 				if(!leavesAdded.contains(root)) {
 					addLeafEdges(root, toCheck, e);
@@ -202,6 +212,10 @@ public class StaticFunctionChecking {
 				if(!leavesAdded.contains(root)) {
 					addLeafEdges(root, toCheck, e);
 					leavesAdded.add(root);
+				}
+				
+				if (root.out().size() == 0) {
+					recreatedNodes.put(root.addressBits(), root);
 				}
 
 			}
@@ -431,6 +445,10 @@ public class StaticFunctionChecking {
 				}
 			}
 		}
+		if (sFunction.eval().edges().size() == 0) {
+			root = sFunction.eval().roots().getFirst();
+		}
+		
 		leavesMap.put(root, tempMapping);
 		return root;
 	}

@@ -48,7 +48,7 @@ public class SwitchStatementChecking {
 			}
 		}
 		
-		System.out.println("Total number of switch functions: " + switchCount);
+//		System.out.println("Total number of switch functions: " + switchCount);
 		return switchFunctions;
 	}
 	
@@ -66,9 +66,9 @@ public class SwitchStatementChecking {
 			}
 		}
 		
-		for (caseNode c : cases) {
-			System.out.println(c.getLineNumber());
-		}
+//		for (caseNode c : cases) {
+////			System.out.println(c.getLineNumber());
+//		}
 		return cases;
 	}
 	
@@ -129,17 +129,26 @@ public class SwitchStatementChecking {
 					recreatedNodes.put(predecessor, tempPred);
 					switchPredecessors.put(predecessor.addressBits(), tempPred);
 					
+					String conditionValue = null;
+					if (e.hasAttr(XCSG.conditionValue)) {
+						conditionValue = e.getAttr(XCSG.conditionValue).toString();
+					}
+					
 					//Update the recreated node tracking and predecessor tracking 
-					predecessorNode p = new predecessorNode(e.to(), predecessor, tempPred);
+					predecessorNode p = new predecessorNode(e.to(), predecessor, tempPred, conditionValue);
 					switchNodeTracking.put(p, predecessor.addressBits());
 					
 				}
 				else {
+					String conditionValue = null;
+					if (e.hasAttr(XCSG.conditionValue)) {
+						conditionValue = e.getAttr(XCSG.conditionValue).toString();
+					}
 					
 					//If node was already recreated, just update tracking
 					recreatedCheck.tag("switch_pred");
 					switchPredecessors.put(predecessor.addressBits(), recreatedCheck);
-					predecessorNode p = new predecessorNode(e.to(), predecessor, recreatedCheck);
+					predecessorNode p = new predecessorNode(e.to(), predecessor, recreatedCheck, conditionValue);
 					switchNodeTracking.put(p, predecessor.addressBits());
 				}
 			}
@@ -467,7 +476,11 @@ public class SwitchStatementChecking {
 			for (predecessorNode p : switchNodeTracking.keySet()) {
 				if (p.switchNode.equals(k)) {
 					Node first = switchCaseRelation.get(k).get(0).createdNode;
-					createSwitchEdge(null, null, p.createdNode, first, switchTags);
+					if (p.conditionValue != null) {
+						createSwitchEdge(p.conditionValue, null, p.createdNode, first, switchTags);
+					}else {
+						createSwitchEdge(null, null, p.createdNode, first, switchTags);
+					}
 				}
 			}
 		}
@@ -677,11 +690,13 @@ public class SwitchStatementChecking {
 		private Node switchNode;
 		private Node predNode; 
 		private Node createdNode;
+		private String conditionValue;
 		
-		public predecessorNode(Node s, Node p, Node c) {
+		public predecessorNode(Node s, Node p, Node c, String v) {
 			this.switchNode = s;
 			this.createdNode = c;
 			this.predNode = p;
+			this.conditionValue = v;
 		}
 	
 	}

@@ -131,7 +131,7 @@ public class VectorComparison{
 //			System.out.println(functionName);
 
 			if(functionName.contains("setupStack") || functionName.contains("test") || functionName.contains("lexan") 
-					|| functionName.contains("enqueue") || functionName.contains("insert")) {
+					|| functionName.contains("enqueue") || functionName.contains("insert") ) {
 				continue;
 			}
 			
