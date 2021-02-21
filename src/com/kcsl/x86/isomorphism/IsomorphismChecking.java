@@ -8,6 +8,7 @@ import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
+import com.ensoftcorp.atlas.ui.viewer.graph.SaveUtil;
 
 import static com.kcsl.x86.static_function_transform.StaticFunctionChecking.*;
 import static com.kcsl.x86.switch_transform.SwitchStatementChecking.*;
@@ -27,6 +28,8 @@ import java.util.Stack;
 import static com.kcsl.x86.subgraphs.SubGraphGenerator.*;
 
 public class IsomorphismChecking {
+	
+	protected static final String graphPath = "/Users/RyanGoluch/Desktop/Masters_Work/slti_graphs/";
 	
 	public static Q createSrcGraph(String functionName) {
 		
@@ -68,7 +71,20 @@ public class IsomorphismChecking {
 			isoNodeResult z = new isoNodeResult(false, srcGraph.eval().nodes().size(), binGraph.eval().nodes().size(), "Loop header count mismatch");
 			return z;
 		}
-
+		
+//		for (Node n : binGraph.eval().nodes()) {
+//			String nodeName = n.getAttr(XCSG.name).toString();
+//			if (binGraph.eval().nodes().size() != 0) {
+//				if (nodeName.contains("slti") || nodeName.contains("sltiu") || nodeName.contains("slt")) {
+//					SaveUtil.saveGraph(new File(graphPath+"bin_"+srcName+"_cfg.png"), binGraph.eval());
+//					SaveUtil.saveGraph(new File(graphPath+"src_"+srcName+"_iso.png"), srcGraph.eval());
+//					Q srcCFG = bcfg(srcName);
+//					SaveUtil.saveGraph(new File(graphPath+"src_"+srcName+"_cfg.png"), srcCFG.eval());
+//					break;
+//				}
+//			}
+//		}
+		
 		if (srcGraph.eval().nodes().tagged("src_node").size() != binGraph.eval().nodes().tagged("bin_node").size()) {
 			isoNodeResult z = new isoNodeResult(false, srcGraph.eval().nodes().size(), binGraph.eval().nodes().size(), "Node count mismatch");
 			return z;
@@ -156,6 +172,10 @@ public class IsomorphismChecking {
 				currentIso.addToParents(tempParent.label);
 			}
 			
+//			if (srcName.contains("loopbackRead")) {
+//				System.out.println("here");
+//			}
+			
 			for (Edge e : nOutgoing) {
 				isoNode tempChild = srcIsoNodes.get(e.to());
 				currentIso.addToChildren(tempChild.label);
@@ -175,7 +195,10 @@ public class IsomorphismChecking {
 				}
 			}
 		}
-
+		
+//		if (functionName.equals("sym_tarListFiles")) {
+//			System.out.println("here");
+//		}
 		
 		Node binRoot = binGraph.eval().nodes().tagged(XCSG.controlFlowRoot).one();
 		AtlasSet<Edge> binRootOut = binRoot.out().tagged("bin_induced_edge");
@@ -289,15 +312,31 @@ public class IsomorphismChecking {
 		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "new_xinu");
 		for (Node function : functions.eval().nodes()) {
 			String fName = function.getAttr(XCSG.name).toString();
-			System.out.println("name: "+fName);
+//			System.out.println("name: "+fName);
 
 			if(fName.contains("setupStack") || fName.contains("test") || fName.contains("lexan") 
 					|| fName.contains("enqueue") || fName.contains("insert") || fName.contains("dispatch")) {
-				System.out.println("skipped function: "+fName);
+//				System.out.println("skipped function: "+fName);
 				continue;
 			}
 			
 			isoNodeResult result = isomorphismChecker(fName);
+			
+//			Q binGraph = findSubGraph(fName);
+//			for (Node n : binGraph.eval().nodes()) {
+//				String nodeName = n.getAttr(XCSG.name).toString();
+//				if (result.binSize != 0 && result.error != null && !result.error.contains("Binary only function: ")) {
+//					if (nodeName.contains("slti") || nodeName.contains("sltiu") || nodeName.contains("slt")) {
+//						if (result.error.contains("Binary only function: ")) {
+//							System.out.println(fName);
+//
+//						}
+//						result.error = "SLTI Function";
+//						break;
+//					}
+//				}
+//			}
+			
 			if (result.error == null) {
 				if (result.result == true) {
 					trueCount +=1;
@@ -308,9 +347,16 @@ public class IsomorphismChecking {
 				isoWriter.write(fName + "," + result.result + "," + result.srcSize + "," + result.binSize + "\n");
 				isoWriter.flush();
 			}else {
-				errorCount +=1;
-				isoWriter.write(fName + "," + result.result + "," + result.srcSize + "," + result.binSize + "," + result.error + "\n");
-				isoWriter.flush();
+				if (result.binSize != 0 && result.error.equals("Node count mismatch") && result.binSize != result.srcSize) {
+					errorCount +=1;
+					isoWriter.write(fName + "," + result.result + "," + result.srcSize + "," + result.binSize + "," + result.error + "\n");
+					isoWriter.flush();
+				}
+				else if (!result.error.contains("Binary only function: ") && !result.error.contains("SLTI Function") && result.binSize != 0) {
+					errorCount +=1;
+					isoWriter.write(fName + "," + result.result + "," + result.srcSize + "," + result.binSize + "," + result.error + "\n");
+					isoWriter.flush();
+				}
 			}
 		}
 		
@@ -321,6 +367,31 @@ public class IsomorphismChecking {
 		
 		isoWriter.close();
 		
+	}
+	
+	public static void sltCounter() {
+		
+		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "new_xinu");
+		for (Node function : functions.eval().nodes()) {
+			String fName = function.getAttr(XCSG.name).toString();
+//			System.out.println("name: "+fName);
+
+			if(fName.contains("setupStack") || fName.contains("test") || fName.contains("lexan") 
+					|| fName.contains("enqueue") || fName.contains("insert") || fName.contains("dispatch")) {
+//				System.out.println("skipped function: "+fName);
+				continue;
+			}
+			
+			Q binGraph = findSubGraph(fName);
+			int sltCount = 0;
+			for (Node n : binGraph.eval().nodes()) {
+				String nodeName = n.getAttr(XCSG.name).toString();
+				if (nodeName.contains("slti") || nodeName.contains("sltiu") || nodeName.contains("slt")) {
+					System.out.println(fName);
+					break;
+				}
+			}
+		}
 	}
 	
 	private static class isoNode {

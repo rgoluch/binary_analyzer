@@ -133,7 +133,7 @@ public class SupportMethods {
 
 		}
 		else {
-
+			Node checking = r.eval().nodes().one();
 			LoopIdentification l = new LoopIdentification(g, r.eval().nodes().one());
 			AtlasSet<Edge> back = l.getLoopbacks();
 			Map<Node,Node> loopNodes = l.getInnermostLoopHeaders();

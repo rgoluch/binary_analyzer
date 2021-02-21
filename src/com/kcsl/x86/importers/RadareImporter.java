@@ -61,6 +61,7 @@ public class RadareImporter {
 				
 				int count = 0;
 				boolean cmp = true;
+				boolean strnlenCmp = true;
 				for(File dot : dirList) {
 					ArrayList<Node> indexedNodes = new ArrayList<Node>();
 					
@@ -157,7 +158,13 @@ public class RadareImporter {
 								
 								if (functionName.getAttr(XCSG.name).equals("sym_strcmp") && cmp) {
 									fromNode.tag(XCSG.controlFlowRoot);
+									fromNode.tag(XCSG.ControlFlowLoopCondition);
 									cmp = false;
+								}
+								
+								if (functionName.getAttr(XCSG.name).equals("sym_strnlen") && strnlenCmp) {
+									fromNode.tag(XCSG.controlFlowRoot);
+									strnlenCmp = false;
 								}
 								
 								indexedNodes.add(fromNode);

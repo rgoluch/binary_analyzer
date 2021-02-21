@@ -391,11 +391,19 @@ public class ShortCircuitChecking {
 				temp1.tag("sc_graph");
 				scNodesInGraph.add(temp1);
 				
+				if (x.taggedWith(XCSG.ControlFlowIfCondition)) {
+					temp1.tag(XCSG.ControlFlowIfCondition);
+				}
+				
 				//If this is the first node, being created it needs to have all predecessor nodes pointing to it 
 				//and have any loopback edges coming to it for loops with complex conditions
 				if (j == 0) {					
 					temp1.tag("sc_header");
 					scHeaders.add(temp1);
+					
+					if (x.taggedWith(XCSG.ControlFlowLoopCondition)) {
+						temp1.tag(XCSG.ControlFlowLoopCondition);
+					}
 					
 					for(predecessorNode p : edgeCreated) {
 						Node predSCNode = predMap.get(p.getAddedNode().addressBits());
@@ -515,6 +523,18 @@ public class ShortCircuitChecking {
 		
 		for (int p = 0; p < parts.length - 1; p++) {
 			String toCheck = parts[p];
+//			if (updatedName[k].contains("<=") && parts[p+1].contains(AND)) {
+//				scNode tempSCNode = new scNode(updatedName[k], AND, x.addressBits());
+//				conditions[j] = tempSCNode;
+//				j++;
+//				k++;
+//			}
+//			else if (updatedName[k].contains("<=") && parts[p+1].contains(OR)) {
+//				scNode tempSCNode = new scNode(updatedName[k], OR, x.addressBits());
+//				conditions[j] = tempSCNode;
+//				j++;
+//				k++;
+//			}
 			if (updatedName[k].contains(toCheck) && parts[p+1].contains(AND)) {					
 				scNode tempSCNode = new scNode(updatedName[k], AND, x.addressBits());
 				conditions[j] = tempSCNode;
