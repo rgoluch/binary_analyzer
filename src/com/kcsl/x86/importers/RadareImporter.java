@@ -43,10 +43,10 @@ public class RadareImporter {
 			
 			//read in and parse .dot files from dot_graphs dir
 			String path = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/dot_graphs";
-//			String path2 = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/class_dot_graphs/dot_graphs/";
+			String path2 = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/class_dot_graphs/dot_graphs/";
 //			String path3 = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/ppc_dot_graphs/dot_graphs/";
 			
-			String paths[] = {path } ;
+			String paths[] = {path2} ;
 //					path2, path3};
 			
 			for (String p : paths) {
@@ -76,11 +76,11 @@ public class RadareImporter {
 						if (p.equals(path)) {
 							functionName.tag("new_xinu");
 						}
-//						else if (p.equals(path2)) {
-//							functionName.tag("class_xinu");
-//							functionName.removeAttr(XCSG.name);
-//							functionName.putAttr(XCSG.name, "class_"+dot.getName().replace(".dot", ""));
-//						}
+						else if (p.equals(path2)) {
+							functionName.tag("class_xinu");
+							functionName.removeAttr(XCSG.name);
+							functionName.putAttr(XCSG.name, "class_"+dot.getName().replace(".dot", ""));
+						}
 //						else if (p.equals(path3)) {
 //							functionName.tag("ppc_xinu");
 //							functionName.removeAttr(XCSG.name);
