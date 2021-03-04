@@ -701,15 +701,4 @@ public class SwitchStatementChecking {
 	
 	}
 	
-	private static Long getCSourceLineNumber(Node node) {
-		long lineNumber = -1;
-		if (node.hasAttr(XCSG.sourceCorrespondence)) {
-			SourceCorrespondence sc = (SourceCorrespondence) node.getAttr(XCSG.sourceCorrespondence);
-			if (sc != null) {
-				lineNumber = sc.startLine;
-			}
-		}
-		return lineNumber;
-	}
-	
 }

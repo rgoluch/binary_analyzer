@@ -13,6 +13,7 @@ import com.ensoftcorp.atlas.core.db.graph.Edge;
 import com.ensoftcorp.atlas.core.db.graph.Graph;
 import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.db.set.AtlasSet;
+import com.ensoftcorp.atlas.core.index.common.SourceCorrespondence;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
@@ -39,7 +40,7 @@ public class SupportMethods {
 		Q cfg = my_cfg(function);
 		
 		for (Node n : cfg.eval().nodes()) {
-			AtlasSet<Edge> edges = n.out();
+			AtlasSet<Edge> edges = n.out(XCSG.ControlFlow_Edge);
 			if((edges.size() == 2 || n.taggedWith(XCSG.ControlFlowIfCondition)) && !n.taggedWith(XCSG.ControlFlowLoopCondition)) {
 				n.tag(XCSG.ControlFlowIfCondition);
 			}
@@ -52,7 +53,7 @@ public class SupportMethods {
 		Q cfg = my_cfg(function);
 		
 		for (Node n : cfg.eval().nodes()) {
-			AtlasSet<Edge> edges = n.out();
+			AtlasSet<Edge> edges = n.out(XCSG.ControlFlow_Edge);
 			if(edges.size() == 2) {
 				n.tag(XCSG.ControlFlowCondition);
 			}
@@ -146,7 +147,12 @@ public class SupportMethods {
 			}
 			
 			for (Node n : headers) {
-				n.tag(XCSG.ControlFlowLoopCondition);
+				if (n.out(XCSG.ControlFlow_Edge).size() == 2) {
+					n.tag(XCSG.ControlFlowLoopCondition);
+				}else if (n.out(XCSG.ControlFlow_Edge).size() < 2 && n.taggedWith(XCSG.ControlFlowCondition)) {
+					n.untag(XCSG.ControlFlowCondition);
+				}
+				
 			}
 			
 			for (Edge e : back) {
@@ -228,6 +234,23 @@ public class SupportMethods {
 		return c;
 	}
 	
+	public static Q srcTransformedGraph(String name) {
+		Q f = Query.universe().nodes(XCSG.Function);
+		Q found = f.selectNode(XCSG.name, "isomorphic_checking_"+name);
+		Q c = found.contained().nodes("src_node").induce(Query.universe().edges("src_induced_edge"));
+		
+		return c;
+	}
+	
+	public static Q binTransformedGraph(String name) {
+		Q f = Query.universe().nodes(XCSG.Function);
+		Q found = f.selectNode(XCSG.name, name);
+		Q c = found.contained().nodes("bin_node").induce(Query.universe().edges("bin_induced_edge"));
+		
+		return c;
+	}
+	
+	
 	public static Q staticCFGFinder(String name, String staticFunction) {
 		Q f = Query.universe().nodes(XCSG.C.TranslationUnit);
 		Q found = f.selectNode(XCSG.name, name);
@@ -235,6 +258,14 @@ public class SupportMethods {
 		Q graph = c.contained().nodes(XCSG.ControlFlow_Node).induce(Query.universe().edges(XCSG.ControlFlow_Edge));
 		
 		return graph;
+	}
+	
+	public static Q getReversedGraph(String name) {
+		Q f = Query.universe().nodes(XCSG.Function);
+		Q found = f.selectNode(XCSG.name, "reversed_"+name);
+		Q c = found.contained().nodes("reversed_graph").induce(Query.universe().edges("reversed_edge"));
+		
+		return c;
 	}
 	
 	/**
@@ -247,10 +278,14 @@ public class SupportMethods {
 		name = name +".c";
 		Q f = Query.universe().nodes(XCSG.C.TranslationUnit);
 		Q found = f.selectNode(XCSG.name, name);
-		Q staticNames = found.children().nodes(XCSG.C.Provisional.internalLinkage);
+		Q foundEdges = found.edges(XCSG.Call);
+		Q staticNames = found.induce(foundEdges).nodes(XCSG.C.Provisional.internalLinkage, XCSG.Function);
+//		AtlasSet<Node> staticNames2 = found.children().eval().nodes().taggedWithAll(XCSG.C.Provisional.internalLinkage, XCSG.Function);
+//				.children().eval().nodes().taggedWithAll(XCSG.C.Provisional.internalLinkage, XCSG.Function);
 		AtlasSet<Node> callNodes = found.contained().eval().nodes().taggedWithAll(XCSG.DataFlow_Node, XCSG.SimpleCallSite);
 		
 		AtlasSet<Node> functionNodes = staticNames.eval().nodes();
+//		functionNodes.addAll(staticNames2);
 		ArrayList<String> functionNames = new ArrayList<String>();
 		for (Node f1 : functionNodes) {
 			functionNames.add(f1.getAttr(XCSG.name).toString());
@@ -311,5 +346,16 @@ public class SupportMethods {
 //		
 //		return cfgEdge;
 //	}
+	
+	public static Long getCSourceLineNumber(Node node) {
+		long lineNumber = -1;
+		if (node.hasAttr(XCSG.sourceCorrespondence)) {
+			SourceCorrespondence sc = (SourceCorrespondence) node.getAttr(XCSG.sourceCorrespondence);
+			if (sc != null) {
+				lineNumber = sc.startLine;
+			}
+		}
+		return lineNumber;
+	}
 	
 }

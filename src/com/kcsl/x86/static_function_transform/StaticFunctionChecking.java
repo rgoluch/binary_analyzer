@@ -31,17 +31,31 @@ public class StaticFunctionChecking {
 	//Map to hold static cfg root and the leaves for ease of edge addition for leaves to successor
 	private static Map<Node, ArrayList<Node>> leavesMap;
 	
-	public static ArrayList<Node> staticChecker() {
-			
-		ArrayList<Node> staticFunctions = new ArrayList<Node>();		
-		Q functions = Query.universe().nodesTaggedWithAll(XCSG.C.Provisional.internalLinkage);
+	public static void staticChecker() {
 		
+		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
 		for (Node f : functions.eval().nodes()) {
-			if (!staticFunctions.contains(f)) {
-				staticFunctions.add(f);
+			String functionName = f.getAttr(XCSG.name).toString();
+			String srcName = functionName.substring(4);
+			
+			ArrayList<Node> dfg = my_dataFlow(srcName);
+			
+			//Return the original CFG if no static functions found
+			if (dfg.size() == 0) {
+				continue;
 			}
-		}		
-		return staticFunctions;
+			System.out.println("contains static: "+ functionName);
+		}
+		
+//		ArrayList<Node> staticFunctions = new ArrayList<Node>();		
+//		Q functions = Query.universe().nodesTaggedWithAll(XCSG.C.Provisional.internalLinkage);
+//		
+//		for (Node f : functions.eval().nodes()) {
+//			if (!staticFunctions.contains(f)) {
+//				staticFunctions.add(f);
+//			}
+//		}		
+//		return staticFunctions;
 	}
 	
 	public static Q staticTransform(String functionName) {
@@ -54,7 +68,7 @@ public class StaticFunctionChecking {
 		if (dfg.size() == 0) {
 			return cfg;
 		}
-		
+		System.out.println("contains static: "+ functionName);
 		//Map to keep track of static callsite and root of created graph
 		Map<Integer, Node> headerIDMapping = new HashMap<Integer, Node>();
 		
@@ -267,6 +281,11 @@ public class StaticFunctionChecking {
 		
 		Q x = my_function(functionNode.getAttr(XCSG.name).toString());
 		Q static_cfg = my_cfg(x);
+		
+//		for (Node n : static_cfg.nodes("static_transform").eval().nodes()) {
+//			n.tag("src_node");
+//		}
+		
 		return static_cfg.nodes("static_transform").induce(Query.universe().edges("static_edge"));
 		
 	}
@@ -508,7 +527,9 @@ public class StaticFunctionChecking {
 		//Need to handle when the return value of a function is used in a variable assignment
 		if (nodeName.contains("=")) {
 			nodeName = nodeName.split("=")[1];
-			nodeName = nodeName.split(" ")[1];
+			if (nodeName.contains(" ")) {
+				nodeName = nodeName.split(" ")[1];
+			}
 			if (!staticCFG.containsKey(nodeName)) {
 				nodeName = n.getAttr(XCSG.name).toString();
 			}

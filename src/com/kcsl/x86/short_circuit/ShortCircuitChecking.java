@@ -275,11 +275,23 @@ public class ShortCircuitChecking {
 			for (int s = r + 1; s < scNodes.size(); s++) {
 				Node next = scNodes.get(s);
 				
+				long currentLine = getCSourceLineNumber(current);
+				long nextLine = getCSourceLineNumber(next);
+				
 				if(!current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
 					Node temp = current; 
 					scNodes.set(r, next);
 					scNodes.set(s, temp);
 					current = scNodes.get(r);
+				}
+				else if (current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
+					//If you have multiple nested sc nodes, you want to move the "lowest" one to the front
+					if (nextLine > currentLine) {
+						Node temp = current; 
+						scNodes.set(r, next);
+						scNodes.set(s, temp);
+						current = scNodes.get(r);
+					}
 				}
 			}
 		}
@@ -395,6 +407,10 @@ public class ShortCircuitChecking {
 					temp1.tag(XCSG.ControlFlowIfCondition);
 				}
 				
+				if (nodes[j].originalNode.taggedWith(XCSG.ControlFlowLoopCondition)) {
+					temp1.tag("sc_loop_node");
+				}
+				
 				//If this is the first node, being created it needs to have all predecessor nodes pointing to it 
 				//and have any loopback edges coming to it for loops with complex conditions
 				if (j == 0) {					
@@ -444,6 +460,8 @@ public class ShortCircuitChecking {
 			
 			
 			//Setting the destination nodes for the true and false edges of the nodes created
+			scNode lastNode = null;
+			
 			for (int m = 0; m < scNodesInGraph.size(); m++) {
 				scNode checking = nodes[m];
 				Node checkingNode = scNodesInGraph.get(m);
@@ -453,6 +471,7 @@ public class ShortCircuitChecking {
 					checking.setFalseDest(checkingNode, falseDest);
 					checking.trueSCNode = checking;
 					checking.falseSCNode = checking;
+					lastNode = checking;
 				}
 			}
 			
@@ -468,11 +487,19 @@ public class ShortCircuitChecking {
 						if (m >=1 && nodes[m-1].getOperator().contains(OR)) {
 							checking.setFalseDest(checkingNode, falseDest);
 							checking.setSCFalse(nodes[m+1]);
-						}else {
+						} else if (nodes[m+1].getOperator().contains(OR)) {
+							checking.setFalseDest(checkingNode, falseDest);
+							checking.setSCFalse(nodes[m+1]);
+						}
+						else {
 							checking.setFalseDest(checkingNode, nodes[m+1].getFalseDest());
 							checking.setSCFalse(nodes[m+1]);
 						}
-					}else {
+					}else if (m >=1 && nodes[m-1].getOperator().contains(OR)) {
+						checking.setFalseDest(checkingNode, lastNode.getFalseDest());
+						checking.setSCFalse(lastNode);
+					}
+					else {
 						checking.setFalseDest(checkingNode, nodes[m+1].getFalseDest());
 						checking.setSCFalse(nodes[m+1]);
 					}
@@ -484,6 +511,9 @@ public class ShortCircuitChecking {
 					if (nodes[m+1].trueSCNode.getOperator().contains(LAST)) {
 						checking.setTrueDest(checkingNode, trueDest);
 						checking.setSCTrue(nodes[m+1]);
+					}else if (m >= 1 && nodes[m-1].getOperator().contains(AND)) {
+						checking.setTrueDest(checkingNode, lastNode.getTrueDest());
+						checking.setSCFalse(lastNode);
 					}
 					else {
 						checking.setTrueDest(checkingNode, nodes[m+1].getTrueDest());
@@ -536,13 +566,13 @@ public class ShortCircuitChecking {
 //				k++;
 //			}
 			if (updatedName[k].contains(toCheck) && parts[p+1].contains(AND)) {					
-				scNode tempSCNode = new scNode(updatedName[k], AND, x.addressBits());
+				scNode tempSCNode = new scNode(updatedName[k], AND, x.addressBits(), x);
 				conditions[j] = tempSCNode;
 				j++;
 				k++;
 			}
 			else if (updatedName[k].contains(toCheck) && parts[p+1].contains(OR)) {					
-				scNode tempSCNode = new scNode(updatedName[k], OR, x.addressBits());
+				scNode tempSCNode = new scNode(updatedName[k], OR, x.addressBits(), x);
 				conditions[j] = tempSCNode;
 				j++;
 				k++;
@@ -550,7 +580,7 @@ public class ShortCircuitChecking {
 
 		}
 		
-		scNode temp = new scNode(updatedName[k], LAST, x.addressBits());
+		scNode temp = new scNode(updatedName[k], LAST, x.addressBits(), x);
 		conditions[conditions.length-1] = temp;
 
 		return conditions;
@@ -565,11 +595,13 @@ public class ShortCircuitChecking {
 		private int address; 
 		private scNode trueSCNode; 
 		private scNode falseSCNode;
+		private Node originalNode; 
 		
-		public scNode(String c, String o, int i) {
+		public scNode(String c, String o, int i, Node n) {
 			this.condition = c;
 			this.operator = o;
 			this.address = i;
+			this.originalNode = n;
 		}
 		
 		public void setSCTrue(scNode s) {
