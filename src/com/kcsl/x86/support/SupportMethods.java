@@ -307,9 +307,10 @@ public class SupportMethods {
 		
 		Iterable<String> tags = original.tagsI();
 		returnNode = Graph.U.createNode();
+		returnNode.putAllAttr(original.attr());
 		String name = original.getAttr(XCSG.name).toString();
-		
 		returnNode.putAttr(XCSG.name, name);
+		
 		for (String s : tags) {
 			returnNode.tag(s);
 		}

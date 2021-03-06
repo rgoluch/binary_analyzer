@@ -6,9 +6,13 @@ import com.ensoftcorp.atlas.core.db.graph.Node;
 import com.ensoftcorp.atlas.core.db.set.AtlasSet;
 import com.ensoftcorp.atlas.core.query.Q;
 import com.ensoftcorp.atlas.core.query.Query;
+import com.ensoftcorp.atlas.core.markup.Markup;
+import com.ensoftcorp.atlas.core.markup.MarkupProperty;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
+import com.ensoftcorp.atlas.ui.viewer.graph.DisplayUtil;
 import com.ensoftcorp.atlas.ui.viewer.graph.SaveUtil;
+import com.kcsl.paths.transforms.DAGTransform;
 
 import static com.kcsl.x86.Importer.my_cfg;
 import static com.kcsl.x86.Importer.my_function;
@@ -27,6 +31,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
+import org.eclipse.swt.graphics.Color;
 
 import static com.kcsl.x86.subgraphs.SubGraphGenerator.*;
 
@@ -50,7 +55,7 @@ public class IsomorphismChecking {
 				
 		Q srcCheck = bcfg(srcName);
 		if (srcCheck.eval().nodes().size() == 0) {
-			isoNodeResult z = new isoNodeResult(false, 0, 0, "Binary only function: "+ functionName);
+			isoNodeResult z = new isoNodeResult(false, 0, 0, "Binary only function: "+ functionName, 0, 0, null, null);
 			return z;
 		}
 		
@@ -58,23 +63,30 @@ public class IsomorphismChecking {
 		Q binGraph = null;
 		
 		if (mode == 0) {
+			DAGTransform d = new DAGTransform();
 			srcGraph = createSrcGraph(srcName);
+			srcGraph = d.transform(srcGraph);
 			binGraph = findSubGraph(functionName);
+			binGraph = d.transform(binGraph);
 		}else {
+			DAGTransform d = new DAGTransform();
 			Q tempSrc = srcTransformedGraph(srcName);
+			tempSrc = d.transform(tempSrc);
 			srcGraph = createReverseGraph(tempSrc, srcName, 0);
+//			
 			
 			Q tempBin = binTransformedGraph(functionName);
+			tempBin = d.transform(tempBin);
 			binGraph = createReverseGraph(tempBin, functionName, 1);
 		}
 		
 		if (srcGraph == null) {
-			isoNodeResult z = new isoNodeResult(false, 0, binGraph.eval().nodes().size(), "Null Src Graph");
+			isoNodeResult z = new isoNodeResult(false, 0, binGraph.eval().nodes().size(), "Null Src Graph", 0, 0, null, null);
 			return z;
 		}
 		
 		if (binGraph.eval().nodes().size() == 0) {
-			isoNodeResult z = new isoNodeResult(false, 0, 0, "Empty binary");
+			isoNodeResult z = new isoNodeResult(false, 0, 0, "Empty binary", 0, 0, null, null);
 			return z;
 		}
 		
@@ -94,25 +106,12 @@ public class IsomorphismChecking {
 		
 		//Sanity check that we have the same number of loops
 		if (srcLoopHeaders.size() != binLoopHeaders.size()) {
-			isoNodeResult z = new isoNodeResult(false, srcGraph.eval().nodes().size(), binGraph.eval().nodes().size(), "Loop header count mismatch");
+			isoNodeResult z = new isoNodeResult(false, srcGraph.eval().nodes().size(), binGraph.eval().nodes().size(), "Loop header count mismatch", 0, 0, null, null);
 			return z;
 		}
-		
-//		for (Node n : binGraph.eval().nodes()) {
-//			String nodeName = n.getAttr(XCSG.name).toString();
-//			if (binGraph.eval().nodes().size() != 0) {
-//				if (nodeName.contains("slti") || nodeName.contains("sltiu") || nodeName.contains("slt")) {
-//					SaveUtil.saveGraph(new File(graphPath+"bin_"+srcName+"_cfg.png"), binGraph.eval());
-//					SaveUtil.saveGraph(new File(graphPath+"src_"+srcName+"_iso.png"), srcGraph.eval());
-//					Q srcCFG = bcfg(srcName);
-//					SaveUtil.saveGraph(new File(graphPath+"src_"+srcName+"_cfg.png"), srcCFG.eval());
-//					break;
-//				}
-//			}
-//		}
-		
+
 		if (srcGraph.eval().nodes().tagged("src_node").size() != binGraph.eval().nodes().tagged("bin_node").size()) {
-			isoNodeResult z = new isoNodeResult(false, srcGraph.eval().nodes().size(), binGraph.eval().nodes().size(), "Node count mismatch");
+			isoNodeResult z = new isoNodeResult(false, srcGraph.eval().nodes().size(), binGraph.eval().nodes().size(), "Node count mismatch", 0, 0, null, null);
 			return z;
 		}
 		
@@ -120,10 +119,11 @@ public class IsomorphismChecking {
 			isoNode i = new isoNode(l, srcLabel);
 			
 			String nodeName = l.getAttr(XCSG.name).toString();
-			if (mode == 1) {
-				nodeName = nodeName.split("LABEL:")[0];
-				nodeName += "\nREV_LABEL: "+srcLabel;
-			}else {
+			if (mode == 0) {
+//				nodeName = nodeName.split("LABEL:")[0];
+//				nodeName = nodeName.replaceAll("\\n", "");
+//				nodeName += "\nREV_LABEL: "+srcLabel;
+//			}else {
 				nodeName += "\nLABEL: "+srcLabel;
 			}
 			l.putAttr(XCSG.name, nodeName);
@@ -135,16 +135,38 @@ public class IsomorphismChecking {
 			srcLoops.add(i);
 		}
 		
+		AtlasSet<Node> tails = srcGraph.eval().nodes().tagged("src_loopback_tail");
+		for (Node l : tails) {
+			isoNode i = new isoNode(l, srcLabel);
+			
+			String nodeName = l.getAttr(XCSG.name).toString();
+			if (mode == 0) {
+//				nodeName = nodeName.split("LABEL:")[0];
+//				nodeName = nodeName.replaceAll("\\n", "");
+//				nodeName += "\nREV_LABEL: "+srcLabel;
+//			}else {
+				nodeName += "\nLABEL: "+srcLabel;
+			}
+			l.putAttr(XCSG.name, nodeName);
+			
+//			i.structure = XCSG.ControlFlowLoopCondition;
+			srcLabel +=1;
+			srcIsoNodes.put(l, i);
+			srcCreatedIso.add(i);
+//			srcLoops.add(i);
+		}
+		
 		int binLabel = 1;
 		//Handle binary graph 
 		for (Node l : binLoopHeaders) {
 			isoNode i = new isoNode(l, binLabel);
 			
 			String nodeName = l.getAttr(XCSG.name).toString();
-			if (mode == 1) {
-				nodeName = nodeName.split("LABEL:")[0];
-				nodeName += "\nREV_LABEL: "+binLabel;
-			}else {
+			if (mode == 0) {
+//				nodeName = nodeName.split("LABEL:")[0];
+//				nodeName = nodeName.replaceAll("\\n", "");
+//				nodeName += "\nREV_LABEL: "+binLabel;
+//			}else {
 				nodeName += "\nLABEL: "+binLabel;
 			}
 			l.putAttr(XCSG.name, nodeName);
@@ -156,15 +178,36 @@ public class IsomorphismChecking {
 			binLoops.add(i);
 		}
 		
+		tails = binGraph.eval().nodes().tagged("bin_loopback_tail");
+		for (Node l : tails) {
+			isoNode i = new isoNode(l, binLabel);
+			
+			String nodeName = l.getAttr(XCSG.name).toString();
+			if (mode == 0) {
+//				nodeName = nodeName.split("LABEL:")[0];
+//				nodeName = nodeName.replaceAll("\\n", "");
+//				nodeName += "\nREV_LABEL: "+binLabel;
+//			}else {
+				nodeName += "\nLABEL: "+binLabel;
+			}
+			l.putAttr(XCSG.name, nodeName);
+			
+//			i.structure = XCSG.ControlFlowLoopCondition;
+			binLabel +=1;
+			binIsoNodes.put(l, i);
+			binCreatedIso.add(i);
+//			srcLoops.add(i);
+		}
+		
 		//Add exit nodes after loop headers 
 		Node srcExit = srcGraph.eval().nodes().tagged("src_exit").getFirst();
 		isoNode sExit = new isoNode(srcExit, srcLabel);
 		
 		String nodeName = srcExit.getAttr(XCSG.name).toString();
-		if (mode == 1) {
-			nodeName = nodeName.split("LABEL:")[0];
-			nodeName += "\nREV_LABEL: "+srcLabel;
-		}else {
+		if (mode == 0) {
+//			nodeName = nodeName.split("LABEL:")[0];
+//			nodeName += "\nREV_LABEL: "+srcLabel;
+//		}else {
 			nodeName += "\nLABEL: "+srcLabel;
 		}
 		srcExit.putAttr(XCSG.name, nodeName);
@@ -177,10 +220,10 @@ public class IsomorphismChecking {
 		isoNode bExit = new isoNode(binExit, binLabel);
 		
 		nodeName = binExit.getAttr(XCSG.name).toString();
-		if (mode == 1) {
-			nodeName = nodeName.split("LABEL:")[0];
-			nodeName += "\nREV_LABEL: "+binLabel;
-		}else {
+		if (mode == 0) {
+//			nodeName = nodeName.split("LABEL:")[0];
+//			nodeName += "\nREV_LABEL: "+binLabel;
+//		}else {
 			nodeName += "\nLABEL: "+binLabel;
 		}
 		binExit.putAttr(XCSG.name, nodeName);
@@ -201,10 +244,10 @@ public class IsomorphismChecking {
 			srcCreatedIso.add(r);
 			
 			nodeName = srcRoot.getAttr(XCSG.name).toString();
-			if (mode == 1) {
-				nodeName = nodeName.split("LABEL:")[0];
-				nodeName += "\nREV_LABEL: "+srcLabel;
-			}else {
+			if (mode == 0) {
+//				nodeName = nodeName.split("LABEL:")[0];
+//				nodeName += "\nREV_LABEL: "+srcLabel;
+//			}else {
 				nodeName += "\nLABEL: "+srcLabel;
 			}
 			srcRoot.putAttr(XCSG.name, nodeName);
@@ -215,7 +258,7 @@ public class IsomorphismChecking {
 			r.depth.add(0);
 		}
 		
-		createIsoNodes(srcGraph, 1, srcIsoNodes, srcCreatedIso, srcLabel, r, rootOut);
+		createIsoNodes(srcGraph, 1, mode, srcIsoNodes, srcCreatedIso, srcLabel, r, rootOut);
 		
 
 		Node binRoot = binGraph.eval().nodes().tagged(XCSG.controlFlowRoot).one();
@@ -228,10 +271,10 @@ public class IsomorphismChecking {
 			binCreatedIso.add(binR);
 			
 			nodeName = binRoot.getAttr(XCSG.name).toString();
-			if (mode == 1) {
-				nodeName = nodeName.split("LABEL:")[0];
-				nodeName += "\nREV_LABEL: "+binLabel;
-			}else {
+			if (mode == 0) {
+//				nodeName = nodeName.split("LABEL:")[0];
+//				nodeName += "\nREV_LABEL: "+binLabel;
+//			}else {
 				nodeName += "\nLABEL: "+binLabel;
 			}
 			binRoot.putAttr(XCSG.name, nodeName);
@@ -242,7 +285,7 @@ public class IsomorphismChecking {
 			binR.depth.add(0);
 		}
 		
-		createIsoNodes(binGraph, 0, binIsoNodes, binCreatedIso, binLabel, binR, binRootOut);
+		createIsoNodes(binGraph, 0, mode, binIsoNodes, binCreatedIso, binLabel, binR, binRootOut);
 		AtlasSet<Node> binNodes = binGraph.eval().nodes().tagged("bin_node");
 
 		//Check to make sure loop headers are properly tagged
@@ -259,24 +302,16 @@ public class IsomorphismChecking {
 			for (Node s : bin.loopChildren) {
 				binChildren.add(s);
 			}
-//			Node s1 = src.loopChildren.get(0);
-//			Node s2 = src.loopChildren.get(1);
-//			Node b1 = bin.loopChildren.get(0);
-//			Node b2 = bin.loopChildren.get(1);
 			
 			ArrayList<String> sAttr = new ArrayList<String>();
 			for (Node s : srcChildren) {
 				sAttr.add(s.getAttr("child_id").toString());
 			}
-//			sAttr.add(s1.getAttr("child_id").toString());
-//			sAttr.add(s2.getAttr("child_id").toString());
 			
 			ArrayList<String> bAttr = new ArrayList<String>();
 			for (Node s : binChildren) {
 				bAttr.add(s.getAttr("child_id").toString());
 			}
-//			bAttr.add(b1.getAttr("child_id").toString());
-//			bAttr.add(b2.getAttr("child_id").toString());
 			
 			boolean checking = bAttr.containsAll(sAttr);
 			if (!checking) {
@@ -286,9 +321,6 @@ public class IsomorphismChecking {
 					isoNode gettingIso = binIsoNodes.get(b);
 					bNodes.add(gettingIso);
 				}
-				
-//				isoNode b1Node = binIsoNodes.get(b1);
-//				isoNode b2Node = binIsoNodes.get(b2);
 				bAttr.clear();
 				
 				for (isoNode currentIso : bNodes) {
@@ -313,30 +345,13 @@ public class IsomorphismChecking {
 						}
 					}
 				}
-				
-				
-//				gcNodes = new ArrayList<Node>();
-//				for (Node g : b2Node.loopChildren) {
-//					gcNodes.add(g);
-//					bAttr.add(g.getAttr("child_id").toString());
-//				}
-//				
-//				for (Node c : gcNodes) {
-//					String gcName = c.getAttr(XCSG.name).toString();
-//					
-//					if (bAttr.containsAll(sAttr) && gcName.contains(bin.graphNode.getAttr(XCSG.name).toString())) {
-//						int temp = b1Node.label;
-//						isoNode oldHeader = binIsoNodes.get(c);
-//						int parent = oldHeader.label;
-//						b1Node.label = parent;
-//						oldHeader.label = temp;
-//						
-//						loopRetagging(binCreatedIso, b1Node, oldHeader, binNodes, binIsoNodes);
-//						break;
-//					}
-//				}	
 			}
 		}
+		
+		int sFail = 0;
+		int bFail = 0;
+		Node sNode = null;
+		Node bNode = null;
 		
 		long isoCount = 0; 
 		for (int i = 0; i < srcCreatedIso.size(); i++) {
@@ -357,8 +372,12 @@ public class IsomorphismChecking {
 			if (childrenCheck && parentCheck && depthCheck) {
 				isoCount +=1;
 			}else {
-				System.out.println("Failed at Source Label: "+s.label);
-				System.out.println("Failed at Binary Label: "+b.label);
+				sFail = s.label;
+				bFail = b.label;
+				sNode = s.graphNode;
+				bNode = b.graphNode;
+//				System.out.println("Failed at Source Label: "+s.label);
+//				System.out.println("Failed at Binary Label: "+b.label);
 				break;
 			}
 		}
@@ -368,9 +387,63 @@ public class IsomorphismChecking {
 		if (isoCount == srcGraph.eval().nodes().tagged("src_node").size()) {
 			result = true;
 		}
-		isoNodeResult g = new isoNodeResult(result, srcGraph.eval().nodes().size(), binGraph.eval().nodes().size(), null);
+		isoNodeResult g = new isoNodeResult(result, srcGraph.eval().nodes().size(), binGraph.eval().nodes().size(), null, sFail, bFail, sNode, bNode);
 		return g;
 	}
+	
+	public static void colorGraphs(String functionName) {
+		
+		isoNodeResult t = isomorphismChecker(functionName, 0);
+		isoNodeResult r = isomorphismChecker(functionName, 1);
+		
+		Node srcForward = t.srcFailNode;
+		Node srcReverse = r.srcFailNode;
+		
+		String srcFName = srcForward.getAttr(XCSG.name).toString().split("LABEL:")[0];
+		srcFName = srcFName.replaceAll("\\n", "");
+		String srcRName = srcReverse.getAttr(XCSG.name).toString().split("LABEL:")[0];
+		srcRName = srcRName.replaceAll("\\n", "");
+		
+		Q srcTransformed = srcTransformedGraph(functionName.substring(4));
+		
+		DAGTransform d = new DAGTransform();
+		Q srcDAG = d.transform(srcTransformed);
+		
+		Node sFwd = null;
+		Node sRev = null;
+		
+		for (Node n : srcDAG.eval().nodes()) {
+			String nName = n.getAttr(XCSG.name).toString();
+//			nName = nName.replaceAll("\\n", "");
+			if (nName.contains(srcFName)) {
+				sFwd = n;
+			}
+			
+			if (nName.contains(srcRName)) {
+				sRev = n;
+			}
+		}
+		
+		Q fwdQ = Common.toQ(sFwd);
+		Q revQ = Common.toQ(sRev);
+		Markup m = new Markup();
+		AtlasSet<Node> errorNodes = srcDAG.between(fwdQ, revQ).selectEdge(XCSG.ControlFlow_Edge).eval().nodes();
+//		Q edges = srcDAG.
+//				.between(fwdQ, revQ).eval().nodes();
+		
+		System.out.println("error size: "+errorNodes.size());
+		m.setNode(srcTransformed.between(fwdQ, revQ), MarkupProperty.NODE_BACKGROUND_COLOR, java.awt.Color.YELLOW);
+		m.setNode(fwdQ, MarkupProperty.NODE_BACKGROUND_COLOR, java.awt.Color.GREEN);
+		m.setNode(revQ, MarkupProperty.NODE_BACKGROUND_COLOR, java.awt.Color.RED);
+		
+		if (sFwd.getAttr(XCSG.name).toString().equals(sRev.getAttr(XCSG.name).toString())) {
+			m.setNode(revQ, MarkupProperty.NODE_BACKGROUND_COLOR, java.awt.Color.CYAN);
+		}
+
+		
+		DisplayUtil.displayGraph(m, srcTransformed.eval());
+	}
+	
 	
 	public static void checkAllIso() throws IOException {
 		String isoPath = "/Users/RyanGoluch/Desktop/Masters_Work/isomorphism_checking/iso_results_new_xinu.csv";
@@ -395,22 +468,6 @@ public class IsomorphismChecking {
 			}
 			
 			isoNodeResult result = isomorphismChecker(fName,0);
-			
-//			Q binGraph = findSubGraph(fName);
-//			for (Node n : binGraph.eval().nodes()) {
-//				String nodeName = n.getAttr(XCSG.name).toString();
-//				if (result.binSize != 0 && result.error != null && !result.error.contains("Binary only function: ")) {
-//					if (nodeName.contains("slti") || nodeName.contains("sltiu") || nodeName.contains("slt")) {
-//						if (result.error.contains("Binary only function: ")) {
-//							System.out.println(fName);
-//
-//						}
-//						result.error = "SLTI Function";
-//						break;
-//					}
-//				}
-//			}
-			
 			if (result.error == null) {
 				if (result.result == true) {
 					trueCount +=1;
@@ -501,21 +558,11 @@ public class IsomorphismChecking {
 					isoWriter.write(fName + "," + result.result + "," + result.srcSize + "," + result.binSize + "," + result.error + "\n");
 					isoWriter.flush();
 				}
-//				else if (result.error.contains("Binary only function: ")) {
-//					binOnly +=1;
-//					isoWriter.write(fName + "," + result.result + "," + result.srcSize + "," + result.binSize + "," + result.error + "\n");
-//					isoWriter.flush();
-//				}
 				else if (result.error.contains("SLT Function")) {
 					sltCount +=1;
 					isoWriter.write(fName + "," + result.result + "," + result.srcSize + "," + result.binSize + "," + result.error + "," + sltNodeCounter + "\n");
 					isoWriter.flush();
 				}
-//				else if (result.error.contains("Empty binary")) {
-//					binEmpty +=1;
-//					isoWriter.write(fName + "," + result.result + "," + result.srcSize + "," + result.binSize + "," + result.error + "\n");
-//					isoWriter.flush();
-//				}
 				else if (result.error.contains("Loop header count mismatch")) {
 					loopHeaderCount +=1;
 					isoWriter.write(fName + "," + result.result + "," + result.srcSize + "," + result.binSize + "," + result.error + "\n");
@@ -650,7 +697,7 @@ public class IsomorphismChecking {
 		}
 	}
 	
-	public static void createIsoNodes(Q graph, int flag, Map<Node, isoNode> isoNodes, ArrayList<isoNode> createdIso, int label, isoNode r, AtlasSet<Edge> rootOut) {
+	public static void createIsoNodes(Q graph, int flag, int mode, Map<Node, isoNode> isoNodes, ArrayList<isoNode> createdIso, int label, isoNode r, AtlasSet<Edge> rootOut) {
 		
 		String nodeTag = null;
 		String edgeTag = null;
@@ -664,38 +711,122 @@ public class IsomorphismChecking {
 		}
 		
 		AtlasSet<Node> srcNodes = graph.eval().nodes().tagged(nodeTag);
-		Queue<Node> srcQ = new LinkedList<Node>();
-		Node falseNode = null;
-		for(Edge e : rootOut) {
-			srcQ.add(e.to());
+		ArrayList<Node> sortedNodes = new ArrayList<Node>();
+		for (Node n : srcNodes) {
+			sortedNodes.add(n);
 		}
-		long size = graph.eval().nodes().size();
-		while(isoNodes.keySet().size() < graph.eval().nodes().size()) {
-			Node current = srcQ.poll();
-			if (!isoNodes.containsKey(current) && current != null) {
-				isoNode x = new isoNode(current, label);
+		
+		if (nodeTag.equals("src_node")) {
+			
+			for (int i = 0; i < sortedNodes.size(); i++) {
+				for (int j = i+1; j < sortedNodes.size(); j++) {
+					Node x = sortedNodes.get(i);
+					Node y = sortedNodes.get(j);
 				
-				String nodeName = current.getAttr(XCSG.name).toString();
-				if (current.taggedWith("reversed_graph") && !nodeName.contains("REV_LABEL")) {
-					nodeName = nodeName.split("LABEL:")[0];
-					nodeName += "\nREV_LABEL: "+label;
-				}else {
+					long temp;
+					long current;
+					if (x.taggedWith(XCSG.controlFlowExitPoint) && mode == 0) {
+//						!x.taggedWith("reversed_graph")
+						temp = Long.parseLong(x.getAttr("line_number").toString(), 10);
+					} else if (x.taggedWith(XCSG.controlFlowRoot) && mode != 0) {
+//						x.taggedWith("reversed_graph")
+						temp = Long.parseLong(x.getAttr("line_number").toString(), 10);
+					}
+					else {
+						temp = getCSourceLineNumber(x);
+					}
+					
+					if (y.taggedWith(XCSG.controlFlowExitPoint) && mode == 0) {
+//						!y.taggedWith("reversed_graph")
+						current = Long.parseLong(y.getAttr("line_number").toString(), 10);
+					}else if (y.taggedWith(XCSG.controlFlowRoot) && mode != 0) {
+//						y.taggedWith("reversed_graph")
+						current = Long.parseLong(y.getAttr("line_number").toString(), 10);
+					}else {
+						current = getCSourceLineNumber(y);
+					}
+					
+					if (temp > current) {
+						sortedNodes.set(i,y);
+						sortedNodes.set(j, x);
+					}
+				}
+			}
+		}else {
+			
+			for (int i = 0; i < sortedNodes.size(); i++) {
+				for (int j = i+1; j < sortedNodes.size(); j++) {
+					Node x = sortedNodes.get(i);
+					Node y = sortedNodes.get(j);
+					
+					int temp = (int) x.getAttr("line_number");
+					int current = (int) y.getAttr("line_number");
+					if (temp > current) {
+						sortedNodes.set(i,y);
+						sortedNodes.set(j, x);
+					}
+				}
+			}
+		}
+		
+		
+		for (Node n : sortedNodes) {
+			if (!isoNodes.containsKey(n)) {
+				isoNode x = new isoNode(n, label);
+				
+				String nodeName = n.getAttr(XCSG.name).toString();
+				if (mode == 0) {
+//				if (n.taggedWith("reversed_graph") && !nodeName.contains("REV_LABEL")) {
+//					nodeName = nodeName.split("LABEL:")[0];
+//					nodeName += "\nREV_LABEL: "+label;
+//				}else {
 					nodeName += "\nLABEL: "+label;
 				}
-				current.putAttr(XCSG.name, nodeName);
+				n.putAttr(XCSG.name, nodeName);
 				
 				label +=1;
-				isoNodes.put(current, x);
+				isoNodes.put(n, x);
 				createdIso.add(x);
-			}else if (current.taggedWith(XCSG.ControlFlowLoopCondition) && !isoNodes.containsKey(current)){
-				isoNode loopHeader = isoNodes.get(current);
+			}else if (n.taggedWith(XCSG.ControlFlowLoopCondition) && !isoNodes.containsKey(n)){
+				isoNode loopHeader = isoNodes.get(n);
 				loopHeader.structure = XCSG.ControlFlowLoopCondition;
 				createdIso.add(loopHeader);
 			}
-			for(Edge e : current.out().tagged(edgeTag)) {
-				srcQ.add(e.to());
-			}
 		}
+		
+//		
+//		Queue<Node> srcQ = new LinkedList<Node>();
+//		Node falseNode = null;
+//		for(Edge e : rootOut) {
+//			srcQ.add(e.to());
+//		}
+//		long size = graph.eval().nodes().size();
+//		while(isoNodes.keySet().size() < graph.eval().nodes().size()) {
+//			Node current = srcQ.poll();
+//			if (!isoNodes.containsKey(current) && current != null) {
+//				isoNode x = new isoNode(current, label);
+//				
+//				String nodeName = current.getAttr(XCSG.name).toString();
+//				if (current.taggedWith("reversed_graph") && !nodeName.contains("REV_LABEL")) {
+//					nodeName = nodeName.split("LABEL:")[0];
+//					nodeName += "\nREV_LABEL: "+label;
+//				}else {
+//					nodeName += "\nLABEL: "+label;
+//				}
+//				current.putAttr(XCSG.name, nodeName);
+//				
+//				label +=1;
+//				isoNodes.put(current, x);
+//				createdIso.add(x);
+//			}else if (current.taggedWith(XCSG.ControlFlowLoopCondition) && !isoNodes.containsKey(current)){
+//				isoNode loopHeader = isoNodes.get(current);
+//				loopHeader.structure = XCSG.ControlFlowLoopCondition;
+//				createdIso.add(loopHeader);
+//			}
+//			for(Edge e : current.out().tagged(edgeTag)) {
+//				srcQ.add(e.to());
+//			}
+//		}
 		
 		//setting the parent and children labels for each node 
 		for (Node n : srcNodes) {
@@ -884,12 +1015,20 @@ public class IsomorphismChecking {
 		private long srcSize; 
 		private long binSize;
 		private String error; 
+		private int srcFailLabel; 
+		private int binFailLabel;
+		private Node srcFailNode;
+		private Node binFailNode;
 		
-		public isoNodeResult(boolean r, long s, long b, String e) {
+		public isoNodeResult(boolean r, long s, long b, String e, int sLabel, int bLabel, Node sNode, Node bNode) {
 			this.result = r;
 			this.binSize = b;
 			this.srcSize = s;
 			this.error = e;
+			this.binFailLabel = bLabel;
+			this.srcFailLabel = sLabel;
+			this.binFailNode = bNode;
+			this.srcFailNode = sNode;
 		}
 	
 	}

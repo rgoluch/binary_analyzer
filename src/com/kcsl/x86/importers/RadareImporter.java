@@ -64,6 +64,7 @@ public class RadareImporter {
 				boolean strnlenCmp = true;
 				for(File dot : dirList) {
 					ArrayList<Node> indexedNodes = new ArrayList<Node>();
+					ArrayList<Node> labeledNodes = new ArrayList<Node>();
 					
 					//check to make sure that this condition is needed
 					if (dot.exists()) {
@@ -98,11 +99,19 @@ public class RadareImporter {
 						exit.tag("bin_exit");
 						exit.tag(XCSG.controlFlowExitPoint);
 						exit.tag(XCSG.ControlFlow_Node);
+						exit.putAttr("line_number", 0);
+						
+						labeledNodes.add(exit);
 						Edge functionExit = Graph.U.createEdge(functionName, exit);
 						functionExit.tag(XCSG.Contains);
 						
 						function_nodes.add(functionName);
 						Scanner s = new Scanner(dot);
+						int lineNo = 1; 
+						
+						if (functionName.getAttr(XCSG.name).toString().contains("fgets")) {
+							System.out.println("here");
+						}
 						
 						while(s.hasNextLine()) {
 							
@@ -138,6 +147,7 @@ public class RadareImporter {
 							
 							else if(data.contains("->")) {
 								
+								
 								data = data.replaceAll("\\s+", "");
 								
 								//Extract the addresses of the from and to nodes in DOT file
@@ -155,7 +165,6 @@ public class RadareImporter {
 								
 								//Create the Atlas nodes and add necessary tags
 								Node fromNode = nodeMap.get(from);
-								
 								if (functionName.getAttr(XCSG.name).equals("sym_strcmp") && cmp) {
 									fromNode.tag(XCSG.controlFlowRoot);
 									fromNode.tag(XCSG.ControlFlowLoopCondition);
@@ -184,6 +193,7 @@ public class RadareImporter {
 									toNode.tag(XCSG.ControlFlow_Node);
 									toNode.tag("my_node");
 									
+									
 									Edge e = Graph.U.createEdge(fromNode, toNode);
 									e.tag(XCSG.ControlFlow_Edge);
 									e.tag("my_edge");
@@ -192,10 +202,34 @@ public class RadareImporter {
 									if (color.contentEquals("#13a10e")) {
 										e.putAttr(XCSG.conditionValue, true);
 										e.putAttr(XCSG.name, "true");
+										
+										if (!labeledNodes.contains(fromNode)) {
+											fromNode.putAttr("line_number", lineNo);
+											lineNo +=1;
+											labeledNodes.add(fromNode);
+										}
+										
+										if (!labeledNodes.contains(toNode)) {
+											toNode.putAttr("line_number", lineNo);
+											lineNo +=1;
+											labeledNodes.add(toNode);
+										}
 									}
 									else if (color.contentEquals("#c50f1f")) {
 										e.putAttr(XCSG.conditionValue, false);
 										e.putAttr(XCSG.name, "false");
+										if (!labeledNodes.contains(fromNode)) {
+											fromNode.putAttr("line_number", lineNo);
+											lineNo +=1;
+											labeledNodes.add(fromNode);
+										}
+										
+										
+										if (!labeledNodes.contains(toNode)) {
+											toNode.putAttr("line_number", lineNo);
+											lineNo +=1;
+											labeledNodes.add(toNode);
+										}
 									}
 							
 									if(from.contains(to)) {

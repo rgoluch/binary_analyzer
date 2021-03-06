@@ -346,6 +346,10 @@ public class StaticFunctionChecking {
 			toEdge.tag(XCSG.Contains);
 			returnNode.tag("static_transform");
 		}
+		
+//		String srcCode = original.getAttr(XCSG.sourceCorrespondence).toString();
+		returnNode.putAllAttr(original.attr());
+		
 		return returnNode;
 	}
 	

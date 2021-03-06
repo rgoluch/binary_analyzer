@@ -388,6 +388,7 @@ public class SubGraphGenerator {
 		for (Edge e : subgraph.eval().edges()) {
 			Iterable<String> i = e.from().tagsI();
 			Node tempFromNode = Graph.U.createNode();
+			tempFromNode.putAllAttr(e.from().attr());
 			tempFromNode.putAttr(XCSG.name, e.from().getAttr(XCSG.name).toString());
 			
 			for (String s : i) {
@@ -400,6 +401,7 @@ public class SubGraphGenerator {
 			
 			Iterable<String> iTo = e.to().tagsI();
 			Node tempToNode = Graph.U.createNode();
+			tempToNode.putAllAttr(e.to().attr());
 			tempToNode.putAttr(XCSG.name, e.to().getAttr(XCSG.name).toString());
 			
 			for (String s : iTo) {
@@ -456,7 +458,8 @@ public class SubGraphGenerator {
 		exit.tag("src_exit");
 		exit.tag("consolidated_src");
 		exit.tag("single_exit");
-
+		exit.putAttr("line_number", 0);
+		
 		Edge tempExit = Graph.U.createEdge(functionNode, exit);
 		tempExit.tag(XCSG.Contains);
 

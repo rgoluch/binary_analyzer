@@ -401,6 +401,7 @@ public class ShortCircuitChecking {
 				temp1.putAttr(XCSG.name, nodes[j].getCondition());
 				temp1.tag(XCSG.ControlFlowCondition);
 				temp1.tag("sc_graph");
+				temp1.putAttr(XCSG.sourceCorrespondence, x.getAttr(XCSG.sourceCorrespondence));
 				scNodesInGraph.add(temp1);
 				
 				if (x.taggedWith(XCSG.ControlFlowIfCondition)) {
