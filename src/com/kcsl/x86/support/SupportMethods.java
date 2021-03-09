@@ -3,10 +3,13 @@ package com.kcsl.x86.support;
 import static com.kcsl.x86.Importer.loop_tagging;
 import static com.kcsl.x86.Importer.my_cfg;
 import static com.kcsl.x86.Importer.my_function;
+import static com.kcsl.x86.support.SupportMethods.srcTransformedGraph;
+
 import com.se421.paths.transforms.DAGTransform;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.ensoftcorp.atlas.core.db.graph.Edge;
@@ -126,14 +129,21 @@ public class SupportMethods {
 		
 		Q r = Common.toQ(g).roots();
 		if(CommonQueries.isEmpty(r)) {
-			r = Common.toQ(g).nodes("self_loop");
+			System.out.println(name);
+			r = Common.toQ(g.nodes().tagged(XCSG.controlFlowRoot).one());
+//					Common.toQ(g).nodes("self_loop");
 			//DisplayUtil.displayGraph(c);
 		}
 		
-		if(CommonQueries.isEmpty(r)) {
-
-		}
-		else {
+//		if(CommonQueries.isEmpty(r)) {
+//
+//		}
+//		else {
+		
+//			for(Node n : g.nodes().tagged(XCSG.controlFlowRoot)) {
+//				System.out.println(n);
+//			}
+		
 			Node checking = r.eval().nodes().one();
 			LoopIdentification l = new LoopIdentification(g, r.eval().nodes().one());
 			AtlasSet<Edge> back = l.getLoopbacks();
@@ -167,7 +177,7 @@ public class SupportMethods {
 			for (Node n : loopNodes.keySet()) {
 				n.tag(XCSG.Loop);
 			}
-		}
+//		}
 	}
 	
 	
@@ -268,6 +278,30 @@ public class SupportMethods {
 		return c;
 	}
 	
+	public static Q getFailPoint(Node t, String functionName, int mode) {
+		Node srcForward = t;		
+		String srcFName = srcForward.getAttr(XCSG.name).toString().split("LABEL:")[0];
+		srcFName = srcFName.replaceAll("\\n", "");
+		
+		Q transformed = null;
+		if (mode == 0) {
+			transformed = srcTransformedGraph(functionName);
+		}else {
+			transformed = binTransformedGraph(functionName);
+		}
+		Node sFwd = null;
+		for (Node n : transformed.eval().nodes()) {
+			String nName = n.getAttr(XCSG.name).toString();
+			if (nName.contains(srcFName)) {
+				sFwd = n;
+				break;
+			}
+		}
+		
+		Q fwdQ = Common.toQ(sFwd);
+		return fwdQ;
+	}
+	
 	/**
 	 * 
 	 * @param f
@@ -280,15 +314,20 @@ public class SupportMethods {
 		Q found = f.selectNode(XCSG.name, name);
 		Q foundEdges = found.edges(XCSG.Call);
 		Q staticNames = found.induce(foundEdges).nodes(XCSG.C.Provisional.internalLinkage, XCSG.Function);
-//		AtlasSet<Node> staticNames2 = found.children().eval().nodes().taggedWithAll(XCSG.C.Provisional.internalLinkage, XCSG.Function);
+		AtlasSet<Node> staticNames2 = found.children().eval().nodes().taggedWithAll(XCSG.C.Provisional.internalLinkage, XCSG.Function);
+//		long size = staticNames2.size();
+//		long size2 = staticNames.eval().nodes().size();
 //				.children().eval().nodes().taggedWithAll(XCSG.C.Provisional.internalLinkage, XCSG.Function);
 		AtlasSet<Node> callNodes = found.contained().eval().nodes().taggedWithAll(XCSG.DataFlow_Node, XCSG.SimpleCallSite);
-		
 		AtlasSet<Node> functionNodes = staticNames.eval().nodes();
-//		functionNodes.addAll(staticNames2);
+		
+
 		ArrayList<String> functionNames = new ArrayList<String>();
 		for (Node f1 : functionNodes) {
 			functionNames.add(f1.getAttr(XCSG.name).toString());
+		}
+		for (Node s1 : staticNames2) {
+			functionNames.add(s1.getAttr(XCSG.name).toString());
 		}
 
 		ArrayList<Node> foundNodes = new ArrayList<Node>();
@@ -322,31 +361,104 @@ public class SupportMethods {
 		return returnNode;
 	}
 	
-//	public static Edge createEdge(Edge e, Node f, Node t, String[] transformTags) {
-//		Edge cfgEdge = Graph.U.createEdge(f, t);
-//		cfgEdge.tag(XCSG.ControlFlow_Edge);
-//		for (String s : transformTags) {
-//			cfgEdge.tag(s);
-//		}
-//		
-//		if (e.hasAttr(XCSG.conditionValue)) {
-//			String conditionVal = e.getAttr(XCSG.conditionValue).toString();
-//			cfgEdge.putAttr(XCSG.conditionValue, conditionVal);
-//			if (e.getAttr(XCSG.conditionValue).toString().contains("true")) {
-//				cfgEdge.putAttr(XCSG.name, "true");
-//			}else if (e.getAttr(XCSG.conditionValue).toString().contains("false")){
-//				cfgEdge.putAttr(XCSG.name, "false");
-//			}else if (e.getAttr(XCSG.conditionValue).toString().contains("default")) {
-//				cfgEdge.putAttr(XCSG.name, "default");
-//			}
-//		}
-//		
-//		if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
-//			cfgEdge.tag(XCSG.ControlFlowBackEdge);
-//		}
-//		
-//		return cfgEdge;
-//	}
+	public static Q createReverseGraph(Q originalGraph, String originalName, int flag) {
+		Node originalRoot = originalGraph.eval().nodes().tagged(XCSG.controlFlowRoot).one();
+		Node originalExit = originalGraph.eval().nodes().tagged("single_exit").getFirst();
+		
+		String tag = null;
+		String edgeTag = null;
+		if (flag == 1) {
+			tag = "bin_node";
+			edgeTag = "bin_induced_edge";
+		}else {
+			tag = "src_node";
+			edgeTag = "src_induced_edge";
+		}
+		
+		Map<Node, Node> recreatedNodes = new HashMap<Node, Node>();
+		
+		Node newFunc = Graph.U.createNode();
+		newFunc.putAttr(XCSG.name, "reversed_"+originalName);
+		newFunc.tag(XCSG.Function);
+		
+		for (Node n : originalGraph.eval().nodes().tagged(tag)) {
+			for (Edge e : n.out().tagged(edgeTag)) {
+				Node from = e.from();
+				Node to = e.to();
+				Node newFrom = null;
+				Node newTo = null;
+				
+				if (recreatedNodes.get(to) == null) {
+					newFrom = Graph.U.createNode();
+					newFrom.tag("reversed_graph");
+					Iterable<String> i = e.to().tagsI();
+					
+					for (String s : i) {
+						newFrom.tag(s);
+					}
+					newFrom.putAllAttr(e.to().attr());
+					Edge e1 = Graph.U.createEdge(newFunc, newFrom);
+					e1.tag(XCSG.Contains);
+					
+					recreatedNodes.put(to, newFrom);
+				}else {
+					newFrom = recreatedNodes.get(to);
+				}
+				
+				if (recreatedNodes.get(from) == null) {
+					newTo = Graph.U.createNode();
+					newTo.tag("reversed_graph");
+					Iterable<String> i = e.from().tagsI();
+					
+					for (String s : i) {
+						newTo.tag(s);
+					}
+					newTo.putAllAttr(e.from().attr());
+					Edge e2 = Graph.U.createEdge(newFunc, newTo);
+					e2.tag(XCSG.Contains);
+					
+					recreatedNodes.put(from, newTo);
+				}else {
+					newTo = recreatedNodes.get(from);
+				}
+				
+				
+				Edge e3 = Graph.U.createEdge(newFrom, newTo);
+				Iterable<String> i = e.tagsI();
+				for (String s : i) {
+					e3.tag(s);
+				}
+				e3.tag("reversed_edge");
+				e3.putAllAttr(e.attr());
+			}
+		}
+		
+		Node newRoot = recreatedNodes.get(originalRoot);
+		newRoot.untag(XCSG.controlFlowRoot);
+		newRoot.tag(XCSG.controlFlowExitPoint);
+		newRoot.tag("single_exit");
+		if (flag == 1) {
+			newRoot.tag("bin_exit");
+		}else {
+			newRoot.tag("src_exit");
+		}
+		
+		Node newExit = recreatedNodes.get(originalExit);
+		newExit.tag(XCSG.controlFlowRoot);
+		newExit.untag(XCSG.controlFlowExitPoint);
+		newExit.untag("single_exit");
+		if (flag == 1) {
+			newExit.untag("bin_exit");
+		}else {
+			newExit.untag("src_exit");
+		}
+		
+		Q x = my_function(newFunc.getAttr(XCSG.name).toString());
+		Q reversedGraph = x.contained().nodes("reversed_graph").induce(Query.universe().edges("reversed_edge"));
+		
+		return reversedGraph;
+	}
+	
 	
 	public static Long getCSourceLineNumber(Node node) {
 		long lineNumber = -1;

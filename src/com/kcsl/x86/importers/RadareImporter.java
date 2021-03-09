@@ -46,7 +46,7 @@ public class RadareImporter {
 			String path2 = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/class_dot_graphs/dot_graphs/";
 			String path3 = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/ppc_dot_graphs/dot_graphs/";
 			
-			String paths[] = {path} ;
+			String paths[] = {path2, path3} ;
 //					path2, path3};
 			
 			for (String p : paths) {
@@ -62,6 +62,11 @@ public class RadareImporter {
 				int count = 0;
 				boolean cmp = true;
 				boolean strnlenCmp = true;
+				boolean xmount = true;
+				boolean udp = true;
+				boolean login = true;
+				boolean eth = true;
+
 				for(File dot : dirList) {
 					ArrayList<Node> indexedNodes = new ArrayList<Node>();
 					ArrayList<Node> labeledNodes = new ArrayList<Node>();
@@ -109,9 +114,9 @@ public class RadareImporter {
 						Scanner s = new Scanner(dot);
 						int lineNo = 1; 
 						
-						if (functionName.getAttr(XCSG.name).toString().contains("fgets")) {
-							System.out.println("here");
-						}
+//						if (functionName.getAttr(XCSG.name).toString().contains("fgets")) {
+//							System.out.println("here");
+//						}
 						
 						while(s.hasNextLine()) {
 							
@@ -176,6 +181,26 @@ public class RadareImporter {
 									strnlenCmp = false;
 								}
 								
+								if (functionName.getAttr(XCSG.name).equals("class_x_mount") && xmount) {
+									fromNode.tag(XCSG.controlFlowRoot);
+									xmount = false;
+								}
+								
+								if (functionName.getAttr(XCSG.name).equals("class_udpnxtp") && udp) {
+									fromNode.tag(XCSG.controlFlowRoot);
+									udp = false;
+								}
+								
+								if (functionName.getAttr(XCSG.name).equals("ppc_login") && login) {
+									fromNode.tag(XCSG.controlFlowRoot);
+									login = false;
+								}
+								
+								if (functionName.getAttr(XCSG.name).equals("ppc_ethstrt") && eth) {
+									fromNode.tag(XCSG.controlFlowRoot);
+									eth = false;
+								}
+								
 								indexedNodes.add(fromNode);
 								
 								//Handling exit nodes for test files in test directory
@@ -203,35 +228,37 @@ public class RadareImporter {
 										e.putAttr(XCSG.conditionValue, true);
 										e.putAttr(XCSG.name, "true");
 										
-										if (!labeledNodes.contains(fromNode)) {
-											fromNode.putAttr("line_number", lineNo);
-											lineNo +=1;
-											labeledNodes.add(fromNode);
-										}
-										
-										if (!labeledNodes.contains(toNode)) {
-											toNode.putAttr("line_number", lineNo);
-											lineNo +=1;
-											labeledNodes.add(toNode);
-										}
+//										if (!labeledNodes.contains(fromNode)) {
+//											fromNode.putAttr("line_number", lineNo);
+//											lineNo +=1;
+//											labeledNodes.add(fromNode);
+//										}
+//										
+//										if (!labeledNodes.contains(toNode)) {
+//											toNode.putAttr("line_number", lineNo);
+//											lineNo +=1;
+//											labeledNodes.add(toNode);
+//										}
 									}
 									else if (color.contentEquals("#c50f1f")) {
 										e.putAttr(XCSG.conditionValue, false);
 										e.putAttr(XCSG.name, "false");
-										if (!labeledNodes.contains(fromNode)) {
-											fromNode.putAttr("line_number", lineNo);
-											lineNo +=1;
-											labeledNodes.add(fromNode);
-										}
 										
-										
-										if (!labeledNodes.contains(toNode)) {
-											toNode.putAttr("line_number", lineNo);
-											lineNo +=1;
-											labeledNodes.add(toNode);
-										}
 									}
 							
+									if (!labeledNodes.contains(fromNode)) {
+										fromNode.putAttr("line_number", lineNo);
+										lineNo +=1;
+										labeledNodes.add(fromNode);
+									}
+									
+									
+//									if (!labeledNodes.contains(toNode)) {
+//										toNode.putAttr("line_number", lineNo);
+//										lineNo +=1;
+//										labeledNodes.add(toNode);
+//									}
+									
 									if(from.contains(to)) {
 										fromNode.tag("self_loop_node");
 										Graph.U.delete(e);									
@@ -254,7 +281,7 @@ public class RadareImporter {
 					//being used
 //					tag_binary_exits(name);
 					
-//					if (name.contains("ttyRead")) {
+//					if (name.contains("sym_strcmp")) {
 //						System.out.println("here");
 //					}
 					

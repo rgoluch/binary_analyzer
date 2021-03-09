@@ -162,6 +162,15 @@ public class SubGraphGenerator {
 								n.untag("remove_node");
 							}
 						}
+						else if (predecessor.taggedWith(XCSG.ControlFlowLoopCondition) && successor.taggedWith(XCSG.controlFlowExitPoint)) {
+							addEdge = true;
+							if (edgeIn.taggedWith("remove_edge")) {
+								edgeIn.untag("remove_edge");
+							}
+							if (n.taggedWith("remove_node")) {
+								n.untag("remove_node");
+							}
+						}
 						else if (predecessor.taggedWith(XCSG.ControlFlowIfCondition) && in.size() > 1 && successor.taggedWith("bin_loopback_tail")) {
 							addEdge = true;
 							if (edgeIn.taggedWith("remove_edge")) {
@@ -192,6 +201,10 @@ public class SubGraphGenerator {
 								}
 								
 								if (successor.taggedWith(XCSG.ControlFlowLoopCondition) && n.taggedWith("bin_loopback_tail")) {
+									inducedEdge.tag(XCSG.ControlFlowBackEdge);
+								}
+								
+								if (predecessor.taggedWith(XCSG.ControlFlowIfCondition) && successor.taggedWith(XCSG.ControlFlowLoopCondition)) {
 									inducedEdge.tag(XCSG.ControlFlowBackEdge);
 								}
 							}
@@ -268,8 +281,9 @@ public class SubGraphGenerator {
 					Edge zConditionalIn = zIn.getFirst();
 					Node zPred = zConditionalIn.from();
 					if (zPred.taggedWith(XCSG.ControlFlowIfCondition)) {
-						Edge zEdge = x.out().getFirst();
+						Edge zEdge = x.out("bin_induced_edge").getFirst();
 						Node zSucc = zEdge.to();
+						zPred.tag("bin_loopback_tail");
 						
 						Edge newInduced = Graph.U.createEdge(zPred, zSucc);
 						newInduced.tag("bin_induced_edge");
@@ -301,6 +315,8 @@ public class SubGraphGenerator {
 					if (!x.taggedWith(XCSG.ControlFlowIfCondition) && zPred1.taggedWith(XCSG.ControlFlowIfCondition) && zPred1.getAttr(XCSG.name).toString().equals(zPred2.getAttr(XCSG.name).toString())) {
 						Edge zEdge = x.out().getFirst();
 						Node zSucc = zEdge.to();
+						zPred1.tag("bin_loopback_tail");
+						zPred2.tag("bin_loopback_tail");
 						
 						Edge newInduced = Graph.U.createEdge(zPred1, zSucc);
 						newInduced.tag("bin_induced_edge");
@@ -582,6 +598,7 @@ public class SubGraphGenerator {
 						else if (predecessor.taggedWith(XCSG.ControlFlowIfCondition) && successor.taggedWith(XCSG.ControlFlowLoopCondition) ) {
 //							if (n.in("src_induced_edge").size() == 0) {
 								addEdge = true;
+//								predecessor.tag("src_loopback_tail");
 //							}
 						}
 						else if (predecessor.taggedWith(XCSG.ControlFlowIfCondition) && successor.taggedWith("src_loopback_tail")) {
@@ -724,7 +741,7 @@ public class SubGraphGenerator {
 		}
 		
 		for (Node z : subgraph.eval().nodes()) {
-			if (z.taggedWith("src_loopback_tail")) {
+			if (z.taggedWith("src_loopback_tail") && !z.taggedWith(XCSG.ControlFlowCondition)) {
 				AtlasSet<Edge> zIn = z.in("src_induced_edge");
 				long size = zIn.size();
 				if (zIn.size() == 1) {
@@ -733,6 +750,7 @@ public class SubGraphGenerator {
 					if (zPred.taggedWith(XCSG.ControlFlowCondition) && !zPred.taggedWith(XCSG.ControlFlowLoopCondition) && !z.taggedWith(XCSG.ControlFlowIfCondition)) {
 						Edge zEdge = z.out().getFirst();
 						Node zSucc = zEdge.to();
+						zPred.tag("src_loopback_tail");
 						
 						Edge newInduced = Graph.U.createEdge(zPred, zSucc);
 						newInduced.tag("src_induced_edge");

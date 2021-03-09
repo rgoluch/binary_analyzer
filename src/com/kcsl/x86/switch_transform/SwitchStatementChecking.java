@@ -33,7 +33,7 @@ public class SwitchStatementChecking {
 		
 		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "binary_function");
 		int switchCount = 0;
-		System.out.println("Switch Statements: ");
+//		System.out.println("Switch Statements: ");
 		for (Node f : functions.eval().nodes()) {
 			String functionName = f.getAttr(XCSG.name).toString();
 			String srcName = functionName.substring(4);
@@ -519,7 +519,7 @@ public class SwitchStatementChecking {
 				//Create case condition
 				Node current = nodes.get(j).getOriginalNode();
 				Node caseCreate = createNode(current, nodeTags);
-				
+				caseCreate.tag("case_node");
 				//Add to array for size check
 				if (casesAdded.get(current) == null) {
 					bst.add(caseCreate);

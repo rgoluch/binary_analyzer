@@ -3,7 +3,7 @@ import os
 
 functions = []
 
-with open("obj_files_2.txt", "r") as f:
+with open("shell_obj_files.txt", "r") as f:
     x = f.readline()
     while x: 
         y = x.split('\n')
@@ -18,7 +18,7 @@ print(len(functions))
 ext = "dot"
 
 for z in functions: 
-    t = z+".o"
+    t = z
     # z = "shell.o"
     # t = "object_files/"+t
     t = str(t)

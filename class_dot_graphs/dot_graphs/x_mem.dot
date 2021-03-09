@@ -2,9 +2,12 @@ digraph code {
 	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
 	node [fillcolor=gray style=filled shape=box];
 	edge [arrowhead="normal"];
-	"0x00000228" [URL="fcn.00000228/0x00000228", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- rip:\l38: fcn.00000228 ();\l; var uint32_t var_30h @ rbp-0x30\l0x00000228      add eax, 0\l"]
-	"0x0000022d" [URL="fcn.00000228/0x0000022d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; DATA XREF from fcn.0000010c @ 0x226\l0x0000022d      mov rax, qword [rax]\l0x00000230      cmp rax, qword [var_30h]\l0x00000234      jne 0x314                                              ; fcn.0000010c+0x208\l"]
-	"0x0000023a" [URL="fcn.00000228/0x0000023a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000023a      mov eax, 1\l0x0000023f      add rsp, 0x58\l0x00000243      pop rbx\l0x00000244      pop r12\l0x00000246      pop r13\l0x00000248      pop r14\l0x0000024a      pop r15\l0x0000024c      pop rbp\l0x0000024d      ret\l"]
-        "0x00000228" -> "0x0000022d" [color="#3a96dd"];
-        "0x0000022d" -> "0x0000023a" [color="#c50f1f"];
+	"0x08000034" [URL="sym.x_mem/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l72: sym.x_mem ();\l; var int32_t var_6ch @ sp+0x6c\l; var int32_t var_70h @ sp+0x70\l; var int32_t var_74h @ sp+0x74\l; var int32_t var_78h @ sp+0x78\l; var int32_t var_7ch @ sp+0x7c\l0x08000034      addiu sp, sp, -0x80                                    ; [01] -r-x section size 536 named .text\l0x08000038      sw ra, (var_7ch)\l0x0800003c      sw s3, (var_78h)\l0x08000040      sw s2, (var_74h)\l0x08000044      sw s1, (var_70h)\l0x08000048      sw s0, (var_6ch)\l0x0800004c      lw v0, (gp)\l0x08000050      nop\l0x08000054      beqz v0, 0x8000210\l0x08000058      move s2, a1\l"]
+	"0x0800005c" [URL="sym.x_mem/0x0800005c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800005c      move s0, zero\l"]
+	"0x08000060" [URL="sym.x_mem/0x08000060", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_mem @ 0x800006c\l0x08000060      lw v1, 4(v0)\l0x08000064      lw v0, (v0)\l0x08000068      nop\l0x0800006c      bnez v0, 0x8000060\l0x08000070      addu s0, s0, v1\l"]
+	"0x08000074" [URL="sym.x_mem/0x08000074", fillcolor="white",color="#767676", fontname="Courier",label="0x08000074      j 0x1e4\l0x08000078      lui v0, 0\l"]
+        "0x08000034" -> "0x0800005c" [color="#c50f1f"];
+        "0x0800005c" -> "0x08000060" [color="#3a96dd"];
+        "0x08000060" -> "0x08000060" [color="#13a10e"];
+        "0x08000060" -> "0x08000074" [color="#c50f1f"];
 }

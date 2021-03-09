@@ -44,7 +44,7 @@ public class StaticFunctionChecking {
 			if (dfg.size() == 0) {
 				continue;
 			}
-			System.out.println("contains static: "+ functionName);
+//			System.out.println("contains static: "+ functionName);
 		}
 		
 //		ArrayList<Node> staticFunctions = new ArrayList<Node>();		
@@ -68,7 +68,7 @@ public class StaticFunctionChecking {
 		if (dfg.size() == 0) {
 			return cfg;
 		}
-		System.out.println("contains static: "+ functionName);
+//		System.out.println("contains static: "+ functionName);
 		//Map to keep track of static callsite and root of created graph
 		Map<Integer, Node> headerIDMapping = new HashMap<Integer, Node>();
 		

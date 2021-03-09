@@ -2,136 +2,35 @@ digraph code {
 	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
 	node [fillcolor=gray style=filled shape=box];
 	edge [arrowhead="normal"];
-	"0x00000049" [URL="fcn.00000049/0x00000049", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ; CALL XREF from fcn.00000000 @ 0x44\l715: fcn.00000049 (int64_t arg_65h);\l; var int64_t var_60h @ rbp-0x60\l; var char *var_5ch @ rbp-0x5c\l; var uint32_t var_58h @ rbp-0x58\l; var int64_t var_54h @ rbp-0x54\l; var int64_t var_50h @ rbp-0x50\l; var uint32_t var_30h @ rbp-0x30\l; arg int64_t arg_65h @ rbp+0x65\l0x00000049      test eax, eax\l0x0000004b      je 0x224\l"]
-	"0x00000051" [URL="fcn.00000049/0x00000051", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000051      cmp ebx, 1\l0x00000054      je 0x71\l"]
-	"0x00000056" [URL="fcn.00000049/0x00000056", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000000 @ 0x6f\l; CODE XREF from fcn.00000049 @ 0x234\l0x00000056      cmp ebx, 2\l0x00000059      je 0x78\l"]
-	"0x0000005b" [URL="fcn.00000049/0x0000005b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000005b      lea rdi, str.use:_rls___a__directory                   ; 0x29a ; \"use: rls [-a] directory\"\l0x00000062      call 0x67\l; CALL XREF from fcn.00000049 @ 0x62\l0x00000067      jmp 0x200\l"]
-	"0x00000071" [URL="fcn.00000049/0x00000071", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from fcn.00000049 @ 0x54, 0x23a\l0x00000071      lea r13, [0x00000264]                                  ; \".\"\l"]
-	"0x00000078" [URL="fcn.00000049/0x00000078", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x59\l0x00000078      mov edi, 0x200\l0x0000007d      xor eax, eax\l0x0000007f      call 0x84\l; CALL XREF from fcn.00000049 @ 0x7f\l0x00000084      cmp eax, 0xffffffff\l0x00000087      je 0x1ef\l"]
-	"0x0000008d" [URL="fcn.00000049/0x0000008d", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000008d      movsxd r15, eax\l0x00000090      mov rdi, r13\l0x00000093      mov rsi, r15\l0x00000096      xor eax, eax\l0x00000098      call 0x9d\l; CALL XREF from fcn.00000049 @ 0x98\l0x0000009d      cmp eax, 0xb\l0x000000a0      jne 0x1ca\l"]
-	"0x000000a6" [URL="fcn.00000049/0x000000a6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000000a6      lea rdx, [0x00000276]                                  ; \"ro\"\l0x000000ad      mov edi, 0x14\l0x000000b2      mov rsi, r13\l0x000000b5      xor eax, eax\l0x000000b7      call 0xbc\l; CALL XREF from fcn.00000049 @ 0xb7\l0x000000bc      cmp eax, 0xffffffff\l0x000000bf      je 0x1ca\l"]
-	"0x000000c5" [URL="fcn.00000049/0x000000c5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000000c5      mov dword [var_5ch], r12d\l0x000000c9      mov dword [var_54h], eax\l0x000000cc      mov edi, eax\l0x000000ce      mov rsi, r15\l0x000000d1      mov edx, 0x200\l0x000000d6      xor eax, eax\l0x000000d8      call 0xdd\l; CALL XREF from fcn.00000049 @ 0xd8\l0x000000dd      test eax, eax\l0x000000df      jle 0x1aa\l"]
-	"0x000000e5" [URL="fcn.00000049/0x000000e5", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000000e5      mov r14, r15\l0x000000e8      xor r12d, r12d\l0x000000eb      nop dword [rax + rax]\l"]
-	"0x000000f0" [URL="fcn.00000049/0x000000f0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from fcn.00000049 @ 0x181, 0x1a4\l0x000000f0      movsx r13, word [r14 + 0xa]\l0x000000f5      lea rbx, [r14 + 0xc]\l0x000000f9      mov rdi, rbx\l0x000000fc      call 0x101\l; CALL XREF from fcn.00000049 @ 0xfc\l0x00000101      cmp r13, 0x20                                          ; \"H\\x8b\"\l0x00000105      jg 0x23f\l"]
-	"0x0000010b" [URL="fcn.00000049/0x0000010b", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000010b      cmp rax, r13\l0x0000010e      jne 0x23f\l"]
-	"0x00000114" [URL="fcn.00000049/0x00000114", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000114      movzx eax, word [r14 + 8]\l0x00000119      cmp eax, 0x201\l0x0000011e      jae 0x23f\l"]
-	"0x00000124" [URL="fcn.00000049/0x00000124", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000124      cmp dword [var_58h], 0\l0x00000128      jne 0x12f\l"]
-	"0x0000012a" [URL="fcn.00000049/0x0000012a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000012a      cmp byte [rbx], 0x2e\l0x0000012d      je 0x16a\l"]
-	"0x0000012f" [URL="fcn.00000049/0x0000012f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x128\l0x0000012f      lea r13, [var_50h]\l0x00000133      mov rdi, r13\l0x00000136      mov rsi, rbx\l0x00000139      call 0x13e\l; CALL XREF from fcn.00000049 @ 0x139\l0x0000013e      mov rdi, r13\l0x00000141      call 0x146\l; CALL XREF from fcn.00000049 @ 0x141\l0x00000146      mov word [rbp + rax - 0x50], 0xa\l0x0000014d      mov rdi, r13\l0x00000150      call 0x155\l; CALL XREF from fcn.00000049 @ 0x150\l0x00000155      mov edi, dword [var_60h]\l0x00000158      mov rsi, r13\l0x0000015b      mov rdx, rax\l0x0000015e      xor eax, eax\l0x00000160      call 0x165\l; CALL XREF from fcn.00000049 @ 0x160\l0x00000165      movzx eax, word [r14 + 8]\l"]
-	"0x0000016a" [URL="fcn.00000049/0x0000016a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x12d\l0x0000016a      test ax, ax\l0x0000016d      je 0x187\l"]
-	"0x0000016f" [URL="fcn.00000049/0x0000016f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000016f      movsx rax, ax\l0x00000173      add r12, rax\l0x00000176      lea r14, [r15 + r12]\l0x0000017a      cmp r12, 0x1ff\l0x00000181      jle 0xf0\l"]
-	"0x00000187" [URL="fcn.00000049/0x00000187", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x16d\l0x00000187      mov edi, dword [var_54h]\l0x0000018a      mov rsi, r15\l0x0000018d      mov edx, 0x200\l0x00000192      xor eax, eax\l0x00000194      call 0x199\l; CALL XREF from fcn.00000049 @ 0x194\l0x00000199      mov r14, r15\l0x0000019c      mov r12d, 0\l0x000001a2      test eax, eax\l0x000001a4      jg 0xf0\l"]
-	"0x000001aa" [URL="fcn.00000049/0x000001aa", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0xdf\l0x000001aa      mov rdi, r15\l0x000001ad      mov esi, 0x200\l0x000001b2      xor eax, eax\l0x000001b4      call 0x1b9\l; CALL XREF from fcn.00000049 @ 0x1b4\l0x000001b9      mov edi, dword [var_54h]\l0x000001bc      xor eax, eax\l0x000001be      call 0x1c3\l; CALL XREF from fcn.00000049 @ 0x1be\l0x000001c3      mov eax, 1\l0x000001c8      jmp 0x205\l"]
-	"0x000001ca" [URL="fcn.00000049/0x000001ca", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from fcn.00000049 @ 0xa0, 0xbf\l0x000001ca      lea rsi, str.cannot_open__s_n                          ; 0x279 ; \"cannot open %s\\n\"\l0x000001d1      mov edi, r12d\l0x000001d4      mov rdx, r13\l0x000001d7      xor eax, eax\l0x000001d9      call 0x1de\l"]
-	"0x000001de" [URL="fcn.00000049/0x000001de", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from fcn.00000049 @ 0x1d9, 0x25a\l0x000001de      mov rdi, r15\l0x000001e1      mov esi, 0x200\l0x000001e6      xor eax, eax\l0x000001e8      call 0x1ed\l; CALL XREF from fcn.00000049 @ 0x1e8\l0x000001ed      jmp 0x200\l"]
-	"0x000001ef" [URL="fcn.00000049/0x000001ef", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x87\l0x000001ef      lea rsi, str.rls:_no_memory_n                          ; 0x266 ; \"rls: no memory\\n\"\l0x000001f6      mov edi, r12d\l0x000001f9      xor eax, eax\l0x000001fb      call 0x200\l"]
-	"0x00000200" [URL="fcn.00000049/0x00000200", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; XREFS: CODE 0x00000067  DATA 0x00000078  DATA 0x000000d1  \l; XREFS: DATA 0x0000018d  DATA 0x000001ad  DATA 0x000001e1  \l; XREFS: CODE 0x000001ed  CALL 0x000001fb  \l0x00000200      mov eax, 0xffffffff                                    ; -1\l"]
-	"0x00000205" [URL="fcn.00000049/0x00000205", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x1c8\l0x00000205      mov rcx, qword [0x0000020c]                            ; [0x20c:8]=0x75d04d3b48098b48\l; DATA XREF from fcn.00000049 @ 0x205\l0x0000020c      mov rcx, qword [rcx]\l0x0000020f      cmp rcx, qword [var_30h]\l0x00000213      jne 0x25c\l"]
-	"0x00000215" [URL="fcn.00000049/0x00000215", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000215      add rsp, 0x38\l0x00000219      pop rbx\l0x0000021a      pop r12\l0x0000021c      pop r13\l0x0000021e      pop r14\l0x00000220      pop r15\l0x00000222      pop rbp\l0x00000223      ret\l"]
-	"0x00000224" [URL="fcn.00000049/0x00000224", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x4b\l0x00000224      dec ebx\l0x00000226  ~   mov r13, qword [r14 + 0x10]\l  ;-- rip:\l16: fcn.00000228 (int argc, char **argv, char **envp);\l; arg int argc @ rdi\l; arg char **argv @ rsi\l; arg char **envp @ rdx\l0x00000228      outsb dx, byte [rsi]\l0x00000229      adc bh, al\l0x0000022b      test al, 1\l0x0000022e      add byte [rax], al\l0x00000230      add byte [rbx - 0x7af0fe05], al\l0x00000236      sbb al, 0xfe\l0x00000238      invalid\l0x00000239      invalid\l"]
-	"0x0000023a" [URL="fcn.00000049/0x0000023a", fillcolor="white",color="#767676", fontname="Courier",label="0x0000023a      jmp 0x71\l"]
-	"0x0000023f" [URL="fcn.00000049/0x0000023f", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREFS from fcn.00000049 @ 0x105, 0x10e, 0x11e\l0x0000023f      lea rsi, str.Not_a_directory_n                         ; 0x289 ; \"Not a directory\\n\"\l0x00000246      mov edi, dword [var_5ch]\l0x00000249      xor eax, eax\l0x0000024b      call 0x250\l; CALL XREF from fcn.00000049 @ 0x24b\l0x00000250      mov edi, dword [var_54h]\l0x00000253      xor eax, eax\l0x00000255      call 0x25a\l; CALL XREF from fcn.00000049 @ 0x255\l0x0000025a      jmp 0x1de\l"]
-	"0x0000025c" [URL="fcn.00000049/0x0000025c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x213\l0x0000025c      call section.1..__cstring\l; DATA XREF from fcn.00000000 @ 0x3a\l; CALL XREF from fcn.00000049 @ 0x25c\l;-- section.1..__cstring:\l0x00000261      sub eax, 0x2e0061                                      ; [01] -rwx section size 81 named 1..__cstring\l; DATA XREF from fcn.00000049 @ 0x1ef\l;-- str.rls:_no_memory_n:\l0x00000266     .string \"rls: no memory\\n\" ; len=16\l"]
-	"0x00000268" [URL="fcn.00000049/0x00000268", fillcolor="white",color="#767676", fontname="Courier",label="0x00000268     .string \"rls: no memory\\n\" ; len=16\l"]
-	"0x0000026a" [URL="fcn.00000049/0x0000026a", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000026a     .string \"rls: no memory\\n\" ; len=16\l"]
-	"0x00000274" [URL="fcn.00000049/0x00000274", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000274     .string \"rls: no memory\\n\" ; len=16\l; DATA XREF from fcn.00000049 @ 0xa6\l0x00000276      jb 0x2e7\l"]
-	"0x00000278" [URL="fcn.00000049/0x00000278", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000278  ~   add byte [rbx + 0x61], ah\l; DATA XREF from fcn.00000049 @ 0x1ca\l;-- str.cannot_open__s_n:\l0x00000279     .string \"cannot open %s\\n\" ; len=16\l"]
-	"0x00000280" [URL="fcn.00000049/0x00000280", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000280     .string \"cannot open %s\\n\" ; len=16\l"]
-	"0x00000283" [URL="fcn.00000049/0x00000283", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x00000283     .string \"cannot open %s\\n\" ; len=16\l; DATA XREF from fcn.00000049 @ 0x23f\l;-- str.Not_a_directory_n:\l0x00000289     .string \"Not a directory\\n\" ; len=17\l"]
-	"0x000002a0" [URL="fcn.00000049/0x000002a0", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x27e\l0x000002a0     .string \"use: rls [-a] directory\" ; len=24\l"]
-	"0x000002a3" [URL="fcn.00000049/0x000002a3", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from str.Not_a_directory_n @ +0xe\l0x000002a3     .string \"use: rls [-a] directory\" ; len=24\l"]
-	"0x000002a4" [URL="fcn.00000049/0x000002a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x268\l0x000002a4     .string \"use: rls [-a] directory\" ; len=24\l"]
-	"0x000002ad" [URL="fcn.00000049/0x000002ad", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x28b\l0x000002ad     .string \"use: rls [-a] directory\" ; len=24\l"]
-	"0x000002af" [URL="fcn.00000049/0x000002af", fillcolor="white",color="#767676", fontname="Courier",label="0x000002af     .string \"use: rls [-a] directory\" ; len=24\l"]
-	"0x000002b1" [URL="fcn.00000049/0x000002b1", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000002b1     .string \"use: rls [-a] directory\" ; len=24\l; CODE XREF from fcn.00000049 @ 0x2b0\l0x000002b2      add byte [rax], al\l0x000002b4      add byte [rax], al\l0x000002b6      add byte [rax], al\l;-- section.2..__compact_unwind:\l0x000002b8      add byte [rax], al                                     ; [02] -rwx section size 32 named 2..__compact_unwind\l0x000002ba      add byte [rax], al\l0x000002bc      add byte [rax], al\l0x000002be      add byte [rax], al\l0x000002c0      invalid\l0x000002c1      add al, byte [rax]\l; CODE XREF from fcn.00000049 @ 0x2a1\l0x000002c3      add cl, dl\l0x000002c5      pop rax\l0x000002c6      add eax, 1\l"]
-	"0x000002b2" [URL="fcn.00000049/0x000002b2", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x2b0\l0x000002b2      add byte [rax], al\l0x000002b4      add byte [rax], al\l0x000002b6      add byte [rax], al\l;-- section.2..__compact_unwind:\l0x000002b8      add byte [rax], al                                     ; [02] -rwx section size 32 named 2..__compact_unwind\l0x000002ba      add byte [rax], al\l0x000002bc      add byte [rax], al\l0x000002be      add byte [rax], al\l"]
-	"0x000002c3" [URL="fcn.00000049/0x000002c3", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x2a1\l0x000002c3      add cl, dl\l0x000002c5      pop rax\l0x000002c6      add eax, 1\l"]
-	"0x000002cb" [URL="fcn.00000049/0x000002cb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000002cb      add byte [rax], al\l0x000002cd      add byte [rax], al\l0x000002cf      add byte [rax], al\l0x000002d1      add byte [rax], al\l0x000002d3  ~   add byte [rax], al\l; CODE XREF from fcn.00000049 @ 0x266\l0x000002d4      add byte [rax], al\l0x000002d6      add byte [rax], al\l;-- section.3..__eh_frame:\l0x000002d8      adc al, 0                                              ; [03] -rwx section size 72 named 3..__eh_frame\l"]
-	"0x000002d4" [URL="fcn.00000049/0x000002d4", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x266\l0x000002d4      add byte [rax], al\l0x000002d6      add byte [rax], al\l;-- section.3..__eh_frame:\l0x000002d8      adc al, 0                                              ; [03] -rwx section size 72 named 3..__eh_frame\l"]
-	"0x000002da" [URL="fcn.00000049/0x000002da", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000002da      add byte [rax], al\l0x000002dc      add byte [rax], al\l0x000002de      add byte [rax], al\l0x000002e0      add dword [rdx + 0x52], edi\l0x000002e3      add byte [rcx], al\l0x000002e5      js 0x2f7\l"]
-	"0x000002e7" [URL="fcn.00000049/0x000002e7", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x276\l0x000002e7  ~   add dword [rax], edx\l; CODE XREF from fcn.00000049 @ 0x281\l0x000002e8      adc byte [rdi + rax], cl\l"]
-	"0x000002e8" [URL="fcn.00000049/0x000002e8", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x281\l0x000002e8      adc byte [rdi + rax], cl\l"]
-	"0x000002eb" [URL="fcn.00000049/0x000002eb", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000002eb  ~   or byte [rax + 0x2c000001], dl\l; CODE XREF from fcn.00000049 @ 0x272\l0x000002ed      add dword [rax], eax\l0x000002ef      add byte [rax + rax], ch\l0x000002f2      add byte [rax], al\l0x000002f4      sbb al, 0\l"]
-	"0x000002ed" [URL="fcn.00000049/0x000002ed", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x272\l0x000002ed      add dword [rax], eax\l0x000002ef      add byte [rax + rax], ch\l0x000002f2      add byte [rax], al\l0x000002f4      sbb al, 0\l"]
-	"0x000002f6" [URL="fcn.00000049/0x000002f6", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x000002f6  ~   add byte [rax], al\l; CODE XREF from fcn.00000049 @ 0x2e5\l0x000002f7      add byte [rax], cl\l0x000002f9      std\l"]
-	"0x000002f7" [URL="fcn.00000049/0x000002f7", fillcolor="white",color="#767676", fontname="Courier",label="; CODE XREF from fcn.00000049 @ 0x2e5\l0x000002f7      add byte [rax], cl\l0x000002f9      std\l"]
-	"0x0000031e" [URL="fcn.00000049/0x0000031e", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0000031e      add byte [rax], al\l"]
-        "0x00000049" -> "0x00000224" [color="#13a10e"];
-        "0x00000049" -> "0x00000051" [color="#c50f1f"];
-        "0x00000051" -> "0x00000071" [color="#13a10e"];
-        "0x00000051" -> "0x00000056" [color="#c50f1f"];
-        "0x00000056" -> "0x00000078" [color="#13a10e"];
-        "0x00000056" -> "0x0000005b" [color="#c50f1f"];
-        "0x0000005b" -> "0x00000200" [color="#3a96dd"];
-        "0x00000071" -> "0x00000078" [color="#3a96dd"];
-        "0x00000078" -> "0x000001ef" [color="#13a10e"];
-        "0x00000078" -> "0x0000008d" [color="#c50f1f"];
-        "0x0000008d" -> "0x000001ca" [color="#13a10e"];
-        "0x0000008d" -> "0x000000a6" [color="#c50f1f"];
-        "0x000000a6" -> "0x000001ca" [color="#13a10e"];
-        "0x000000a6" -> "0x000000c5" [color="#c50f1f"];
-        "0x000000c5" -> "0x000001aa" [color="#13a10e"];
-        "0x000000c5" -> "0x000000e5" [color="#c50f1f"];
-        "0x000000e5" -> "0x000000f0" [color="#3a96dd"];
-        "0x000000f0" -> "0x0000023f" [color="#13a10e"];
-        "0x000000f0" -> "0x0000010b" [color="#c50f1f"];
-        "0x0000010b" -> "0x0000023f" [color="#13a10e"];
-        "0x0000010b" -> "0x00000114" [color="#c50f1f"];
-        "0x00000114" -> "0x0000023f" [color="#13a10e"];
-        "0x00000114" -> "0x00000124" [color="#c50f1f"];
-        "0x00000124" -> "0x0000012f" [color="#13a10e"];
-        "0x00000124" -> "0x0000012a" [color="#c50f1f"];
-        "0x0000012a" -> "0x0000016a" [color="#13a10e"];
-        "0x0000012a" -> "0x0000012f" [color="#c50f1f"];
-        "0x0000012f" -> "0x0000016a" [color="#3a96dd"];
-        "0x0000016a" -> "0x00000187" [color="#13a10e"];
-        "0x0000016a" -> "0x0000016f" [color="#c50f1f"];
-        "0x0000016f" -> "0x000000f0" [color="#13a10e"];
-        "0x0000016f" -> "0x00000187" [color="#c50f1f"];
-        "0x00000187" -> "0x000000f0" [color="#13a10e"];
-        "0x00000187" -> "0x000001aa" [color="#c50f1f"];
-        "0x000001aa" -> "0x00000205" [color="#3a96dd"];
-        "0x000001ca" -> "0x000001de" [color="#3a96dd"];
-        "0x000001de" -> "0x00000200" [color="#3a96dd"];
-        "0x000001ef" -> "0x00000200" [color="#3a96dd"];
-        "0x00000200" -> "0x00000205" [color="#3a96dd"];
-        "0x00000205" -> "0x0000025c" [color="#13a10e"];
-        "0x00000205" -> "0x00000215" [color="#c50f1f"];
-        "0x00000224" -> "0x00000056" [color="#13a10e"];
-        "0x00000224" -> "0x0000023a" [color="#c50f1f"];
-        "0x0000023a" -> "0x00000071" [color="#3a96dd"];
-        "0x0000023f" -> "0x000001de" [color="#3a96dd"];
-        "0x0000025c" -> "0x000002d4" [color="#13a10e"];
-        "0x0000025c" -> "0x00000268" [color="#c50f1f"];
-        "0x00000268" -> "0x000002a4" [color="#13a10e"];
-        "0x00000268" -> "0x0000026a" [color="#c50f1f"];
-        "0x0000026a" -> "0x000002ed" [color="#13a10e"];
-        "0x0000026a" -> "0x00000274" [color="#c50f1f"];
-        "0x00000274" -> "0x000002e7" [color="#13a10e"];
-        "0x00000274" -> "0x00000278" [color="#c50f1f"];
-        "0x00000278" -> "0x000002a0" [color="#13a10e"];
-        "0x00000278" -> "0x00000280" [color="#c50f1f"];
-        "0x00000280" -> "0x000002e8" [color="#13a10e"];
-        "0x00000280" -> "0x00000283" [color="#c50f1f"];
-        "0x00000283" -> "0x000002ad" [color="#13a10e"];
-        "0x00000283" -> "0x0000028d" [color="#c50f1f"];
-        "0x000002a0" -> "0x000002c3" [color="#13a10e"];
-        "0x000002a0" -> "0x000002a3" [color="#c50f1f"];
-        "0x000002a3" -> "0x000002a4" [color="#3a96dd"];
-        "0x000002a4" -> "0x000002b2" [color="#13a10e"];
-        "0x000002a4" -> "0x000002b2" [color="#c50f1f"];
-        "0x000002ad" -> "0x0000031e" [color="#13a10e"];
-        "0x000002ad" -> "0x000002af" [color="#c50f1f"];
-        "0x000002af" -> "0x0000032a" [color="#13a10e"];
-        "0x000002af" -> "0x000002b1" [color="#c50f1f"];
-        "0x000002b1" -> "0x000002cb" [color="#3a96dd"];
-        "0x000002c3" -> "0x000002cb" [color="#3a96dd"];
-        "0x000002cb" -> "0x000002da" [color="#3a96dd"];
-        "0x000002d4" -> "0x000002da" [color="#3a96dd"];
-        "0x000002da" -> "0x000002f7" [color="#13a10e"];
-        "0x000002da" -> "0x000002e7" [color="#c50f1f"];
-        "0x000002e7" -> "0x000002eb" [color="#3a96dd"];
-        "0x000002e8" -> "0x000002eb" [color="#3a96dd"];
-        "0x000002eb" -> "0x000002f6" [color="#3a96dd"];
-        "0x000002ed" -> "0x000002f6" [color="#3a96dd"];
+	"0x08000034" [URL="sym.x_rls/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l372: sym.x_rls (signed int arg4, int32_t arg_68h, int32_t arg_70h);\l; var int32_t var_30h @ sp+0x30\l; var int32_t var_34h @ sp+0x34\l; var int32_t var_38h @ sp+0x38\l; var int32_t var_3ch @ sp+0x3c\l; var int32_t var_40h @ sp+0x40\l; var int32_t var_44h @ sp+0x44\l; var int32_t var_48h @ sp+0x48\l; var int32_t var_4ch @ sp+0x4c\l; var int32_t var_50h @ sp+0x50\l; var int32_t var_54h @ sp+0x54\l; var int32_t var_58h @ sp+0x58\l; var int32_t var_5ch @ sp+0x5c\l; arg int32_t arg_68h @ sp+0x68\l; arg int32_t arg_70h @ sp+0x70\l; arg signed int arg4 @ a3\l0x08000034      addiu sp, sp, -0x60                                    ; [01] -r-x section size 716 named .text\l0x08000038      sw ra, (var_5ch)\l0x0800003c      sw fp, (var_58h)\l0x08000040      sw s7, (var_54h)\l0x08000044      sw s6, (var_50h)\l0x08000048      sw s5, (var_4ch)\l0x0800004c      sw s4, (var_48h)\l0x08000050      sw s3, (var_44h)\l0x08000054      sw s2, (var_40h)\l0x08000058      sw s1, (var_3ch)\l0x0800005c      sw s0, (var_38h)\l0x08000060      move s5, a1\l0x08000064      sw a2, (arg_68h)\l0x08000068      lw s2, (arg_70h)\l0x0800006c      slti v0, a3, 2                                         ; arg4\l0x08000070      bnez v0, 0x80000a4\l0x08000074      move s0, a3\l"]
+	"0x08000078" [URL="sym.x_rls/0x08000078", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000078      lw s1, 4(s2)\l0x0800007c      nop\l0x08000080      move a0, s1\l0x08000084      lui a1, 0\l0x08000088      jal 0\l0x0800008c      addiu a1, a1, 0\l0x08000090      bnez v0, 0x80000ac\l0x08000094      addiu s4, zero, 1\l"]
+	"0x08000098" [URL="sym.x_rls/0x08000098", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000098      lw s1, 8(s2)\l0x0800009c      j 0x7c\l0x080000a0      addiu s0, s0, -1\l"]
+	"0x080000a4" [URL="sym.x_rls/0x080000a4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_rls @ 0x8000070\l0x080000a4      j 0x7c\l0x080000a8      move s4, zero\l"]
+	"0x080000ac" [URL="sym.x_rls/0x080000ac", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_rls @ 0x8000090\l0x080000ac      move s4, zero\l0x080000b0      addiu v0, zero, 1\l0x080000b4      beq s0, v0, 0x80000d4\l0x080000b8      addiu v0, zero, 2\l"]
+	"0x080000bc" [URL="sym.x_rls/0x080000bc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000bc      beq s0, v0, 0x80000dc\l0x080000c0      lui a0, 0\l"]
+	"0x080000c4" [URL="sym.x_rls/0x080000c4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000c4      jal 0\l0x080000c8      addiu a0, a0, 0\l0x080000cc      j 0x298\l0x080000d0      addiu s0, zero, -1\l"]
+	"0x080000d4" [URL="sym.x_rls/0x080000d4", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_rls @ 0x80000b4\l0x080000d4      lui s1, 0\l0x080000d8      addiu s1, s1, 0\l"]
+	"0x080000dc" [URL="sym.x_rls/0x080000dc", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_rls @ 0x80000bc\l0x080000dc      jal 0\l0x080000e0      addiu a0, zero, 0x200\l0x080000e4      move s0, v0\l0x080000e8      move fp, v0\l0x080000ec      addiu v0, zero, -1\l0x080000f0      bne s0, v0, 0x8000118\l0x080000f4      move a0, s1\l"]
+	"0x080000f8" [URL="sym.x_rls/0x080000f8", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x080000f8      lui a0, 0\l0x080000fc      addiu a0, a0, 0\l0x08000100      addiu a1, zero, 1\l0x08000104      lw a3, (arg_68h)\l0x08000108      jal 0\l0x0800010c      addiu a2, zero, 0xf\l0x08000110      j 0x29c\l0x08000114      move v0, s0\l"]
+	"0x08000118" [URL="sym.x_rls/0x08000118", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_rls @ 0x80000f0\l0x08000118      jal 0\l0x0800011c      move a1, s0\l0x08000120      addiu v1, zero, 0xb\l0x08000124      bne v0, v1, 0x8000154\l0x08000128      addiu a0, zero, 0x14\l"]
+	"0x0800012c" [URL="sym.x_rls/0x0800012c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800012c      move a1, s1\l0x08000130      lui a2, 0\l0x08000134      jal 0\l0x08000138      addiu a2, a2, 0\l0x0800013c      sw v0, (var_30h)\l0x08000140      addiu v0, zero, -1\l0x08000144      lw v1, (var_30h)\l0x08000148      nop\l0x0800014c      bne v1, v0, 0x800017c\l0x08000150      nop\l"]
+	"0x08000154" [URL="sym.x_rls/0x08000154", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_rls @ 0x8000124\l0x08000154      lw a0, (arg_68h)\l0x08000158      lui a1, 0\l0x0800015c      addiu a1, a1, 0\l0x08000160      jal 0\l0x08000164      move a2, s1\l0x08000168      move a0, fp\l0x0800016c      jal 0\l0x08000170      addiu a1, zero, 0x200\l0x08000174      j 0x298\l0x08000178      addiu s0, zero, -1\l"]
+	"0x0800017c" [URL="sym.x_rls/0x0800017c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="; CODE XREF from sym.x_rls @ 0x800014c\l0x0800017c      lw a0, (var_30h)\l0x08000180      move a1, s0\l0x08000184      jal 0\l0x08000188      addiu a2, zero, 0x200\l0x0800018c      blez v0, 0x80002b4\l0x08000190      addiu s3, s0, 0x200\l"]
+	"0x08000194" [URL="sym.x_rls/0x08000194", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000194      sltu v0, s0, s3\l0x08000198      sw v0, (var_34h)\l0x0800019c      addiu s6, zero, 0xa\l0x080001a0      j 0x268\l0x080001a4      addiu s7, zero, 0x2e\l"]
+        "0x08000034" -> "0x080000a4" [color="#13a10e"];
+        "0x08000034" -> "0x08000078" [color="#c50f1f"];
+        "0x08000078" -> "0x080000ac" [color="#13a10e"];
+        "0x08000078" -> "0x08000098" [color="#c50f1f"];
+        "0x080000ac" -> "0x080000d4" [color="#13a10e"];
+        "0x080000ac" -> "0x080000bc" [color="#c50f1f"];
+        "0x080000bc" -> "0x080000dc" [color="#13a10e"];
+        "0x080000bc" -> "0x080000c4" [color="#c50f1f"];
+        "0x080000d4" -> "0x080000dc" [color="#3a96dd"];
+        "0x080000dc" -> "0x08000118" [color="#13a10e"];
+        "0x080000dc" -> "0x080000f8" [color="#c50f1f"];
+        "0x08000118" -> "0x08000154" [color="#13a10e"];
+        "0x08000118" -> "0x0800012c" [color="#c50f1f"];
+        "0x0800012c" -> "0x0800017c" [color="#13a10e"];
+        "0x0800012c" -> "0x08000154" [color="#c50f1f"];
+        "0x0800017c" -> "0x08000194" [color="#c50f1f"];
 }

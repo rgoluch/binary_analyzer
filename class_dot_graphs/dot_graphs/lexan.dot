@@ -2,5 +2,9 @@ digraph code {
 	graph [bgcolor=azure fontsize=8 fontname="Courier" splines="ortho"];
 	node [fillcolor=gray style=filled shape=box];
 	edge [arrowhead="normal"];
-	"0x000001d8";
+	"0x08000034" [URL="sym.lexan/0x08000034", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="  ;-- section..text:\l  ;-- .text:\l  ;-- pc:\l104: sym.lexan (int32_t arg1, int32_t arg2, int32_t arg4);\l; var int32_t var_0h @ sp+0x0\l; var int32_t var_4h @ sp+0x4\l; arg int32_t arg1 @ a0\l; arg int32_t arg2 @ a1\l; arg int32_t arg4 @ a3\l0x08000034      lb v0, (a0)                                            ; arg1 ; [01] -r-x section size 564 named .text\l0x08000038      nop\l0x0800003c      beqz v0, 0x8000238\l0x08000040      addiu v1, zero, 0xa\l"]
+	"0x08000044" [URL="sym.lexan/0x08000044", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x08000044      beq v0, v1, 0x8000240\l0x08000048      lui a1, 0\l"]
+	"0x0800004c" [URL="sym.lexan/0x0800004c", fillcolor="#c19c00",color="#c19c00", fontname="Courier",label="0x0800004c      addiu sp, sp, -8\l0x08000050      sw s1, (var_4h)\l0x08000054      sw s0, (sp)\l0x08000058      addiu a1, a1, 0xc8                                     ; arg2\l0x0800005c      move v0, zero\l0x08000060      lui t2, 0\l0x08000064      addiu t2, t2, 0x78\l0x08000068      addiu a3, zero, 0x20                                   ; arg4\l0x0800006c      addiu t0, zero, 0xa\l0x08000070      lui t7, 0\l0x08000074      addiu t7, t7, 0\l0x08000078      addiu t3, zero, 0x22\l0x0800007c      addiu t9, zero, 0x27\l0x08000080      addiu t5, zero, -3\l0x08000084      addiu t4, zero, 0x3c\l0x08000088      addiu s0, zero, 0x26\l0x0800008c      addiu t6, zero, -0x21\l0x08000090      lui t8, 0\l0x08000094      j 0x1ec\l0x08000098      addiu t8, t8, 0xb8\l"]
+        "0x08000034" -> "0x08000044" [color="#c50f1f"];
+        "0x08000044" -> "0x0800004c" [color="#c50f1f"];
 }

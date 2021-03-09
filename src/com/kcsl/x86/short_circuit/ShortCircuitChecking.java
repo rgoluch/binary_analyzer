@@ -189,12 +189,47 @@ public class ShortCircuitChecking {
 			else if (scNodes.contains(e.from()) && e.to().taggedWith("sc_graph")) {
 				Node tempSingle = createNode(e.to(), scNodeTags);
 				
+				//If predecessor node is a conditional, then we want to add the condition value on the edge
+				String edgeValue = null;
+				if (e.hasAttr(XCSG.conditionValue)) {
+					if (e.getAttr(XCSG.conditionValue).toString().contains("true")) {
+						edgeValue = "true";
+					}else {
+						edgeValue = "false";
+					}
+				}
+				
 				//Check to make sure the node hasn't already been created so we don't make duplicated nodes
 				Node checkingSuccessor = addedToGraph.get(e.to());
 				if (checkingSuccessor == null) {
 					Edge eToSingle = Graph.U.createEdge(functionNode, tempSingle);
 					eToSingle.tag(XCSG.Contains);
 					addedToGraph.put(e.to(), tempSingle);
+					
+					if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+						predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), tempSingle, edgeValue);
+						loopBackTails.add(p);
+						loopBackHeaderMap.put(tempSingle, e.from());
+					}
+//					else {
+//						scPredecessors.add(tempSingle);
+//						predMap.put(tempSingle.addressBits(), e.to());
+//						predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), tempSCPred, edgeValue);
+//						edgeCreated.add(p);
+//					}
+				}
+//				if (checkingPred != null && !e.taggedWith(XCSG.ControlFlowBackEdge)) {
+//					scPredecessors.add(checkingPred);
+//					predMap.put(checkingPred.addressBits(), e.to());
+//					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred, edgeValue);
+//					edgeCreated.add(p);
+//				} 
+				//Case where node was created and edge is a loopback edge
+//				else 
+					if (checkingSuccessor != null && e.taggedWith(XCSG.ControlFlowBackEdge)) {
+					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingSuccessor, edgeValue);
+					loopBackTails.add(p);
+					loopBackHeaderMap.put(checkingSuccessor, e.from());
 				}
 			}
 			//Handling all other control flow nodes
@@ -401,6 +436,7 @@ public class ShortCircuitChecking {
 				temp1.putAttr(XCSG.name, nodes[j].getCondition());
 				temp1.tag(XCSG.ControlFlowCondition);
 				temp1.tag("sc_graph");
+				temp1.tag(nodes[j].operator);
 				temp1.putAttr(XCSG.sourceCorrespondence, x.getAttr(XCSG.sourceCorrespondence));
 				scNodesInGraph.add(temp1);
 				
@@ -630,6 +666,10 @@ public class ShortCircuitChecking {
 			tempTrue.putAttr(XCSG.name, "true");
 			tempTrue.tag("sc_edge");
 			tempTrue.tag("sc_edge_testing");
+			
+			if (temp2.taggedWith(XCSG.ControlFlowLoopCondition)) {
+				tempTrue.tag(XCSG.ControlFlowBackEdge);
+			}
 		}
 		
 		public Node getTrueDest() {
@@ -645,6 +685,10 @@ public class ShortCircuitChecking {
 			tempTrue.putAttr(XCSG.name, "false");
 			tempTrue.tag("sc_edge");
 			tempTrue.tag("sc_edge_testing");
+			
+			if (temp2.taggedWith(XCSG.ControlFlowLoopCondition)) {
+				tempTrue.tag(XCSG.ControlFlowBackEdge);
+			}
 		}
 		
 		public Node getFalseDest() {
