@@ -116,8 +116,23 @@ public class StaticFunctionChecking {
 			String fromFunctionNode = createNodeName(e.from());
 			String toNode = createNodeName(e.to());
 			
+			boolean fromFlag = false;
+			boolean toFlag = false;
+			
+			for (String s : staticCFG.keySet()) {
+				String name = s.split("\\(")[0];
+				if (fromFunctionNode.contains(name)) {
+					fromFlag = true;
+					fromFunctionNode = s;
+				}
+				if (toNode.contains(name)) {
+					toFlag = true;
+					toNode = s;
+				}
+			}
+			
 			//Handle the case where we have consecutive static function calls
-			if (staticCFG.containsKey(fromFunctionNode) && staticCFG.containsKey(toNode)) {
+			if (staticCFG.containsKey(fromFunctionNode) && staticCFG.containsKey(toNode) || (fromFlag && toFlag)) {
 				
 				Node root = null;
 				Node root2 = null;
@@ -148,7 +163,7 @@ public class StaticFunctionChecking {
 				continue;
 			}
 			//Handle the case where we point to a static call site
-			else if (staticCFG.containsKey(toNode)) {
+			else if ((staticCFG.containsKey(toNode) || toFlag) && !eTo.taggedWith(XCSG.ControlFlowCondition)) {
 				Node fromCheck = recreatedNodes.get(e.from().addressBits());
 				if (fromCheck == null) {
 					fromCheck = createStaticNode(e.from(), false, functionNode);
@@ -169,7 +184,13 @@ public class StaticFunctionChecking {
 					continue;
 				}
 				
-				Node successor = e.to().out(XCSG.ControlFlow_Edge).one().to();
+				Node successor = null;
+				if (e.to().out(XCSG.ControlFlow_Edge).size() > 0) {
+					successor = e.to().out(XCSG.ControlFlow_Edge).one().to();
+				}else {
+					successor = e.to();
+				}
+				
 				Node toCheck = recreatedNodes.get(successor.addressBits());
 				String toCheckName = createNodeName(successor);
 				toCheck = createSuccessorEdges(toCheck, toCheckName, functionNode, successor, headerIDMapping);
@@ -187,7 +208,7 @@ public class StaticFunctionChecking {
 				}
 			}
 			//Handle the case where the from node for the edge is a static function call
-			else if (staticCFG.containsKey(fromFunctionNode)) {
+			else if ((staticCFG.containsKey(fromFunctionNode) || fromFlag) && !eFrom.taggedWith(XCSG.ControlFlowCondition)) {
 				
 				//Check to see if we've already created the static CFG
 				if (headerIDMapping.containsKey(e.from().addressBits())) {
@@ -197,7 +218,7 @@ public class StaticFunctionChecking {
 					fromName = fromName.split("\\(")[0];
 					fromName += "();";
 					
-					Q sCFG = staticCFG.get(fromName);
+					Q sCFG = staticCFG.get(fromFunctionNode);
 					Node dest = recreatedNodes.get(e.to().addressBits());
 					if (dest == null) {
 						dest = createStaticNode(e.to(), false, functionNode);

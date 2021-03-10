@@ -305,29 +305,42 @@ public class ShortCircuitChecking {
 		
 		//Move nested SC nodes to the beginning of the array to be processed first
 		//in order to have initial true and false destinations
-		for (int r = 0; r < scNodes.size(); r++) {
-			Node current = scNodes.get(r);
-			for (int s = r + 1; s < scNodes.size(); s++) {
+		for (int r = scNodes.size() - 1; r >=0; r--) {
+//			Node current = scNodes.get(r);
+			for (int s = r - 1; s >= 0; s--) {
 				Node next = scNodes.get(s);
-				
+				Node current = scNodes.get(r);
 				long currentLine = getCSourceLineNumber(current);
 				long nextLine = getCSourceLineNumber(next);
 				
-				if(!current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
+				if (currentLine > nextLine) {
 					Node temp = current; 
 					scNodes.set(r, next);
 					scNodes.set(s, temp);
 					current = scNodes.get(r);
 				}
-				else if (current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
-					//If you have multiple nested sc nodes, you want to move the "lowest" one to the front
-					if (nextLine > currentLine) {
-						Node temp = current; 
-						scNodes.set(r, next);
-						scNodes.set(s, temp);
-						current = scNodes.get(r);
-					}
-				}
+				
+//				if(!current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
+//					Node temp = current; 
+//					scNodes.set(r, next);
+//					scNodes.set(s, temp);
+//					current = scNodes.get(r);
+//				}
+//				else if (current.taggedWith("nested_sc") && next.taggedWith("nested_sc")) {
+//					//If you have multiple nested sc nodes, you want to move the "lowest" one to the front
+//					if (nextLine > currentLine) {
+//						Node temp = current; 
+//						scNodes.set(r, next);
+//						scNodes.set(s, temp);
+//						current = scNodes.get(r);
+//					}
+//				}
+//				else if (currentLine > nextLine) {
+//					Node temp = current; 
+//					scNodes.set(r, next);
+//					scNodes.set(s, temp);
+//					current = scNodes.get(r);
+//				}
 			}
 		}
 		
@@ -418,12 +431,14 @@ public class ShortCircuitChecking {
 			//Getting all information from original node for new nodes in final graph
 			scNode[] nodes = createScNodes(ordering, x);
 			ArrayList<Node> scNodesInGraph = new ArrayList<Node>();
-							
+			boolean nullFlag = false;
+			
 			for(int j = 0; j < nodes.length; j++) {
 				
 				if (nodes[j] == null) {
 					System.out.println("Macro Condition: " + name);
-					return null;
+					nullFlag = true; 
+					continue;
 				}
 				
 				if (trueDest == null || falseDest == null) {
@@ -450,7 +465,7 @@ public class ShortCircuitChecking {
 				
 				//If this is the first node, being created it needs to have all predecessor nodes pointing to it 
 				//and have any loopback edges coming to it for loops with complex conditions
-				if (j == 0) {					
+				if (j == 0 || nullFlag) {					
 					temp1.tag("sc_header");
 					scHeaders.add(temp1);
 					
@@ -490,6 +505,14 @@ public class ShortCircuitChecking {
 							}
 						}
 					}
+					
+					if (nullFlag) {
+						temp1.tag("macro_conditional");
+						scNode tempSC = nodes[j];
+						nodes = new scNode[1];
+						nodes[0] = tempSC;
+						nullFlag = false;
+					}
 				}
 				Edge e1 = Graph.U.createEdge(functionNode, temp1);
 				e1.tag(XCSG.Contains);
@@ -500,6 +523,9 @@ public class ShortCircuitChecking {
 			scNode lastNode = null;
 			
 			for (int m = 0; m < scNodesInGraph.size(); m++) {
+				if (nodes[m] == null) {
+					continue;
+				}
 				scNode checking = nodes[m];
 				Node checkingNode = scNodesInGraph.get(m);
 		
@@ -513,6 +539,9 @@ public class ShortCircuitChecking {
 			}
 			
 			for (int m = scNodesInGraph.size()-1; m >= 0; m--) {
+				if (nodes[m] == null) {
+					continue;
+				}
 				scNode checking = nodes[m];
 				Node checkingNode = scNodesInGraph.get(m);
 				
@@ -584,7 +613,8 @@ public class ShortCircuitChecking {
 		int j = 0; 
 		int k = 0;
 		
-		String name = x.getAttr(XCSG.name).toString();
+		String name = x.attr().get(XCSG.name).toString();
+//		x.getAttr(XCSG.name).toString();
 		String[] parts = name.split(" ");
 		String updatedName[] = x.getAttr(XCSG.name).toString().split("&&|\\|\\|");
 		

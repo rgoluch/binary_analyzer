@@ -431,7 +431,7 @@ public class SwitchStatementChecking {
 				checkPoint.tag("switch_graph");
 				checkPoint.tag("bst_node");
 				checkPoint.tag("check");
-				checkPoint.putAttr("line_number", -1);
+				checkPoint.putAttr("line_number", cases.get(0).lineNumber);
 				createFunctionEdge(functionNode, checkPoint);
 				
 				createSwitchEdge("false", null, cases.get(0).createdNode, checkPoint, switchTags);

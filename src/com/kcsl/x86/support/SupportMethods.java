@@ -3,6 +3,7 @@ package com.kcsl.x86.support;
 import static com.kcsl.x86.Importer.loop_tagging;
 import static com.kcsl.x86.Importer.my_cfg;
 import static com.kcsl.x86.Importer.my_function;
+import static com.kcsl.x86.subgraphs.SubGraphGenerator.findSubGraph;
 import static com.kcsl.x86.support.SupportMethods.srcTransformedGraph;
 
 import com.se421.paths.transforms.DAGTransform;
@@ -467,8 +468,32 @@ public class SupportMethods {
 			if (sc != null) {
 				lineNumber = sc.startLine;
 			}
+//			sc.sourceFile.
 		}
 		return lineNumber;
+	}
+	
+	public static void sltCounter() {
+		
+		Q functions = Query.universe().nodesTaggedWithAll(XCSG.Function, "class_xinu");
+		for (Node function : functions.eval().nodes()) {
+			String fName = function.getAttr(XCSG.name).toString();
+
+			if(fName.contains("setupStack") || fName.contains("test") || fName.contains("lexan") 
+					|| fName.contains("enqueue") || fName.contains("insert") || fName.contains("dispatch")) {
+				continue;
+			}
+			
+			Q binGraph = findSubGraph(fName);
+			int sltCount = 0;
+			for (Node n : binGraph.eval().nodes()) {
+				String nodeName = n.getAttr(XCSG.name).toString();
+				if (nodeName.contains("slti") || nodeName.contains("sltiu") || nodeName.contains("slt")) {
+					System.out.println(fName);
+					break;
+				}
+			}
+		}
 	}
 	
 }

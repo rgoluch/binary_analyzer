@@ -378,22 +378,19 @@ public class SubGraphGenerator {
 //		Q f = my_function(name);
 //		Q originalCFG = my_cfg(f);
 		
-		
 		Q subgraph = null;
-		
-		
 		Node functionNode = Graph.U.createNode();
 		if (flag != 1) {
 			functionNode.putAttr(XCSG.name, "single_src_return_"+name);
 			subgraph = c;
 		}
 		else {
-//			name = name.substring(17);
 			functionNode.putAttr(XCSG.name, "isomorphic_checking_"+name);
 			subgraph = scTransform(c, name);
 		}
-		if (subgraph == null) {
-			return null;
+		
+		if (subgraph.nodes("macro_conditional").eval().nodes().size() > 0) {
+			functionNode.tag("macro_condition_found");
 		}
 		functionNode.tag(XCSG.Function);
 		functionNode.tag("consolidated_src");
