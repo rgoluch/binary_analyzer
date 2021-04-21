@@ -46,7 +46,7 @@ public class RadareImporter {
 			String path2 = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/class_dot_graphs/dot_graphs/";
 			String path3 = "/Users/RyanGoluch/Desktop/Research/kothari_490/com.kcsl.x86/ppc_dot_graphs/dot_graphs/";
 			
-			String paths[] = {path2, path3} ;
+			String paths[] = {path, path2, path3} ;
 //					path2, path3};
 			
 			for (String p : paths) {
@@ -85,7 +85,7 @@ public class RadareImporter {
 						else if (p.equals(path2)) {
 							functionName.tag("class_xinu");
 							functionName.removeAttr(XCSG.name);
-							functionName.putAttr(XCSG.name, "class_"+dot.getName().replace(".dot", ""));
+							functionName.putAttr(XCSG.name, "mips_"+dot.getName().replace(".dot", ""));
 						}
 						else if (p.equals(path3)) {
 							functionName.tag("ppc_xinu");

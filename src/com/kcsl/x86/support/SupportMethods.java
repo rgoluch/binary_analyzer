@@ -4,6 +4,7 @@ import static com.kcsl.x86.Importer.loop_tagging;
 import static com.kcsl.x86.Importer.my_cfg;
 import static com.kcsl.x86.Importer.my_function;
 import static com.kcsl.x86.subgraphs.SubGraphGenerator.findSubGraph;
+import static com.kcsl.x86.support.SupportMethods.getCSourceLineNumber;
 import static com.kcsl.x86.support.SupportMethods.srcTransformedGraph;
 
 import com.se421.paths.transforms.DAGTransform;
@@ -23,6 +24,7 @@ import com.ensoftcorp.atlas.core.query.Query;
 import com.ensoftcorp.atlas.core.script.Common;
 import com.ensoftcorp.atlas.core.script.CommonQueries;
 import com.ensoftcorp.atlas.core.xcsg.XCSG;
+import com.ensoftcorp.atlas.ui.viewer.graph.DisplayUtil;
 import com.ensoftcorp.atlas.ui.viewer.graph.SaveUtil;
 import com.ensoftcorp.open.commons.algorithms.LoopIdentification;
 
@@ -242,12 +244,20 @@ public class SupportMethods {
 		Q f = my_function(name);
 		Q c = my_cfg(f);
 		
+		for (Edge e : c.eval().edges().tagged(XCSG.ControlFlow_Edge)) {
+			if (e.hasAttr(XCSG.conditionValue)) {
+				String v = e.getAttr(XCSG.conditionValue).toString();
+				e.putAttr(XCSG.name, v);
+			}
+		}
+		
 		return c;
 	}
 	
 	public static Q srcTransformedGraph(String name) {
 		Q f = Query.universe().nodes(XCSG.Function);
-		Q found = f.selectNode(XCSG.name, "isomorphic_checking_"+name);
+//		"isomorphic_checking_"
+		Q found = f.selectNode(XCSG.name, "single_src_return_"+name);
 		Q c = found.contained().nodes("src_node").induce(Query.universe().edges("src_induced_edge"));
 		
 		return c;
@@ -259,6 +269,20 @@ public class SupportMethods {
 		Q c = found.contained().nodes("bin_node").induce(Query.universe().edges("bin_induced_edge"));
 		
 		return c;
+	}
+	
+	public static void displayAll(String name) {
+		String pName = "ppc_"+name;
+		String mName = "class_"+name;
+		
+		Q sTransformed = srcTransformedGraph(name);
+		Q pTransformed = binTransformedGraph(pName);
+		Q mTransformed = binTransformedGraph(mName);
+		
+		
+		DisplayUtil.displayGraph(sTransformed.eval());
+		DisplayUtil.displayGraph(pTransformed.eval());
+		DisplayUtil.displayGraph(mTransformed.eval());
 	}
 	
 	
@@ -275,6 +299,10 @@ public class SupportMethods {
 		Q f = Query.universe().nodes(XCSG.Function);
 		Q found = f.selectNode(XCSG.name, "reversed_"+name);
 		Q c = found.contained().nodes("reversed_graph").induce(Query.universe().edges("reversed_edge"));
+		
+		if (c.eval().nodes().size() == 0) {
+			c = null;
+		}
 		
 		return c;
 	}
@@ -494,6 +522,55 @@ public class SupportMethods {
 				}
 			}
 		}
+	}
+	
+	public static ArrayList<Node> bubbleSort(ArrayList<Node> toSort, int mode){
+		
+		if (mode == 0) {
+			for (int r = 0; r < toSort.size(); r++) {
+				for (int s = r + 1; s < toSort.size(); s++) {
+					Node next = toSort.get(s);
+					Node current = toSort.get(r);
+					long currentLine = getCSourceLineNumber(current);
+					long nextLine = getCSourceLineNumber(next);
+					
+					if (currentLine > nextLine) {
+						Node temp = current; 
+						toSort.set(r, next);
+						toSort.set(s, temp);
+						current = toSort.get(r);
+					}
+				}
+			}
+		}else {
+			for (int i = 0; i < toSort.size(); i++) {
+				for (int j = i+1; j < toSort.size(); j++) {
+					Node x = toSort.get(i);
+					Node y = toSort.get(j);
+					
+					int temp = (int) x.getAttr("line_number");
+					int current = (int) y.getAttr("line_number");
+					if (temp > current) {
+						toSort.set(i,y);
+						toSort.set(j, x);
+					}
+				}
+			}
+		}
+		
+		
+		return toSort;
+	}
+	
+	public static ArrayList<Node> createNodeList(AtlasSet<Node> toCreate){
+		
+		ArrayList<Node> toReturn = new ArrayList<Node>();
+		for(Node t : toCreate) {
+			toReturn.add(t);
+		}
+		
+		return toReturn;
+		
 	}
 	
 }

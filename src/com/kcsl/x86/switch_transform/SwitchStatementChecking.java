@@ -431,7 +431,9 @@ public class SwitchStatementChecking {
 				checkPoint.tag("switch_graph");
 				checkPoint.tag("bst_node");
 				checkPoint.tag("check");
-				checkPoint.putAttr("line_number", cases.get(0).lineNumber);
+				checkPoint.tag("case_node");
+				long switchLine = getCSourceLineNumber(s);
+				checkPoint.putAttr("line_number", cases.get(0).lineNumber+1);
 				createFunctionEdge(functionNode, checkPoint);
 				
 				createSwitchEdge("false", null, cases.get(0).createdNode, checkPoint, switchTags);
@@ -551,7 +553,7 @@ public class SwitchStatementChecking {
 			for (int i = mid-1; i >= 0; i--) {
 				Node currentI = nodes.get(i).getOriginalNode();
 				Node caseCreateI = createNode(currentI, nodeTags);
-				
+				caseCreateI.tag("case_node");
 				
 				//Add to array for size check
 				if (casesAdded.get(currentI) == null) {

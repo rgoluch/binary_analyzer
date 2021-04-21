@@ -346,7 +346,7 @@ public class SubGraphGenerator {
 			long backSize = 0;
 			
 			for (Edge e : incoming) {
-				if (e.taggedWith(XCSG.ControlFlowBackEdge)) {
+				if (e.taggedWith(XCSG.ControlFlowBackEdge) && e.from().taggedWith("bin_loopback_tail")) {
 					backSize +=1;
 				}
 			}
@@ -377,6 +377,14 @@ public class SubGraphGenerator {
 		
 //		Q f = my_function(name);
 //		Q originalCFG = my_cfg(f);
+//		
+//		if (flag == 2) {
+//			AtlasSet<Node> exit = c.eval().nodes().tagged(XCSG.controlFlowExitPoint);
+//			for (Node e : exit) {
+//				e.tag("src_exit");
+//			}
+//			return c;
+//		}
 		
 		Q subgraph = null;
 		Node functionNode = Graph.U.createNode();
@@ -791,6 +799,8 @@ public class SubGraphGenerator {
 						newInduced2.putAttr(XCSG.conditionValue, "false");
 						newInduced2.putAttr(XCSG.name, "false");
 						newInduced2.tag(XCSG.ControlFlowBackEdge);
+						
+						zPred1.tag("src_loopback_tail");
 						
 						z.untag("src_node");
 						zEdge.untag("src_induced_edge");
