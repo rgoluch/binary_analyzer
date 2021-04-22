@@ -117,7 +117,7 @@ public class ShortCircuitChecking {
 		
 		Map<Node,Node> addedToGraph = new HashMap<Node,Node>();
 		ArrayList<Node> scPredecessors = new ArrayList<Node>();
-		Map<Integer,Node> predMap = new HashMap<Integer,Node>();
+		Map<predecessorNode,Node> predMap = new HashMap<predecessorNode,Node>();
 		ArrayList<predecessorNode> loopBackTails = new ArrayList<predecessorNode>();
 		Map<Node,Node> loopBackHeaderMap = new HashMap<Node,Node>();
 		ArrayList<predecessorNode> edgeCreated = new ArrayList<predecessorNode>(); 
@@ -157,8 +157,9 @@ public class ShortCircuitChecking {
 				//Case where node was created and is the predecessor
 				if (checkingPred != null && !e.taggedWith(XCSG.ControlFlowBackEdge)) {
 					scPredecessors.add(checkingPred);
-					predMap.put(checkingPred.addressBits(), e.to());
 					predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), checkingPred, edgeValue);
+					predMap.put(p, e.to());
+//					checkingPred.addressBits()
 					edgeCreated.add(p);
 				} 
 				//Case where node was created and edge is a loopback edge
@@ -179,8 +180,8 @@ public class ShortCircuitChecking {
 						loopBackHeaderMap.put(tempSCPred, e.to());
 					}else {
 						scPredecessors.add(tempSCPred);
-						predMap.put(tempSCPred.addressBits(), e.to());
 						predecessorNode p = new predecessorNode(e.from().addressBits(), e.to().addressBits(), tempSCPred, edgeValue);
+						predMap.put(p, e.to()); //tempSCPred.addressBits()
 						edgeCreated.add(p);
 					}
 				}
@@ -474,7 +475,7 @@ public class ShortCircuitChecking {
 					}
 					
 					for(predecessorNode p : edgeCreated) {
-						Node predSCNode = predMap.get(p.getAddedNode().addressBits());
+						Node predSCNode = predMap.get(p); //.getAddedNode().addressBits()
 						
 						if (predSCNode.getAttr(XCSG.name).toString().contains(nodes[j].getCondition()) && p.getToAddr() == x.addressBits() && !p.getEdge()) {
 							Edge predEdge = Graph.U.createEdge(p.getAddedNode(), temp1);
